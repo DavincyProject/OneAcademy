@@ -2,35 +2,39 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../redux/actions/authActions";
+import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
-
     const [error, setError] = useState(null);
 
-    const handleSubmit = (e) => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const handleLogin = (e) => {
         e.preventDefault();
 
         // validate form
         if (!email && !password) {
-            setError("Email dan Password belum diisi");
+            toast.error("Email dan Password belum diisi");
             return;
         } else if (!email) {
-            setError("Email belum diisi");
+            toast.error("Email belum diisi");
             return;
         } else if (!password) {
-            setError("Password belum diisi");
+            toast.error("Password belum diisi");
             return;
         } else if (password.length < 8) {
-            setError("Password min 8 karakter!");
+            toast.error("Password min 8 karakter!");
             return;
         }
 
-        console.log("Email:", email);
-        console.log("Password:", password);
-
+        dispatch(login(email, password, navigate));
         setError(null);
     };
 
@@ -41,7 +45,7 @@ const Login = () => {
     return (
         <div className="flex min-h-screen">
             <div className="w-[100%] lg:w-[50%] flex justify-start items-center mx-[23px] lg:px-[145px] ">
-                <form onSubmit={handleSubmit} className="w-full">
+                <form onSubmit={handleLogin} className="w-full">
                     <h1 className="text-[24px] font-bold text-[#6148FF] mb-8">
                         Masuk
                     </h1>
@@ -118,6 +122,17 @@ const Login = () => {
                                 {error}
                             </div>
                         )}
+                        <Toaster
+                            position="bottom-center"
+                            toastOptions={{
+                                className: "",
+                                style: {
+                                    border: "1px solid #713200",
+                                    padding: "16px",
+                                    color: "#713200",
+                                },
+                            }}
+                        />
                     </div>
                 </form>
             </div>
