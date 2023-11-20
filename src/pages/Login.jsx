@@ -20,7 +20,7 @@ const Login = () => {
 
     return (
         <div className="flex min-h-screen">
-            <div className="w-[100%] lg:w-[50%] flex justify-start items-center mx-[23px] lg:mx-[158px] ">
+            <div className="w-[100%] lg:w-[50%] flex justify-start items-center mx-[23px] lg:px-[145px] ">
                 <form onSubmit={handleSubmit} className="w-full">
                     <h1 className="text-[24px] font-bold text-[#6148FF] mb-8">
                         Masuk
@@ -32,7 +32,7 @@ const Login = () => {
                             </label>
                             <input
                                 type="email"
-                                className="border w-full p-2 rounded-lg"
+                                className="border w-full p-2 rounded-2xl"
                                 placeholder="Contoh: johndoe@gmail.com"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
@@ -52,7 +52,7 @@ const Login = () => {
                             <div className="relative">
                                 <input
                                     type={showPassword ? "text" : "password"}
-                                    className="border w-full p-2 rounded-lg pr-[3.5rem]"
+                                    className="border w-full p-2 rounded-2xl pr-[3.5rem]"
                                     placeholder="Masukkan password"
                                     value={password}
                                     onChange={(e) =>
@@ -73,7 +73,7 @@ const Login = () => {
                             </div>
                         </div>
                     </div>
-                    <button className="w-full bg-[#6148FF] text-white py-[10px] rounded-[5px] mt-[10px]">
+                    <button className="w-full  bg-[#6148FF] text-white py-[10px] rounded-2xl mt-5">
                         Masuk
                     </button>
                     <div className="flex justify-center items-center gap-2 mt-6">
