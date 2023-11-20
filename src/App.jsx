@@ -6,26 +6,28 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 import ResetPassword from "./pages/ResetPassword";
+import SendReset from "./components/Auth/SendReset";
 function App() {
-    return (
-        <>
-            <Provider store={store}>
-                <BrowserRouter>
-                    <Routes>
-                        <Route path="/" element={<Home />} />
+  return (
+    <>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
 
-                        {/* Authorization */}
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/register" element={<Register />} />
-                        <Route path="/forgot" element={<ResetPassword />} />
+            {/* Authorization */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/reset" element={<SendReset />} />
+            <Route path="/forgot" element={<ResetPassword />} />
 
-                        {/* Handle Pages Not Found */}
-                        <Route path="*" element={<NotFound />} />
-                    </Routes>
-                </BrowserRouter>
-            </Provider>
-        </>
-    );
+            {/* Handle Pages Not Found */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </Provider>
+    </>
+  );
 }
 
 export default App;
