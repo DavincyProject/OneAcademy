@@ -19,7 +19,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/reset" element={<SendReset />} />
-            <Route path="/forgot" element={<ResetPassword />} />
+            <Route path="/forgot/:id" element={<ResetPassword />} />
 
             {/* Handle Pages Not Found */}
             <Route path="*" element={<NotFound />} />

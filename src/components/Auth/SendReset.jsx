@@ -8,6 +8,12 @@ const SendReset = () => {
 
   const handleReset = (e) => {
     e.preventDefault();
+
+    if (email === "") {
+      return;
+    }
+
+    //send email to api for getting mail reset
     console.log("email terkirim:", email);
     dispatch(resetPassword(email));
   };
