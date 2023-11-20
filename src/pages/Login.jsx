@@ -8,10 +8,27 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
+    const [error, setError] = useState(null);
+
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        // validate form
+        if (!email && !password) {
+            setError("Email dan Password belum diisi");
+            return;
+        } else if (!email) {
+            setError("Email belum diisi");
+            return;
+        } else if (!password) {
+            setError("Password belum diisi");
+            return;
+        }
+
         console.log("Email:", email);
         console.log("Password:", password);
+
+        setError(null);
     };
 
     const togglePassword = () => {
@@ -27,22 +44,20 @@ const Login = () => {
                     </h1>
                     <div className="flex flex-col gap-5">
                         <div className="flex flex-col">
-                            <label className="text-[18px] mb-[4px]">
+                            <label className="text-[12px] mb-[4px]">
                                 Email/No Telepon
                             </label>
                             <input
                                 type="email"
-                                className="border w-full p-2 rounded-2xl"
+                                className="border text-[14px] w-full p-2 rounded-2xl"
                                 placeholder="Contoh: johndoe@gmail.com"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
-                        <div className="flex flex-col">
+                        <div className="flex flex-col text-[12px]">
                             <div className="flex justify-between items-center">
-                                <label className="text-[18px] mb-[4px]">
-                                    Password
-                                </label>
+                                <label className=" mb-[4px]">Password</label>
                                 <Link to="/forgot">
                                     <span className="text-[#6148FF]">
                                         Lupa Kata Sandi
@@ -52,7 +67,7 @@ const Login = () => {
                             <div className="relative">
                                 <input
                                     type={showPassword ? "text" : "password"}
-                                    className="border w-full p-2 rounded-2xl pr-[3.5rem]"
+                                    className="border text-[14px] w-full p-2 rounded-2xl pr-[3.5rem]"
                                     placeholder="Masukkan password"
                                     value={password}
                                     onChange={(e) =>
@@ -73,7 +88,7 @@ const Login = () => {
                             </div>
                         </div>
                     </div>
-                    <button className="w-full  bg-[#6148FF] text-white py-[10px] rounded-2xl mt-5">
+                    <button className="w-full text-[14px] font-medium bg-[#6148FF] text-white py-[10px] rounded-2xl mt-5">
                         Masuk
                     </button>
                     <div className="flex justify-center items-center gap-2 mt-6">
@@ -86,6 +101,14 @@ const Login = () => {
                         >
                             Daftar di sini
                         </Link>
+                    </div>
+
+                    <div className="flex justify-center items-center">
+                        {error && (
+                            <div className="text-white text-[14px] font-medium mt-10 border p-3 rounded-xl bg-[#FF0000]">
+                                {error}
+                            </div>
+                        )}
                     </div>
                 </form>
             </div>
