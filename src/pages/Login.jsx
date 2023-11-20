@@ -23,6 +23,9 @@ const Login = () => {
         } else if (!password) {
             setError("Password belum diisi");
             return;
+        } else if (password.length < 8) {
+            setError("Password min 8 karakter!");
+            return;
         }
 
         console.log("Email:", email);
@@ -49,7 +52,9 @@ const Login = () => {
                             </label>
                             <input
                                 type="email"
-                                className="border text-[14px] w-full p-2 rounded-2xl"
+                                className={`border text-[14px] w-full p-2 rounded-2xl ${
+                                    error && !email ? "border-red-500" : ""
+                                }`}
                                 placeholder="Contoh: johndoe@gmail.com"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
@@ -67,7 +72,11 @@ const Login = () => {
                             <div className="relative">
                                 <input
                                     type={showPassword ? "text" : "password"}
-                                    className="border text-[14px] w-full p-2 rounded-2xl pr-[3.5rem]"
+                                    className={`border text-[14px] w-full p-2 rounded-2xl pr-[3.5rem] ${
+                                        error && !password
+                                            ? "border-red-500"
+                                            : ""
+                                    }`}
                                     placeholder="Masukkan password"
                                     value={password}
                                     onChange={(e) =>
