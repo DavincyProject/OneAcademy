@@ -4,7 +4,7 @@ import { FaRegEyeSlash } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { useDispatch } from "react-redux";
-import { setResetPassword } from "../../redux/actions/authActions";
+import { forgotPassword } from "../../redux/actions/authActions";
 
 const ResetPassword = () => {
     const [newPassword, setNewPassword] = useState("");
@@ -35,7 +35,7 @@ const ResetPassword = () => {
         console.log("ulang password:", ulangPassword);
         console.log("token reset:", id);
 
-        dispatch(setResetPassword(id, newPassword));
+        dispatch(forgotPassword(id, newPassword));
     };
 
     const togglePasswordTop = () => {
