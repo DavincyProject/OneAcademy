@@ -76,7 +76,7 @@ export const resetPassword = (email) => async (dispatch) => {
     }
 };
 
-export const setNewPassword = (newPassword, id) => async () => {
+export const setResetPassword = (newPassword, id) => async () => {
     try {
         await axios.post(`ENDPOINTS.setpassword/${id}`, {
             newPassword,
