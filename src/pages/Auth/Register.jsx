@@ -2,6 +2,10 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { register } from "../../redux/actions/authActions";
+import toast, { Toaster } from "react-hot-toast";
 
 const Register = () => {
     const [nama, setNama] = useState("");
@@ -9,6 +13,9 @@ const Register = () => {
     const [nomor, setNomor] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const validateNomor = (e) => {
         const inputValue = e.target.value;
@@ -25,10 +32,32 @@ const Register = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if (!nama && !email && !nomor && !password) {
+            toast.error("Semua Form Harus Diisi");
+            return;
+        } else if (nama === "") {
+            toast.error("Nama masih kosong");
+            return;
+        } else if (email === "") {
+            toast.error("Email masih kosong");
+            return;
+        } else if (nomor === "") {
+            toast.error("Nomor masih kosong");
+            return;
+        } else if (password === "") {
+            toast.error("Password masih kosong");
+            return;
+        } else if (password.length < 8) {
+            toast.error("Password min 8 karakter!");
+            return;
+        }
+
         console.log("Email:", email);
         console.log("Password:", password);
         console.log("nama:", nama);
         console.log("nomor:", nomor);
+        dispatch(register(email, password, nama, nomor, navigate));
     };
 
     const togglePassword = () => {
@@ -123,6 +152,18 @@ const Register = () => {
                             Masuk di sini
                         </Link>
                     </div>
+
+                    <Toaster
+                        position="bottom-center"
+                        toastOptions={{
+                            className: "",
+                            style: {
+                                border: "1px solid #713200",
+                                padding: "16px",
+                                color: "#713200",
+                            },
+                        }}
+                    />
                 </form>
             </div>
 
