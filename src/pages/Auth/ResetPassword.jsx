@@ -35,7 +35,7 @@ const ResetPassword = () => {
         console.log("ulang password:", ulangPassword);
         console.log("token reset:", id);
 
-        dispatch(forgotPassword(id, newPassword));
+        dispatch(forgotPassword(newPassword, id));
     };
 
     const togglePasswordTop = () => {

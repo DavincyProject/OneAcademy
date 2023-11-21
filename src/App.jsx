@@ -19,9 +19,9 @@ function App() {
                         {/* Authorization */}
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
-
                         <Route path="/validate" element={<RegisterOtp />} />
 
+                        {/* Reset Password */}
                         <Route path="/reset" element={<SendReset />} />
                         <Route path="/forgot/:id" element={<ResetPassword />} />
 
