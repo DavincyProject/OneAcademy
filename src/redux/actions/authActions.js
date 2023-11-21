@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ENDPOINTS } from "../../utils/endpointApi";
-import { setToken, setTokenReset } from "../reducers/authReducers";
+import { setToken, setResetToken } from "../reducers/authReducers";
 import toast from "react-hot-toast";
 
 export const login = (email, password, navigate) => async (dispatch) => {
@@ -59,7 +59,7 @@ export const resetPassword = (email) => async (dispatch) => {
 
         const { data } = response.data;
         const { tokenReset } = data;
-        dispatch(setTokenReset(tokenReset));
+        dispatch(setResetToken(tokenReset));
 
         toast.success("Tatutan reset password terkirim ke email anda");
     } catch (error) {
@@ -76,10 +76,10 @@ export const resetPassword = (email) => async (dispatch) => {
     }
 };
 
-
-export const setResetPassword = (newPassword, id) => async () => {
+export const forgotPassword = (newPassword, id) => async () => {
+    const forgotPassword = ENDPOINTS.setpassword(id);
     try {
-        await axios.post(`ENDPOINTS.setpassword/${id}`, {
+        await axios.post(forgotPassword, {
             newPassword,
         });
     } catch (error) {
