@@ -16,18 +16,40 @@ export const login = (email, password, navigate) => async (dispatch) => {
         dispatch(setToken(token));
         navigate("/");
     } catch (error) {
-        if (axios.isAxiosError(error)) {
-            toast.error(`${error?.response?.data?.errors?.msg}`, {
-                duration: 2000,
-            });
-            return;
-        }
-
-        toast.error(`${error?.errors}`, {
+        toast.error(`${error?.token}`, {
             duration: 2000,
         });
     }
 };
+
+export const register =
+    (nama, email, nomor, password, navigate) => async () => {
+        try {
+            await axios.post(ENDPOINTS.register, {
+                nama,
+                email,
+                nomor,
+                password,
+            });
+
+            toast.success("Registrasi Berhasil");
+
+            setTimeout(() => {
+                navigate("/login");
+            }, 3000);
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                toast.error(`${error?.response?.data?.errors?.msg}`, {
+                    duration: 2000,
+                });
+                return;
+            }
+
+            toast.error(`${error?.errors}`, {
+                duration: 2000,
+            });
+        }
+    };
 
 export const resetPassword = (email) => async (dispatch) => {
     try {
