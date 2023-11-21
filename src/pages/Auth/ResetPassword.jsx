@@ -3,6 +3,8 @@ import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { setResetPassword } from "../../redux/actions/authActions";
 
 const ResetPassword = () => {
     const [newPassword, setNewPassword] = useState("");
@@ -11,6 +13,7 @@ const ResetPassword = () => {
     const [showPasswordDown, setShowPasswordDown] = useState(false);
 
     const { id } = useParams();
+    const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -31,6 +34,8 @@ const ResetPassword = () => {
         console.log("password baru:", newPassword);
         console.log("ulang password:", ulangPassword);
         console.log("token reset:", id);
+
+        dispatch(setResetPassword(id, newPassword));
     };
 
     const togglePasswordTop = () => {
