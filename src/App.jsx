@@ -7,6 +7,7 @@ import Register from "./pages/Auth/Register";
 import NotFound from "./pages/NotFound";
 import ResetPassword from "./pages/Auth/ResetPassword";
 import SendReset from "./components/Auth/SendReset";
+import RegisterOtp from "./pages/Auth/RegisterOtp";
 function App() {
     return (
         <>
@@ -18,6 +19,9 @@ function App() {
                         {/* Authorization */}
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
+
+                        <Route path="/validate" element={<RegisterOtp />} />
+
                         <Route path="/reset" element={<SendReset />} />
                         <Route path="/forgot/:id" element={<ResetPassword />} />
 
