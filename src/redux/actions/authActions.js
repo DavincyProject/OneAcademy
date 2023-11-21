@@ -75,3 +75,22 @@ export const resetPassword = (email) => async (dispatch) => {
         });
     }
 };
+
+export const setNewPassword = (newPassword, id) => async () => {
+    try {
+        await axios.post(`ENDPOINTS.setpassword/${id}`, {
+            newPassword,
+        });
+    } catch (error) {
+        if (axios.isAxiosError(error)) {
+            toast.error(`${error?.response?.data?.errors?.msg}`, {
+                duration: 2000,
+            });
+            return;
+        }
+
+        toast.error(`${error?.errors}`, {
+            duration: 2000,
+        });
+    }
+};
