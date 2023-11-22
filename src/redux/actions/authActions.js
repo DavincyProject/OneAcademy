@@ -88,7 +88,10 @@ export const forgotPassword = (newPassword, id) => async () => {
         await axios.post(forgotPassword, {
             newPassword,
         });
+
+        toast.success("Password berhasil diganti");
     } catch (error) {
+        console.log(error);
         if (axios.isAxiosError(error)) {
             toast.error(`${error?.response?.data?.error}`, {
                 duration: 2000,

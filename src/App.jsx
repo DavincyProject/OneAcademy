@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound";
 import ResetPassword from "./pages/Auth/ResetPassword";
 import SendReset from "./components/Auth/SendReset";
 import RegisterOtp from "./pages/Auth/RegisterOtp";
+import KelasDetail from "./pages/Detail/KelasDetail";
 function App() {
     return (
         <>
@@ -15,6 +16,7 @@ function App() {
                 <BrowserRouter>
                     <Routes>
                         <Route path="/" element={<Home />} />
+                        <Route path="/details/:id" element={<KelasDetail />} />
 
                         {/* Authorization */}
                         <Route path="/login" element={<Login />} />
