@@ -1,7 +1,7 @@
 const KelasDetail = () => {
     return (
         <div>
-            <div className="container-fluid p-2 bg-[#EBF3FC]">
+            <div className="container-fluid p-2 bg-[#EBF3FC] ">
                 <div className="top-[20px]">
                     <div className="flex gap-3 my-3">
                         <img src="/icon/fi_arrow-left.svg"></img>
@@ -9,7 +9,7 @@ const KelasDetail = () => {
                     </div>
 
                     <div className="flex flex-col gap-1 ml-9 w-full md:w-[65vw]">
-                        <div className="flex justify-between  w-full md:w-[65vw]">
+                        <div className="flex justify-between w-full md:w-[65vw]">
                             <h1 className="text-[#6148FF] text-[20px] font-bold">
                                 UI/UX Design
                             </h1>
@@ -43,6 +43,18 @@ const KelasDetail = () => {
                         </button>
                     </div>
                 </div>
+            </div>
+            <div className="w-full md:w-[65vw] p-2 ">
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industrys standard dummy text
+                ever since the 1500s, when an unknown printer took a galley of
+                type and scrambled it to make a type specimen book. It has
+                survived not only five centuries, but also the leap into
+                electronic typesetting, remaining essentially unchanged. It was
+                popularised in the 1960s with the release of Letraset sheets
+                containing Lorem Ipsum passages, and more recently with desktop
+                publishing software like Aldus PageMaker including versions of
+                Lorem Ipsum.
             </div>
         </div>
     );
