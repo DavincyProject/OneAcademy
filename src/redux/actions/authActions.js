@@ -16,7 +16,13 @@ export const login = (email, password, navigate) => async (dispatch) => {
         dispatch(setToken(token));
         navigate("/");
     } catch (error) {
-        toast.error(`${error?.token}`, {
+        if (axios.isAxiosError(error)) {
+            toast.error(`${error?.response?.data?.error}`, {
+                duration: 2000,
+            });
+            return;
+        }
+        toast.error(`${error?.data?.error}`, {
             duration: 2000,
         });
     }
@@ -39,13 +45,12 @@ export const register =
             }, 3000);
         } catch (error) {
             if (axios.isAxiosError(error)) {
-                toast.error(`${error?.response?.data?.errors?.msg}`, {
+                toast.error(`${error?.response?.data?.error}`, {
                     duration: 2000,
                 });
                 return;
             }
-
-            toast.error(`${error?.errors}`, {
+            toast.error(`${error?.error}`, {
                 duration: 2000,
             });
         }
@@ -59,18 +64,19 @@ export const resetPassword = (email) => async (dispatch) => {
 
         const { data } = response.data;
         const { tokenReset } = data;
-        dispatch(setResetToken(tokenReset));
 
-        toast.success("Tatutan reset password terkirim ke email anda");
+        if (tokenReset) {
+            toast.success("Tatutan reset password terkirim ke email anda");
+            dispatch(setResetToken(tokenReset));
+        }
     } catch (error) {
         if (axios.isAxiosError(error)) {
-            toast.error(`${error?.response?.data?.errors?.msg}`, {
+            toast.error(`${error?.response?.data?.error}`, {
                 duration: 2000,
             });
             return;
         }
-
-        toast.error(`${error?.errors}`, {
+        toast.error(`${error?.data?.error}`, {
             duration: 2000,
         });
     }
@@ -84,13 +90,12 @@ export const forgotPassword = (newPassword, id) => async () => {
         });
     } catch (error) {
         if (axios.isAxiosError(error)) {
-            toast.error(`${error?.response?.data?.errors?.msg}`, {
+            toast.error(`${error?.response?.data?.error}`, {
                 duration: 2000,
             });
             return;
         }
-
-        toast.error(`${error?.errors}`, {
+        toast.error(`${error?.data?.error}`, {
             duration: 2000,
         });
     }
