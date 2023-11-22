@@ -82,9 +82,10 @@ export const resetPassword = (email) => async (dispatch) => {
     }
 };
 
-export const forgotPassword = (newPassword) => async () => {
+export const forgotPassword = (newPassword, id) => async () => {
+    const forgotPassword = ENDPOINTS.setpassword(id);
     try {
-        await axios.post(ENDPOINTS.setpassword, {
+        await axios.post(forgotPassword, {
             newPassword,
         });
     } catch (error) {
