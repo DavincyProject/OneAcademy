@@ -1,10 +1,15 @@
+import { Link } from "react-router-dom";
+
 const KelasDetail = () => {
     return (
         <div>
             <div className="container-fluid p-2 bg-[#EBF3FC] ">
                 <div className="top-[20px]">
                     <div className="flex gap-3 my-3">
-                        <img src="/icon/fi_arrow-left.svg"></img>
+                        <Link to={"/"}>
+                            <img src="/icon/fi_arrow-left.svg" />
+                        </Link>
+
                         <h1 className="text-[16px] font-bold">Kelas Lainnya</h1>
                     </div>
 
