@@ -1,7 +1,9 @@
-// import { useState } from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 
 const VideoCardList = ({ onVideoSelect }) => {
+    const [selectedVideo, setSelectedVideo] = useState(null);
+
     const dataDummy = [
         {
             id: 1,
@@ -68,8 +70,14 @@ const VideoCardList = ({ onVideoSelect }) => {
         },
     ];
 
+
+    const handleVideoSelect = (videoSrc) => {
+        onVideoSelect(videoSrc);
+        setSelectedVideo(videoSrc);
+    };
+
     return (
-        <div className="container-fluid my-2">
+        <div className="container-fluid my-2 w-auto">
             <div className="p-3 h-full relative flex flex-col text-gray-700 bg-white shadow-md w-96 rounded-md bg-clip-border">
                 <div className="p-1 flex justify-between items-center">
                     <h1 className="text-[20px] font-bold">Materi Belajar</h1>
@@ -99,7 +107,7 @@ const VideoCardList = ({ onVideoSelect }) => {
                     {dataDummy.map((item) => (
                         <div
                             key={item.id}
-                            onClick={() => onVideoSelect(item.videoSrc)}
+                            onClick={() => handleVideoSelect(item.videoSrc)}
                             className="h-[52px] p-2 cursor-pointer"
                         >
                             <div className="flex justify-between items-center">
@@ -107,7 +115,13 @@ const VideoCardList = ({ onVideoSelect }) => {
                                     <h1 className="bg-[#EBF3FC] rounded-full w-[36px] h-[36px] flex justify-center items-center">
                                         {item.number}
                                     </h1>
-                                    <h1 className="text-[12px]">
+                                    <h1
+                                        className={`text-[12px] ${
+                                            selectedVideo === item.videoSrc
+                                                ? "text-[#00CC00]"
+                                                : ""
+                                        }`}
+                                    >
                                         {item.title}
                                     </h1>
                                 </div>
@@ -131,7 +145,7 @@ const VideoCardList = ({ onVideoSelect }) => {
                     {dataDummySecond.map((item) => (
                         <div
                             key={item.id}
-                            onClick={() => onVideoSelect(item.videoSrc)}
+                            onClick={() => handleVideoSelect(item.videoSrc)}
                             className="h-[52px] p-2 cursor-pointer"
                         >
                             <div className="flex justify-between items-center">
@@ -139,7 +153,13 @@ const VideoCardList = ({ onVideoSelect }) => {
                                     <h1 className="bg-[#EBF3FC] rounded-full w-[36px] h-[36px] flex justify-center items-center">
                                         {item.number}
                                     </h1>
-                                    <h1 className="text-[12px]">
+                                    <h1
+                                        className={`text-[12px] ${
+                                            selectedVideo === item.videoSrc
+                                                ? "text-[#00CC00]"
+                                                : ""
+                                        }`}
+                                    >
                                         {item.title}
                                     </h1>
                                 </div>
