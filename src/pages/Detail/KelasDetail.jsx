@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import { FaTelegram } from "react-icons/fa";
+import VideoCardList from "../../components/Details/VideoCardList";
+import VideoPlayer from "../../components/Details/VideoPlayer";
 
 const KelasDetail = () => {
     return (
         <div>
             <div className="container-fluid p-2 bg-[#EBF3FC] ">
-                <div className="top-[20px]">
+                <div className="top-[20px] mx-2">
                     <div className="flex gap-3 my-3">
                         <Link to={"/"}>
                             <img src="/icon/fi_arrow-left.svg" />
@@ -53,21 +55,80 @@ const KelasDetail = () => {
                     </div>
                 </div>
             </div>
-            <div className="flex">
-                <div className="w-full md:w-[65vw] mx-5 my-5">
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industrys
-                    standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book. It has survived not only five centuries,
-                    but also the leap into electronic typesetting, remaining
-                    essentially unchanged. It was popularised in the 1960s with
-                    the release of Letraset sheets containing Lorem Ipsum
-                    passages, and more recently with desktop publishing software
-                    like Aldus PageMaker including versions of Lorem Ipsum.
+            <div className="flex flex-col lg:flex-row">
+                <div className="lg:flex-col">
+                    <div className="p-5 order-2 lg:order-1">
+                        {/* Video component di sini */}
+                        <VideoPlayer />
+                    </div>
+                    <div className="w-full md:w-[65vw] p-5">
+                        <div className="collapse collapse-arrow bg-base-200 mb-2">
+                            <input type="radio" name="my-accordion-2" />
+                            <div className="collapse-title text-[20px] font-bold ">
+                                Kelas Ini Ditujukan Untuk
+                            </div>
+                            <div className="collapse-content">
+                                <ol className="text-[13px] px-3 list-decimal">
+                                    <li>
+                                        Anda yang ingin memahami poin penting
+                                        design system
+                                    </li>
+                                    <li>
+                                        Anda yang ingin membantu perusahaan
+                                        lebih optimal dalam membuat design
+                                        produk
+                                    </li>
+                                    <li>
+                                        Anda yang ingin latihan membangun design
+                                        system
+                                    </li>
+                                    <li>
+                                        Anda yang ingin latihan membangun design
+                                        system
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                        <div className="collapse collapse-arrow bg-base-200 mb-2">
+                            <input type="radio" name="my-accordion-2" />
+                            <div className="collapse-title text-[20px] font-bold ">
+                                Tentang Kelas
+                            </div>
+                            <div className="collapse-content">
+                                <p>
+                                    Design system adalah kumpulan komponen
+                                    design, code, ataupun dokumentasi yang dapat
+                                    digunakan sebagai panduan utama yang
+                                    memunginkan designer serta developer
+                                    memiliki lebih banyak kontrol atas berbagai
+                                    platform. Dengan hadirnya design system,
+                                    dapat menjaga konsistensi tampilan user
+                                    interface dan meningkatkan user experience
+                                    menjadi lebih baik. Disisi bisnis, design
+                                    system sangat berguna dalam menghemat waktu
+                                    dan biaya ketika mengembangkan suatu produk.
+                                    Bersama mentor XXX, kita akan mempelajari
+                                    design system dari mulai manfaat, alur kerja
+                                    pembuatannya, tools yang digunakan, hingga
+                                    pada akhirnya, kita akan membuat MVP dari
+                                    design system. Selain itu, mentor juga akan
+                                    menjelaskan berbagai resource yang
+                                    dibutuhkan untuk mencari inspirasi mengenai
+                                    design system. Kelas ini sesuai untuk Anda
+                                    yang ingin memahami apa itu design system.
+                                    Tidak hanya ditujukan untuk UI/UX Designer
+                                    ataupun Developer, kelas ini sangat sesuai
+                                    untuk stakeholder lain agar dapat memudahkan
+                                    tim dalam bekerja sama. Yuk segera daftar
+                                    dan kami tunggu di kelas ya!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <div>test</div>
+                <div className="p-2 lg:order-2">
+                    <VideoCardList />
+                </div>
             </div>
         </div>
     );
