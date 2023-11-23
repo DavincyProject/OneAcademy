@@ -110,7 +110,7 @@ const VideoCardList = ({ onVideoSelect }) => {
                             className="h-[52px] p-2 cursor-pointer"
                         >
                             <div className="flex justify-between items-center">
-                                <div className="flex gap-1 items-center mt-2">
+                                <div className="flex gap-2 items-center mt-2">
                                     <h1 className="bg-[#EBF3FC] rounded-full w-[36px] h-[36px] flex justify-center items-center">
                                         {item.number}
                                     </h1>
@@ -124,7 +124,13 @@ const VideoCardList = ({ onVideoSelect }) => {
                                         {item.title}
                                     </h1>
                                 </div>
-                                <img src="/icon/Play.svg" />
+                                <img
+                                    src={
+                                        selectedVideo === item.videoSrc
+                                            ? "/icon/Pause.svg"
+                                            : "/icon/Play.svg"
+                                    }
+                                />
                             </div>
                             <div className="border-t mt-2 border-[#EBF3FC]"></div>
                         </div>
@@ -148,7 +154,7 @@ const VideoCardList = ({ onVideoSelect }) => {
                             className="h-[52px] p-2 cursor-pointer"
                         >
                             <div className="flex justify-between items-center">
-                                <div className="flex gap-1 items-center mt-2">
+                                <div className="flex gap-2 items-center mt-2">
                                     <h1 className="bg-[#EBF3FC] rounded-full w-[36px] h-[36px] flex justify-center items-center">
                                         {item.number}
                                     </h1>
@@ -163,7 +169,13 @@ const VideoCardList = ({ onVideoSelect }) => {
                                     </h1>
                                 </div>
 
-                                <img src="/icon/Play.svg" />
+                                <img
+                                    src={
+                                        selectedVideo === item.videoSrc
+                                            ? "/icon/Pause.svg"
+                                            : "/icon/Play.svg"
+                                    }
+                                />
                             </div>
                             <div className="border-t mt-2 border-[#EBF3FC]"></div>
                         </div>
