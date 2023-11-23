@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
-// import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { forgotPassword } from "../../redux/actions/authActions";
@@ -12,7 +12,7 @@ const ResetPassword = () => {
     const [showPasswordTop, setShowPasswordTop] = useState(false);
     const [showPasswordDown, setShowPasswordDown] = useState(false);
 
-    // const { id } = useParams();
+    const { id } = useParams();
     const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
@@ -33,7 +33,7 @@ const ResetPassword = () => {
         //send data to redux auth for reset password
         console.log("password baru:", newPassword);
         console.log("ulang password:", ulangPassword);
-        // console.log("token reset:", id);
+        console.log("token reset:", id);
 
         dispatch(forgotPassword(newPassword));
     };
@@ -120,17 +120,7 @@ const ResetPassword = () => {
                         Simpan
                     </button>
 
-                    <Toaster
-                        position="bottom-center"
-                        toastOptions={{
-                            className: "",
-                            style: {
-                                padding: "16px",
-                                color: "white",
-                                backgroundColor: "red",
-                            },
-                        }}
-                    />
+                    <Toaster position="bottom-center" />
                 </form>
             </div>
 

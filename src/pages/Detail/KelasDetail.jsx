@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { FaTelegram } from "react-icons/fa";
 
 const KelasDetail = () => {
     return (
@@ -44,22 +45,29 @@ const KelasDetail = () => {
                             </div>
                         </div>
                         <button className="mt-3 w-[269px] h-[34px] bg-[#73CA5C] text-white rounded-[25px]">
-                            Join Grup Telegram
+                            <span className="flex justify-center items-center">
+                                Join Grup Telegram
+                                <FaTelegram className="ml-2" />
+                            </span>
                         </button>
                     </div>
                 </div>
             </div>
-            <div className="w-full md:w-[65vw] p-2 ">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industrys standard dummy text
-                ever since the 1500s, when an unknown printer took a galley of
-                type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essentially unchanged. It was
-                popularised in the 1960s with the release of Letraset sheets
-                containing Lorem Ipsum passages, and more recently with desktop
-                publishing software like Aldus PageMaker including versions of
-                Lorem Ipsum.
+            <div className="flex">
+                <div className="w-full md:w-[65vw] mx-5 my-5">
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry. Lorem Ipsum has been the industrys
+                    standard dummy text ever since the 1500s, when an unknown
+                    printer took a galley of type and scrambled it to make a
+                    type specimen book. It has survived not only five centuries,
+                    but also the leap into electronic typesetting, remaining
+                    essentially unchanged. It was popularised in the 1960s with
+                    the release of Letraset sheets containing Lorem Ipsum
+                    passages, and more recently with desktop publishing software
+                    like Aldus PageMaker including versions of Lorem Ipsum.
+                </div>
+
+                <div>test</div>
             </div>
         </div>
     );

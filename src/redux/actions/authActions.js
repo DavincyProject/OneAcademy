@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ENDPOINTS } from "../../utils/endpointApi";
-import { setToken, setResetToken } from "../reducers/authReducers";
+import { setToken } from "../reducers/authReducers";
 import toast from "react-hot-toast";
 
 export const login = (email, password, navigate) => async (dispatch) => {
@@ -38,11 +38,11 @@ export const register =
                 password,
             });
 
-            toast.success("Registrasi Berhasil");
+            toast.success("Tautan Berhasil dikirim ke email");
 
             setTimeout(() => {
-                navigate("/login");
-            }, 3000);
+                navigate("/validate");
+            }, 2000);
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 toast.error(`${error?.response?.data?.error}`, {
@@ -56,18 +56,16 @@ export const register =
         }
     };
 
-export const resetPassword = (email) => async (dispatch) => {
+export const resetPassword = (email) => async () => {
     try {
         const response = await axios.post(ENDPOINTS.resetpassword, {
             email,
         });
 
         const { data } = response.data;
-        const { tokenReset } = data;
 
-        if (tokenReset) {
+        if (data) {
             toast.success("Tatutan reset password terkirim ke email anda");
-            dispatch(setResetToken(tokenReset));
         }
     } catch (error) {
         if (axios.isAxiosError(error)) {
@@ -83,13 +81,17 @@ export const resetPassword = (email) => async (dispatch) => {
 };
 
 export const forgotPassword = (newPassword, id) => async () => {
-    const forgotPassword = ENDPOINTS.setpassword(id);
+    const resetPass = ENDPOINTS.setpassword(id);
     try {
-        await axios.post(forgotPassword, {
+        const response = await axios.post(resetPass, {
             newPassword,
         });
 
-        toast.success("Password berhasil diganti");
+        const { data } = response.data;
+
+        if (data) {
+            toast.success("Password berhasil diganti");
+        }
     } catch (error) {
         console.log(error);
         if (axios.isAxiosError(error)) {
