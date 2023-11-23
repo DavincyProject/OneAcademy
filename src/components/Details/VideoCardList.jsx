@@ -1,19 +1,25 @@
-const VideoCardList = () => {
+// import { useState } from "react";
+import PropTypes from "prop-types";
+
+const VideoCardList = ({ onVideoSelect }) => {
     const dataDummy = [
         {
             id: 1,
             number: 1,
-            title: "Video 1",
+            title: "Ardhito Pramono - Fine Today",
+            videoSrc: "https://www.youtube.com/embed/IUDG7ok7dVk",
         },
         {
             id: 2,
             number: 2,
-            title: "Video 2",
+            title: "Chris Andrian Yang - Until Death Do Us Part",
+            videoSrc: "https://www.youtube.com/embed/CJbzhD3BOPU",
         },
         {
             id: 3,
             number: 3,
-            title: "Video 3",
+            title: "恋泥棒。/『ユイカ』弾き語り",
+            videoSrc: "https://www.youtube.com/embed/iKRiF8fTo4w",
         },
     ];
 
@@ -21,37 +27,44 @@ const VideoCardList = () => {
         {
             id: 1,
             number: 4,
-            title: "Video 4",
+            title: "Chris Andrian Yang - Tell Me",
+            videoSrc: "https://www.youtube.com/embed/29DfQ9XQA3A",
         },
         {
             id: 2,
             number: 5,
-            title: "Video 5",
+            title: "When She Loved Me",
+            videoSrc: "https://www.youtube.com/embed/SpS9UGmsLLU",
         },
         {
             id: 3,
             number: 6,
-            title: "Video 6",
+            title: "Hal - L",
+            videoSrc: "https://www.youtube.com/embed/jat0G8fKbxs",
         },
         {
             id: 4,
             number: 7,
-            title: "Video 7",
+            title: "Nadhif Basalamah - penjaga hati",
+            videoSrc: "https://www.youtube.com/embed/jia3fhBQ8qI",
         },
         {
             id: 5,
             number: 8,
-            title: "Video 8",
+            title: "Jaz - Bersamamu",
+            videoSrc: "https://www.youtube.com/embed/D-VytLhH-KE",
         },
         {
             id: 6,
             number: 9,
-            title: "Video 9",
+            title: "Dere - Rubix",
+            videoSrc: "https://www.youtube.com/embed/iUsz8Xsyor8",
         },
         {
             id: 7,
             number: 10,
-            title: "Video 10",
+            title: "Dere - Tanya",
+            videoSrc: "https://www.youtube.com/embed/6Ln7_fZmEFE",
         },
     ];
 
@@ -84,7 +97,11 @@ const VideoCardList = () => {
                         </p>
                     </div>
                     {dataDummy.map((item) => (
-                        <div key={item.id} className="h-[52px] p-2">
+                        <div
+                            key={item.id}
+                            onClick={() => onVideoSelect(item.videoSrc)}
+                            className="h-[52px] p-2 cursor-pointer"
+                        >
                             <div className="flex justify-between items-center">
                                 <div className="flex gap-1 items-center mt-2">
                                     <h1 className="bg-[#EBF3FC] rounded-full w-[36px] h-[36px] flex justify-center items-center">
@@ -112,7 +129,11 @@ const VideoCardList = () => {
                         </p>
                     </div>
                     {dataDummySecond.map((item) => (
-                        <div key={item.id} className="h-[52px] p-2">
+                        <div
+                            key={item.id}
+                            onClick={() => onVideoSelect(item.videoSrc)}
+                            className="h-[52px] p-2 cursor-pointer"
+                        >
                             <div className="flex justify-between items-center">
                                 <div className="flex gap-1 items-center mt-2">
                                     <h1 className="bg-[#EBF3FC] rounded-full w-[36px] h-[36px] flex justify-center items-center">
@@ -135,3 +156,7 @@ const VideoCardList = () => {
 };
 
 export default VideoCardList;
+
+VideoCardList.propTypes = {
+    onVideoSelect: PropTypes.func,
+};

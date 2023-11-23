@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaTelegram } from "react-icons/fa";
 import VideoCardList from "../../components/Details/VideoCardList";
 import VideoPlayer from "../../components/Details/VideoPlayer";
 
 const KelasDetail = () => {
+    const [activeVideo, setActiveVideo] = useState("");
     return (
         <div>
             <div className="container-fluid p-2 bg-[#EBF3FC] ">
@@ -55,11 +57,12 @@ const KelasDetail = () => {
                     </div>
                 </div>
             </div>
+
             <div className="flex flex-col lg:flex-row">
                 <div className="lg:flex-col">
                     <div className="p-5 order-2 lg:order-1">
                         {/* Video component di sini */}
-                        <VideoPlayer />
+                        <VideoPlayer videoSrc={activeVideo} />
                     </div>
                     <div className="w-full md:w-[65vw] p-5">
                         <div className="collapse collapse-arrow bg-base-200 mb-2">
@@ -127,7 +130,9 @@ const KelasDetail = () => {
                     </div>
                 </div>
                 <div className="p-2 lg:order-2">
-                    <VideoCardList />
+                    <VideoCardList
+                        onVideoSelect={(videoSrc) => setActiveVideo(videoSrc)}
+                    />
                 </div>
             </div>
         </div>
