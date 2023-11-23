@@ -8,7 +8,7 @@ const KelasDetail = () => {
     const [activeVideo, setActiveVideo] = useState("");
     return (
         <div>
-            <div className="container-fluid p-2 bg-[#EBF3FC] ">
+            <div className="container-fluid  p-2 bg-[#EBF3FC] ">
                 <div className="top-[20px] mx-2">
                     <div className="flex gap-3 my-3">
                         <Link to={"/"}>
@@ -18,14 +18,17 @@ const KelasDetail = () => {
                         <h1 className="text-[16px] font-bold">Kelas Lainnya</h1>
                     </div>
 
-                    <div className="flex flex-col gap-1 ml-9 w-full md:w-[65vw]">
-                        <div className="flex justify-between w-full md:w-[65vw]">
+                    <div className="flex flex-col gap-1 ml-9 container-fluid md:w-[65vw]">
+                        <div className="flex justify-between container-fluid md:w-[65vw]">
                             <h1 className="text-[#6148FF] text-[20px] font-bold">
                                 UI/UX Design
                             </h1>
-                            <div className="flex gap-1 mr-9">
-                                <img src="/icon/ic_round-star.svg"></img>
-                                <p>5.0</p>
+                            <div className="flex gap-1 mr-9 items-center">
+                                <img
+                                    src="/icon/ic_round-star.svg"
+                                    className="w-[14px]"
+                                ></img>
+                                <p className="text-[14px] font-bold">5.0</p>
                             </div>
                         </div>
                         <h1 className="text-[14px]">
@@ -58,8 +61,8 @@ const KelasDetail = () => {
                 </div>
             </div>
 
-            <div className="flex flex-col lg:flex-row">
-                <div className="lg:flex-col">
+            <div className="flex flex-col md:flex-row">
+                <div className="md:flex-col">
                     <div className="p-5 order-2 lg:order-1">
                         {/* Video component di sini */}
                         <VideoPlayer videoSrc={activeVideo} />
@@ -71,7 +74,7 @@ const KelasDetail = () => {
                                 Kelas Ini Ditujukan Untuk
                             </div>
                             <div className="collapse-content">
-                                <ol className="text-[13px] px-3 list-decimal">
+                                <ol className="text-[13px] text-justify px-3 list-decimal">
                                     <li>
                                         Anda yang ingin memahami poin penting
                                         design system
@@ -98,7 +101,7 @@ const KelasDetail = () => {
                                 Tentang Kelas
                             </div>
                             <div className="collapse-content">
-                                <p>
+                                <p className="text-justify">
                                     Design system adalah kumpulan komponen
                                     design, code, ataupun dokumentasi yang dapat
                                     digunakan sebagai panduan utama yang
