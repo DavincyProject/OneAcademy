@@ -70,6 +70,7 @@ const VideoCardList = ({ onVideoSelect }) => {
         },
     ];
 
+
     const handleVideoSelect = (videoSrc) => {
         onVideoSelect(videoSrc);
         setSelectedVideo(videoSrc);
