@@ -70,7 +70,6 @@ const VideoCardList = ({ onVideoSelect }) => {
         },
     ];
 
-
     const handleVideoSelect = (videoSrc) => {
         onVideoSelect(videoSrc);
         setSelectedVideo(videoSrc);
@@ -131,6 +130,7 @@ const VideoCardList = ({ onVideoSelect }) => {
                                             ? "/icon/Pause.svg"
                                             : "/icon/Play.svg"
                                     }
+                                    alt="play pause icon"
                                 />
                             </div>
                             <div className="border-t mt-2 border-[#EBF3FC]"></div>
