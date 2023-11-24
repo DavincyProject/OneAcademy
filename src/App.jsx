@@ -1,29 +1,39 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux/store";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
+import Login from "./pages/Auth/Login";
+import Register from "./pages/Auth/Register";
 import NotFound from "./pages/NotFound";
+import ResetPassword from "./pages/Auth/ResetPassword";
+import SendReset from "./components/Auth/SendReset";
+import RegisterOtp from "./pages/Auth/RegisterOtp";
+import KelasDetail from "./pages/Detail/KelasDetail";
+import DasbordPage from "./pages/DasbordPage/";
 function App() {
-  return (
-    <>
-      <Provider store={store}>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
+    return (
+        <>
+            <Provider store={store}>
+                <BrowserRouter>
+                    <Routes>
+                        <Route path="/" element={<DasbordPage />} />
+                        <Route path="/details/:id" element={<KelasDetail />} />
 
-            {/* Authorization */}
-            <Route path="/login" element={<Login />}></Route>
-            <Route path="/register" element={<Register />}></Route>
+                        {/* Authorization */}
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+                        <Route path="/validate" element={<RegisterOtp />} />
 
-            {/* Handle Pages Not Found */}
-            <Route path="*" element={<NotFound />}></Route>
-          </Routes>
-        </BrowserRouter>
-      </Provider>
-    </>
-  );
+                        {/* Reset Password */}
+                        <Route path="/reset" element={<SendReset />} />
+                        <Route path="/forgot/:id" element={<ResetPassword />} />
+
+                        {/* Handle Pages Not Found */}
+                        <Route path="*" element={<NotFound />} />
+                    </Routes>
+                </BrowserRouter>
+            </Provider>
+        </>
+    );
 }
 
 export default App;
