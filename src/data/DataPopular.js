@@ -9,7 +9,7 @@ const populer = [
   },
   {
     id: 3,
-    popular: "UI/EX",
+    popular: "UI/EX Design",
   },
   {
     id: 4,

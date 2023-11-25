@@ -2,13 +2,13 @@ import categori from "../../data/DataCategori";
 
 const CardCategori = () => {
   return (
-    <div className=" flex mx-auto justify-center  bg-LightBlue5">
+    <div className=" flex mx-auto justify-center  bg-[#EBF3FC]">
       <div className="flex w-full flex-col pt-[26px] pb-[14px] gap-5 container">
         <div className="flex flex-row justify-between container">
           <h2 className="text-xl font-Montserrat font-bold ">
             Kategori Belajar
           </h2>
-          <p className="font-Montserrat font-extrabold text-xs max-w-fit text-DARKBLUE05">
+          <p className="font-Montserrat font-extrabold text-xs max-w-fit text-[#6148FF]">
             Lihat Semua
           </p>
         </div>
