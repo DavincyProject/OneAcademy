@@ -76,8 +76,8 @@ const VideoCardList = ({ onVideoSelect }) => {
     };
 
     return (
-        <div className="container-fluid my-2 w-auto">
-            <div className="p-3 h-full relative flex flex-col text-gray-700 bg-white shadow-md w-96 rounded-md bg-clip-border">
+        <div className="container-fluid my-2">
+            <div className="p-3 h-full w-full relative flex flex-col text-gray-700 bg-white shadow-md lg:w-96 rounded-md bg-clip-border">
                 <div className="p-1 flex justify-between items-center">
                     <h1 className="text-[20px] font-bold">Materi Belajar</h1>
 
