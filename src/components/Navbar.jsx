@@ -1,31 +1,54 @@
+import user from "../../public/user.png";
+import { useState } from "react";
+
 const Navbar = () => {
-  <div className="navbar bg-base-100">
-    <div className="flex-1">
-      <a className="btn btn-ghost text-xl">daisyUI</a>
-    </div>
-    <div className="flex-none gap-2">
-      <div className="form-control">
-        <input
-          type="text"
-          placeholder="Search"
-          className="input input-bordered w-24 md:w-auto"
-        />
-      </div>
-      <div className="dropdown dropdown-end">
-        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-          <div className="w-10 rounded-full">
-            <img
-              alt="Tailwind CSS Navbar component"
-              src="/images/stock/photo-1534528741775-53994a69daeb.jpg"
-            />
+  const [toggleAkun, setToggleAkun] = useState(false);
+  const handleAkun = () => {
+    setToggleAkun(true);
+  };
+  return (
+    <>
+      <div className=" bg-[#6148FF] w-full flex h-28">
+        <div className="flex w-[80%] mx-auto">
+          <div className=" flex-auto w-64">
+            <div className="flex items-center h-full">
+              <div className=" ">
+                <img src="/logo.png" className="w-full lg:w-full " />
+              </div>
+              <div className=" ml-6">
+                <input
+                  className="py-4 px-7 w-[526px] rounded-2xl"
+                  type="text"
+                  placeholder="Cari kursus terbaik.."
+                />
+              </div>
+            </div>
           </div>
-        </label>
-        <ul
-          tabIndex={0}
-          className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
-        ></ul>
+          <div className="flex-auto">
+            <div className="flex justify-end items-center h-full">
+              <div className="px-3"></div>
+              <div
+                className={`px-6 py-2 rounded-xl ${
+                  toggleAkun && "bg-[#489CFF]"
+                } `}
+              >
+                <button
+                  className="flex text-white text-xl items-center"
+                  onClick={handleAkun}
+                >
+                  <img
+                    src={user}
+                    className={`${toggleAkun && "pr-2"} pt-[2px]`}
+                  />
+                  {toggleAkun && "Akun"}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>;
+    </>
+  );
 };
+
 export default Navbar;

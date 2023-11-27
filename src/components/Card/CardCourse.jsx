@@ -1,5 +1,6 @@
 import course from "../../data/DataCourse";
 import populer from "../../data/DataPopular";
+import { Link } from "react-router-dom";
 
 const CardCourse = () => {
   return (
@@ -21,45 +22,51 @@ const CardCourse = () => {
         <div className="flex flex-row container justify-between gap-4">
           {course.map((data) => (
             <div key={data.id}>
-              <div className="flex flex-col bg-white rounded-2xl drop-shadow-xl  ">
-                <img src={data.Image} />
-                <div className="flex flex-col mt-3 px-2 mb-3">
-                  <div className="flex flex-row justify-between font-Montserrat font-bold text-sm ">
-                    <h3 className="text-[#6148FF]">{data.nama}</h3>
-                    <div className="flex flex-row gap-1">
-                      <p>{data.rating}</p>
+              <Link to={`/details/${data.id}`}>
+                <div className="flex flex-col bg-white rounded-2xl drop-shadow-xl">
+                  <img src={data.Image} />
+                  <div className="flex flex-col mt-3 px-2 mb-3">
+                    <div className="flex flex-row justify-between font-Montserrat font-bold text-sm ">
+                      <h3 className="text-[#6148FF]">{data.nama}</h3>
+                      <div className="flex gap-1">
+                        <img
+                          src="/icon/ic_round-star.svg"
+                          alt="star icon"
+                        ></img>
+                        <p>{data.rating}</p>
+                      </div>
                     </div>
-                  </div>
-                  <h3 className="mt-1 font-Montserrat font-bold text-sm">
-                    {data.topic}
-                  </h3>
-                  <p className="mt-1 font-Montserrat font-normal text-xs">
-                    {data.mentor}
-                  </p>
-                  <div className="flex flex-row justify-between font-Montserrat text-xs mt-2 font-normal">
-                    <div className="flex flex-row gap-1">
-                      <p>{data.level}</p>
-                    </div>
-                    <div className="flex flex-row gap-1">
-                      <p>{data.modul}</p>
-                    </div>
-                    <div>
-                      <p>{data.durasi}</p>
-                    </div>
-                  </div>
-                  <div>
-                    <button className="flex flex-row bg-LightBlue4 gap-4 px-6 py-1 rounded-xl font-Montserrat text-xs font-bold mt-3 text-white">
-                      <div className="flex flex-row gap-2">
-                        <p>Beli</p>
+                    <h3 className="mt-1 font-Montserrat font-bold text-sm">
+                      {data.topic}
+                    </h3>
+                    <p className="mt-1 font-Montserrat font-normal text-xs">
+                      {data.mentor}
+                    </p>
+                    <div className="flex flex-row justify-between font-Montserrat text-xs mt-2 font-normal">
+                      <div className="flex flex-row gap-1">
+                        <p>{data.level}</p>
                       </div>
                       <div className="flex flex-row gap-1">
-                        <p>Rp</p>
-                        {data.harga}
+                        <p>{data.modul}</p>
                       </div>
-                    </button>
+                      <div>
+                        <p>{data.durasi}</p>
+                      </div>
+                    </div>
+                    <div>
+                      <button className="flex flex-row bg-LightBlue4 gap-4 px-6 py-1 rounded-xl font-Montserrat text-xs font-bold mt-3 text-white">
+                        <div className="flex flex-row gap-2">
+                          <p>Beli</p>
+                        </div>
+                        <div className="flex flex-row gap-1">
+                          <p>Rp</p>
+                          {data.harga}
+                        </div>
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             </div>
           ))}
         </div>
