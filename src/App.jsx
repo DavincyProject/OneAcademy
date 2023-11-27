@@ -9,6 +9,8 @@ import ResetPassword from "./pages/Auth/ResetPassword";
 import SendReset from "./components/Auth/SendReset";
 import RegisterOtp from "./pages/Auth/RegisterOtp";
 import KelasDetail from "./pages/Detail/KelasDetail";
+import AdminLogin from "./pages/Admin/AdminLogin";
+import AdminDashboard from "./pages/Admin/AdminDashboard";
 function App() {
     return (
         <>
@@ -18,10 +20,17 @@ function App() {
                         <Route path="/" element={<Home />} />
                         <Route path="/details/:id" element={<KelasDetail />} />
 
-                        {/* Authorization */}
+                        {/* User Authorization */}
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/validate" element={<RegisterOtp />} />
+
+                        {/* Admin Authorization */}
+                        <Route path="/admin" element={<AdminLogin />} />
+                        <Route
+                            path="/admin/dashboard"
+                            element={<AdminDashboard />}
+                        />
 
                         {/* Reset Password */}
                         <Route path="/reset" element={<SendReset />} />
