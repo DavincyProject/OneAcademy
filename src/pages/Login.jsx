@@ -11,12 +11,15 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+<<<<<<< HEAD
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("Email:", email);
         console.log("Password:", password);
 
+=======
+>>>>>>> 0076459d33fb983f873cbbca1e0d4295c0cbbe72
     const [error, setError] = useState(null);
 
     const navigate = useNavigate();
@@ -43,7 +46,10 @@ const Login = () => {
         dispatch(login(email, password, navigate));
         console.log(email, password);
         setError(null);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0076459d33fb983f873cbbca1e0d4295c0cbbe72
     };
 
     const togglePassword = () => {
@@ -53,15 +59,21 @@ const Login = () => {
     return (
         <div className="flex min-h-screen">
             <div className="w-[100%] lg:w-[50%] flex justify-start items-center mx-[23px] lg:px-[145px] ">
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0076459d33fb983f873cbbca1e0d4295c0cbbe72
                 <form onSubmit={handleLogin} className="w-full">
                     <h1 className="text-[24px] font-bold text-[#6148FF] mb-8">
                         Masuk
                     </h1>
                     <div className="flex flex-col gap-5">
                         <div className="flex flex-col">
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> 0076459d33fb983f873cbbca1e0d4295c0cbbe72
                             <label className="text-[12px] mb-[4px]">
                                 Email/No Telepon
                             </label>
@@ -70,7 +82,10 @@ const Login = () => {
                                 className={`border text-[14px] w-full p-2 rounded-2xl ${
                                     error && !email ? "border-red-500" : ""
                                 }`}
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0076459d33fb983f873cbbca1e0d4295c0cbbe72
                                 placeholder="Contoh: johndoe@gmail.com"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
@@ -93,7 +108,10 @@ const Login = () => {
                                             ? "border-red-500"
                                             : ""
                                     }`}
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0076459d33fb983f873cbbca1e0d4295c0cbbe72
                                     placeholder="Masukkan password"
                                     value={password}
                                     onChange={(e) =>
@@ -102,7 +120,10 @@ const Login = () => {
                                 />
                                 <button
                                     type="button"
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0076459d33fb983f873cbbca1e0d4295c0cbbe72
                                     aria-label="toggle password visibility"
                                     onClick={togglePassword}
                                     className="absolute top-1/2 right-2 transform -translate-y-1/2 px-3 py-1 border rounded-lg"
@@ -116,7 +137,10 @@ const Login = () => {
                             </div>
                         </div>
                     </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0076459d33fb983f873cbbca1e0d4295c0cbbe72
                     <button className="w-full text-[14px] font-medium bg-[#6148FF] text-white py-[10px] rounded-2xl mt-5">
                         Masuk
                     </button>
