@@ -2,48 +2,42 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { login } from "../../redux/actions/authActions";
+// import { useNavigate } from "react-router-dom";
+// import { useDispatch } from "react-redux";
+// import { login } from "../../redux/actions/authActions";
 import toast, { Toaster } from "react-hot-toast";
 
-const Login = () => {
-    const [email, setEmail] = useState("");
+const AdminLogin = () => {
+    const [idAdmin, setIdAdmin] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log("Email:", email);
-        console.log("Password:", password);
-
     const [error, setError] = useState(null);
 
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
+    // const navigate = useNavigate();
+    // const dispatch = useDispatch();
 
     const handleLogin = (e) => {
         e.preventDefault();
 
         // validate form
-        if (!email && !password) {
-            toast.error("Email dan Password belum diisi");
+        if (!idAdmin && !password) {
+            toast.error("ID Admin dan Password belum diisi");
             return;
-        } else if (!email) {
-            toast.error("Email belum diisi");
+        } else if (!idAdmin) {
+            toast.error("ID Admin belum diisi");
             return;
         } else if (!password) {
             toast.error("Password belum diisi");
             return;
-        } else if (password.length < 8) {
-            toast.error("Password min 8 karakter!");
-            return;
         }
+        // } else if (password.length < 8) {
+        //     toast.error("Password min 8 karakter!");
+        //     return;
+        // }
 
-        dispatch(login(email, password, navigate));
-        console.log(email, password);
+        // dispatch(login(idAdmin, password, navigate));
+        console.log(idAdmin, password);
         setError(null);
-
     };
 
     const togglePassword = () => {
@@ -52,28 +46,28 @@ const Login = () => {
 
     return (
         <div className="flex min-h-screen">
-            <div className="w-[100%] lg:w-[50%] flex justify-start items-center mx-[23px] lg:px-[145px] ">
+            <div className="hidden lg:flex justify-center items-center bg-[#6148FF] w-[50%] min-h-[100dvh]">
+                <img src="/logo.png" alt="logo" />
+            </div>
 
+            <div className="w-[100%] lg:w-[50%] flex justify-start items-center mx-[23px] lg:px-[145px] ">
                 <form onSubmit={handleLogin} className="w-full">
                     <h1 className="text-[24px] font-bold text-[#6148FF] mb-8">
-                        Masuk
+                        Login Admin
                     </h1>
                     <div className="flex flex-col gap-5">
                         <div className="flex flex-col">
-
-=======
                             <label className="text-[12px] mb-[4px]">
-                                Email/No Telepon
+                                ID Admin
                             </label>
                             <input
-                                type="email"
+                                type="text"
                                 className={`border text-[14px] w-full p-2 rounded-2xl ${
-                                    error && !email ? "border-red-500" : ""
+                                    error && !idAdmin ? "border-red-500" : ""
                                 }`}
-
-                                placeholder="Contoh: johndoe@gmail.com"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder="ID Admin"
+                                value={idAdmin}
+                                onChange={(e) => setIdAdmin(e.target.value)}
                             />
                         </div>
                         <div className="flex flex-col text-[12px]">
@@ -93,7 +87,6 @@ const Login = () => {
                                             ? "border-red-500"
                                             : ""
                                     }`}
-
                                     placeholder="Masukkan password"
                                     value={password}
                                     onChange={(e) =>
@@ -102,7 +95,6 @@ const Login = () => {
                                 />
                                 <button
                                     type="button"
-
                                     aria-label="toggle password visibility"
                                     onClick={togglePassword}
                                     className="absolute top-1/2 right-2 transform -translate-y-1/2 px-3 py-1 border rounded-lg"
@@ -116,7 +108,6 @@ const Login = () => {
                             </div>
                         </div>
                     </div>
-
                     <button className="w-full text-[14px] font-medium bg-[#6148FF] text-white py-[10px] rounded-2xl mt-5">
                         Masuk
                     </button>
@@ -152,12 +143,8 @@ const Login = () => {
                     </div>
                 </form>
             </div>
-
-            <div className="hidden lg:flex justify-center items-center bg-[#6148FF] w-[50%] min-h-[100dvh]">
-                <img src="/logo.png" alt="logo" />
-            </div>
         </div>
     );
 };
 
-export default Login;
+export default AdminLogin;
