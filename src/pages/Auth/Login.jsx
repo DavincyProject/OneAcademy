@@ -5,7 +5,7 @@ import { FaRegEyeSlash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/actions/authActions";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -124,17 +124,6 @@ const Login = () => {
                                 {error}
                             </div>
                         )}
-                        <Toaster
-                            position="bottom-center"
-                            toastOptions={{
-                                className: "",
-                                style: {
-                                    border: "1px solid #713200",
-                                    padding: "16px",
-                                    color: "#713200",
-                                },
-                            }}
-                        />
                     </div>
                 </form>
             </div>
