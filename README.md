@@ -3,8 +3,6 @@
 ## Authors
 - [@aminkarben](https://github.com/aminkarben)
 - [@DavincyProject](https://github.com/DavincyProject)
-- [@AdifFebriNH](https://github.com/AditFebriNH)
-- [@alvannnnn](https://github.com/alvannnnn)
 
 ## Tech Stack
 **Client:** React, Redux, TailwindCSS, Daisy UI

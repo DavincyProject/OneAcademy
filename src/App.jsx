@@ -5,7 +5,7 @@ import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
 import NotFound from "./pages/NotFound";
 import ResetPassword from "./pages/Auth/ResetPassword";
-import SendReset from "./components/Auth/SendReset";
+import SendReset from "./pages/Auth/SendReset";
 import RegisterOtp from "./pages/Auth/RegisterOtp";
 import KelasDetail from "./pages/Detail/KelasDetail";
 import Home from "./pages/Home";
@@ -13,24 +13,22 @@ import Navbar from "./components/Navbar";
 import AdminLogin from "./pages/Admin/AdminLogin";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
 import Notification from "./pages/profile/Notification";
-import ClassMe from "./pages/Course/ClassMe";
-
+import { Toaster } from "react-hot-toast";
 function App() {
-  return (
-    <>
-      <Provider store={store}>
-        <BrowserRouter>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/details/:id" element={<KelasDetail />} />
-            <Route path="/notification" element={<Notification />} />
-            <Route path="/classme" element={<ClassMe />} />
-            
-            {/* User Authorization */}
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/validate" element={<RegisterOtp />} />
+    return (
+        <>
+            <Provider store={store}>
+                <BrowserRouter>
+                    <Toaster position="bottom-center" reverseOrder={false} />
+                    <Navbar />
+                    <Routes>
+                        {/* Global routes */}
+                        <Route path="/" element={<Home />} />
+                        <Route path="/details/:id" element={<KelasDetail />} />
+                        <Route
+                            path="/notification"
+                            element={<Notification />}
+                        />
 
             {/* Admin Authorization */}
             <Route path="/admin" element={<AdminLogin />} />
