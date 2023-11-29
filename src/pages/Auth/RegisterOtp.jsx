@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import { useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import OtpInput from "react-otp-input";
 
 const RegisterOtp = () => {
@@ -62,7 +62,6 @@ const RegisterOtp = () => {
                     <button className="w-full text-[14px] font-medium bg-[#6148FF] text-white py-[10px] rounded-2xl mt-5">
                         Simpan
                     </button>
-                    <Toaster position="bottom-center" />
                 </form>
             </div>
 
