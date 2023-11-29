@@ -29,30 +29,29 @@ function App() {
                             path="/notification"
                             element={<Notification />}
                         />
+            <Route path="/classme" element={<ClassMe />} />
 
-                        {/* User Authorization */}
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/register" element={<Register />} />
-                        <Route path="/validate" element={<RegisterOtp />} />
+            {/* User Authorization */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/validate" element={<RegisterOtp />} />
 
-                        {/* Admin Authorization */}
-                        <Route path="/admin" element={<AdminLogin />} />
-                        <Route
-                            path="/admin/dashboard"
-                            element={<AdminDashboard />}
-                        />
+            {/* Admin Authorization */}
+            <Route path="/admin" element={<AdminLogin />} />
+            <Route path="/admin/dashboard" element={<AdminDashboard />} />
 
-                        {/* Reset Password */}
-                        <Route path="/reset" element={<SendReset />} />
-                        <Route path="/forgot/:id" element={<ResetPassword />} />
+            {/* Reset Password */}
+            <Route path="/reset" element={<SendReset />} />
+            <Route path="/forgot/:id" element={<ResetPassword />} />
+            
+            {/* Handle Pages Not Found */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </Provider>
+    </>
+  );
 
-                        {/* Handle Pages Not Found */}
-                        <Route path="*" element={<NotFound />} />
-                    </Routes>
-                </BrowserRouter>
-            </Provider>
-        </>
-    );
 }
 
 export default App;
