@@ -1,7 +1,3 @@
-import Badge_Outline from "../../../public/icon/mdi_badge-outline.svg";
-import Book from "../../../public/icon/clarity_book-line.svg";
-import Start from "../../../public/icon/ic_round-star.svg";
-import Diamond from "../../../public/icon/Diamond.svg";
 import PropTypes from "prop-types";
 
 const CardClassMe = ({ data }) => {
@@ -12,7 +8,7 @@ const CardClassMe = ({ data }) => {
         <div className="flex flex-row justify-between font-Montserrat font-bold text-sm ">
           <h3 className="text-DARKBLUE05">{data.nama}</h3>
           <div className="flex flex-row gap-1">
-            <img src={Start} />
+            <img src="/icon/ic_round-star" />
             <p>{data.rating}</p>
           </div>
         </div>
@@ -27,11 +23,11 @@ const CardClassMe = ({ data }) => {
         </p>
         <div className="flex flex-row justify-between font-Montserrat text-xs mt-2 font-normal">
           <div className="flex flex-row gap-1">
-            <img src={Badge_Outline} />
+            <img src="/icon/mdi_badge-outline.svg" />
             <p>{data.level}</p>
           </div>
           <div className="flex flex-row gap-1">
-            <img src={Book} />
+            <img src="/icon/clarity_book-line.svg" />
             <p>{data.modul}</p>
           </div>
           <div>
@@ -41,7 +37,7 @@ const CardClassMe = ({ data }) => {
         <div>
           <button className="flex flex-row bg-[#6148FF] gap-4 px-6 py-1 rounded-xl font-Montserrat text-xs font-bold mt-3 text-white">
             <div className="flex flex-row gap-2">
-              <img src={Diamond} />
+              <img src="/icon/Diamond.svg" />
               <p>Beli</p>
             </div>
             <div className="flex flex-row gap-1">
