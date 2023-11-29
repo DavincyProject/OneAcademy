@@ -1,5 +1,3 @@
-import {} from "react";
-
 const PaymentSucces = () => {
   return (
     <div className="container mx-auto">
