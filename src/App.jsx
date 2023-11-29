@@ -13,7 +13,9 @@ import Navbar from "./components/Navbar";
 import AdminLogin from "./pages/Admin/AdminLogin";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
 import Notification from "./pages/profile/Notification";
+import ClassMe from "./pages/Course/ClassMe";
 import { Toaster } from "react-hot-toast";
+import Protect from "./components/Auth/Protect";
 import PaymentSucces from "./pages/PaymentSucces";
 function App() {
   return (
@@ -27,19 +29,56 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/details/:id" element={<KelasDetail />} />
             <Route path="/notification" element={<Notification />} />
+            <Route path="/classme" element={<ClassMe />} />
             <Route path="/succes" element={<PaymentSucces />} />
+
             {/* User Authorization */}
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/validate" element={<RegisterOtp />} />
+            <Route
+              path="/login"
+              element={
+                <Protect>
+                  <Login />
+                </Protect>
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <Protect>
+                  <Register />
+                </Protect>
+              }
+            />
+            <Route
+              path="/validate"
+              element={
+                <Protect>
+                  <RegisterOtp />
+                </Protect>
+              }
+            />
+
+            {/* Reset Password */}
+            <Route
+              path="/reset"
+              element={
+                <Protect>
+                  <SendReset />
+                </Protect>
+              }
+            />
+            <Route
+              path="/forgot/:id"
+              element={
+                <Protect>
+                  <ResetPassword />
+                </Protect>
+              }
+            />
 
             {/* Admin Authorization */}
             <Route path="/admin" element={<AdminLogin />} />
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
-
-            {/* Reset Password */}
-            <Route path="/reset" element={<SendReset />} />
-            <Route path="/forgot/:id" element={<ResetPassword />} />
 
             {/* Handle Pages Not Found */}
             <Route path="*" element={<NotFound />} />
