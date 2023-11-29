@@ -13,11 +13,13 @@ import Navbar from "./components/Navbar";
 import AdminLogin from "./pages/Admin/AdminLogin";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
 import Notification from "./pages/profile/Notification";
+import { Toaster } from "react-hot-toast";
 function App() {
     return (
         <>
             <Provider store={store}>
                 <BrowserRouter>
+                    <Toaster position="bottom-center" reverseOrder={false} />
                     <Navbar />
                     <Routes>
                         <Route path="/" element={<Home />} />

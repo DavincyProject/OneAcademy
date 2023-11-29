@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { resetPassword } from "../../redux/actions/authActions";
-import { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 const SendReset = () => {
     const [email, setEmail] = useState("");
@@ -11,6 +11,7 @@ const SendReset = () => {
         e.preventDefault();
 
         if (email === "") {
+            toast.error("Email Masih Kosong!");
             return;
         }
 
@@ -47,8 +48,6 @@ const SendReset = () => {
                     <button className="w-full text-[14px] bg-[#6148FF] text-white py-[10px] rounded-2xl mt-5">
                         Kirim
                     </button>
-
-                    <Toaster position="bottom-center" />
                 </form>
             </div>
 
