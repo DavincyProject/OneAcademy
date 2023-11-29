@@ -6,13 +6,13 @@ const CardCourse = () => {
   return (
     <div className="flex justify-center">
       <div className="flex flex-col container gap-5 pt-[26px] pb-[53px]">
-        <div className="flex flex-row container justify-between px-6 md:px-0">
+        <div className="flex flex-row container justify-between px-6">
           <h2 className="text-xl font-bold">Kursus Populer</h2>
           <Link to="/" className="font-extrabold text-xs text-[#6148FF]">
             Lihat Semua
           </Link>
         </div>
-        <div className="container flex flex-wrap justify-around items-center gap-3 px-6 md:px-0">
+        <div className="container flex flex-wrap justify-evenly items-center gap-3 px-6 md:px-0">
           {populer.map((datas) => (
             <div key={datas.id}>
               <div className="rounded-2xl text-[12.5px] md:text-[15px] font-bold bg-[#EBF3FC] text-black p-2">

@@ -45,7 +45,9 @@ const Navbar = () => {
           </div>
         </div>
       ) : (
-        <div>Login</div>
+        <Link to={"/login"}>
+          <button className="btn btn-ghost text-white">Login</button>
+        </Link>
       )}
     </div>
   );
