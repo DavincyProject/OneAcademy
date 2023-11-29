@@ -1,9 +1,13 @@
-import { useSelector } from "react-redux";
-import { useLocation, Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import { FaRegBell, FaRegUser, FaListUl } from "react-icons/fa";
-
+import { logout } from "../redux/actions/authActions";
+import { CiLogout } from "react-icons/ci";
 const Navbar = () => {
-  const { token } = useSelector((state) => state.auth);
+  const { token } =
+    useSelector((state) => state.auth) || localStorage.getItem("token");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const location = useLocation();
   const hidePath = ["/login", "/register", "/reset", "/validate"];
@@ -14,6 +18,10 @@ const Navbar = () => {
     return null;
   }
 
+  const onLogout = () => {
+    dispatch(logout(navigate));
+  };
+
   return (
     <div className="navbar bg-[#6148FF] md:px-[65px]">
       <div className="flex-1">
@@ -21,20 +29,25 @@ const Navbar = () => {
           OneAcademy
         </Link>
 
-        <form className="hidden sm:block relative flex flex-row">
-          <input
-            type="search"
-            placeholder="Cari Kursus Terbaik..."
-            className="sm:w-[35dvw] sm:h-[9dvh] outline-none focus:outline-none px-4 py-[6px] border-2 rounded-2xl border-[#6148FF]"
-          />
-          <button
-            type="submit"
-            className="absolute bottom-1/2 right-4 translate-y-1/2 rounded-lg bg-[#6148FF] p-1"
-          >
-            <img src="/icon/search.svg" className="w-7" />
-          </button>
-        </form>
+        {token ? (
+          <form className="hidden sm:block relative flex flex-row">
+            <input
+              type="search"
+              placeholder="Cari Kursus Terbaik..."
+              className="sm:w-[35dvw] sm:h-[9dvh] outline-none focus:outline-none px-4 py-[6px] border-2 rounded-2xl border-[#6148FF]"
+            />
+            <button
+              type="submit"
+              className="absolute bottom-1/2 right-4 translate-y-1/2 rounded-lg bg-[#6148FF] p-1"
+            >
+              <img src="/icon/search.svg" className="w-7" />
+            </button>
+          </form>
+        ) : (
+          <></>
+        )}
       </div>
+
       {token ? (
         <>
           <form className="block sm:hidden relative flex flex-row">
@@ -81,6 +94,14 @@ const Navbar = () => {
                       <h1>Akun</h1>
                     </div>
                   </Link>
+                </li>
+                <li className="my-2">
+                  <button onClick={onLogout}>
+                    <div className="flex items-center gap-2 text-[16px] text-red-600 font-bold">
+                      <CiLogout />
+                      <h1>Logout</h1>
+                    </div>
+                  </button>
                 </li>
               </ul>
             </div>
