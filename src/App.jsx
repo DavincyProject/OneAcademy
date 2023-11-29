@@ -13,32 +13,71 @@ import Navbar from "./components/Navbar";
 import AdminLogin from "./pages/Admin/AdminLogin";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
 import Notification from "./pages/profile/Notification";
+import ClassMe from "./pages/Course/ClassMe";
 import { Toaster } from "react-hot-toast";
+import Protect from "./components/Auth/Protect";
 function App() {
-    return (
-        <>
-            <Provider store={store}>
-                <BrowserRouter>
-                    <Toaster position="bottom-center" reverseOrder={false} />
-                    <Navbar />
-                    <Routes>
-                        {/* Global routes */}
-                        <Route path="/" element={<Home />} />
-                        <Route path="/details/:id" element={<KelasDetail />} />
-                        <Route
-                            path="/notification"
-                            element={<Notification />}
-                        />
+  return (
+    <>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Toaster position="bottom-center" reverseOrder={false} />
+          <Navbar />
+          <Routes>
+            {/* Global routes */}
+            <Route path="/" element={<Home />} />
+            <Route path="/details/:id" element={<KelasDetail />} />
+            <Route path="/notification" element={<Notification />} />
+            <Route path="/classme" element={<ClassMe />} />
+
+            {/* User Authorization */}
+            <Route
+              path="/login"
+              element={
+                <Protect>
+                  <Login />
+                </Protect>
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <Protect>
+                  <Register />
+                </Protect>
+              }
+            />
+            <Route
+              path="/validate"
+              element={
+                <Protect>
+                  <RegisterOtp />
+                </Protect>
+              }
+            />
+
+            {/* Reset Password */}
+            <Route
+              path="/reset"
+              element={
+                <Protect>
+                  <SendReset />
+                </Protect>
+              }
+            />
+            <Route
+              path="/forgot/:id"
+              element={
+                <Protect>
+                  <ResetPassword />
+                </Protect>
+              }
+            />
 
             {/* Admin Authorization */}
             <Route path="/admin" element={<AdminLogin />} />
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
 
-            {/* Reset Password */}
-            <Route path="/reset" element={<SendReset />} />
-            <Route path="/forgot/:id" element={<ResetPassword />} />
-            
-            
             {/* Handle Pages Not Found */}
             <Route path="*" element={<NotFound />} />
           </Routes>
@@ -46,7 +85,6 @@ function App() {
       </Provider>
     </>
   );
-
 }
 
 export default App;

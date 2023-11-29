@@ -2,7 +2,7 @@ import { FilterKelas, kategori, Kesulitan } from "../../data/DataFilter";
 
 const CardFilter = () => {
   return (
-    <div className="px-6 py-[10px] bg-white rounded-2xl">
+    <div className="px-6 py-[10px] bg-white rounded-2xl ">
       <div className="flex flex-col gap-3 w-44">
         <p className="font-bold text-base ">Filter</p>
         {FilterKelas.map((data) => (

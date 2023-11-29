@@ -2,13 +2,12 @@ import Filter from "../../components/Card/CardFilter";
 import { ButtonFilter } from "../../data/DataFilter";
 import data from "../../data/DataCourse";
 import Card from "../../components/Card/CardClassMe";
-import Search from "../../../public/icon/search.svg";
 
 const ClassMe = () => {
   return (
     <>
-      <div className="mx-auto w-full h-screen pb-16 bg-[#EBF3FC]">
-        <div className=" px-60 flex flex-col gap-8 ">
+      <div className="flex justify-center items-center w-full h-screen pb-16 bg-[#EBF3FC]">
+        <div className="flex flex-col gap-5 ">
           <div className="flex flex-row justify-between w-full mt-14">
             <p className="w-full font-bold text-2xl">Topik Kelas</p>
             <form className="relative flex flex-row">
@@ -21,7 +20,7 @@ const ClassMe = () => {
                 type="submit"
                 className="absolute bottom-1/2 right-2 translate-y-1/2 rounded-lg bg-[#6148FF] p-1"
               >
-                <img src={Search} />
+                <img src="/icon/search.svg" />
               </button>
             </form>
           </div>
