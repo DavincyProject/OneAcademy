@@ -3,7 +3,8 @@ import { useLocation, Link } from "react-router-dom";
 import { FaRegBell, FaRegUser, FaListUl } from "react-icons/fa";
 
 const Navbar = () => {
-  const { token } = useSelector((state) => state.auth);
+  const { token } =
+    useSelector((state) => state.auth) || localStorage.getItem("token");
 
   const location = useLocation();
   const hidePath = ["/login", "/register", "/reset", "/validate"];
@@ -21,20 +22,25 @@ const Navbar = () => {
           OneAcademy
         </Link>
 
-        <form className="hidden sm:block relative flex flex-row">
-          <input
-            type="search"
-            placeholder="Cari Kursus Terbaik..."
-            className="sm:w-[35dvw] sm:h-[9dvh] outline-none focus:outline-none px-4 py-[6px] border-2 rounded-2xl border-[#6148FF]"
-          />
-          <button
-            type="submit"
-            className="absolute bottom-1/2 right-4 translate-y-1/2 rounded-lg bg-[#6148FF] p-1"
-          >
-            <img src="/icon/search.svg" className="w-7" />
-          </button>
-        </form>
+        {token ? (
+          <form className="hidden sm:block relative flex flex-row">
+            <input
+              type="search"
+              placeholder="Cari Kursus Terbaik..."
+              className="sm:w-[35dvw] sm:h-[9dvh] outline-none focus:outline-none px-4 py-[6px] border-2 rounded-2xl border-[#6148FF]"
+            />
+            <button
+              type="submit"
+              className="absolute bottom-1/2 right-4 translate-y-1/2 rounded-lg bg-[#6148FF] p-1"
+            >
+              <img src="/icon/search.svg" className="w-7" />
+            </button>
+          </form>
+        ) : (
+          <></>
+        )}
       </div>
+
       {token ? (
         <>
           <form className="block sm:hidden relative flex flex-row">
