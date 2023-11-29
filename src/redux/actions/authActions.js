@@ -105,3 +105,9 @@ export const forgotPassword = (password, id) => async () => {
     });
   }
 };
+
+export const logout = (navigate) => (dispatch) => {
+  localStorage.removeItem("token");
+  dispatch(setToken(null));
+  navigate("/login");
+};

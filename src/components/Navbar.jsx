@@ -1,10 +1,13 @@
-import { useSelector } from "react-redux";
-import { useLocation, Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import { FaRegBell, FaRegUser, FaListUl } from "react-icons/fa";
-
+import { logout } from "../redux/actions/authActions";
+import { CiLogout } from "react-icons/ci";
 const Navbar = () => {
   const { token } =
     useSelector((state) => state.auth) || localStorage.getItem("token");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const location = useLocation();
   const hidePath = ["/login", "/register", "/reset", "/validate"];
@@ -14,6 +17,10 @@ const Navbar = () => {
   if (isHidden) {
     return null;
   }
+
+  const onLogout = () => {
+    dispatch(logout(navigate));
+  };
 
   return (
     <div className="navbar bg-[#6148FF] md:px-[65px]">
@@ -87,6 +94,14 @@ const Navbar = () => {
                       <h1>Akun</h1>
                     </div>
                   </Link>
+                </li>
+                <li className="my-2">
+                  <button onClick={onLogout}>
+                    <div className="flex items-center gap-2 text-[16px] text-red-600 font-bold">
+                      <CiLogout />
+                      <h1>Logout</h1>
+                    </div>
+                  </button>
                 </li>
               </ul>
             </div>
