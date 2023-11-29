@@ -13,8 +13,8 @@ import Navbar from "./components/Navbar";
 import AdminLogin from "./pages/Admin/AdminLogin";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
 import Notification from "./pages/profile/Notification";
-<<<<<<< HEAD
 import ClassMe from "./pages/Course/ClassMe";
+
 function App() {
   return (
     <>
@@ -25,7 +25,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/details/:id" element={<KelasDetail />} />
             <Route path="/notification" element={<Notification />} />
-
+            <Route path="/classme" element={<ClassMe />} />
+            
             {/* User Authorization */}
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
@@ -38,7 +39,8 @@ function App() {
             {/* Reset Password */}
             <Route path="/reset" element={<SendReset />} />
             <Route path="/forgot/:id" element={<ResetPassword />} />
-            <Route path="/classme" element={<ClassMe />} />
+            
+            
             {/* Handle Pages Not Found */}
             <Route path="*" element={<NotFound />} />
           </Routes>
@@ -46,45 +48,7 @@ function App() {
       </Provider>
     </>
   );
-=======
-function App() {
-    return (
-        <>
-            <Provider store={store}>
-                <BrowserRouter>
-                    <Navbar />
-                    <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/details/:id" element={<KelasDetail />} />
-                        <Route
-                            path="/notification"
-                            element={<Notification />}
-                        />
 
-                        {/* User Authorization */}
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/register" element={<Register />} />
-                        <Route path="/validate" element={<RegisterOtp />} />
-
-                        {/* Admin Authorization */}
-                        <Route path="/admin" element={<AdminLogin />} />
-                        <Route
-                            path="/admin/dashboard"
-                            element={<AdminDashboard />}
-                        />
-
-                        {/* Reset Password */}
-                        <Route path="/reset" element={<SendReset />} />
-                        <Route path="/forgot/:id" element={<ResetPassword />} />
-
-                        {/* Handle Pages Not Found */}
-                        <Route path="*" element={<NotFound />} />
-                    </Routes>
-                </BrowserRouter>
-            </Provider>
-        </>
-    );
->>>>>>> 0076459d33fb983f873cbbca1e0d4295c0cbbe72
 }
 
 export default App;
