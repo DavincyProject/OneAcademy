@@ -138,7 +138,7 @@ const Register = () => {
                             </div>
                         </div>
                     </div>
-                    <button className="w-full text-[14px] font-medium bg-[#6148FF] text-white py-[10px] rounded-2xl mt-5">
+                    <button className="btn btn-primary w-full text-[14px] font-medium bg-[#6148FF] text-white py-[10px] rounded-2xl mt-5">
                         Daftar
                     </button>
                     <div className="flex justify-center items-center gap-2 mt-6">

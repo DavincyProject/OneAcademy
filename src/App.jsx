@@ -5,7 +5,7 @@ import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
 import NotFound from "./pages/NotFound";
 import ResetPassword from "./pages/Auth/ResetPassword";
-import SendReset from "./components/Auth/SendReset";
+import SendReset from "./pages/Auth/SendReset";
 import RegisterOtp from "./pages/Auth/RegisterOtp";
 import KelasDetail from "./pages/Detail/KelasDetail";
 import Home from "./pages/Home";
@@ -22,6 +22,7 @@ function App() {
                     <Toaster position="bottom-center" reverseOrder={false} />
                     <Navbar />
                     <Routes>
+                        {/* Global routes */}
                         <Route path="/" element={<Home />} />
                         <Route path="/details/:id" element={<KelasDetail />} />
                         <Route

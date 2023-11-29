@@ -45,7 +45,7 @@ const SendReset = () => {
                             </div>
                         </div>
                     </div>
-                    <button className="w-full text-[14px] bg-[#6148FF] text-white py-[10px] rounded-2xl mt-5">
+                    <button className="btn btn-primary w-full text-[14px] bg-[#6148FF] text-white py-[10px] rounded-2xl mt-5">
                         Kirim
                     </button>
                 </form>
