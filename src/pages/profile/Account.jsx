@@ -6,7 +6,7 @@ import EditProfile from "../../components/Profile/EditProfile";
 import UbahPassword from "../../components/Profile/UbahPassword";
 
 const Account = () => {
-    const [activeLink, setActiveLink] = useState(null);
+    const [activeLink, setActiveLink] = useState("profile");
 
     const handleClick = (link) => {
         setActiveLink(link);
@@ -29,7 +29,7 @@ const Account = () => {
         <div>
             <div className="bg-[#EBF3FC] h-[250px] relative">
                 <div className="absolute flex justify-center w-full top-[9dvh] ">
-                    <div className="flex flex-col justify-center w-3/4">
+                    <div className="flex flex-col justify-center w-[80%]">
                         <Link
                             to={"/"}
                             className="text-[#6148FF] text-[16px] font-bold flex gap-2 items-center mb-5"
@@ -45,8 +45,8 @@ const Account = () => {
                             </div>
 
                             <div className="w-full card-body min-h-[50dvh] flex md:flex-row">
-                                <div className="w-2/4 flex">
-                                    <ul className="w-2/4">
+                                <div className="md:w-[30%] flex">
+                                    <ul className="w-full">
                                         <Link
                                             onClick={() =>
                                                 handleClick("profile")
@@ -103,12 +103,13 @@ const Account = () => {
                                             </div>
                                             <div className="border-t mb-2 border-[#E5E5E5]"></div>
                                         </Link>
-                                        <h1 className="text-center mt-2 text-[#8A8A8A] text-xs">
+                                        <h1 className="text-center my-2 text-[#8A8A8A] text-xs">
                                             Version 1.1.0
                                         </h1>
+                                        <div className="md:hidden border-t mb-2 font-semibold border-[#E5E5E5]"></div>
                                     </ul>
                                 </div>
-                                <div className="w-2/4 flex justify-center">
+                                <div className="flex flex-1 justify-center">
                                     {handleRenderContent()}
                                 </div>
                             </div>

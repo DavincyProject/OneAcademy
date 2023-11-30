@@ -27,7 +27,7 @@ const Navbar = () => {
             <div className="flex-1">
                 <Link
                     to={"/"}
-                    className="btn btn-ghost text-md md:text-xl text-white"
+                    className="btn btn-ghost text-md md:text-xl text-white mr-2"
                 >
                     OneAcademy
                 </Link>
@@ -37,7 +37,7 @@ const Navbar = () => {
                         <input
                             type="search"
                             placeholder="Cari Kursus Terbaik..."
-                            className="sm:w-[35dvw] sm:h-[9dvh] outline-none focus:outline-none px-4 py-[6px] border-2 rounded-2xl border-[#6148FF]"
+                            className="sm:w-[35dvw] sm:h-[7dvh] outline-none focus:outline-none px-4 py-[6px] border-2 rounded-2xl border-[#6148FF]"
                         />
                         <button
                             type="submit"
@@ -53,7 +53,7 @@ const Navbar = () => {
 
             {token ? (
                 <>
-                    <form className="flex sm:hidden relative flex-row">
+                    <form className="flex items-center sm:hidden relative flex-row">
                         <input
                             type="search"
                             placeholder="Cari Kursus Terbaik..."
@@ -67,7 +67,7 @@ const Navbar = () => {
                         </button>
                     </form>
                     <div className="flex-none gap-2">
-                        <div className="dropdown dropdown-end ">
+                        <div className="dropdown dropdown-end">
                             <label
                                 tabIndex={0}
                                 className="btn btn-ghost btn-circle avatar"
@@ -80,15 +80,15 @@ const Navbar = () => {
                                 </div>
                             </label>
                             <ul className="mt-3 z-[1] p-2 text-[#6148FF] shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-                                <li className="my-2">
+                                <li className="my-2 hover:bg-slate-200 rounded-md">
                                     <Link to={"/classme"}>
-                                        <div className="flex items-center gap-2 text-[16px] font-bold">
+                                        <div className="flex items-center gap-2 text-[16px] font-bold ">
                                             <FaListUl />
                                             <h1>Kelas</h1>
                                         </div>
                                     </Link>
                                 </li>
-                                <li className="my-2">
+                                <li className="my-2 hover:bg-slate-200 rounded-md">
                                     <Link to={"/notification"}>
                                         <div className="flex items-center gap-2 text-[16px]  font-bold">
                                             <FaRegBell />
@@ -96,7 +96,7 @@ const Navbar = () => {
                                         </div>
                                     </Link>
                                 </li>
-                                <li className="my-2">
+                                <li className="my-2 hover:bg-slate-200 rounded-md">
                                     <Link to={"/account"}>
                                         <div className="flex items-center gap-2 text-[16px] font-bold">
                                             <FaRegUser />
@@ -104,7 +104,7 @@ const Navbar = () => {
                                         </div>
                                     </Link>
                                 </li>
-                                <li className="my-2">
+                                <li className="my-2 hover:bg-red-200 rounded-md">
                                     <button onClick={onLogout}>
                                         <div className="flex items-center gap-2 text-[16px] text-red-600 font-bold">
                                             <CiLogout />
