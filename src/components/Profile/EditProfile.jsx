@@ -27,7 +27,7 @@ const EditProfile = () => {
     };
 
     return (
-        <div className="w-full card shadow-xl md:shadow-none py-5 my-2">
+        <div className="w-full card py-5 my-2">
             <form
                 onSubmit={handleUpdateProfile}
                 className="flex flex-col justify-center items-center"
