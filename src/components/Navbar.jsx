@@ -3,8 +3,8 @@ import { useLocation, Link, useNavigate } from "react-router-dom";
 import { FaRegBell, FaRegUser, FaListUl } from "react-icons/fa";
 import { logout } from "../redux/actions/authActions";
 import { CiLogout } from "react-icons/ci";
-import { useEffect } from "react";
-import { getProfileData } from "../redux/actions/profileActions";
+// import { useEffect } from "react";
+// import { getProfileData } from "../redux/actions/profileActions";
 const Navbar = () => {
     const { token } =
         useSelector((state) => state.auth) || localStorage.getItem("token");
@@ -16,9 +16,9 @@ const Navbar = () => {
 
     const isHidden = hidePath.includes(location.pathname);
 
-    useEffect(() => {
-        dispatch(getProfileData(token));
-    }, [dispatch, token]);
+    // useEffect(() => {
+    //     dispatch(getProfileData(token));
+    // }, [dispatch, token]);
 
     if (isHidden) {
         return null;
