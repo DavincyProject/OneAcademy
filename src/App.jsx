@@ -17,6 +17,8 @@ import ClassMe from "./pages/Course/ClassMe";
 import { Toaster } from "react-hot-toast";
 import Protect from "./components/Auth/Protect";
 import PaymentSucces from "./pages/PaymentSucces";
+import Account from "./pages/profile/Account";
+import Payment from "./pages/Payment";
 function App() {
   return (
     <>
@@ -31,6 +33,8 @@ function App() {
             <Route path="/notification" element={<Notification />} />
             <Route path="/classme" element={<ClassMe />} />
             <Route path="/succes" element={<PaymentSucces />} />
+            <Route path="/account" element={<Account />} />
+            <Route path="/payment" element={<Payment />} />
 
             {/* User Authorization */}
             <Route

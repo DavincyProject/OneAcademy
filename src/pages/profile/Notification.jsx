@@ -7,15 +7,13 @@ const Notification = () => {
             <div className="bg-[#EBF3FC] h-[250px] relative">
                 <div className="absolute flex justify-center w-full top-[9dvh] ">
                     <div className="flex flex-col justify-center">
-                        <div className="flex gap-2 items-center mb-5">
+                        <Link
+                            to={"/"}
+                            className="text-[#6148FF] text-[16px] font-bold flex gap-2 items-center mb-5"
+                        >
                             <FaArrowLeft className="text-[#6148FF]" />
-                            <Link
-                                to={"/"}
-                                className="text-[#6148FF] text-[16px] font-bold"
-                            >
-                                Kembali Ke Beranda
-                            </Link>
-                        </div>
+                            Kembali Ke Beranda
+                        </Link>
                         <div className="card card-compact w-[80dvw] bg-base-100 shadow-xl mb-5">
                             <div className="p-2 bg-[#6148FF] rounded-t-md text-center">
                                 <h1 className="text-xl text-white font-bold">
