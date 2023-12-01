@@ -18,83 +18,79 @@ import { Toaster } from "react-hot-toast";
 import Protect from "./components/Auth/Protect";
 import PaymentSucces from "./pages/PaymentSucces";
 import Account from "./pages/profile/Account";
+import Payment from "./pages/Payment";
 function App() {
-    return (
-        <>
-            <Provider store={store}>
-                <BrowserRouter>
-                    <Toaster position="bottom-center" reverseOrder={false} />
-                    <Navbar />
-                    <Routes>
-                        {/* Global routes */}
-                        <Route path="/" element={<Home />} />
-                        <Route path="/details/:id" element={<KelasDetail />} />
-                        <Route
-                            path="/notification"
-                            element={<Notification />}
-                        />
-                        <Route path="/classme" element={<ClassMe />} />
-                        <Route path="/succes" element={<PaymentSucces />} />
-                        <Route path="/account" element={<Account />} />
+  return (
+    <>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Toaster position="bottom-center" reverseOrder={false} />
+          <Navbar />
+          <Routes>
+            {/* Global routes */}
+            <Route path="/" element={<Home />} />
+            <Route path="/details/:id" element={<KelasDetail />} />
+            <Route path="/notification" element={<Notification />} />
+            <Route path="/classme" element={<ClassMe />} />
+            <Route path="/succes" element={<PaymentSucces />} />
+            <Route path="/account" element={<Account />} />
+            <Route path="/payment" element={<Payment />} />
 
-                        {/* User Authorization */}
-                        <Route
-                            path="/login"
-                            element={
-                                <Protect>
-                                    <Login />
-                                </Protect>
-                            }
-                        />
-                        <Route
-                            path="/register"
-                            element={
-                                <Protect>
-                                    <Register />
-                                </Protect>
-                            }
-                        />
-                        <Route
-                            path="/validate"
-                            element={
-                                <Protect>
-                                    <RegisterOtp />
-                                </Protect>
-                            }
-                        />
+            {/* User Authorization */}
+            <Route
+              path="/login"
+              element={
+                <Protect>
+                  <Login />
+                </Protect>
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <Protect>
+                  <Register />
+                </Protect>
+              }
+            />
+            <Route
+              path="/validate"
+              element={
+                <Protect>
+                  <RegisterOtp />
+                </Protect>
+              }
+            />
 
-                        {/* Reset Password */}
-                        <Route
-                            path="/reset"
-                            element={
-                                <Protect>
-                                    <SendReset />
-                                </Protect>
-                            }
-                        />
-                        <Route
-                            path="/forgot/:id"
-                            element={
-                                <Protect>
-                                    <ResetPassword />
-                                </Protect>
-                            }
-                        />
+            {/* Reset Password */}
+            <Route
+              path="/reset"
+              element={
+                <Protect>
+                  <SendReset />
+                </Protect>
+              }
+            />
+            <Route
+              path="/forgot/:id"
+              element={
+                <Protect>
+                  <ResetPassword />
+                </Protect>
+              }
+            />
 
-                        {/* Admin Authorization */}
-                        <Route path="/admin" element={<AdminLogin />} />
-                        <Route
-                            path="/admin/dashboard"
-                            element={<AdminDashboard />}
-                        />
+            {/* Admin Authorization */}
+            <Route path="/admin" element={<AdminLogin />} />
+            <Route path="/admin/dashboard" element={<AdminDashboard />} />
 
-                        {/* Handle Pages Not Found */}
-                        <Route path="*" element={<NotFound />} />
-                    </Routes>
-                </BrowserRouter>
-            </Provider>
-        </>
-    );
+            {/* Handle Pages Not Found */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </Provider>
+    </>
+  );
 }
 
 export default App;
