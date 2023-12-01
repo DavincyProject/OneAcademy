@@ -71,9 +71,11 @@ const Register = () => {
                     <h1 className="text-[24px] font-bold text-[#6148FF] mb-8">
                         Daftar
                     </h1>
-                    <div className="flex flex-col gap-5">
+                    <div className="flex flex-col gap-5 ">
                         <div className="flex flex-col">
-                            <label className="text-[12px] mb-[4px]">Nama</label>
+                            <label className="text-[12px] mb-[4px] font-Poppins">
+                                Nama
+                            </label>
                             <input
                                 type="text"
                                 className="border w-full p-2 rounded-2xl"
@@ -83,7 +85,7 @@ const Register = () => {
                             />
                         </div>
                         <div className="flex flex-col">
-                            <label className="text-[12px] mb-[4px]">
+                            <label className="text-[12px] mb-[4px] font-Poppins">
                                 Email
                             </label>
                             <input
@@ -95,7 +97,7 @@ const Register = () => {
                             />
                         </div>
                         <div className="flex flex-col">
-                            <label className="text-[12px] mb-[4px]">
+                            <label className="text-[12px] mb-[4px] font-Poppins">
                                 Nomor Telepon
                             </label>
                             <input
@@ -109,7 +111,7 @@ const Register = () => {
                         </div>
                         <div className="flex flex-col">
                             <div className="flex justify-between items-center">
-                                <label className="text-[12px] mb-[4px]">
+                                <label className="text-[12px] mb-[4px] font-Poppins">
                                     Buat Password
                                 </label>
                             </div>
@@ -142,7 +144,7 @@ const Register = () => {
                         Daftar
                     </button>
                     <div className="flex justify-center items-center gap-2 mt-6">
-                        <h1 className="text-[14px] font-normal">
+                        <h1 className="text-[14px] font-normal font-Poppins">
                             Sudah punya akun?
                         </h1>
                         <Link
