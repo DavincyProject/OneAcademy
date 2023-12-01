@@ -96,7 +96,7 @@ const Account = () => {
                                             </div>
                                             <div className="border-t mb-2 border-[#E5E5E5]"></div>
                                         </Link>
-                                        <Link className="text-red-600">
+                                        <Link className="hover:text-red-600">
                                             <div className="flex items-center gap-2 text-[16px] mb-2 font-bold">
                                                 <img src="/Profile/log-out.svg" />
                                                 <h1>Keluar</h1>
