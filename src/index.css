@@ -7,9 +7,9 @@
 @tailwind utilities;
 
 * {
-    font-family: "Poppins", sans-serif;
+    font-family: "Montserrat", sans-serif;
 }
 
-.font-Montserrat {
-    font-family: "Montserrat", sans-serif;
+.font-Poppins {
+    font-family: "Poppins", sans-serif;
 }

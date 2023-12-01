@@ -1,17 +1,40 @@
 import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import OtpInput from "react-otp-input";
 
 const RegisterOtp = () => {
     const [otp, setOtp] = useState("");
+    const [resendTimeout, setResendTimeout] = useState(60);
 
     const handleSubmitOtp = (e) => {
         e.preventDefault();
         console.log(otp);
 
         toast.success("OTP Berhasil Dikirim");
+    };
+
+    useEffect(() => {
+        let timer;
+
+        if (resendTimeout > 0) {
+            timer = setInterval(() => {
+                setResendTimeout((prev) => prev - 1);
+            }, 1000);
+        }
+
+        return () => {
+            clearInterval(timer);
+        };
+    }, [resendTimeout]);
+
+    const handleResendClick = () => {
+        // Handle logic for resending OTP here
+        // code here
+
+        //setTimeout to 60 again
+        setResendTimeout(60);
     };
 
     return (
@@ -29,7 +52,7 @@ const RegisterOtp = () => {
 
                     <div className="flex flex-col gap-5">
                         <div className="flex flex-col">
-                            <label className="text-[12px] mb-[4px] text-center">
+                            <label className="text-[12px] mb-[4px] text-center font-Poppins">
                                 Ketik 6 digit kode yang dikirimkan ke mail
                             </label>
                             <OtpInput
@@ -47,9 +70,18 @@ const RegisterOtp = () => {
                             />
                         </div>
                         <div className="flex flex-col">
-                            <label className="text-[12px] mb-[4px] text-center">
-                                Kirim Ulang OTP dalam 60 detik
-                            </label>
+                            {resendTimeout > 0 ? (
+                                <label className="text-[12px] mb-[4px] text-center font-Poppins">
+                                    Kirim Ulang OTP dalam {resendTimeout} detik
+                                </label>
+                            ) : (
+                                <button
+                                    onClick={handleResendClick}
+                                    className="text-[12px] mb-[4px] font-bold text-center font-Poppins text-red-600 cursor-pointer"
+                                >
+                                    Kirim Ulang OTP
+                                </button>
+                            )}
                         </div>
                     </div>
                     <button className="w-full text-[14px] font-medium bg-[#6148FF] text-white py-[10px] rounded-2xl mt-5">

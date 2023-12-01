@@ -21,9 +21,7 @@ const UbahPassword = () => {
     };
     return (
         <div className="w-full card py-5 my-2">
-            <h1 className="text-2xl text-center font-bold font-Montserrat">
-                Ubah Password
-            </h1>
+            <h1 className="text-2xl text-center font-bold">Ubah Password</h1>
 
             <div className="card bg-base-100 ">
                 <form
