@@ -29,7 +29,9 @@ const CardCourse = () => {
                   <img src={data.Image} />
                   <div className="flex flex-col mt-3 px-2 mb-3">
                     <div className="text-[12px] flex flex-row justify-between font-Montserrat font-bold ">
-                      <h3 className="text-[#6148FF]">{data.nama}</h3>
+                      <h3 className="text-[#6148FF] font-Poppins">
+                        {data.nama}
+                      </h3>
                       <div className="flex gap-1">
                         <img
                           src="/icon/ic_round-star.svg"
@@ -50,7 +52,7 @@ const CardCourse = () => {
                           src="/icon/mdi_badge-outline.svg"
                           alt="level icon"
                         ></img>
-                        <h1 className="text-[12px] text-[#6148FF] font-semibold">
+                        <h1 className="text-[12px] text-[#6148FF] font-semibold font-Poppins">
                           {data.level}
                         </h1>
                       </div>
@@ -59,11 +61,15 @@ const CardCourse = () => {
                           src="/icon/clarity_book-line.svg"
                           alt="module icon"
                         ></img>
-                        <h1 className="text-[12px]">{data.modul}</h1>
+                        <h1 className="text-[12px] font-Poppins">
+                          {data.modul}
+                        </h1>
                       </div>
                       <div className="flex gap-1">
                         <img src="/icon/ri_time-fill.svg" alt="time icon"></img>
-                        <h1 className="text-[12px]">{data.durasi}</h1>
+                        <h1 className="text-[12px] font-Poppins">
+                          {data.durasi}
+                        </h1>
                       </div>
                     </div>
                     <div className="">

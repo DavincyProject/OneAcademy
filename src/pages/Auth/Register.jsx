@@ -17,19 +17,6 @@ const Register = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const validateNomor = (e) => {
-        const inputValue = e.target.value;
-
-        //menghilangkan karakter yang bukan angka
-        const numericValue = inputValue.replace(/\D/g, "");
-
-        // mengatur panjang maksimal nomor telepon ke 15
-        const maxLength = 14;
-        const truncateValueNomor = numericValue.slice(0, maxLength);
-
-        setNomor(truncateValueNomor);
-    };
-
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -101,12 +88,13 @@ const Register = () => {
                                 Nomor Telepon
                             </label>
                             <input
-                                type="tel"
-                                className="border w-full p-2 rounded-2xl appearance-none"
-                                placeholder="+62"
+                                type="text"
+                                inputMode="numeric"
+                                maxLength={14}
                                 value={nomor}
-                                onChange={validateNomor}
-                                style={{ appearance: "none" }}
+                                onChange={(e) => setNomor(e.target.value)}
+                                placeholder="+62"
+                                className="border w-full p-2 rounded-2xl appearance-none"
                             />
                         </div>
                         <div className="flex flex-col">

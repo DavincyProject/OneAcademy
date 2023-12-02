@@ -24,6 +24,10 @@ const Navbar = () => {
         return null;
     }
 
+    if (isHidden) {
+        return null;
+    }
+
     const onLogout = () => {
         dispatch(logout(navigate));
     };
