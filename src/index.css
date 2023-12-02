@@ -13,3 +13,9 @@
 .font-Poppins {
     font-family: "Poppins", sans-serif;
 }
+
+.input-border-b {
+    border-bottom-width: 1px;
+    border-bottom-color: #d0d0d0;
+    border-bottom-style: solid;
+}
