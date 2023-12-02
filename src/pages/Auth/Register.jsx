@@ -88,14 +88,13 @@ const Register = () => {
                                 Nomor Telepon
                             </label>
                             <input
-                                type="tel"
-                                className="border w-full p-2 rounded-2xl appearance-none"
-                                placeholder="+62"
+                                type="text"
+                                inputMode="numeric"
                                 maxLength={14}
                                 value={nomor}
-                                inputMode="numeric"
                                 onChange={(e) => setNomor(e.target.value)}
-                                style={{ appearance: "none" }}
+                                placeholder="+62"
+                                className="border w-full p-2 rounded-2xl appearance-none"
                             />
                         </div>
                         <div className="flex flex-col">

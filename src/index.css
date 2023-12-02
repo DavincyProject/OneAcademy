@@ -19,3 +19,8 @@
     border-bottom-color: #d0d0d0;
     border-bottom-style: solid;
 }
+
+.badge-red {
+    background-color: #ff0000;
+    color: white;
+}
