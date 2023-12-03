@@ -39,3 +39,8 @@
     background-color: #6148ff;
     color: white;
 }
+
+.btn-active {
+    background-color: #8030db;
+    color: white;
+}
