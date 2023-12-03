@@ -3,12 +3,135 @@ import Filter from "../../components/Card/Filter";
 import { FaFilter } from "react-icons/fa6";
 
 const Class = () => {
+    const course = [
+        {
+            id: 1,
+            nama: "UI/UX Design",
+            topic: "Belajar Web Designer dengan Figma",
+            mentor: "by Angela Doe",
+            level: "Intermediate Level",
+            modul: "10 Modul",
+            durasi: "120 Menit",
+            harga: "249.000",
+            rating: 4.7,
+            image: "/testing_course.png",
+        },
+        {
+            id: 2,
+            nama: "UI/UX Design",
+            topic: "Membuat Wireframe Hingga ke Visual Design",
+            mentor: "by Angela Doe",
+            level: "Intermediate Level",
+            modul: "10 Modul",
+            durasi: "120 Menit",
+            harga: "249.000",
+            rating: 4.8,
+            image: "/testing_course.png",
+        },
+        {
+            id: 3,
+            nama: "Data Science",
+            topic: "Dasar Pemrograman Phyton",
+            mentor: "by James Doe",
+            level: "Intermediate Level",
+            modul: "10 Modul",
+            durasi: "90 Menit",
+            harga: "Premium",
+            rating: 4.5,
+            image: "/course_filter.png",
+        },
+        {
+            id: 4,
+            nama: "UI/UX Design",
+            topic: "Membuat Wireframe Hingga ke Visual Design",
+            mentor: "by Angela Doe",
+            level: "Intermediate Level",
+            modul: "10 Modul",
+            durasi: "120 Menit",
+            harga: "249.000",
+            rating: 4.8,
+            image: "/testing_course.png",
+        },
+        {
+            id: 5,
+            nama: "UI/UX Design",
+            topic: "Belajar Web Designer dengan Figma",
+            mentor: "by Angela Doe",
+            level: "Intermediate Level",
+            modul: "10 Modul",
+            durasi: "120 Menit",
+            harga: "249.000",
+            rating: 4.8,
+            image: "/profile.jpg",
+        },
+        {
+            id: 6,
+            nama: "Data Science",
+            topic: "Dasar Pemrograman Phyton",
+            mentor: "by James Doe",
+            level: "Intermediate Level",
+            modul: "10 Modul",
+            durasi: "90 Menit",
+            harga: "Premium",
+            rating: 4.5,
+            image: "/course_filter.png",
+        },
+        {
+            id: 7,
+            nama: "Data Science",
+            topic: "Dasar Pemrograman Phyton",
+            mentor: "by James Doe",
+            level: "Intermediate Level",
+            modul: "10 Modul",
+            durasi: "90 Menit",
+            harga: "Premium",
+            rating: 4.5,
+            image: "/course_filter.png",
+        },
+        {
+            id: 8,
+            nama: "Data Science",
+            topic: "Dasar Pemrograman Phyton",
+            mentor: "by James Doe",
+            level: "Intermediate Level",
+            modul: "10 Modul",
+            durasi: "90 Menit",
+            harga: "Premium",
+            rating: 4.5,
+            image: "/course_filter.png",
+        },
+        {
+            id: 9,
+            nama: "Data Science",
+            topic: "Dasar Pemrograman Phyton",
+            mentor: "by James Doe",
+            level: "Intermediate Level",
+            modul: "10 Modul",
+            durasi: "90 Menit",
+            harga: "Premium",
+            rating: 4.5,
+            image: "/course_filter.png",
+        },
+        {
+            id: 10,
+            nama: "Data Science",
+            topic: "Dasar Pemrograman Phyton",
+            mentor: "by James Doe",
+            level: "Intermediate Level",
+            modul: "10 Modul",
+            durasi: "90 Menit",
+            harga: "Premium",
+            rating: 4.5,
+            image: "/course_filter.png",
+        },
+    ];
+
     return (
         <div className="bg-[#EBF3FC] min-h-screen">
             <div className="flex flex-col justify-center items-center w-full p-2 px-3 lg:px-0">
                 <div className="flex flex-grow justify-between items-center mt-[30px] w-full max-w-[1000px]">
                     <h1 className="text-base lg:text-[24px] font-bold">
-                        Kelas Berjalan
+                        Kelas Tersedia
                     </h1>
                     <form className="relative flex flex-row">
                         <input
@@ -111,7 +234,7 @@ const Class = () => {
 
                         {/* This Filter Will Show up only on Desktop / Laptop Screen */}
                         <div className="flex flex-col items-start">
-                            <div className="hidden md:flex mt-2 flex-grow gap-2 overflow-x-auto w-full py-1">
+                            <div className="hidden md:flex mt-2 flex-grow gap-2 w-full py-1">
                                 <button className="btn btn-blue flex-grow rounded-2xl">
                                     All
                                 </button>
@@ -129,8 +252,32 @@ const Class = () => {
                                 </button>
                             </div>
 
-                            <div className="flex flex-wrap w-full mt-2">
-                                <CourseCard />
+                            <div className="flex gap-5 flex-wrap mx-2 md:mx-0 mt-5">
+                                {course.map((data) => (
+                                    <CourseCard key={data.id} data={data} />
+                                ))}
+                            </div>
+                        </div>
+                        <div className="flex items-center justify-center my-5">
+                            <div className="join">
+                                <button className="join-item btn btn-blue">
+                                    «
+                                </button>
+                                <button className="join-item btn btn-blue">
+                                    1
+                                </button>
+                                <button className="join-item btn btn-active">
+                                    2
+                                </button>
+                                <button className="join-item btn btn-blue">
+                                    3
+                                </button>
+                                <button className="join-item btn btn-blue">
+                                    4
+                                </button>
+                                <button className="join-item btn btn-blue">
+                                    »
+                                </button>
                             </div>
                         </div>
                     </div>

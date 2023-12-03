@@ -31,8 +31,8 @@ const CardCourse = () => {
                             className="flex-grow px-5 max-w-[400px]"
                         >
                             <Link to={`/details/${data.id}`}>
-                                <div className="flex flex-col bg-white rounded-2xl drop-shadow-xl  ">
-                                    <img src={data.Image} />
+                                <div className="flex flex-col bg-white rounded-2xl drop-shadow-xl">
+                                    <img src={data.image} />
                                     <div className="flex flex-col my-3 px-2 ">
                                         <div className="text-[12px] flex flex-row justify-between font-Montserrat font-bold ">
                                             <h3 className="text-[#6148FF] font-Poppins">

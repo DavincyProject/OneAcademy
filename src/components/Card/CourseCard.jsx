@@ -1,78 +1,68 @@
-const CourseCard = () => {
-    return (
-        <div>
-            <div className="flex flex-grow p-2">
-                <div className="card card-compact md:max-w-xs flex-grow w-full bg-base-100 shadow-xl">
-                    <figure>
-                        <img
-                            className="w-full object-cover"
-                            src="/testing_course.png"
-                            alt="card image"
-                        />
-                    </figure>
-                    <div className="card-body flex flex-col">
-                        <div className="text-[12px] flex flex-row justify-between font-Montserrat font-bold">
-                            <h1 className="font-bold text-[#6148FF] text-sm">
-                                UI/UX Design
-                            </h1>
-                            <div className="flex gap-1">
-                                <img
-                                    src="/icon/ic_round-star.svg"
-                                    alt="star icon"
-                                ></img>
-                                <p>4.5</p>
-                            </div>
-                        </div>
-                        <div className="text-[#202244] font-bold">
-                            Belajar Web Designer dengan Figma
-                            <br />
-                            <span className="font-normal">by Angeloa Doe</span>
-                        </div>
+import PropTypes from "prop-types";
 
-                        <div className="flex justify-between">
-                            <div className="text-[12px] flex flex-row justify-between font-Montserrat font-bold">
-                                <div className="flex gap-1">
-                                    <img
-                                        src="/icon/mdi_badge-outline.svg"
-                                        alt="badge icon"
-                                    ></img>
-                                    <h1 className="text-[12px] text-[#6148FF] font-semibold font-Poppins">
-                                        Intermediate Level
-                                    </h1>
-                                </div>
-                            </div>
-                            <div className="text-[12px] flex flex-row justify-between font-Montserrat font-bold">
-                                <div className="flex gap-1">
-                                    <img
-                                        src="/icon/clarity_book-line.svg"
-                                        alt="book icon"
-                                    ></img>
-                                    <h1 className="text-[12px] font-normal font-Poppins">
-                                        10 Modul
-                                    </h1>
-                                </div>
-                            </div>
-                            <div className="text-[12px] flex flex-row justify-between font-Montserrat font-bold">
-                                <div className="flex gap-1">
-                                    <img
-                                        src="/icon/ri_time-fill.svg"
-                                        alt="time icon"
-                                    ></img>
-                                    <h1 className="text-[12px] font-normal font-Poppins">
-                                        120 Menit
-                                    </h1>
-                                </div>
+const CourseCard = ({ data }) => {
+    return (
+        <div className="shadow-sm bg-white flex flex-col flex-grow sm:flex-none items-stretch pb-2.5 rounded-2xl">
+            <img
+                loading="lazy"
+                srcSet={data.image}
+                className="aspect-[4.04] w-full overflow-hidden h-[85px] object-cover rounded-t-2xl"
+            />
+            <div className="flex w-full flex-col mt-1.5 px-2.5">
+                <div className="items-stretch self-stretch flex w-full justify-between gap-5">
+                    <div className="text-indigo-600 text-xs font-bold leading-4 flex-1">
+                        {data.nama}
+                    </div>
+                    <div className="justify-between items-stretch flex gap-0 pl-20 max-md:pl-5">
+                        <img loading="lazy" src="/icon/ic_round-star.svg" />
+                        <div className="text-indigo-950 text-xs font-semibold leading-4 grow whitespace-nowrap">
+                            {data.rating}
+                        </div>
+                    </div>
+                </div>
+                <div className="self-stretch text-black text-xs font-bold leading-4">
+                    <span className="font-bold text-indigo-950">
+                        {data.topic}
+                        <br />
+                    </span>
+                    <span className=" text-black">{data.mentor}</span>
+                </div>
+                <div className="items-stretch self-stretch flex justify-between gap-0">
+                    <div className="flex justify-between gap-1 pr-4 items-center">
+                        <img
+                            loading="lazy"
+                            src="/icon/mdi_badge-outline.svg"
+                            className="aspect-square object-contain object-center w-3 overflow-hidden shrink-0 max-w-full"
+                        />
+                        <div className="text-indigo-600 text-xs font-semibold leading-4 self-stretch">
+                            {data.level}
+                        </div>
+                    </div>
+                    <div className="flex gap-1 items-center max-md:justify-center">
+                        <img
+                            loading="lazy"
+                            src="/icon/clarity_book-line.svg"
+                            className="aspect-square object-contain object-center w-3 overflow-hidden shrink-0 max-w-full"
+                        />
+                        <div className="text-black text-xs leading-4 self-stretch">
+                            {data.modul}
+                        </div>
+                        <div className="items-stretch self-stretch flex justify-between gap-0.5 pr-7 max-md:pr-5">
+                            <img
+                                loading="lazy"
+                                src="/icon/ri_time-fill.svg"
+                                className="aspect-square object-contain object-center w-3.5 overflow-hidden shrink-0 max-w-full"
+                            />
+                            <div className="text-black text-xs leading-4 grow whitespace-nowrap">
+                                {data.durasi}
                             </div>
                         </div>
-                        <div className="badge badge-green p-3">
-                            <div className="flex gap-1 items-center">
-                                <img
-                                    src="/icon/Diamond.svg"
-                                    alt="diamond icon"
-                                ></img>
-                                <p className="font-bold text-xs">Paid</p>
-                            </div>
-                        </div>
+                    </div>
+                </div>
+                <div className="badge badge-blue p-3 mt-2">
+                    <div className="flex gap-1 items-center">
+                        <img src="/icon/Diamond.svg" alt="diamond icon" />
+                        <p className="font-bold text-xs">{data.harga}</p>
                     </div>
                 </div>
             </div>
@@ -81,3 +71,6 @@ const CourseCard = () => {
 };
 
 export default CourseCard;
+CourseCard.propTypes = {
+    data: PropTypes.object,
+};

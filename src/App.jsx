@@ -13,7 +13,7 @@ import Navbar from "./components/Navbar";
 import AdminLogin from "./pages/Admin/AdminLogin";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
 import Notification from "./pages/profile/Notification";
-import ClassMe from "./pages/Course/ClassMe";
+// import ClassMe from "./pages/Course/ClassMe";
 import { Toaster } from "react-hot-toast";
 import Protect from "./components/Auth/Protect";
 import PaymentSucces from "./pages/PaymentSucces";
@@ -35,7 +35,7 @@ function App() {
                             path="/notification"
                             element={<Notification />}
                         />
-                        <Route path="/classme" element={<ClassMe />} />
+                        <Route path="/class" element={<Class />} />
                         <Route path="/succes" element={<PaymentSucces />} />
                         <Route path="/account" element={<Account />} />
                         <Route path="/payment" element={<Payment />} />
@@ -93,7 +93,8 @@ function App() {
 
                         {/* Handle Pages Not Found */}
                         <Route path="*" element={<NotFound />} />
-                        <Route path="/test" element={<Class />} />
+
+                        {/* <Route path="/classMe" element={<ClassMe />} /> */}
                     </Routes>
                 </BrowserRouter>
             </Provider>

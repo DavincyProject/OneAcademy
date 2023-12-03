@@ -9,7 +9,7 @@ const course = [
         durasi: "120 Menit",
         harga: "249.000",
         rating: 4.7,
-        Image: "/testing_course.png",
+        image: "/testing_course.png",
     },
     {
         id: 2,
@@ -21,7 +21,7 @@ const course = [
         durasi: "120 Menit",
         harga: "249.000",
         rating: 4.8,
-        Image: "/testing_course.png",
+        image: "/testing_course.png",
     },
     {
         id: 3,
@@ -33,7 +33,7 @@ const course = [
         durasi: "120 Menit",
         harga: "249.000",
         rating: 4.8,
-        Image: "/testing_course.png",
+        image: "/testing_course.png",
     },
 ];
 
