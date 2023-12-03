@@ -2,7 +2,13 @@
 export default {
     content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
     theme: {
-        extend: {},
+        extend: {
+            colors: {
+                check: {
+                    100: `#6148FF`,
+                },
+            },
+        },
         daisyui: {
             themes: false,
         },
