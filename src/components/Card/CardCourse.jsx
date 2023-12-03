@@ -9,7 +9,7 @@ const CardCourse = () => {
                 <div className="flex flex-row container justify-between px-6">
                     <h2 className="text-xl font-bold">Kursus Populer</h2>
                     <Link
-                        to="/"
+                        to="/classme"
                         className="font-extrabold text-xs text-[#6148FF]"
                     >
                         Lihat Semua

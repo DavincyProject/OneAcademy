@@ -40,7 +40,7 @@ const CardCategori = () => {
                 <div className="flex justify-between container px-6">
                     <h2 className="text-xl font-bold">Kategori Belajar</h2>
                     <Link
-                        to="/"
+                        to="/classme"
                         className=" font-extrabold text-xs max-w-fit text-[#6148FF]"
                     >
                         Lihat Semua
