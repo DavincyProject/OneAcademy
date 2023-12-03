@@ -83,7 +83,6 @@ const KelasDetail = () => {
                                     <FaTelegram className="ml-2" />
                                 </span>
                             </button>
-
                             {/* need to add logic to send id course into transaction pages */}
                             <BuyCourseButton id={id} />
                         </div>
