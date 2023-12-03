@@ -6,7 +6,7 @@ const HistoryPembayaran = () => {
             </h1>
 
             <div className="flex gap-3 flex-wrap justify-center">
-                <div className="card card-compact w-full sm:w-[350px] bg-base-100 shadow-xl">
+                <div className="card card-compact flex-grow w-full sm:max-w-[370px] bg-base-100 shadow-xl">
                     <figure>
                         <img
                             className="w-full object-cover"
@@ -16,9 +16,9 @@ const HistoryPembayaran = () => {
                     </figure>
                     <div className="card-body flex flex-col">
                         <div className="text-[12px] flex flex-row justify-between font-Montserrat font-bold">
-                            <h1 className="font-bold text-[#6148FF] text-sm">
+                            <h3 className="font-bold text-[#6148FF] text-sm">
                                 UI/UX Design
-                            </h1>
+                            </h3>
                             <div className="flex gap-1">
                                 <img
                                     src="/icon/ic_round-star.svg"
@@ -33,7 +33,7 @@ const HistoryPembayaran = () => {
                             <span className="font-normal">by Angeloa Doe</span>
                         </div>
 
-                        <div className="flex justify-between">
+                        <div className="flex justify-between items-center ">
                             <div className="text-[12px] flex flex-row justify-between font-Montserrat font-bold">
                                 <div className="flex gap-1">
                                     <img
@@ -69,7 +69,7 @@ const HistoryPembayaran = () => {
                             </div>
                         </div>
                         <div className="badge badge-red p-3">
-                            <div className="flex gap-1">
+                            <div className="flex gap-1 items-center">
                                 <img
                                     src="/icon/Diamond.svg"
                                     alt="diamond icon"
@@ -82,7 +82,7 @@ const HistoryPembayaran = () => {
                     </div>
                 </div>
 
-                <div className="card card-compact w-full sm:w-[350px] bg-base-100 shadow-xl">
+                <div className="card card-compact flex-grow w-full sm:max-w-[370px] bg-base-100 shadow-xl">
                     <figure>
                         <img
                             className="w-full object-cover"
@@ -144,15 +144,13 @@ const HistoryPembayaran = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="badge badge-red p-3">
-                            <div className="flex gap-1">
+                        <div className="badge badge-green p-3">
+                            <div className="flex gap-1 items-center">
                                 <img
                                     src="/icon/Diamond.svg"
                                     alt="diamond icon"
                                 ></img>
-                                <p className="font-bold text-xs">
-                                    Waiting for Payment
-                                </p>
+                                <p className="font-bold text-xs">Paid</p>
                             </div>
                         </div>
                     </div>

@@ -24,3 +24,13 @@
     background-color: #ff0000;
     color: white;
 }
+
+.badge-green {
+    background-color: #73ca5c;
+    color: white;
+}
+
+.badge-blue {
+    background-color: #489cff;
+    color: white;
+}
