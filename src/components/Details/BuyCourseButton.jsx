@@ -21,8 +21,8 @@ const BuyCourseButton = ({ id }) => {
                     <div className="modal-box">
                         <form method="dialog">
                             {/* if there is a button in form, it will close the modal */}
-                            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-                                ✕
+                            <button className="text-[#6148FF] btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                                <img src="/icon/close.svg" className="w-10" />
                             </button>
                         </form>
                         <div className="text-center">
@@ -120,7 +120,7 @@ const BuyCourseButton = ({ id }) => {
                         <div className="modal-action flex justify-center">
                             <form action="/login">
                                 <button className="mt-3 w-[320px] h-[48px] bg-[#6148FF] text-white rounded-[25px]">
-                                    <span className="flex justify-center items-center">
+                                    <span className="flex justify-center items-center gap-2">
                                         Beli Sekarang
                                         <img
                                             src="/icon/buy-now.svg"

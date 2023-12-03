@@ -9,7 +9,7 @@ const CardCourse = () => {
                 <div className="flex flex-row container justify-between px-6">
                     <h2 className="text-xl font-bold">Kursus Populer</h2>
                     <Link
-                        to="/"
+                        to="/classme"
                         className="font-extrabold text-xs text-[#6148FF]"
                     >
                         Lihat Semua
@@ -24,7 +24,7 @@ const CardCourse = () => {
                         </div>
                     ))}
                 </div>
-                <div className="container flex flex-wrap justify-around gap-5 lg:gap-0">
+                <div className="container flex flex-wrap justify-around gap-5">
                     {course.map((data) => (
                         <div
                             key={data.id}

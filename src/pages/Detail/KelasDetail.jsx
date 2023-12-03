@@ -5,6 +5,7 @@ import VideoCardList from "../../components/Details/VideoCardList";
 import VideoPlayer from "../../components/Details/VideoPlayer";
 import BuyCourseButton from "../../components/Details/BuyCourseButton";
 import { useParams } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
 
 const KelasDetail = () => {
     const [activeVideo, setActiveVideo] = useState("");
@@ -13,8 +14,15 @@ const KelasDetail = () => {
     return (
         <div>
             <div className="container-fluid p-2 bg-[#EBF3FC] ">
-                <div className="top-[20px] mx-2">
-                    <div className="flex gap-3 my-3">
+                <div className="top-[20px] mx-2 mt-2">
+                    <Link
+                        to={"/"}
+                        className="hover:text-[#6148FF] text-[16px] font-bold flex gap-2 items-center mb-5"
+                    >
+                        <FaArrowLeft className="text-[16px] font-bold" />
+                        Kelas Lainnya
+                    </Link>
+                    {/* <div className="flex gap-3 my-3">
                         <Link to={"/"}>
                             <img
                                 src="/icon/fi_arrow-left.svg"
@@ -23,7 +31,7 @@ const KelasDetail = () => {
                         </Link>
 
                         <h1 className="text-[16px] font-bold">Kelas Lainnya</h1>
-                    </div>
+                    </div> */}
 
                     <div className="flex flex-col gap-1 ml-9 container-fluid md:w-[65vw]">
                         <div className="flex justify-between container-fluid md:w-[65vw]">
@@ -75,7 +83,6 @@ const KelasDetail = () => {
                                     <FaTelegram className="ml-2" />
                                 </span>
                             </button>
-
                             {/* need to add logic to send id course into transaction pages */}
                             <BuyCourseButton id={id} />
                         </div>
