@@ -22,16 +22,6 @@ const KelasDetail = () => {
                         <FaArrowLeft className="text-[16px] font-bold" />
                         Kelas Lainnya
                     </Link>
-                    {/* <div className="flex gap-3 my-3">
-                        <Link to={"/"}>
-                            <img
-                                src="/icon/fi_arrow-left.svg"
-                                alt="back icon"
-                            />
-                        </Link>
-
-                        <h1 className="text-[16px] font-bold">Kelas Lainnya</h1>
-                    </div> */}
 
                     <div className="flex flex-col gap-1 ml-9 container-fluid md:w-[65vw]">
                         <div className="flex justify-between container-fluid md:w-[65vw]">
