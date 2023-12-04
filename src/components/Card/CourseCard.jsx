@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 
 // This card for Filter pages
-
 const CourseCard = ({ data }) => {
     return (
         <div className="shadow-sm bg-white flex flex-col flex-grow sm:flex-none items-stretch pb-2.5 rounded-2xl">
