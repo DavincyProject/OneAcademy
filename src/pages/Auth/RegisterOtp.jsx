@@ -52,26 +52,31 @@ const RegisterOtp = () => {
 
                     <div className="flex flex-col gap-5">
                         <div className="flex flex-col">
-                            <label className="text-[12px] mb-[4px] text-center font-Poppins">
-                                Ketik 6 digit kode yang dikirimkan ke mail
+                            <label className="text-[12px] text-sm lg:text-base mb-[4px] text-center font-Poppins">
+                                Ketik 6 digit kode yang dikirimkan ke{" "}
+                                <span className="font-bold">mail</span>
                             </label>
                             <OtpInput
                                 value={otp}
                                 onChange={setOtp}
                                 numInputs={6}
+                                inputType="text"
+                                maxValues={6}
                                 containerStyle="my-6 flex justify-center items-center gap-[16px]"
                                 inputStyle={{
-                                    width: "42px",
-                                    height: "42px",
-                                    border: "1px solid #ccc",
-                                    borderRadius: "16px",
+                                    width: "2.6rem",
+                                    height: "2.6rem",
+                                    border: "1px solid #6148FF",
+                                    borderRadius: "1rem",
+                                    fontSize: "16px",
+                                    fontWeight: "bold",
                                 }}
                                 renderInput={(props) => <input {...props} />}
                             />
                         </div>
                         <div className="flex flex-col">
                             {resendTimeout > 0 ? (
-                                <label className="text-[12px] mb-[4px] text-center font-Poppins">
+                                <label className="text-[12px] text-sm lg:text-base mb-[4px] text-center font-Poppins">
                                     Kirim Ulang OTP dalam {resendTimeout} detik
                                 </label>
                             ) : (

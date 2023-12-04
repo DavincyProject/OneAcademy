@@ -13,3 +13,44 @@
 .font-Poppins {
     font-family: "Poppins", sans-serif;
 }
+
+.input-border-b {
+    border-bottom-width: 1px;
+    border-bottom-color: #d0d0d0;
+    border-bottom-style: solid;
+}
+
+.badge-red {
+    background-color: #ff0000;
+    color: white;
+}
+
+.badge-green {
+    background-color: #73ca5c;
+    color: white;
+}
+
+.badge-lightwhite {
+    background-color: #e8f1ff;
+    color: black;
+}
+
+.badge-darkblue {
+    background-color: #6148ff;
+    color: white;
+}
+
+.badge-blue {
+    background-color: #489cff;
+    color: white;
+}
+
+.btn-blue {
+    background-color: #6148ff;
+    color: white;
+}
+
+.btn-active {
+    background-color: #8030db;
+    color: white;
+}

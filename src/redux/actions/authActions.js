@@ -1,6 +1,6 @@
 import axios from "axios";
-import { ENDPOINTS } from "../../utils/endpointApi";
 import { setToken } from "../reducers/authReducers";
+import { ENDPOINTS } from "../../utils/endpointApi";
 import toast from "react-hot-toast";
 
 export const login = (email, password, navigate) => async (dispatch) => {
