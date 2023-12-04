@@ -1,5 +1,7 @@
 import PropTypes from "prop-types";
 
+// This card for Filter pages
+
 const CourseCard = ({ data }) => {
     return (
         <div className="shadow-sm bg-white flex flex-col flex-grow sm:flex-none items-stretch pb-2.5 rounded-2xl">
@@ -28,7 +30,7 @@ const CourseCard = ({ data }) => {
                     <span className=" text-black">{data.mentor}</span>
                 </div>
                 <div className="items-stretch self-stretch flex justify-between gap-0">
-                    <div className="flex justify-between gap-1 pr-4 items-center">
+                    <div className="flex gap-1 items-center">
                         <img
                             loading="lazy"
                             src="/icon/mdi_badge-outline.svg"
@@ -38,24 +40,24 @@ const CourseCard = ({ data }) => {
                             {data.level}
                         </div>
                     </div>
-                    <div className="flex gap-1 items-center max-md:justify-center">
+                    <div className="flex gap-1 items-center">
                         <img
                             loading="lazy"
                             src="/icon/clarity_book-line.svg"
                             className="aspect-square object-contain object-center w-3 overflow-hidden shrink-0 max-w-full"
                         />
-                        <div className="text-black text-xs leading-4 self-stretch">
+                        <div className="text-black text-xs font-normal leading-4 self-stretch">
                             {data.modul}
                         </div>
-                        <div className="items-stretch self-stretch flex justify-between gap-0.5 pr-7 max-md:pr-5">
-                            <img
-                                loading="lazy"
-                                src="/icon/ri_time-fill.svg"
-                                className="aspect-square object-contain object-center w-3.5 overflow-hidden shrink-0 max-w-full"
-                            />
-                            <div className="text-black text-xs leading-4 grow whitespace-nowrap">
-                                {data.durasi}
-                            </div>
+                    </div>
+                    <div className="flex gap-1 items-center">
+                        <img
+                            loading="lazy"
+                            src="/icon/ri_time-fill.svg"
+                            className="aspect-square object-contain object-center w-3.5 overflow-hidden shrink-0 max-w-full"
+                        />
+                        <div className="text-black text-xs font-normal leading-4 self-stretch">
+                            {data.durasi}
                         </div>
                     </div>
                 </div>

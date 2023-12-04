@@ -30,6 +30,16 @@
     color: white;
 }
 
+.badge-lightwhite {
+    background-color: #e8f1ff;
+    color: black;
+}
+
+.badge-darkblue {
+    background-color: #6148ff;
+    color: white;
+}
+
 .badge-blue {
     background-color: #489cff;
     color: white;

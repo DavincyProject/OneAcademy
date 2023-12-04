@@ -1,104 +1,127 @@
+import { useState } from "react";
 import course from "../../data/DataCourse";
 import populer from "../../data/DataPopular";
 import { Link } from "react-router-dom";
 
+// This card for HomePages
+
 const CardCourse = () => {
+    const [selectId, setSelectId] = useState(null);
+
+    const handleBadgeClick = (id) => {
+        setSelectId(id);
+    };
     return (
         <div className="flex justify-center">
-            <div className="flex flex-col container gap-5 pt-[26px] pb-[53px]">
+            <div className="flex flex-col container gap-5 pt-[26px] pb-[53px] ">
                 <div className="flex flex-row container justify-between px-6">
                     <h2 className="text-xl font-bold">Kursus Populer</h2>
                     <Link
-                        to="/classme"
+                        to="/class"
                         className="font-extrabold text-xs text-[#6148FF]"
                     >
                         Lihat Semua
                     </Link>
                 </div>
-                <div className="container flex flex-wrap justify-evenly items-center gap-3 px-6 md:px-0">
+
+                <div className="container flex gap-3 justify-center items-center px-6 max-md:flex-wrap max-md:justify-center md:px-0">
                     {populer.map((datas) => (
                         <div key={datas.id}>
-                            <div className="rounded-2xl text-[12.5px] md:text-[15px] font-bold bg-[#EBF3FC] text-black p-2">
+                            <div
+                                className={`badge hover:cursor-pointer ${
+                                    selectId === datas.id
+                                        ? "badge-darkblue"
+                                        : "badge-lightwhite"
+                                } font-bold p-5`}
+                                onClick={() => handleBadgeClick(datas.id)}
+                            >
                                 {datas.popular}
                             </div>
                         </div>
                     ))}
                 </div>
-                <div className="container flex flex-wrap justify-around gap-5">
+
+                <div className="flex gap-3 justify-center md:justify-around items-center flex-wrap px-5">
                     {course.map((data) => (
-                        <div
+                        <Link
+                            to={`/details/${data.id}`}
                             key={data.id}
-                            className="flex-grow px-5 max-w-[400px]"
+                            className="shadow-md bg-white flex flex-col flex-grow sm:flex-none items-stretch pb-2.5 rounded-2xl max-w-[323px]"
                         >
-                            <Link to={`/details/${data.id}`}>
-                                <div className="flex flex-col bg-white rounded-2xl drop-shadow-xl">
-                                    <img src={data.image} />
-                                    <div className="flex flex-col my-3 px-2 ">
-                                        <div className="text-[12px] flex flex-row justify-between font-Montserrat font-bold ">
-                                            <h3 className="text-[#6148FF] font-Poppins">
-                                                {data.nama}
-                                            </h3>
-                                            <div className="flex gap-1">
-                                                <img
-                                                    src="/icon/ic_round-star.svg"
-                                                    alt="star icon"
-                                                ></img>
-                                                <p>{data.rating}</p>
-                                            </div>
-                                        </div>
-                                        <h3 className="mt-1 font-Montserrat font-bold text-[12px]">
-                                            {data.topic}
-                                        </h3>
-                                        <p className="mt-1 font-Montserrat font-normal text-[12px]">
-                                            {data.mentor}
-                                        </p>
-                                        <div className="flex items-center justify-between gap-3 mt-2">
-                                            <div className="flex gap-1">
-                                                <img
-                                                    src="/icon/mdi_badge-outline.svg"
-                                                    alt="level icon"
-                                                ></img>
-                                                <h1 className="text-[12px] text-[#6148FF] font-semibold font-Poppins">
-                                                    {data.level}
-                                                </h1>
-                                            </div>
-                                            <div className="flex gap-1">
-                                                <img
-                                                    src="/icon/clarity_book-line.svg"
-                                                    alt="module icon"
-                                                ></img>
-                                                <h1 className="text-[12px] font-Poppins">
-                                                    {data.modul}
-                                                </h1>
-                                            </div>
-                                            <div className="flex gap-1">
-                                                <img
-                                                    src="/icon/ri_time-fill.svg"
-                                                    alt="time icon"
-                                                ></img>
-                                                <h1 className="text-[12px] font-Poppins">
-                                                    {data.durasi}
-                                                </h1>
-                                            </div>
-                                        </div>
-                                        <div className="badge badge-blue p-3 mt-2">
-                                            <div className="flex gap-1 items-center">
-                                                <img
-                                                    src="/icon/Diamond.svg"
-                                                    alt="diamond icon"
-                                                ></img>
-                                                <p className="font-bold text-xs mr-3">
-                                                    Beli
-                                                </p>
-                                                <span className="font-bold text-xs">
-                                                    Rp{""} {data.harga}
-                                                </span>
-                                            </div>
+                            <img
+                                loading="lazy"
+                                srcSet={data.image}
+                                className="aspect-[4.04] w-full overflow-hidden h-[85px] object-cover rounded-t-2xl"
+                            />
+                            <div className="flex w-full flex-col mt-1.5 px-2.5">
+                                <div className="items-stretch self-stretch flex w-full justify-between gap-5">
+                                    <div className="text-indigo-600 text-xs font-bold leading-4 flex-1">
+                                        {data.nama}
+                                    </div>
+                                    <div className="justify-between items-stretch flex gap-0 pl-20 max-md:pl-5">
+                                        <img
+                                            loading="lazy"
+                                            src="/icon/ic_round-star.svg"
+                                        />
+                                        <div className="text-indigo-950 text-xs font-semibold leading-4 grow whitespace-nowrap">
+                                            {data.rating}
                                         </div>
                                     </div>
                                 </div>
-                            </Link>
-                        </div>
+                                <div className="self-stretch text-black text-xs font-bold leading-4">
+                                    <span className="font-bold text-indigo-950">
+                                        {data.topic}
+                                        <br />
+                                    </span>
+                                    <span className=" text-black">
+                                        {data.mentor}
+                                    </span>
+                                </div>
+                                <div className="items-stretch self-stretch flex justify-between gap-0">
+                                    <div className="flex gap-1 items-center">
+                                        <img
+                                            loading="lazy"
+                                            src="/icon/mdi_badge-outline.svg"
+                                            className="aspect-square object-contain object-center w-3 overflow-hidden shrink-0 max-w-full"
+                                        />
+                                        <div className="text-indigo-600 text-xs font-semibold leading-4 self-stretch">
+                                            {data.level}
+                                        </div>
+                                    </div>
+                                    <div className="flex gap-1 items-center">
+                                        <img
+                                            loading="lazy"
+                                            src="/icon/clarity_book-line.svg"
+                                            className="aspect-square object-contain object-center w-3 overflow-hidden shrink-0 max-w-full"
+                                        />
+                                        <div className="text-black text-xs font-normal leading-4 self-stretch">
+                                            {data.modul}
+                                        </div>
+                                    </div>
+                                    <div className="flex gap-1 items-center">
+                                        <img
+                                            loading="lazy"
+                                            src="/icon/ri_time-fill.svg"
+                                            className="aspect-square object-contain object-center w-3.5 overflow-hidden shrink-0 max-w-full"
+                                        />
+                                        <div className="text-black text-xs font-normal leading-4 self-stretch">
+                                            {data.durasi}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="badge badge-blue p-3 mt-2">
+                                    <div className="flex gap-1 items-center">
+                                        <img
+                                            src="/icon/Diamond.svg"
+                                            alt="diamond icon"
+                                        />
+                                        <p className="font-bold text-xs">
+                                            {data.harga}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </Link>
                     ))}
                 </div>
             </div>

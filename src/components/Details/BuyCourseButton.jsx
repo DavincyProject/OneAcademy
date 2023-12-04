@@ -2,7 +2,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import PropTypes from "prop-types";
 const BuyCourseButton = ({ id }) => {
     return (
-        <div>
+        <div key={id}>
             {/* need to add logic to send id course into transaction pages */}
             <div>
                 {/* Open the modal using document.getElementById('ID').showModal() method */}
@@ -139,5 +139,5 @@ const BuyCourseButton = ({ id }) => {
 
 export default BuyCourseButton;
 BuyCourseButton.propTypes = {
-    id: PropTypes.string,
+    id: PropTypes.object,
 };
