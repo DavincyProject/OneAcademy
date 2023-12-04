@@ -42,16 +42,14 @@ const Payment = () => {
               <div className="collapse-title text-white text-xl font-medium">
                 <h1>Bank Transfer</h1>
               </div>
-              <div className="collapse-content bg-white">
-                <p>hello</p>
-              </div>
+              <div className="collapse-content bg-white"></div>
             </div>
 
             <div className="collapse collapse-arrow bg-[#6148ff] rounded-[4px] shadow-md">
-              <input type="checkbox" />
-              <div className="collapse-title text-white text-xl font-medium">
+              <input type="checkbox" checked="checked" />
+              <summary className="collapse-title text-white text-xl font-medium">
                 <h1>Credit Card</h1>
-              </div>
+              </summary>
               <div className="collapse-content bg-white">
                 <div className="flex justify-center flex-col items-center p-5 w-full">
                   <div className="flex gap-5">
