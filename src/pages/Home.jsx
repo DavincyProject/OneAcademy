@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import CardCategori from "../components/Card/CardCategori";
 import CardCourse from "../components/Card/CardCourse";
 
@@ -21,9 +22,12 @@ const Home = () => {
               </h1>
               <h1></h1>
             </div>
-            <button className="btn bg-white text-[#6148FF] font-Montserrat font-bold text-base rounded-[10px] py-2 w-[100%]">
+            <Link
+              to="/class"
+              className="btn bg-white text-[#6148FF] font-Montserrat font-bold text-base rounded-[10px] py-2 w-[100%]"
+            >
               IKUTI KELAS
-            </button>
+            </Link>
           </div>
         </div>
       </div>
