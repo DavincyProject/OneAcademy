@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
+import { useParams } from "react-router-dom";
 const Payment = () => {
   const [cardNumber, setCardNumber] = useState("");
+  const { id } = useParams();
 
   const handleCardNumberChange = (e) => {
     const inputValue = e.target.value;
@@ -20,7 +22,7 @@ const Payment = () => {
       <div className="border w-full py-4 bg-[#FFFFFF] shadow-md">
         <div className="flex flex-col px-5 justify-center">
           <Link
-            to={"/"}
+            to={`/details/${id}`}
             className="text-[16px] font-bold flex gap-2 items-center mb-5"
           >
             <FaArrowLeft />
