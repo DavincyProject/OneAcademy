@@ -2,6 +2,7 @@ import { useState } from "react";
 import course from "../../data/DataCourse";
 import populer from "../../data/DataPopular";
 import { Link } from "react-router-dom";
+import { BiCategory } from "react-icons/bi";
 
 // This card for HomePages
 
@@ -24,7 +25,7 @@ const CardCourse = () => {
                     </Link>
                 </div>
 
-                <div className="container flex gap-3 justify-center items-center px-6 max-md:flex-wrap max-md:justify-center md:px-0">
+                <div className="hidden container sm:flex gap-3 justify-center items-center px-6 max-md:flex-wrap max-md:justify-center md:px-0">
                     {populer.map((datas) => (
                         <div key={datas.id}>
                             <div
@@ -39,6 +40,51 @@ const CardCourse = () => {
                             </div>
                         </div>
                     ))}
+                </div>
+
+                <div className="sm:hidden container px-5">
+                    {/* You can open the modal using document.getElementById('ID').showModal() method */}
+                    <button
+                        className="btn w-full bg-[#6148FF] text-white hover:bg-[#402eb4]"
+                        onClick={() =>
+                            document.getElementById("category").showModal()
+                        }
+                    >
+                        <BiCategory size={20} />
+                        Select Category
+                    </button>
+                    <dialog id="category" className="modal">
+                        <div className="modal-box">
+                            <form method="dialog">
+                                {/* if there is a button in form, it will close the modal */}
+                                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                                    ✕
+                                </button>
+                            </form>
+
+                            <h3 className="font-bold text-lg">
+                                Select Category
+                            </h3>
+                            <p className="py-3 flex flex-col gap-2">
+                                {populer.map((datas) => (
+                                    <div key={datas.id}>
+                                        <div
+                                            className={`badge w-full hover:cursor-pointer ${
+                                                selectId === datas.id
+                                                    ? "badge-darkblue"
+                                                    : "badge-lightwhite"
+                                            } font-bold p-5`}
+                                            onClick={() =>
+                                                handleBadgeClick(datas.id)
+                                            }
+                                        >
+                                            {datas.popular}
+                                        </div>
+                                    </div>
+                                ))}
+                            </p>
+                        </div>
+                    </dialog>
                 </div>
 
                 <div className="flex gap-3 justify-center md:justify-around items-center flex-wrap px-5">

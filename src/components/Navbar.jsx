@@ -91,7 +91,7 @@ const Navbar = () => {
                             </label>
                             <ul className="mt-3 z-[1] p-2 text-[#6148FF] shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
                                 <li className="my-2 hover:bg-slate-200 rounded-md">
-                                    <Link to={"/classme"}>
+                                    <Link to={"/class"}>
                                         <div className="flex items-center gap-2 text-[16px] font-bold ">
                                             <FaListUl />
                                             <h1>Kelas</h1>
