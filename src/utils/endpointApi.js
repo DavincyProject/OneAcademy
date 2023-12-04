@@ -8,4 +8,6 @@ export const ENDPOINTS = {
         return `${API_URL}/api/v1/auth/set-password/${id}`;
     },
     updateprofile: `${API_URL}/api/v1/profile/`,
+
+    category: `${API_URL}/api/v1/category`,
 };

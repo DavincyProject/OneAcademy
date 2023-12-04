@@ -258,6 +258,8 @@ const Class = () => {
                                 ))}
                             </div>
                         </div>
+
+                        {/* Pagination */}
                         <div className="flex items-center justify-center my-5">
                             <div className="join">
                                 <button className="join-item btn btn-blue">
