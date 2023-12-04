@@ -14,7 +14,7 @@ const CardCategori = () => {
 
   return (
     <div className="flex justify-center bg-[#EBF3FC]">
-      <div className="flex w-full justify-center items-center max-w-[1200px] flex-col pt-[26px] pb-[14px] gap-5 container">
+      <div className="flex w-full justify-center items-center max-w-[1060px] flex-col pt-[26px] pb-[14px] gap-5 container">
         <div className="flex justify-between container px-6">
           <h2 className="text-xl font-bold">Kategori Belajar</h2>
           <Link

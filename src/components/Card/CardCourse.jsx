@@ -14,7 +14,7 @@ const CardCourse = () => {
   };
   return (
     <div className="flex justify-center">
-      <div className="flex flex-col justify-center items-center max-w-[1200px] container gap-5 pt-[26px] pb-[53px] ">
+      <div className="flex flex-col justify-center items-center max-w-[1060px] container gap-5 pt-[26px] pb-[53px] ">
         <div className="flex flex-row container justify-between px-6">
           <h2 className="text-xl font-bold">Kursus Populer</h2>
           <Link to="/class" className="font-extrabold text-xs text-[#6148FF]">
