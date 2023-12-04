@@ -33,7 +33,7 @@ function App() {
             <Route path="/notification" element={<Notification />} />
             <Route path="/class" element={<Class />} />
             <Route path="/account" element={<Account />} />
-            <Route path="/payment" element={<Payment />} />
+            <Route path="/payment/:id" element={<Payment />} />
             <Route path="/succes" element={<PaymentSucces />} />
 
             {/* User Authorization */}
