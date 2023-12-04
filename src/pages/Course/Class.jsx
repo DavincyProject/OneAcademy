@@ -214,9 +214,10 @@ const Class = () => {
                         {filters.map((filter) => (
                           <button
                             key={filter}
-                            className={`btn flex-grow  rounded-2xl ${
-                              selectedFilter === filter &&
-                              "btn-blue hover:bg-[#402eb4]"
+                            className={`btn flex-grow rounded-2xl ${
+                              selectedFilter === filter
+                                ? "btn-blue"
+                                : "btn-base"
                             }`}
                             onClick={() => handleFilterChange(filter)}
                           >
@@ -236,8 +237,8 @@ const Class = () => {
                 {filters.map((filter) => (
                   <button
                     key={filter}
-                    className={`btn btn-blue flex-grow rounded-2xl ${
-                      selectedFilter === filter && "btn-active"
+                    className={`btn flex-grow rounded-2xl ${
+                      selectedFilter === filter ? "btn-blue" : "btn-base"
                     }`}
                     onClick={() => handleFilterChange(filter)}
                   >
