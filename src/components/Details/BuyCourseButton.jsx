@@ -21,7 +21,11 @@ const BuyCourseButton = ({ id }) => {
                     <form method="dialog">
                         {/* if there is a button in form, it will close the modal */}
                         <button className="text-[#6148FF] btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-                            <img src="/icon/close.svg" className="w-10" />
+                            <img
+                                src="/icon/close.svg"
+                                className="w-10"
+                                alt="close button"
+                            />
                         </button>
                     </form>
                     <div className="text-center">
@@ -53,6 +57,7 @@ const BuyCourseButton = ({ id }) => {
                                         <img
                                             loading="lazy"
                                             src="/icon/ic_round-star.svg"
+                                            alt="star icon"
                                         />
                                         <div className="text-indigo-950 text-xs font-semibold leading-4 grow whitespace-nowrap">
                                             4.5
@@ -73,6 +78,7 @@ const BuyCourseButton = ({ id }) => {
                                         <img
                                             loading="lazy"
                                             src="/icon/mdi_badge-outline.svg"
+                                            alt="badge icon"
                                             className="aspect-square object-contain object-center w-3 overflow-hidden shrink-0 max-w-full"
                                         />
                                         <div className="text-indigo-600 text-xs font-semibold leading-4 self-stretch">
@@ -83,6 +89,7 @@ const BuyCourseButton = ({ id }) => {
                                         <img
                                             loading="lazy"
                                             src="/icon/clarity_book-line.svg"
+                                            alt="book icon"
                                             className="aspect-square object-contain object-center w-3 overflow-hidden shrink-0 max-w-full"
                                         />
                                         <div className="text-black text-xs font-normal leading-4 self-stretch">
@@ -93,6 +100,7 @@ const BuyCourseButton = ({ id }) => {
                                         <img
                                             loading="lazy"
                                             src="/icon/ri_time-fill.svg"
+                                            alt="clock icon"
                                             className="aspect-square object-contain object-center w-3.5 overflow-hidden shrink-0 max-w-full"
                                         />
                                         <div className="text-black text-xs font-normal leading-4 self-stretch">

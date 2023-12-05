@@ -18,7 +18,8 @@ const dataCard = ({ data }) => {
         >
             <img
                 loading="lazy"
-                srcSet={data.image.url}
+                src={data.image.url}
+                alt="course image"
                 className="aspect-[4.04] w-full overflow-hidden h-[85px] object-cover rounded-t-2xl"
             />
             <div className="flex w-full flex-col mt-1.5 px-2.5">
@@ -27,7 +28,11 @@ const dataCard = ({ data }) => {
                         {data.category.name}
                     </div>
                     <div className="justify-between items-stretch flex gap-0 pl-20 max-md:pl-5">
-                        <img loading="lazy" src="/icon/ic_round-star.svg" />
+                        <img
+                            loading="lazy"
+                            src="/icon/ic_round-star.svg"
+                            alt="star icon"
+                        />
                         <div className="text-indigo-950 text-xs font-semibold leading-4 grow whitespace-nowrap">
                             {data?.rating || "4.5"}
                         </div>
@@ -45,6 +50,7 @@ const dataCard = ({ data }) => {
                         <img
                             loading="lazy"
                             src="/icon/mdi_badge-outline.svg"
+                            alt="badge icon"
                             className="aspect-square object-contain object-center w-3 overflow-hidden shrink-0 max-w-full"
                         />
                         <div className="text-indigo-600 text-xs font-semibold leading-4 self-stretch">
@@ -55,6 +61,7 @@ const dataCard = ({ data }) => {
                         <img
                             loading="lazy"
                             src="/icon/clarity_book-line.svg"
+                            alt="book icon"
                             className="aspect-square object-contain object-center w-3 overflow-hidden shrink-0 max-w-full"
                         />
                         <div className="text-black text-xs font-normal leading-4 self-stretch">
@@ -65,6 +72,7 @@ const dataCard = ({ data }) => {
                         <img
                             loading="lazy"
                             src="/icon/ri_time-fill.svg"
+                            alt="time icon"
                             className="aspect-square object-contain object-center w-3.5 overflow-hidden shrink-0 max-w-full"
                         />
                         <div className="text-black text-xs font-normal leading-4 self-stretch">

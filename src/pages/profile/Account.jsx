@@ -58,7 +58,10 @@ const Account = () => {
                                             }`}
                                         >
                                             <div className="flex items-center gap-2 text-[16px] mb-2 font-bold">
-                                                <img src="/Profile/edit.svg" />
+                                                <img
+                                                    src="/Profile/edit.svg"
+                                                    alt="edit"
+                                                />
                                                 <h1>Profil Saya</h1>
                                             </div>
                                             <div className="border-t mb-2 border-[#E5E5E5]"></div>
@@ -74,7 +77,10 @@ const Account = () => {
                                             }`}
                                         >
                                             <div className="flex items-center gap-2 text-[16px] mb-2 font-bold">
-                                                <img src="/Profile/settings.svg" />
+                                                <img
+                                                    src="/Profile/settings.svg"
+                                                    alt="setting"
+                                                />
                                                 <h1>Ubah Password</h1>
                                             </div>
                                             <div className="border-t mb-2 border-[#E5E5E5]"></div>
@@ -91,14 +97,20 @@ const Account = () => {
                                             }`}
                                         >
                                             <div className="flex items-center gap-2 text-[16px] mb-2 font-bold">
-                                                <img src="/Profile/cart.svg" />
+                                                <img
+                                                    src="/Profile/cart.svg"
+                                                    alt="cart"
+                                                />
                                                 <h1>Riwayat Pembayaran</h1>
                                             </div>
                                             <div className="border-t mb-2 border-[#E5E5E5]"></div>
                                         </Link>
                                         <Link className="hover:text-red-600">
                                             <div className="flex items-center gap-2 text-[16px] mb-2 font-bold">
-                                                <img src="/Profile/log-out.svg" />
+                                                <img
+                                                    src="/Profile/log-out.svg"
+                                                    alt="log out"
+                                                />
                                                 <h1>Keluar</h1>
                                             </div>
                                             <div className="border-t mb-2 border-[#E5E5E5]"></div>

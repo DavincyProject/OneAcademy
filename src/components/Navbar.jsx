@@ -53,7 +53,11 @@ const Navbar = () => {
                             type="submit"
                             className="absolute bottom-1/2 right-4 translate-y-1/2 rounded-lg bg-[#6148FF] p-1"
                         >
-                            <img src="/icon/search.svg" className="w-7" />
+                            <img
+                                src="/icon/search.svg"
+                                className="w-7"
+                                alt="search icon"
+                            />
                         </button>
                     </form>
                 ) : (
@@ -73,7 +77,7 @@ const Navbar = () => {
                             type="submit"
                             className="absolute bottom-1/2 right-2 translate-y-1/2 rounded-lg bg-[#6148FF] p-1"
                         >
-                            <img src="/icon/search.svg" />
+                            <img src="/icon/search.svg" alt="search icon" />
                         </button>
                     </form>
                     <div className="flex-none gap-2">

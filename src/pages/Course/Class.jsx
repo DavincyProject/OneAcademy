@@ -48,7 +48,7 @@ const Class = () => {
                             type="submit"
                             className="absolute bottom-1/2 right-2 translate-y-1/2 rounded-lg bg-[#6148FF] p-1"
                         >
-                            <img src="/icon/search.svg" />
+                            <img src="/icon/search.svg" alt="search icon" />
                         </button>
                     </form>
                 </div>
