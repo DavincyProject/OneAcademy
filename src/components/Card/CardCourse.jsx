@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { BiCategory } from "react-icons/bi";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { listCourse } from "../../redux/actions/categoryActions";
+import { listCourse } from "../../redux/actions/courseActions";
 
 // This card for HomePages
 
@@ -11,17 +11,24 @@ const CardCourse = () => {
     const [selectCategoryId, setSelectCategoryId] = useState(null);
     const dispatch = useDispatch();
 
-    console.log(selectCategoryId);
-
-    const course = useSelector((state) => state.category.listCourse);
-    const categories = useSelector((state) => state.category.listCategory);
+    const course = useSelector((state) => state.course.listCourse);
+    const categories = useSelector((state) => state.course.listCategory);
 
     useEffect(() => {
-        dispatch(listCourse());
+        dispatch(listCourse(1));
     }, [dispatch]);
 
     const handleBadgeClick = (categoryId) => {
         setSelectCategoryId(categoryId);
+    };
+
+    const formatPrice = (price) => {
+        // Assuming price is a number
+        return price.toLocaleString("id-ID", {
+            style: "currency",
+            currency: "IDR",
+            maximumFractionDigits: 0,
+        });
     };
 
     return (
@@ -87,7 +94,7 @@ const CardCourse = () => {
                             <h3 className="font-bold text-lg">
                                 Select Category
                             </h3>
-                            <p className="py-3 flex flex-col gap-2">
+                            <div className="py-3 flex flex-col gap-2">
                                 <div
                                     className={`badge hover:cursor-pointer w-full text-xs text-center  ${
                                         !selectCategoryId
@@ -115,7 +122,7 @@ const CardCourse = () => {
                                         </div>
                                     </div>
                                 ))}
-                            </p>
+                            </div>
                         </div>
                     </dialog>
                 </div>
@@ -206,7 +213,7 @@ const CardCourse = () => {
                                                 {data.courseType}
                                             </span>{" "}
                                             {data.price !== 0 && (
-                                                <>Rp {data.price}</>
+                                                <>{formatPrice(data.price)}</>
                                             )}
                                         </div>
                                     </div>
