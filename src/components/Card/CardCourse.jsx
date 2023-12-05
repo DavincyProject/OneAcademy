@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { BiCategory } from "react-icons/bi";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { listCourse } from "../../redux/actions/categoryActions";
+import { listCourse } from "../../redux/actions/courseActions";
 
 // This card for HomePages
 
@@ -11,17 +11,24 @@ const CardCourse = () => {
     const [selectCategoryId, setSelectCategoryId] = useState(null);
     const dispatch = useDispatch();
 
-    console.log(selectCategoryId);
-
-    const course = useSelector((state) => state.category.listCourse);
-    const categories = useSelector((state) => state.category.listCategory);
+    const course = useSelector((state) => state.course.listCourse);
+    const categories = useSelector((state) => state.course.listCategory);
 
     useEffect(() => {
-        dispatch(listCourse());
+        dispatch(listCourse(1));
     }, [dispatch]);
 
     const handleBadgeClick = (categoryId) => {
         setSelectCategoryId(categoryId);
+    };
+
+    const formatPrice = (price) => {
+        // Assuming price is a number
+        return price.toLocaleString("id-ID", {
+            style: "currency",
+            currency: "IDR",
+            maximumFractionDigits: 0,
+        });
     };
 
     return (
@@ -87,7 +94,7 @@ const CardCourse = () => {
                             <h3 className="font-bold text-lg">
                                 Select Category
                             </h3>
-                            <p className="py-3 flex flex-col gap-2">
+                            <div className="py-3 flex flex-col gap-2">
                                 <div
                                     className={`badge hover:cursor-pointer w-full text-xs text-center  ${
                                         !selectCategoryId
@@ -115,7 +122,7 @@ const CardCourse = () => {
                                         </div>
                                     </div>
                                 ))}
-                            </p>
+                            </div>
                         </div>
                     </dialog>
                 </div>
@@ -137,7 +144,8 @@ const CardCourse = () => {
                             >
                                 <img
                                     loading="lazy"
-                                    srcSet={data.image.url}
+                                    src={data.image.url}
+                                    alt="course image"
                                     className="aspect-[4.04] w-full overflow-hidden h-[85px] object-cover rounded-t-2xl"
                                 />
                                 <div className="flex w-full flex-col mt-1.5 px-2.5">
@@ -149,6 +157,7 @@ const CardCourse = () => {
                                             <img
                                                 loading="lazy"
                                                 src="/icon/ic_round-star.svg"
+                                                alt="star icon"
                                             />
                                             <div className="text-indigo-950 text-xs font-semibold leading-4 grow whitespace-nowrap">
                                                 {data.rating || 4.5}
@@ -169,6 +178,7 @@ const CardCourse = () => {
                                             <img
                                                 loading="lazy"
                                                 src="/icon/mdi_badge-outline.svg"
+                                                alt="badge icon"
                                                 className="aspect-square object-contain object-center w-3 overflow-hidden shrink-0 max-w-full"
                                             />
                                             <div className="text-indigo-600 text-xs font-semibold leading-4 self-stretch">
@@ -179,6 +189,7 @@ const CardCourse = () => {
                                             <img
                                                 loading="lazy"
                                                 src="/icon/clarity_book-line.svg"
+                                                alt="book icon"
                                                 className="aspect-square object-contain object-center w-3 overflow-hidden shrink-0 max-w-full"
                                             />
                                             <div className="text-black text-xs font-normal leading-4 self-stretch">
@@ -189,6 +200,7 @@ const CardCourse = () => {
                                             <img
                                                 loading="lazy"
                                                 src="/icon/ri_time-fill.svg"
+                                                alt="clock icon"
                                                 className="aspect-square object-contain object-center w-3.5 overflow-hidden shrink-0 max-w-full"
                                             />
                                             <div className="text-black text-xs font-normal leading-4 self-stretch">
@@ -206,7 +218,7 @@ const CardCourse = () => {
                                                 {data.courseType}
                                             </span>{" "}
                                             {data.price !== 0 && (
-                                                <>Rp {data.price}</>
+                                                <>{formatPrice(data.price)}</>
                                             )}
                                         </div>
                                     </div>

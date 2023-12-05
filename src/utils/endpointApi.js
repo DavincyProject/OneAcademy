@@ -10,5 +10,10 @@ export const ENDPOINTS = {
     updateprofile: `${API_URL}/api/v1/profile/`,
 
     category: `${API_URL}/api/v1/category`,
-    listcourse: `${API_URL}/api/v1/course`,
+    listcourse: (page) => {
+        return `${API_URL}/api/v1/course/?page=${page}`;
+    },
+    detailcourse: (id) => {
+        return `${API_URL}/api/v1/course/${id}`;
+    },
 };
