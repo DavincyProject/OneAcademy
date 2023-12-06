@@ -7,12 +7,23 @@ const BuyCourseButton = ({ id }) => {
     const { token } = useSelector((state) => state.auth);
     const navigate = useNavigate();
 
+    const prevCard = useSelector((state) => state.course.courseDetails);
+
     const onBuyCourse = () => {
         if (token) {
             navigate(`/payment/${id}`);
         } else {
             navigate("/login");
         }
+    };
+
+    const formatPrice = (price) => {
+        // Assuming price is a number
+        return price?.toLocaleString("id-ID", {
+            style: "currency",
+            currency: "IDR",
+            maximumFractionDigits: 0,
+        });
     };
 
     return (
@@ -79,11 +90,11 @@ const BuyCourseButton = ({ id }) => {
                                 </div>
                                 <div className="self-stretch text-black text-xs font-bold leading-4">
                                     <span className="font-bold text-indigo-950">
-                                        Belajar Web Designer dengan Figma
+                                        {prevCard?.title}
                                         <br />
                                     </span>
                                     <span className=" text-black">
-                                        by Angela Doe
+                                        {prevCard?.instructor}
                                     </span>
                                 </div>
                                 <div className="items-stretch self-stretch flex justify-between gap-0">
@@ -95,7 +106,7 @@ const BuyCourseButton = ({ id }) => {
                                             className="aspect-square object-contain object-center w-3 overflow-hidden shrink-0 max-w-full"
                                         />
                                         <div className="text-indigo-600 text-xs font-semibold leading-4 self-stretch">
-                                            Intermediate Level
+                                            {prevCard.level}
                                         </div>
                                     </div>
                                     <div className="flex gap-1 items-center">
@@ -127,9 +138,18 @@ const BuyCourseButton = ({ id }) => {
                                             src="/icon/Diamond.svg"
                                             alt="diamond icon"
                                         />
-                                        <span className="mr-2">Beli</span> Rp{" "}
-                                        {""}
-                                        250.000
+                                        <p className="font-bold text-xs">
+                                            <span className="mr-2">
+                                                {prevCard.courseType}
+                                            </span>{" "}
+                                            {prevCard.price !== 0 && (
+                                                <>
+                                                    {formatPrice(
+                                                        prevCard.price
+                                                    )}
+                                                </>
+                                            )}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -137,16 +157,17 @@ const BuyCourseButton = ({ id }) => {
                     </div>
 
                     <div className="modal-action flex justify-center">
-                        <button onClick={onBuyCourse}>
-                            <button className="mt-3 w-[320px] h-[48px] bg-[#6148FF] text-white rounded-[25px]">
-                                <span className="flex justify-center items-center gap-2">
-                                    Beli Sekarang
-                                    <img
-                                        src="/icon/buy-now.svg"
-                                        alt="buy icon"
-                                    ></img>
-                                </span>
-                            </button>
+                        <button
+                            onClick={onBuyCourse}
+                            className="mt-3 w-[320px] h-[48px] bg-[#6148FF] text-white rounded-[25px]"
+                        >
+                            <span className="flex justify-center items-center gap-2">
+                                Beli Sekarang
+                                <img
+                                    src="/icon/buy-now.svg"
+                                    alt="buy icon"
+                                ></img>
+                            </span>
                         </button>
                     </div>
                 </div>
