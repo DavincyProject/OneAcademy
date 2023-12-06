@@ -1,37 +1,5 @@
 const AdminDashboard = () => {
     return (
-        // <div>
-        //     <div className="drawer-open ">
-        //         <input
-        //             id="my-drawer-2"
-        //             type="checkbox"
-        //             className="drawer-toggle"
-        //         />
-        //         <div className="drawer-side">
-        //             <ul className="menu p-4 w-80 min-h-full text-white bg-[#6148FF] text-[16px] font-bold">
-        //                 {/* Sidebar content here */}
-        //                 <div className="flex items-center justify-center h-[150px]">
-        //                     <img
-        //                         src="/logo.png"
-        //                         className="flex align-middle w-[134.13px] h-auto"
-        //                     />
-        //                 </div>
-
-        //                 <li>
-        //                     <a>Dashboard</a>
-        //                 </li>
-        //                 <li>
-        //                     <a>Kelola Kelas</a>
-        //                 </li>
-        //                 <li>
-        //                     <a>Keluar</a>
-        //                 </li>
-        //             </ul>
-        //         </div>
-        //         <div className="w-[80%] flex justify-end">test</div>
-        //     </div>
-        // </div>
-
         <div className="flex min-h-screen">
             <div className="flex flex-col bg-[#6148FF] w-[20%] min-h-[100dvh]">
                 <div className="flex items-center justify-center ">

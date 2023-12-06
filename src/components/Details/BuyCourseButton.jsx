@@ -1,7 +1,20 @@
 import { FaShoppingCart } from "react-icons/fa";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 const BuyCourseButton = ({ id }) => {
+    const { token } = useSelector((state) => state.auth);
+    const navigate = useNavigate();
+
+    const onBuyCourse = () => {
+        if (token) {
+            navigate(`/payment/${id}`);
+        } else {
+            navigate("/login");
+        }
+    };
+
     return (
         <div key={id}>
             {/* Open the modal using document.getElementById('ID').showModal() method */}
@@ -124,7 +137,7 @@ const BuyCourseButton = ({ id }) => {
                     </div>
 
                     <div className="modal-action flex justify-center">
-                        <Link to={`/payment/${id}`}>
+                        <button onClick={onBuyCourse}>
                             <button className="mt-3 w-[320px] h-[48px] bg-[#6148FF] text-white rounded-[25px]">
                                 <span className="flex justify-center items-center gap-2">
                                     Beli Sekarang
@@ -134,7 +147,7 @@ const BuyCourseButton = ({ id }) => {
                                     ></img>
                                 </span>
                             </button>
-                        </Link>
+                        </button>
                     </div>
                 </div>
             </dialog>
