@@ -19,78 +19,59 @@ import Account from "./pages/profile/Account";
 import Class from "./pages/Course/Class";
 import PaymentSucces from "./pages/Payment/PaymentSucces";
 import Payment from "./pages/Payment/Payment";
+import ProtectedProfile from "./components/Auth/ProtectedProfile";
 function App() {
-  return (
-    <>
-      <Provider store={store}>
-        <BrowserRouter>
-          <Toaster position="bottom-center" reverseOrder={false} />
-          <Navbar />
-          <Routes>
-            {/* Global routes */}
-            <Route path="/" element={<Home />} />
-            <Route path="/details/:id" element={<KelasDetail />} />
-            <Route path="/notification" element={<Notification />} />
-            <Route path="/class" element={<Class />} />
-            <Route path="/account" element={<Account />} />
-            <Route path="/payment/:id" element={<Payment />} />
-            <Route path="/succes" element={<PaymentSucces />} />
+    return (
+        <>
+            <Provider store={store}>
+                <BrowserRouter>
+                    <Toaster position="bottom-center" reverseOrder={false} />
+                    <Navbar />
+                    <Routes>
+                        {/* Guest routes */}
+                        <Route path="/" element={<Home />} />
+                        <Route path="/details/:id" element={<KelasDetail />} />
+                        <Route path="/class" element={<Class />} />
 
-            {/* User Authorization */}
-            <Route
-              path="/login"
-              element={
-                <Protect>
-                  <Login />
-                </Protect>
-              }
-            />
-            <Route
-              path="/register"
-              element={
-                <Protect>
-                  <Register />
-                </Protect>
-              }
-            />
-            <Route
-              path="/validate"
-              element={
-                <Protect>
-                  <RegisterOtp />
-                </Protect>
-              }
-            />
+                        {/* Profile routes, Check if user is not login */}
+                        <Route element={<ProtectedProfile />}>
+                            <Route
+                                path="/notification"
+                                element={<Notification />}
+                            />
+                            <Route path="/account" element={<Account />} />
+                            <Route path="/payment/:id" element={<Payment />} />
+                            <Route path="/succes" element={<PaymentSucces />} />
+                        </Route>
 
-            {/* Reset Password */}
-            <Route
-              path="/reset"
-              element={
-                <Protect>
-                  <SendReset />
-                </Protect>
-              }
-            />
-            <Route
-              path="/forgot/:id"
-              element={
-                <Protect>
-                  <ResetPassword />
-                </Protect>
-              }
-            />
+                        {/* User Authorization */}
+                        <Route element={<Protect />}>
+                            <Route path="/login" element={<Login />} />
+                            <Route path="/register" element={<Register />} />
+                            <Route path="/validate" element={<RegisterOtp />} />
 
-            {/* Admin Authorization */}
-            <Route path="/admin" element={<AdminLogin />} />
-            <Route path="/admin/dashboard" element={<AdminDashboard />} />
+                            {/* Reset Password */}
+                            <Route path="/reset" element={<SendReset />} />
+                            <Route
+                                path="/forgot/:id"
+                                element={<ResetPassword />}
+                            />
+                        </Route>
 
-            {/* Handle Pages Not Found */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </Provider>
-    </>
-  );
+                        {/* Admin Authorization */}
+                        <Route path="/admin" element={<AdminLogin />} />
+                        <Route
+                            path="/admin/dashboard"
+                            element={<AdminDashboard />}
+                        />
+
+                        {/* Handle Pages Not Found */}
+                        <Route path="*" element={<NotFound />} />
+                    </Routes>
+                </BrowserRouter>
+            </Provider>
+        </>
+    );
 }
 
 export default App;
