@@ -50,7 +50,7 @@ const SendReset = () => {
       </div>
 
       <div className="hidden lg:flex justify-center items-center bg-[#6148FF] w-[50%] min-h-[100dvh]">
-        <img src="/logo.png" alt="logo" />
+        <img src="/logo.svg" alt="logo" />
       </div>
     </div>
   );
