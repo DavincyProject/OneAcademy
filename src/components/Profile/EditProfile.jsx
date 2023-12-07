@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
+// import { useDispatch } from "react-redux";
 
 const EditProfile = () => {
-    // const [image, setImage] = useState();
+    const [image, setImage] = useState();
     const [nama, setNama] = useState("");
     const [email, setEmail] = useState("");
     const [telepon, setTelepon] = useState("");
     const [negara, setNegara] = useState("");
     const [kota, setKota] = useState("");
+
+    // const dispatch = useDispatch();
 
     const validateNomor = (e) => {
         const inputValue = e.target.value;
@@ -21,9 +24,27 @@ const EditProfile = () => {
         setTelepon(truncateValueNomor);
     };
 
+    const handleImageChange = useCallback((e) => {
+        const image = e.target.files[0];
+
+        if (image) {
+            const formData = new FormData();
+            formData.append("image", image);
+
+            setImage(formData);
+        }
+    }, []);
+
     const handleUpdateProfile = (e) => {
         e.preventDefault();
-        console.log(nama, email, telepon, negara, kota);
+        console.log("Image FormData:", image.get("image"));
+        console.log("Nama:", nama);
+        console.log("Email:", email);
+        console.log("Telepon:", telepon);
+        console.log("Negara:", negara);
+        console.log("Kota:", kota);
+
+        // dispatch(updateProfile(image, nama, email, telepon, negara, kota));
     };
 
     return (
@@ -33,12 +54,32 @@ const EditProfile = () => {
                 className="flex flex-col justify-center items-center"
             >
                 {/* Change Image */}
-                <div className="avatar mb-2">
+                <div className="avatar mb-2 relative">
                     <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                         <img
                             src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
                             alt="profile Image"
+                            id="profileImage"
+                            className="w-full h-full object-cover"
                         />
+                        <div className="absolute inset-0 top-16 left-16 bg-white bg-opacity-60 rounded-md flex items-center justify-center">
+                            <label
+                                htmlFor="imageInput"
+                                className="cursor-pointer"
+                            >
+                                <img
+                                    src="/icon/image.svg"
+                                    alt="upload icon"
+                                    className="w-10 h-10"
+                                />
+                            </label>
+                            <input
+                                type="file"
+                                id="imageInput"
+                                className="hidden"
+                                onChange={handleImageChange}
+                            />
+                        </div>
                     </div>
                 </div>
 

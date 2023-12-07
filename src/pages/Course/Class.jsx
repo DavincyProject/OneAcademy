@@ -10,8 +10,10 @@ const Class = () => {
     const [selectedFilter, setSelectedFilter] = useState("All");
     const [currentPage, setCurrentPage] = useState(1);
     const dispatch = useDispatch();
+
     const course = useSelector((state) => state.course.listCourse);
     const { coursePage } = useSelector((state) => state.course);
+    const { token } = useSelector((state) => state.auth);
 
     useEffect(() => {
         dispatch(listCourse(currentPage));
@@ -29,7 +31,12 @@ const Class = () => {
         setSelectedFilter(filter);
     };
 
-    const filters = ["All", "In Progress", "Done", "Premium Class", "Free"];
+    let filters;
+    if (token) {
+        filters = ["All", "In Progress", "Done", "Premium Class", "Free"];
+    } else {
+        filters = ["All", "Premium Class", "Free"];
+    }
 
     return (
         <div className="bg-[#EBF3FC] min-h-screen">
