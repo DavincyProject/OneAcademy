@@ -17,7 +17,6 @@ import { Toaster } from "react-hot-toast";
 import Protect from "./components/Auth/Protect";
 import Account from "./pages/profile/Account";
 import Class from "./pages/Course/Class";
-import PaymentSucces from "./pages/Payment/PaymentSucces";
 import Payment from "./pages/Payment/Payment";
 import ProtectedProfile from "./components/Auth/ProtectedProfile";
 function App() {
@@ -41,7 +40,6 @@ function App() {
                             />
                             <Route path="/account" element={<Account />} />
                             <Route path="/payment/:id" element={<Payment />} />
-                            <Route path="/succes" element={<PaymentSucces />} />
                         </Route>
 
                         {/* User Authorization */}

@@ -24,8 +24,8 @@ const CardCategori = () => {
                         Lihat Semua
                     </Link>
                 </div>
-                <div className="flex flex-col flex-wrap max-w-[1200px] px-6">
-                    <div className="justify-between flex flex-wrap grow gap-2.5">
+                <div className="flex flex-col max-w-[1200px] px-6">
+                    <div className="flex justify-start flex-wrap grow gap-2.5">
                         {categoryList.map((category) => (
                             <div
                                 key={category.id}
