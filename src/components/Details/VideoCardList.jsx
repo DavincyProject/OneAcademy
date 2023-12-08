@@ -76,8 +76,8 @@ const VideoCardList = ({ onVideoSelect }) => {
     };
 
     return (
-        <div className="container-fluid w-full max-w-[400px] my-2 mx-1 sm:none lg:absolute lg:top-[7rem] lg:right-7">
-            <div className="p-3 h-full w-full relative flex flex-col text-gray-700 bg-white shadow-md lg:w-96 rounded-md bg-clip-border">
+        <div className="container-fluid max-w-[400px] my-2 mx-1 sm:none md:absolute md:top-[7rem] md:right-6">
+            <div className="p-3 h-full w-full relative flex flex-col text-gray-700 bg-white shadow-lg lg:max-w-[400px] rounded-md bg-clip-border">
                 <div className="p-1 flex justify-between items-center">
                     <h1 className="text-[20px] font-bold">Materi Belajar</h1>
 
@@ -97,7 +97,7 @@ const VideoCardList = ({ onVideoSelect }) => {
                     </div>
                 </div>
 
-                <div className="p-1 mt-2 w-full max-w-[349px]">
+                <div className="p-1 mt-2 w-full max-w-[349px] mx-auto">
                     <div className="flex justify-between items-center">
                         <h1 className="text-[12px]  text-[#6148FF] font-extrabold">
                             Chapter 1 - Pendahuluan
@@ -142,7 +142,7 @@ const VideoCardList = ({ onVideoSelect }) => {
                 </div>
 
                 {/* add conditional for play non free video here  */}
-                <div className="p-1 mt-2">
+                <div className="p-1 mt-2 w-full max-w-[349px] mx-auto">
                     <div className="flex justify-between items-center">
                         <h1 className="text-[12px]  text-[#6148FF] font-extrabold">
                             Chapter 2 - Memulai Desain

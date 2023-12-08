@@ -38,7 +38,7 @@ const KelasDetail = () => {
                             <h1 className="text-[#6148FF] text-[20px] font-bold">
                                 {courseDetails?.category?.name}
                             </h1>
-                            <div className="flex gap-1 mr-12 items-center">
+                            <div className="flex gap-1 mr-24 items-center">
                                 <img
                                     src="/icon/ic_round-star.svg"
                                     className="w-[14px]"
