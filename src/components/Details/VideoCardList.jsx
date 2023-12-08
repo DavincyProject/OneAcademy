@@ -76,7 +76,7 @@ const VideoCardList = ({ onVideoSelect }) => {
     };
 
     return (
-        <div className="container-fluid my-2">
+        <div className="container-fluid w-full max-w-[400px] my-2 mx-1 sm:none lg:absolute lg:top-[7rem] lg:right-7">
             <div className="p-3 h-full w-full relative flex flex-col text-gray-700 bg-white shadow-md lg:w-96 rounded-md bg-clip-border">
                 <div className="p-1 flex justify-between items-center">
                     <h1 className="text-[20px] font-bold">Materi Belajar</h1>
@@ -97,7 +97,7 @@ const VideoCardList = ({ onVideoSelect }) => {
                     </div>
                 </div>
 
-                <div className="p-1 mt-2">
+                <div className="p-1 mt-2 w-full max-w-[349px]">
                     <div className="flex justify-between items-center">
                         <h1 className="text-[12px]  text-[#6148FF] font-extrabold">
                             Chapter 1 - Pendahuluan
@@ -118,7 +118,7 @@ const VideoCardList = ({ onVideoSelect }) => {
                                         {item.number}
                                     </h1>
                                     <h1
-                                        className={`text-[12px] ${
+                                        className={`text-[12px] max-w-[251px] ${
                                             selectedVideo === item.videoSrc
                                                 ? "text-[#00CC00]"
                                                 : ""
