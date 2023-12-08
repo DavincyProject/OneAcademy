@@ -23,11 +23,11 @@ const KelasDetail = () => {
 
     return (
         <div>
-            <div className="container-fluid p-2 bg-[#EBF3FC] ">
-                <div className="top-[20px] mx-2 mt-2">
+            <div className="container-fluid p-2 bg-[#EBF3FC]">
+                <div className="top-[20px] mx-3 mt-2">
                     <Link
                         to={"/class"}
-                        className="hover:text-[#6148FF] text-[16px] font-bold flex gap-2 items-center mb-5"
+                        className="hover:text-[#6148FF] max-w-fit text-[16px] font-bold flex gap-2 items-center mb-5"
                     >
                         <FaArrowLeft className="text-[16px] font-bold" />
                         Kelas Lainnya
@@ -90,7 +90,7 @@ const KelasDetail = () => {
                 </div>
             </div>
 
-            <div className="flex flex-col md:flex-row">
+            <div className="flex flex-col md:flex-row mx-3 ">
                 <div className="md:flex-col">
                     <div className="p-5 order-2 lg:order-1">
                         {/* Video component di sini */}

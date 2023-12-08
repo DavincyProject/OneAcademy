@@ -34,21 +34,21 @@ const VideoCardList = ({ onVideoSelect }) => {
             number: 4,
             title: "Chris Andrian Yang - Tell Me",
             videoSrc: "https://www.youtube.com/embed/29DfQ9XQA3A",
-            paid: true,
+            paid: false,
         },
         {
             id: 2,
             number: 5,
             title: "When She Loved Me",
             videoSrc: "https://www.youtube.com/embed/SpS9UGmsLLU",
-            paid: true,
+            paid: false,
         },
         {
             id: 3,
             number: 6,
             title: "Hal - L",
             videoSrc: "https://www.youtube.com/embed/jat0G8fKbxs",
-            paid: true,
+            paid: false,
         },
         {
             id: 4,
@@ -80,16 +80,38 @@ const VideoCardList = ({ onVideoSelect }) => {
         },
     ];
 
+    /**  
+        handle open Chapter based on chapter lenght index test
+        logic : Count chapter lenght and compare to dataDummy.length + pay status to open next chapter,
+                if pay status is false (not buy) return chapter 2 without opening that chapter.
+
+                totalItemChapterClicked is get from API to count if all item on prev chapter is clicked or not,
+                if totalItemChapterClicked === dataDummy.length && pay === true then open next chapter.
+
+        const handleOpenChapter = () => {
+            const lenghtChapter = dataDummy.length;
+            totalItemChapterClicked = useSelector((state) => state.itemChapterClicked);
+
+            if (dataDummy.length > 0 && totalItemClicked === dataDummy.length && pay === true) {
+                setSelectedVideo(dataDummySecond(false));
+            }else {
+                return chapter 2 without opening that chapter
+            }
+        };
+    */
+
     const handleVideoSelect = (videoSrc) => {
         onVideoSelect(videoSrc);
         setSelectedVideo(videoSrc);
     };
 
     return (
-        <div className="container-fluid max-w-[400px] my-2 mx-1 sm:none md:absolute md:top-[7rem] md:right-6">
-            <div className="p-3 h-full w-full relative flex flex-col text-gray-700 bg-white shadow-lg lg:max-w-[400px] rounded-md bg-clip-border">
+        <div className="container-fluid md:max-w-[400px] my-2 mx-1 sm:none md:absolute md:top-[7rem] md:right-6">
+            <div className="p-3 h-full w-full relative flex flex-col text-gray-700 bg-white drop-shadow-lg shadow-lg lg:max-w-[400px] rounded-md bg-clip-border">
                 <div className="p-1 flex justify-between items-center">
-                    <h1 className="text-[20px] font-bold">Materi Belajar</h1>
+                    <h1 className="text-sm md:text-[20px] font-bold">
+                        Materi Belajar
+                    </h1>
                     <div className="flex gap-1">
                         <img
                             src="/icon/progress-check.svg"
@@ -181,7 +203,7 @@ const VideoCardList = ({ onVideoSelect }) => {
                                             {item.number}
                                         </h1>
                                         <h1
-                                            className={`text-[12px] ${
+                                            className={`text-[12px]  ${
                                                 selectedVideo === item.videoSrc
                                                     ? "text-[#00CC00]"
                                                     : ""
@@ -204,7 +226,7 @@ const VideoCardList = ({ onVideoSelect }) => {
                                         <img
                                             src="/icon/lock.svg"
                                             alt="lock icon"
-                                            className="w-6 h-6 opacity-50"
+                                            className="w-6 h-6 opacity-50 font-bold"
                                         />
                                     )}
                                 </div>
@@ -213,7 +235,7 @@ const VideoCardList = ({ onVideoSelect }) => {
                         ) : (
                             <div
                                 key={item.id}
-                                className="h-[52px] p-2 cursor-pointer disabled"
+                                className="h-[52px] p-2 cursor-not-allowed disabled"
                             >
                                 <div className="flex justify-between items-center">
                                     <div className="flex gap-2 items-center mt-2">
