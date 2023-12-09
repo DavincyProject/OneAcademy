@@ -12,9 +12,18 @@ const Navbar = () => {
     const dispatch = useDispatch();
 
     const location = useLocation();
-    const hidePath = ["/login", "/register", "/reset", "/validate"];
+    const hidePath = [
+        "/login",
+        "/register",
+        "/reset",
+        "/validate",
+        "/admin",
+        "/admin/dashboard",
+    ];
 
-    const isHidden = hidePath.includes(location.pathname);
+    const isHidden =
+        hidePath.includes(location.pathname) ||
+        location.pathname.startsWith("/forgot/");
 
     // useEffect(() => {
     //     dispatch(getProfileData(token));
