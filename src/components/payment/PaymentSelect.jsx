@@ -168,8 +168,8 @@ const PaymentSelect = ({ id }) => {
                         </div>
                     </div>
                 </div>
-                <div className="px-[12%] md:p-0">
-                    <div className="card w-[323px] md:w-[400px] h-[375px] bg-base-100 shadow-xl p-5 border border-[#6148ff]">
+                <div className="px-8 md:p-0">
+                    <div className="card w-auto md:w-[400px] h-[375px] bg-base-100 shadow-xl p-5 border border-[#6148ff]">
                         <div className="card-body flex justify-center flex-col p-0">
                             <h1 className="font-bold text-xl mb-2">
                                 Pembayaran Kelas
