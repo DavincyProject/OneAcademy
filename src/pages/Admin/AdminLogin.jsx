@@ -47,7 +47,7 @@ const AdminLogin = () => {
     return (
         <div className="flex min-h-screen">
             <div className="hidden lg:flex justify-center items-center bg-[#6148FF] w-[50%] min-h-[100dvh]">
-                <img src="/logo.png" alt="logo" />
+                <img src="/testlogo.png" alt="logo" />
             </div>
 
             <div className="w-[100%] lg:w-[50%] flex justify-start items-center mx-[23px] lg:px-[145px] ">
