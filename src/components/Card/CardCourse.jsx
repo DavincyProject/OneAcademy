@@ -38,7 +38,7 @@ const CardCourse = () => {
                     <h2 className="text-xl font-bold">Kursus Populer</h2>
                     <Link
                         to="/class"
-                        className="font-extrabold text-xs text-[#6148FF]"
+                        className="font-extrabold text-xs text-darkblue"
                     >
                         Lihat Semua
                     </Link>
@@ -74,7 +74,7 @@ const CardCourse = () => {
                 <div className="sm:hidden container px-5">
                     {/* You can open the modal using document.getElementById('ID').showModal() method */}
                     <button
-                        className="btn w-full bg-[#6148FF] text-white hover:bg-[#402eb4]"
+                        className="btn w-full bg-darkblue text-white hover:bg-[#402eb4]"
                         onClick={() =>
                             document.getElementById("category").showModal()
                         }

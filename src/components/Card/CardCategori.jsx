@@ -19,7 +19,7 @@ const CardCategori = () => {
                     <h2 className="text-xl font-bold">Kategori Belajar</h2>
                     <Link
                         to="/class"
-                        className=" font-extrabold text-xs max-w-fit text-[#6148FF]"
+                        className=" font-extrabold text-xs max-w-fit text-darkblue"
                     >
                         Lihat Semua
                     </Link>

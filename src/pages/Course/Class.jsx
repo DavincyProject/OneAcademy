@@ -49,11 +49,11 @@ const Class = () => {
                         <input
                             type="search"
                             placeholder="Cari Kelas"
-                            className="w-full outline-none focus:outline-none px-4 py-[6px] border-2 rounded-2xl border-[#6148FF]"
+                            className="w-full outline-none focus:outline-none px-4 py-[6px] border-2 rounded-2xl border-darkblue"
                         />
                         <button
                             type="submit"
-                            className="absolute bottom-1/2 right-2 translate-y-1/2 rounded-lg bg-[#6148FF] p-1"
+                            className="absolute bottom-1/2 right-2 translate-y-1/2 rounded-lg bg-darkblue p-1"
                         >
                             <img src="/icon/search.svg" alt="search icon" />
                         </button>
@@ -73,7 +73,7 @@ const Class = () => {
                                 <div className="flex flex-auto mt-2 md:hidden w-full">
                                     {/* You can open the modal using document.getElementById('ID').showModal() method */}
                                     <button
-                                        className="btn btn-ghost bg-[#6148FF] hover:bg-[#402eb4] text-white w-full"
+                                        className="btn btn-ghost bg-darkblue hover:bg-[#402eb4] text-white w-full"
                                         onClick={() =>
                                             document
                                                 .getElementById("my_modal_1")
@@ -100,7 +100,7 @@ const Class = () => {
                                 <div className="flex flex-auto mt-2 md:hidden w-full">
                                     {/* You can open the modal using document.getElementById('ID').showModal() method */}
                                     <button
-                                        className="btn btn-ghost bg-[#6148FF] hover:bg-[#402eb4] text-white w-full"
+                                        className="btn btn-ghost bg-darkblue hover:bg-[#402eb4] text-white w-full"
                                         onClick={() =>
                                             document
                                                 .getElementById("my_modal_2")

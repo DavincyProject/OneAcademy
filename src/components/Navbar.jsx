@@ -38,7 +38,7 @@ const Navbar = () => {
     };
 
     return (
-        <div className="navbar bg-[#6148FF] md:px-[65px]">
+        <div className="navbar bg-darkblue md:px-[65px]">
             <div className="flex-1">
                 <Link
                     to={"/"}
@@ -53,11 +53,11 @@ const Navbar = () => {
                         <input
                             type="search"
                             placeholder="Cari Kursus Terbaik..."
-                            className="sm:w-[35dvw] sm:h-[7dvh] outline-none focus:outline-none px-4 py-[6px] border-2 rounded-2xl border-[#6148FF]"
+                            className="sm:w-[35dvw] sm:h-[7dvh] outline-none focus:outline-none px-4 py-[6px] border-2 rounded-2xl border-darkblue"
                         />
                         <button
                             type="submit"
-                            className="absolute bottom-1/2 right-4 translate-y-1/2 rounded-lg bg-[#6148FF] p-1"
+                            className="absolute bottom-1/2 right-4 translate-y-1/2 rounded-lg bg-darkblue p-1"
                         >
                             <img
                                 src="/icon/search.svg"
@@ -77,11 +77,11 @@ const Navbar = () => {
                         <input
                             type="search"
                             placeholder="Cari Kursus Terbaik..."
-                            className="placeholder:text-xs w-[47dvw] md:w-[35dvw] md:h-[5dvh] outline-none focus:outline-none px-4 py-[6px] border-2 rounded-2xl border-[#6148FF]"
+                            className="placeholder:text-xs w-[47dvw] md:w-[35dvw] md:h-[5dvh] outline-none focus:outline-none px-4 py-[6px] border-2 rounded-2xl border-darkblue"
                         />
                         <button
                             type="submit"
-                            className="absolute bottom-1/2 right-2 translate-y-1/2 rounded-lg bg-[#6148FF] p-1"
+                            className="absolute bottom-1/2 right-2 translate-y-1/2 rounded-lg bg-darkblue p-1"
                         >
                             <img src="/icon/search.svg" alt="search icon" />
                         </button>
@@ -99,7 +99,7 @@ const Navbar = () => {
                                     />
                                 </div>
                             </label>
-                            <ul className="mt-3 z-[1] p-2 text-[#6148FF] shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                            <ul className="mt-3 z-[1] p-2 text-darkblue shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
                                 <li className="my-2 hover:bg-slate-200 rounded-md">
                                     <Link to={"/class"}>
                                         <div className="flex items-center gap-2 text-[16px] font-bold ">

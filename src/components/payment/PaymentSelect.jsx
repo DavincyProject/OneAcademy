@@ -84,7 +84,7 @@ const PaymentSelect = ({ id }) => {
                         </div>
                     </div>
 
-                    <div className="collapse collapse-arrow bg-[#6148ff] rounded-[4px] shadow-md">
+                    <div className="collapse collapse-arrow bg-darkblue rounded-[4px] shadow-md">
                         <input type="checkbox" checked="checked" />
                         <summary className="collapse-title text-white text-xl font-medium">
                             <h1>Credit Card</h1>
@@ -169,7 +169,7 @@ const PaymentSelect = ({ id }) => {
                     </div>
                 </div>
                 <div className="px-8 md:p-0">
-                    <div className="card w-auto md:w-[400px] h-[375px] bg-base-100 shadow-xl p-5 border border-[#6148ff]">
+                    <div className="card w-auto md:w-[400px] h-[375px] bg-base-100 shadow-xl p-5 border border-darkblue">
                         <div className="card-body flex justify-center flex-col p-0">
                             <h1 className="font-bold text-xl mb-2">
                                 Pembayaran Kelas
@@ -219,7 +219,7 @@ const PaymentSelect = ({ id }) => {
                                     <h1 className="text-xs font-bold">
                                         Total Bayar
                                     </h1>
-                                    <p className="text-[#6148ff] text-xs font-medium">
+                                    <p className="text-darkblue text-xs font-medium">
                                         {formatPrice(total_price)}
                                     </p>
                                 </div>

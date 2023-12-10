@@ -30,7 +30,7 @@ const BuyCourseButton = ({ id }) => {
         <div key={id}>
             {/* Open the modal using document.getElementById('ID').showModal() method */}
             <button
-                className="h-[34px] w-[269px] bg-[#6148FF] mt-3 text-white rounded-[25px]"
+                className="h-[34px] w-[269px] bg-darkblue mt-3 text-white rounded-[25px]"
                 onClick={() => document.getElementById("buy_class").showModal()}
             >
                 <span className="flex justify-center items-center">
@@ -42,7 +42,7 @@ const BuyCourseButton = ({ id }) => {
                 <div className="modal-box">
                     <form method="dialog">
                         {/* if there is a button in form, it will close the modal */}
-                        <button className="text-[#6148FF] btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                        <button className="text-darkblue btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
                             <img
                                 src="/icon/close.svg"
                                 className="w-10 absolute bottom-1"
@@ -54,7 +54,7 @@ const BuyCourseButton = ({ id }) => {
                         <h3 className="font-bold text-[24px]">
                             Selangkah lagi menuju
                         </h3>
-                        <h3 className="text-[#6148FF] font-bold text-[24px]">
+                        <h3 className="text-darkblue font-bold text-[24px]">
                             Kelas Premium
                         </h3>
                     </div>
@@ -157,7 +157,7 @@ const BuyCourseButton = ({ id }) => {
                     <div className="modal-action flex justify-center">
                         <button
                             onClick={onBuyCourse}
-                            className="mt-3 w-[320px] h-[48px] bg-[#6148FF] text-white rounded-[25px]"
+                            className="mt-3 w-[320px] h-[48px] bg-darkblue text-white rounded-[25px]"
                         >
                             <span className="flex justify-center items-center gap-2">
                                 Beli Sekarang

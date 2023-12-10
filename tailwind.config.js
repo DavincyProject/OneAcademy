@@ -10,6 +10,7 @@ export default {
                 check: {
                     100: `#6148FF`,
                 },
+                darkblue: "#6148FF",
             },
         },
         daisyui: {
