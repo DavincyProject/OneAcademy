@@ -28,7 +28,7 @@ const KelasDetail = () => {
                 <div className="top-[20px] mx-3 mt-2 md:ml-10 xl:ml-10">
                     <Link
                         to={"/class"}
-                        className="hover:text-[#6148FF] max-w-fit text-[16px] font-bold flex gap-2 items-center mb-5"
+                        className="hover:text-darkblue max-w-fit text-[16px] font-bold flex gap-2 items-center mb-5"
                     >
                         <FaArrowLeft className="text-[16px] font-bold" />
                         Kelas Lainnya
@@ -36,7 +36,7 @@ const KelasDetail = () => {
 
                     <div className="flex flex-col gap-1 ml-9 container-fluid md:w-[65vw] lg:relative">
                         <div className="flex justify-between container-fluid md:w-[65vw]">
-                            <h1 className="text-[#6148FF] text-[20px] font-bold">
+                            <h1 className="text-darkblue text-[20px] font-bold">
                                 {courseDetails?.category?.name}
                             </h1>
                             <div className="flex gap-1 mr-16 items-center">
@@ -58,7 +58,7 @@ const KelasDetail = () => {
                                     src="/icon/mdi_badge-outline.svg"
                                     alt="level icon"
                                 ></img>
-                                <h1 className="text-[12px] text-[#6148FF] font-semibold">
+                                <h1 className="text-[12px] text-darkblue font-semibold">
                                     {courseDetails.level}
                                 </h1>
                             </div>
@@ -99,7 +99,7 @@ const KelasDetail = () => {
                         <VideoPlayer videoSrc={activeVideo} />
                     </div>
                     <div className="w-full md:w-[65vw] p-5">
-                        <div className="collapse collapse-arrow bg-[#6148FF] rounded-[4px] shadow-md mb-2">
+                        <div className="collapse collapse-arrow bg-darkblue rounded-[4px] shadow-md mb-2">
                             <input type="checkbox" />
                             <div className="collapse-title text-white text-xl font-medium">
                                 <h1>Kelas Ini Ditujukan Untuk</h1>
@@ -128,7 +128,7 @@ const KelasDetail = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="collapse collapse-arrow bg-[#6148FF] rounded-[4px] shadow-md">
+                        <div className="collapse collapse-arrow bg-darkblue rounded-[4px] shadow-md">
                             <input type="checkbox" />
                             <div className="collapse-title text-white text-xl font-medium">
                                 <h1>Tentang kelas</h1>

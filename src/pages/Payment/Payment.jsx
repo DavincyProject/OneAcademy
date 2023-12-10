@@ -13,7 +13,7 @@ const Payment = () => {
                 <div className="flex flex-col px-5 justify-center">
                     <Link
                         to={`/details/${id}`}
-                        className="text-[16px] max-w-fit hover:text-[#6148FF] font-bold flex gap-2 items-center mb-5"
+                        className="text-[16px] max-w-fit hover:text-darkblue font-bold flex gap-2 items-center mb-5"
                     >
                         <FaArrowLeft />
                         Kembali

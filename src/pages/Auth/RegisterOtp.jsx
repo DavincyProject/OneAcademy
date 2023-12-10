@@ -45,7 +45,7 @@ const RegisterOtp = () => {
                         <Link to={"/register"}>
                             <FaArrowLeft className="w-10 mt-[10px]" />
                         </Link>
-                        <h1 className="text-[24px] font-bold text-[#6148FF] mb-8">
+                        <h1 className="text-[24px] font-bold text-darkblue mb-8">
                             Masukkan OTP
                         </h1>
                     </div>
@@ -66,7 +66,7 @@ const RegisterOtp = () => {
                                 inputStyle={{
                                     width: "2.6rem",
                                     height: "2.6rem",
-                                    border: "1px solid #6148FF",
+                                    border: "1px solid darkblue",
                                     borderRadius: "1rem",
                                     fontSize: "16px",
                                     fontWeight: "bold",
@@ -89,13 +89,13 @@ const RegisterOtp = () => {
                             )}
                         </div>
                     </div>
-                    <button className="w-full text-[14px] font-medium bg-[#6148FF] text-white py-[10px] rounded-2xl mt-5">
+                    <button className="w-full text-[14px] font-medium bg-darkblue text-white py-[10px] rounded-2xl mt-5">
                         Simpan
                     </button>
                 </form>
             </div>
 
-            <div className="hidden lg:flex justify-center items-center bg-[#6148FF] w-[50%] min-h-[100dvh]">
+            <div className="hidden lg:flex justify-center items-center bg-darkblue w-[50%] min-h-[100dvh]">
                 <img src="/testlogo.png" alt="logo" />
             </div>
         </div>

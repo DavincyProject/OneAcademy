@@ -32,13 +32,13 @@ const Account = () => {
                     <div className="flex flex-col justify-center w-[80%]">
                         <Link
                             to={"/"}
-                            className="text-[#6148FF] text-[16px] font-bold flex gap-2 items-center mb-5"
+                            className="text-darkblue text-[16px] font-bold flex gap-2 items-center mb-5"
                         >
-                            <FaArrowLeft className="text-[#6148FF]" />
+                            <FaArrowLeft className="text-darkblue" />
                             Kembali Ke Beranda
                         </Link>
                         <div className="card card-compact w-[80dvw] bg-base-100 shadow-xl mb-5">
-                            <div className="p-2 bg-[#6148FF] rounded-t-md text-center">
+                            <div className="p-2 bg-darkblue rounded-t-md text-center">
                                 <h1 className="text-xl text-white font-bold">
                                     Akun
                                 </h1>
@@ -53,7 +53,7 @@ const Account = () => {
                                             }
                                             className={`text-${
                                                 activeLink === "profile"
-                                                    ? "[#6148FF]"
+                                                    ? "darkblue"
                                                     : "black"
                                             }`}
                                         >
@@ -72,7 +72,7 @@ const Account = () => {
                                             }
                                             className={`text-${
                                                 activeLink === "ubahPassword"
-                                                    ? "[#6148FF]"
+                                                    ? "darkblue"
                                                     : "black"
                                             }`}
                                         >
@@ -92,7 +92,7 @@ const Account = () => {
                                             className={`text-${
                                                 activeLink ===
                                                 "riwayatPembayaran"
-                                                    ? "[#6148FF]"
+                                                    ? "darkblue"
                                                     : "black"
                                             }`}
                                         >

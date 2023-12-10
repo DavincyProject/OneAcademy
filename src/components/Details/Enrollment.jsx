@@ -5,7 +5,7 @@ const Enrollment = ({ id }) => {
         <div key={id}>
             {/* Open the modal using document.getElementById('ID').showModal() method */}
             <button
-                className="h-[34px] w-[269px] bg-[#6148FF] mt-3 text-white rounded-[25px]"
+                className="h-[34px] w-[269px] bg-darkblue mt-3 text-white rounded-[25px]"
                 onClick={() =>
                     document.getElementById("enrollment").showModal()
                 }
@@ -18,7 +18,7 @@ const Enrollment = ({ id }) => {
                 <div className="modal-box">
                     <form method="dialog">
                         {/* if there is a button in form, it will close the modal */}
-                        <button className="text-[#6148FF] btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                        <button className="text-darkblue btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
                             <img
                                 src="/icon/close.svg"
                                 className="w-10 absolute bottom-1"
@@ -53,7 +53,7 @@ const Enrollment = ({ id }) => {
                     </div>
 
                     <div className="modal-action flex justify-center">
-                        <button className="font-bold text-base mt-3 w-[320px] h-[48px] bg-[#6148FF] text-white rounded-[25px]">
+                        <button className="font-bold text-base mt-3 w-[320px] h-[48px] bg-darkblue text-white rounded-[25px]">
                             Ikuti Kelas
                         </button>
                     </div>

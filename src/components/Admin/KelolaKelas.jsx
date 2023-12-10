@@ -62,7 +62,7 @@ const KelolaKelas = () => {
                     <h1 className="font-bold text-xl">type Pembayaran</h1>
                     <div className="flex justify-center items-center gap-2 p">
                         <AddClass />
-                        <button className="badge p-4 text-[#6148FF] border-[#6148FF]">
+                        <button className="badge p-4 text-darkblue border-darkblue">
                             <FaFilter
                                 size={15}
                                 color="#6148FF"
@@ -97,7 +97,7 @@ const KelolaKelas = () => {
                                         className={`font-bold text-xs ${
                                             item.type === "GRATIS"
                                                 ? "text-green-500"
-                                                : "text-[#6148FF]"
+                                                : "text-darkblue"
                                         }`}
                                     >
                                         {item.type}

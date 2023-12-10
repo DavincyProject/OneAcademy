@@ -51,15 +51,15 @@ const DashboardAdmin = () => {
                 <div className="container-fluid flex justify-between mt-2">
                     <h1 className="font-bold text-xl">Status Pembayaran</h1>
                     <div className="flex justify-center items-center gap-2 p">
-                        <button className="badge p-4 text-[#6148FF] border-[#6148FF]">
+                        <button className="badge p-4 text-darkblue border-darkblue">
                             <FaFilter
                                 size={15}
-                                color="#6148FF"
+                                color="darkblue"
                                 className="mr-2"
                             />
                             Filter
                         </button>
-                        <FaSearch size={20} color="#6148FF" />
+                        <FaSearch size={20} color="darkblue" />
                     </div>
                 </div>
                 <div className="overflow-x-auto my-3 rounded-md">

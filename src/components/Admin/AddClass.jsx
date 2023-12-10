@@ -12,7 +12,7 @@ const AddClass = () => {
             <dialog id="addClass" className="modal">
                 <div className="modal-box">
                     <form method="dialog">
-                        <button className="text-[#6148FF] btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                        <button className="text-darkblue btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
                             <img
                                 src="/icon/close.svg"
                                 className="w-10 absolute bottom-1"

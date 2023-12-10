@@ -28,7 +28,7 @@ const AdminDashboard = () => {
             <div
                 className={`${
                     isSidebarOpen ? "block" : "hidden"
-                } sm:flex sm:flex-col bg-[#6148FF] max-w-[50%] md:max-w-[20%]  min-h-[100dvh] transition-all duration-300`}
+                } sm:flex sm:flex-col bg-darkblue max-w-[50%] md:max-w-[20%]  min-h-[100dvh] transition-all duration-300`}
             >
                 <div className="flex items-center justify-center py-3">
                     <img
@@ -69,14 +69,14 @@ const AdminDashboard = () => {
                 <div className="navbar bg-[#EBF3FC] w-full">
                     {/* Hamburger Button */}
                     <button
-                        className="sm:hidden px-4 py-2 text-[#6148FF] focus:outline-none"
+                        className="sm:hidden px-4 py-2 text-darkblue focus:outline-none"
                         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                     >
                         <GiHamburgerMenu />
                     </button>
 
                     <div className="flex-1">
-                        <a className="btn btn-ghost text-xl text-[#6148FF] font-bold">
+                        <a className="btn btn-ghost text-xl text-darkblue font-bold">
                             Hi, Admin!
                         </a>
                     </div>
@@ -86,11 +86,11 @@ const AdminDashboard = () => {
                         <input
                             type="search"
                             placeholder="Cari..."
-                            className="sm:w-[25dvw] sm:h-[7dvh] outline-none focus:outline-none px-4 py-[6px] border-2 rounded-2xl border-[#6148FF]"
+                            className="sm:w-[25dvw] sm:h-[7dvh] outline-none focus:outline-none px-4 py-[6px] border-2 rounded-2xl border-darkblue"
                         />
                         <button
                             type="submit"
-                            className="absolute bottom-1/2 right-4 translate-y-1/2 rounded-lg bg-[#6148FF] p-1"
+                            className="absolute bottom-1/2 right-4 translate-y-1/2 rounded-lg bg-darkblue p-1"
                         >
                             <img
                                 src="/icon/search.svg"

@@ -26,7 +26,7 @@ const QuickInformation = () => {
                         <h1 className="font-bold">Active Class</h1>
                     </div>
                 </div>
-                <div className="flex-grow max-h-16 md:max-h-28 rounded-xl p-6 flex justify-center items-center gap-5 bg-[#6148FF]">
+                <div className="flex-grow max-h-16 md:max-h-28 rounded-xl p-6 flex justify-center items-center gap-5 bg-darkblue">
                     <MdWorkspacePremium
                         size={50}
                         color="#6148FF"

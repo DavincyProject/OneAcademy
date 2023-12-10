@@ -24,7 +24,7 @@ const SendReset = () => {
         <div className="flex min-h-screen">
             <div className="w-[100%] lg:w-[50%] flex justify-start items-center mx-[23px] lg:px-[145px] ">
                 <form onSubmit={handleReset} className="w-full">
-                    <h1 className="text-[24px] font-bold text-[#6148FF] mb-8">
+                    <h1 className="text-[24px] font-bold text-darkblue mb-8">
                         Reset Password
                     </h1>
                     <div className="flex flex-col gap-5">
@@ -45,13 +45,13 @@ const SendReset = () => {
                             </div>
                         </div>
                     </div>
-                    <button className="btn btn-primary w-full text-[14px] bg-[#6148FF] text-white py-[10px] rounded-2xl mt-5">
+                    <button className="btn btn-primary w-full text-[14px] bg-darkblue text-white py-[10px] rounded-2xl mt-5">
                         Kirim
                     </button>
                 </form>
             </div>
 
-            <div className="hidden lg:flex justify-center items-center bg-[#6148FF] w-[50%] min-h-[100dvh]">
+            <div className="hidden lg:flex justify-center items-center bg-darkblue w-[50%] min-h-[100dvh]">
                 <img src="/testlogo.png" alt="logo" />
             </div>
         </div>
