@@ -9,6 +9,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { detailsCourse } from "../../redux/actions/courseActions";
+// import Enrollment from "../../components/Details/Enrollment";
 
 const KelasDetail = () => {
     const [activeVideo, setActiveVideo] = useState("");
@@ -85,6 +86,7 @@ const KelasDetail = () => {
                             </button>
                             {/* need to add logic to send id course into transaction pages */}
                             <BuyCourseButton id={id} />
+                            {/* <Enrollment /> */}
                         </div>
                     </div>
                 </div>
