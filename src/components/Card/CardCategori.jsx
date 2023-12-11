@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { listCategory } from "../../redux/actions/courseActions";
+import CategorySkeleton from "../skeleton/CategorySkeleton";
 
 const CardCategori = () => {
     const dispatch = useDispatch();
@@ -11,6 +12,12 @@ const CardCategori = () => {
     useEffect(() => {
         dispatch(listCategory());
     }, [dispatch]);
+
+    if (categoryList <= 0) {
+        return (
+            <CategorySkeleton />
+        );
+    }
 
     return (
         <div className="flex justify-center bg-[#EBF3FC]">

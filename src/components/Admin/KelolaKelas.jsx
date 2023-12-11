@@ -59,7 +59,7 @@ const KelolaKelas = () => {
             <div>
                 {/* Table Of Information about course and level */}
                 <div className="container-fluid flex justify-between mt-2">
-                    <h1 className="font-bold text-xl">type Pembayaran</h1>
+                    <h1 className="font-bold text-xl">Kelola Kelas</h1>
                     <div className="flex justify-center items-center gap-2 p">
                         <AddClass />
                         <button className="badge p-4 text-darkblue border-darkblue">
