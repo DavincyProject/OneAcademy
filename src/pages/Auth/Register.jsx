@@ -55,7 +55,7 @@ const Register = () => {
         <div className="flex min-h-screen">
             <div className="w-[100%] lg:w-[50%] flex justify-start items-center mx-[23px] lg:px-[145px] ">
                 <form onSubmit={handleSubmit} className="w-full">
-                    <h1 className="text-[24px] font-bold text-[#6148FF] mb-8">
+                    <h1 className="text-[24px] font-bold text-darkblue mb-8">
                         Daftar
                     </h1>
                     <div className="flex flex-col gap-5 ">
@@ -128,7 +128,7 @@ const Register = () => {
                             </div>
                         </div>
                     </div>
-                    <button className="btn btn-primary w-full text-[14px] font-medium bg-[#6148FF] text-white py-[10px] rounded-2xl mt-5">
+                    <button className="btn btn-primary w-full text-[14px] font-medium bg-darkblue text-white py-[10px] rounded-2xl mt-5">
                         Daftar
                     </button>
                     <div className="flex justify-center items-center gap-2 mt-6">
@@ -137,7 +137,7 @@ const Register = () => {
                         </h1>
                         <Link
                             to="/login"
-                            className="text-[#6148FF] text-[14px] font-bold"
+                            className="text-darkblue text-[14px] font-bold"
                         >
                             Masuk di sini
                         </Link>
@@ -145,8 +145,8 @@ const Register = () => {
                 </form>
             </div>
 
-            <div className="hidden lg:flex justify-center items-center bg-[#6148FF] w-[50%] min-h-[100dvh]">
-                <img src="/logo.png" alt="logo" />
+            <div className="hidden lg:flex justify-center items-center bg-darkblue w-[50%] min-h-[100dvh]">
+                <img src="/testlogo.png" alt="logo" />
             </div>
         </div>
     );

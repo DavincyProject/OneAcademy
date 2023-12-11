@@ -9,13 +9,13 @@ const Notification = () => {
                     <div className="flex flex-col justify-center">
                         <Link
                             to={"/"}
-                            className="text-[#6148FF] text-[16px] font-bold flex gap-2 items-center mb-5"
+                            className="text-darkblue text-[16px] font-bold flex gap-2 items-center mb-5"
                         >
-                            <FaArrowLeft className="text-[#6148FF]" />
+                            <FaArrowLeft className="text-darkblue" />
                             Kembali Ke Beranda
                         </Link>
                         <div className="card card-compact w-[80dvw] bg-base-100 shadow-xl mb-5">
-                            <div className="p-2 bg-[#6148FF] rounded-t-md text-center">
+                            <div className="p-2 bg-darkblue rounded-t-md text-center">
                                 <h1 className="text-xl text-white font-bold">
                                     Notifikasi
                                 </h1>
@@ -31,7 +31,7 @@ const Notification = () => {
                                     />
                                     <div className="w-full">
                                         <div className="flex justify-between items-center gap-2 mb-2">
-                                            <h1 className="text-[14px] text-[#6148FF] font-bold">
+                                            <h1 className="text-[14px] text-darkblue font-bold">
                                                 Promosi
                                             </h1>
                                             <div className="flex gap-2 items-center">

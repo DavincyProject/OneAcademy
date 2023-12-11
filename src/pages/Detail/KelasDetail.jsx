@@ -6,39 +6,50 @@ import VideoPlayer from "../../components/Details/VideoPlayer";
 import BuyCourseButton from "../../components/Details/BuyCourseButton";
 import { useParams } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { detailsCourse } from "../../redux/actions/courseActions";
+import  DetailsClassSkeleton  from "../../components/skeleton/DetailsClassSkeleton";
+// import Enrollment from "../../components/Details/Enrollment";
 
 const KelasDetail = () => {
     const [activeVideo, setActiveVideo] = useState("");
 
     const { id } = useParams();
+    const dispatch = useDispatch();
+    const { courseDetails } = useSelector((state) => state.course);
+
+    useEffect(() => {
+        dispatch(detailsCourse(id));
+        return () => {
+            dispatch(detailsCourse(null));
+        };
+    }, [dispatch, id]);
+
+    if (courseDetails <= 0) {
+        return (
+            <DetailsClassSkeleton />
+        );
+    }
+
     return (
         <div>
-            <div className="container-fluid p-2 bg-[#EBF3FC] ">
-                <div className="top-[20px] mx-2 mt-2">
+            <div className="container-fluid p-2 bg-[#EBF3FC]">
+                <div className="top-[20px] mx-3 mt-2 md:ml-10 xl:ml-10">
                     <Link
-                        to={"/"}
-                        className="hover:text-[#6148FF] text-[16px] font-bold flex gap-2 items-center mb-5"
+                        to={"/class"}
+                        className="hover:text-darkblue max-w-fit text-[16px] font-bold flex gap-2 items-center mb-5"
                     >
                         <FaArrowLeft className="text-[16px] font-bold" />
                         Kelas Lainnya
                     </Link>
-                    {/* <div className="flex gap-3 my-3">
-                        <Link to={"/"}>
-                            <img
-                                src="/icon/fi_arrow-left.svg"
-                                alt="back icon"
-                            />
-                        </Link>
 
-                        <h1 className="text-[16px] font-bold">Kelas Lainnya</h1>
-                    </div> */}
-
-                    <div className="flex flex-col gap-1 ml-9 container-fluid md:w-[65vw]">
+                    <div className="flex flex-col gap-1 ml-9 container-fluid md:w-[65vw] lg:relative">
                         <div className="flex justify-between container-fluid md:w-[65vw]">
-                            <h1 className="text-[#6148FF] text-[20px] font-bold">
-                                UI/UX Design
+                            <h1 className="text-darkblue text-[20px] font-bold">
+                                {courseDetails?.category?.name}
                             </h1>
-                            <div className="flex gap-1 mr-12 items-center">
+                            <div className="flex gap-1 mr-16 items-center">
                                 <img
                                     src="/icon/ic_round-star.svg"
                                     className="w-[14px]"
@@ -47,18 +58,18 @@ const KelasDetail = () => {
                                 <p className="text-[14px] font-bold">5.0</p>
                             </div>
                         </div>
-                        <h1 className="text-[14px]">
-                            Intro to Basic of User Interaction Design
-                        </h1>
-                        <p className="text-[12px] font-bold">by Simon Doe</p>
+                        <h1 className="text-[14px]">{courseDetails.title}</h1>
+                        <p className="text-[12px] font-bold">
+                            {courseDetails.instructor}
+                        </p>
                         <div className="flex gap-4">
                             <div className="flex gap-1">
                                 <img
                                     src="/icon/mdi_badge-outline.svg"
                                     alt="level icon"
                                 ></img>
-                                <h1 className="text-[12px] text-[#6148FF] font-semibold">
-                                    Beginner Level
+                                <h1 className="text-[12px] text-darkblue font-semibold">
+                                    {courseDetails.level}
                                 </h1>
                             </div>
                             <div className="flex gap-1">
@@ -85,86 +96,57 @@ const KelasDetail = () => {
                             </button>
                             {/* need to add logic to send id course into transaction pages */}
                             <BuyCourseButton id={id} />
+                            {/* <Enrollment /> */}
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div className="flex flex-col md:flex-row">
+            <div className="flex flex-col md:flex-row mx-3 md:ml-10 xl:ml-10">
                 <div className="md:flex-col">
                     <div className="p-5 order-2 lg:order-1">
                         {/* Video component di sini */}
                         <VideoPlayer videoSrc={activeVideo} />
                     </div>
                     <div className="w-full md:w-[65vw] p-5">
-                        <div className="collapse collapse-arrow bg-base-200 mb-2">
-                            <input
-                                type="radio"
-                                name="my-accordion-2"
-                                aria-label="class info"
-                            />
-                            <div className="collapse-title text-[20px] font-bold ">
-                                Kelas Ini Ditujukan Untuk
+                        <div className="collapse collapse-arrow bg-darkblue rounded-[4px] shadow-md mb-2">
+                            <input type="checkbox" />
+                            <div className="collapse-title text-white text-xl font-medium">
+                                <h1>Kelas Ini Ditujukan Untuk</h1>
                             </div>
-                            <div className="collapse-content">
-                                <ol className="text-[13px] text-justify px-3 list-decimal">
-                                    <li>
-                                        Anda yang ingin memahami poin penting
-                                        design system
-                                    </li>
-                                    <li>
-                                        Anda yang ingin membantu perusahaan
-                                        lebih optimal dalam membuat design
-                                        produk
-                                    </li>
-                                    <li>
-                                        Anda yang ingin latihan membangun design
-                                        system
-                                    </li>
-                                    <li>
-                                        Anda yang ingin latihan membangun design
-                                        system
-                                    </li>
-                                </ol>
+                            <div className="collapse-content bg-white">
+                                <div className="w-full px-4">
+                                    <ol className="text-sm font-semibold text-justify py-3 list-decimal">
+                                        <li>
+                                            Anda yang ingin memahami poin
+                                            penting design system
+                                        </li>
+                                        <li>
+                                            Anda yang ingin membantu perusahaan
+                                            lebih optimal dalam membuat design
+                                            produk
+                                        </li>
+                                        <li>
+                                            Anda yang ingin latihan membangun
+                                            design system
+                                        </li>
+                                        <li>
+                                            Anda yang ingin latihan membangun
+                                            design system
+                                        </li>
+                                    </ol>
+                                </div>
                             </div>
                         </div>
-                        <div className="collapse collapse-arrow bg-base-200 mb-2">
-                            <input
-                                type="radio"
-                                name="my-accordion-2"
-                                aria-label="class description"
-                            />
-                            <div className="collapse-title text-[20px] font-bold ">
-                                Tentang Kelas
+                        <div className="collapse collapse-arrow bg-darkblue rounded-[4px] shadow-md">
+                            <input type="checkbox" />
+                            <div className="collapse-title text-white text-xl font-medium">
+                                <h1>Tentang kelas</h1>
                             </div>
-                            <div className="collapse-content">
-                                <p className="text-justify">
-                                    Design system adalah kumpulan komponen
-                                    design, code, ataupun dokumentasi yang dapat
-                                    digunakan sebagai panduan utama yang
-                                    memunginkan designer serta developer
-                                    memiliki lebih banyak kontrol atas berbagai
-                                    platform. Dengan hadirnya design system,
-                                    dapat menjaga konsistensi tampilan user
-                                    interface dan meningkatkan user experience
-                                    menjadi lebih baik. Disisi bisnis, design
-                                    system sangat berguna dalam menghemat waktu
-                                    dan biaya ketika mengembangkan suatu produk.
-                                    Bersama mentor XXX, kita akan mempelajari
-                                    design system dari mulai manfaat, alur kerja
-                                    pembuatannya, tools yang digunakan, hingga
-                                    pada akhirnya, kita akan membuat MVP dari
-                                    design system. Selain itu, mentor juga akan
-                                    menjelaskan berbagai resource yang
-                                    dibutuhkan untuk mencari inspirasi mengenai
-                                    design system. Kelas ini sesuai untuk Anda
-                                    yang ingin memahami apa itu design system.
-                                    Tidak hanya ditujukan untuk UI/UX Designer
-                                    ataupun Developer, kelas ini sangat sesuai
-                                    untuk stakeholder lain agar dapat memudahkan
-                                    tim dalam bekerja sama. Yuk segera daftar
-                                    dan kami tunggu di kelas ya!
-                                </p>
+                            <div className="collapse-content bg-white">
+                                <div className="w-full text-sm font-semibold py-3 text-justify rounded-md">
+                                    {courseDetails.description}
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -3,12 +3,12 @@ import { useSelector } from "react-redux";
 import { useNavigate, Outlet } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const Protect = ({ children }) => {
+const ProtectedProfile = ({ children }) => {
     const navigate = useNavigate();
     const { token } = useSelector((state) => state.auth);
 
     useEffect(() => {
-        if (token) {
+        if (token === null) {
             navigate("/");
         }
     });
@@ -16,8 +16,7 @@ const Protect = ({ children }) => {
     return children ? children : <Outlet />;
 };
 
-export default Protect;
-
-Protect.propTypes = {
+export default ProtectedProfile;
+ProtectedProfile.propTypes = {
     children: PropTypes.node,
 };

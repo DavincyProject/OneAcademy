@@ -32,13 +32,13 @@ const Account = () => {
                     <div className="flex flex-col justify-center w-[80%]">
                         <Link
                             to={"/"}
-                            className="text-[#6148FF] text-[16px] font-bold flex gap-2 items-center mb-5"
+                            className="text-darkblue text-[16px] font-bold flex gap-2 items-center mb-5"
                         >
-                            <FaArrowLeft className="text-[#6148FF]" />
+                            <FaArrowLeft className="text-darkblue" />
                             Kembali Ke Beranda
                         </Link>
                         <div className="card card-compact w-[80dvw] bg-base-100 shadow-xl mb-5">
-                            <div className="p-2 bg-[#6148FF] rounded-t-md text-center">
+                            <div className="p-2 bg-darkblue rounded-t-md text-center">
                                 <h1 className="text-xl text-white font-bold">
                                     Akun
                                 </h1>
@@ -53,12 +53,15 @@ const Account = () => {
                                             }
                                             className={`text-${
                                                 activeLink === "profile"
-                                                    ? "[#6148FF]"
+                                                    ? "darkblue"
                                                     : "black"
                                             }`}
                                         >
                                             <div className="flex items-center gap-2 text-[16px] mb-2 font-bold">
-                                                <img src="/Profile/edit.svg" />
+                                                <img
+                                                    src="/Profile/edit.svg"
+                                                    alt="edit"
+                                                />
                                                 <h1>Profil Saya</h1>
                                             </div>
                                             <div className="border-t mb-2 border-[#E5E5E5]"></div>
@@ -69,12 +72,15 @@ const Account = () => {
                                             }
                                             className={`text-${
                                                 activeLink === "ubahPassword"
-                                                    ? "[#6148FF]"
+                                                    ? "darkblue"
                                                     : "black"
                                             }`}
                                         >
                                             <div className="flex items-center gap-2 text-[16px] mb-2 font-bold">
-                                                <img src="/Profile/settings.svg" />
+                                                <img
+                                                    src="/Profile/settings.svg"
+                                                    alt="setting"
+                                                />
                                                 <h1>Ubah Password</h1>
                                             </div>
                                             <div className="border-t mb-2 border-[#E5E5E5]"></div>
@@ -86,19 +92,25 @@ const Account = () => {
                                             className={`text-${
                                                 activeLink ===
                                                 "riwayatPembayaran"
-                                                    ? "[#6148FF]"
+                                                    ? "darkblue"
                                                     : "black"
                                             }`}
                                         >
                                             <div className="flex items-center gap-2 text-[16px] mb-2 font-bold">
-                                                <img src="/Profile/cart.svg" />
+                                                <img
+                                                    src="/Profile/cart.svg"
+                                                    alt="cart"
+                                                />
                                                 <h1>Riwayat Pembayaran</h1>
                                             </div>
                                             <div className="border-t mb-2 border-[#E5E5E5]"></div>
                                         </Link>
                                         <Link className="hover:text-red-600">
                                             <div className="flex items-center gap-2 text-[16px] mb-2 font-bold">
-                                                <img src="/Profile/log-out.svg" />
+                                                <img
+                                                    src="/Profile/log-out.svg"
+                                                    alt="log out"
+                                                />
                                                 <h1>Keluar</h1>
                                             </div>
                                             <div className="border-t mb-2 border-[#E5E5E5]"></div>
