@@ -13,10 +13,12 @@ import Navbar from "./components/Navbar";
 import AdminLogin from "./pages/Admin/AdminLogin";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
 import Notification from "./pages/profile/Notification";
-import ClassMe from "./pages/Course/ClassMe";
 import { Toaster } from "react-hot-toast";
 import Protect from "./components/Auth/Protect";
-import PaymentSucces from "./pages/PaymentSucces";
+import Account from "./pages/profile/Account";
+import Class from "./pages/Course/Class";
+import PaymentSucces from "./pages/Payment/PaymentSucces";
+import Payment from "./pages/Payment/Payment";
 function App() {
   return (
     <>
@@ -29,7 +31,9 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/details/:id" element={<KelasDetail />} />
             <Route path="/notification" element={<Notification />} />
-            <Route path="/classme" element={<ClassMe />} />
+            <Route path="/class" element={<Class />} />
+            <Route path="/account" element={<Account />} />
+            <Route path="/payment" element={<Payment />} />
             <Route path="/succes" element={<PaymentSucces />} />
 
             {/* User Authorization */}

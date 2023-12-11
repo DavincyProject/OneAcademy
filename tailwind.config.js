@@ -1,8 +1,20 @@
 /** @type {import('tailwindcss').Config} */
+import tailwindTypography from "@tailwindcss/typography";
+import daisyui from "daisyui";
+
 export default {
-    content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-    theme: {
-        extend: {},
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  theme: {
+    extend: {
+      colors: {
+        check: {
+          100: `#6148FF`,
+        },
+      },
     },
-    plugins: [require("daisyui")],
+    daisyui: {
+      themes: false,
+    },
+  },
+  plugins: [daisyui, tailwindTypography],
 };

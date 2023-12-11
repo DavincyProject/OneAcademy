@@ -1,7 +1,7 @@
 const populer = [
   {
     id: 1,
-    popular: "all",
+    popular: "All",
   },
   {
     id: 2,
@@ -9,11 +9,11 @@ const populer = [
   },
   {
     id: 3,
-    popular: "UI/EX Design",
+    popular: "UI/UX Design",
   },
   {
     id: 4,
-    popular: "Andorid Development",
+    popular: "Android Development",
   },
   {
     id: 5,
