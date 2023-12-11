@@ -5,6 +5,7 @@ import { FaFilter } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { listCourse } from "../../redux/actions/courseActions";
+import ClassCardSkeleton from "../../components/skeleton/ClassCardSkeleton";
 
 const Class = () => {
     const [selectedFilter, setSelectedFilter] = useState("All");
@@ -168,9 +169,14 @@ const Class = () => {
                             </div>
 
                             <div className="flex gap-5 flex-wrap mx-2 md:mx-0 mt-5">
-                                {course.map((data) => (
-                                    <CourseCard key={data.id} data={data} />
-                                ))}
+                                {course.length === 0 ? (
+                                    <ClassCardSkeleton />
+                                ) : (
+                                    // Render actual course cards once data is available
+                                    course.map((data) => (
+                                        <CourseCard key={data.id} data={data} />
+                                    ))
+                                )}
                             </div>
                         </div>
 
