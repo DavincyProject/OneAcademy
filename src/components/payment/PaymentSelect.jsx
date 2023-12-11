@@ -11,7 +11,7 @@ const PaymentSelect = ({ id }) => {
     // Hapus semua karakter non-digit dari nomor kartu
     const digitsOnly = inputValue.replace(/\D/g, "");
 
-    // Pisahkan nomor kartu menjadi blok 4 digit
+    // Pisahkan nomor kartu menjadi 4 digit
     const formattedNumber = digitsOnly.replace(/(\d{4})/g, "$1 ").trim();
 
     setCardNumber(formattedNumber);

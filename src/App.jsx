@@ -20,56 +20,47 @@ import Class from "./pages/Course/Class";
 import Payment from "./pages/Payment/Payment";
 import ProtectedProfile from "./components/Auth/ProtectedProfile";
 function App() {
-    return (
-        <>
-            <Provider store={store}>
-                <BrowserRouter>
-                    <Toaster position="bottom-center" reverseOrder={false} />
-                    <Navbar />
-                    <Routes>
-                        {/* Guest routes */}
-                        <Route path="/" element={<Home />} />
-                        <Route path="/details/:id" element={<KelasDetail />} />
-                        <Route path="/class" element={<Class />} />
+  return (
+    <>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Toaster position="bottom-center" reverseOrder={false} />
+          <Navbar />
+          <Routes>
+            {/* Guest routes */}
+            <Route path="/" element={<Home />} />
+            <Route path="/details/:id" element={<KelasDetail />} />
+            <Route path="/class" element={<Class />} />
 
-                        {/* Profile routes, Check if user is not login */}
-                        <Route element={<ProtectedProfile />}>
-                            <Route
-                                path="/notification"
-                                element={<Notification />}
-                            />
-                            <Route path="/account" element={<Account />} />
-                            <Route path="/payment/:id" element={<Payment />} />
-                        </Route>
+            {/* Profile routes, Check if user is not login */}
+            <Route element={<ProtectedProfile />}>
+              <Route path="/notification" element={<Notification />} />
+              <Route path="/account" element={<Account />} />
+              <Route path="/payment/:id" element={<Payment />} />
+            </Route>
 
-                        {/* User Authorization */}
-                        <Route element={<Protect />}>
-                            <Route path="/login" element={<Login />} />
-                            <Route path="/register" element={<Register />} />
-                            <Route path="/validate" element={<RegisterOtp />} />
+            {/* User Authorization */}
+            <Route element={<Protect />}>
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/validate" element={<RegisterOtp />} />
 
-                            {/* Reset Password */}
-                            <Route path="/reset" element={<SendReset />} />
-                            <Route
-                                path="/forgot/:id"
-                                element={<ResetPassword />}
-                            />
-                        </Route>
+              {/* Reset Password */}
+              <Route path="/reset" element={<SendReset />} />
+              <Route path="/forgot/:id" element={<ResetPassword />} />
+            </Route>
 
-                        {/* Admin Authorization */}
-                        <Route path="/admin" element={<AdminLogin />} />
-                        <Route
-                            path="/admin/dashboard"
-                            element={<AdminDashboard />}
-                        />
+            {/* Admin Authorization */}
+            <Route path="/admin" element={<AdminLogin />} />
+            <Route path="/admin/dashboard" element={<AdminDashboard />} />
 
-                        {/* Handle Pages Not Found */}
-                        <Route path="*" element={<NotFound />} />
-                    </Routes>
-                </BrowserRouter>
-            </Provider>
-        </>
-    );
+            {/* Handle Pages Not Found */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </Provider>
+    </>
+  );
 }
 
 export default App;

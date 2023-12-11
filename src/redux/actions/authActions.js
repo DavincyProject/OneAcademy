@@ -3,6 +3,9 @@ import { setToken } from "../reducers/authReducers";
 import { ENDPOINTS } from "../../utils/endpointApi";
 import toast from "react-hot-toast";
 
+// check token is it same with login token, if not same. redirect to login again and remove localstorage token if not same
+export const protecttoken = () => async () => {};
+
 export const login = (email, password, navigate) => async (dispatch) => {
   try {
     const response = await axios.post(ENDPOINTS.login, {
@@ -17,7 +20,7 @@ export const login = (email, password, navigate) => async (dispatch) => {
     navigate("/");
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      toast.error(`${error?.response?.data?.error}`, {
+      toast.error(`${error?.response?.data?.message}`, {
         duration: 2000,
       });
       return;
@@ -29,23 +32,25 @@ export const login = (email, password, navigate) => async (dispatch) => {
 };
 
 export const register =
-  (nama, email, nomor, password, navigate) => async () => {
+  (name, email, phone, password, roleId, navigate) => async () => {
     try {
-      await axios.post(ENDPOINTS.register, {
-        nama,
+      const response = await axios.post(ENDPOINTS.register, {
+        name,
         email,
-        nomor,
+        phone,
         password,
+        roleId: 2,
       });
 
-      toast.success("Tautan Berhasil dikirim ke email");
+      const { email } = response.data.user;
+      localStorage.setItem("email", email);
 
       setTimeout(() => {
         navigate("/validate");
       }, 2000);
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        toast.error(`${error?.response?.data?.error}`, {
+        toast.error(`${error?.response?.data?.message}`, {
           duration: 2000,
         });
         return;
@@ -56,20 +61,46 @@ export const register =
     }
   };
 
-export const resetPassword = (email) => async () => {
+export const activateAccount = (OTP, navigate) => async () => {
   try {
-    const response = await axios.post(ENDPOINTS.resetpassword, {
+    const email = localStorage.getItem("email");
+
+    await axios.post(ENDPOINTS.activateaccount, {
+      email,
+      OTP,
+    });
+
+    toast.success("Akun Berhasil Diaktivasi");
+    localStorage.removeItem("email");
+
+    setTimeout(() => {
+      navigate("/login");
+    }, 2000);
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      toast.error(`${error?.response?.data?.message}`, {
+        duration: 2000,
+      });
+    } else {
+      toast.error(`${error?.message}`, {
+        duration: 2000,
+      });
+    }
+  }
+};
+
+export const resendOtp = () => async () => {
+  try {
+    const email = localStorage.getItem("email");
+
+    await axios.post(ENDPOINTS.resendotp, {
       email,
     });
 
-    const { data } = response.data;
-
-    if (data) {
-      toast.success("Tatutan reset password terkirim ke email anda");
-    }
+    toast.success("Otp berhasil dikirim");
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      toast.error(`${error?.response?.data?.error}`, {
+      toast.error(`${error?.response?.data?.message}`, {
         duration: 2000,
       });
       return;
@@ -80,22 +111,44 @@ export const resetPassword = (email) => async () => {
   }
 };
 
-export const forgotPassword = (password, id) => async () => {
-  const resetPass = ENDPOINTS.setpassword(id);
+export const resetPassword = (email) => async () => {
   try {
-    const response = await axios.post(resetPass, {
+    const response = await axios.post(ENDPOINTS.resetpassword, {
+      email,
+    });
+
+    const { message } = response.data;
+    toast.success(message);
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      toast.error(`${error?.response?.data?.message}`, {
+        duration: 2000,
+      });
+      return;
+    }
+    toast.error(`${error?.data?.error}`, {
+      duration: 2000,
+    });
+  }
+};
+
+export const forgotPassword = (password, id, navigate) => async () => {
+  try {
+    const response = await axios.post(ENDPOINTS.setpassword, {
+      id,
       password,
     });
 
-    const { data } = response.data;
+    const { message } = response.data;
+    toast.success(message);
 
-    if (data) {
-      toast.success("Password berhasil diganti");
-    }
+    setTimeout(() => {
+      navigate("/login");
+    }, 1500);
   } catch (error) {
     console.log(error);
     if (axios.isAxiosError(error)) {
-      toast.error(`${error?.response?.data?.error}`, {
+      toast.error(`${error?.response?.data?.message}`, {
         duration: 2000,
       });
       return;
