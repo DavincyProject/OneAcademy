@@ -1,110 +1,17 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-// import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const VideoCardList = ({ onVideoSelect }) => {
     const [selectedVideo, setSelectedVideo] = useState(null);
 
-    // const dispatch = useDispatch();
-    // const { courseMaterial, courseChapter } = useSelector(
-    //     (state) => state.course
-    // );
+    const { courseMaterial } = useSelector((state) => state.course);
 
-    const dataDummy = [
-        {
-            id: 1,
-            number: 1,
-            title: "Ardhito Pramono - Fine Today",
-            videoSrc: "https://www.youtube.com/embed/IUDG7ok7dVk",
-            paid: true,
-        },
-        {
-            id: 2,
-            number: 2,
-            title: "Chris Andrian Yang - Until Death Do Us Part",
-            videoSrc: "https://www.youtube.com/embed/CJbzhD3BOPU",
-            paid: true,
-        },
-        {
-            id: 3,
-            number: 3,
-            title: "恋泥棒。/『ユイカ』弾き語り",
-            videoSrc: "https://www.youtube.com/embed/iKRiF8fTo4w",
-            paid: true,
-        },
-    ];
-
-    const dataDummySecond = [
-        {
-            id: 1,
-            number: 4,
-            title: "Chris Andrian Yang - Tell Me",
-            videoSrc: "https://www.youtube.com/embed/29DfQ9XQA3A",
-            paid: false,
-        },
-        {
-            id: 2,
-            number: 5,
-            title: "When She Loved Me",
-            videoSrc: "https://www.youtube.com/embed/SpS9UGmsLLU",
-            paid: false,
-        },
-        {
-            id: 3,
-            number: 6,
-            title: "Hal - L",
-            videoSrc: "https://www.youtube.com/embed/jat0G8fKbxs",
-            paid: false,
-        },
-        {
-            id: 4,
-            number: 7,
-            title: "Nadhif Basalamah - penjaga hati",
-            videoSrc: "https://www.youtube.com/embed/jia3fhBQ8qI",
-            paid: false,
-        },
-        {
-            id: 5,
-            number: 8,
-            title: "Jaz - Bersamamu",
-            videoSrc: "https://www.youtube.com/embed/D-VytLhH-KE",
-            paid: false,
-        },
-        {
-            id: 6,
-            number: 9,
-            title: "Dere - Rubix",
-            videoSrc: "https://www.youtube.com/embed/iUsz8Xsyor8",
-            paid: false,
-        },
-        {
-            id: 7,
-            number: 10,
-            title: "Dere - Tanya",
-            videoSrc: "https://www.youtube.com/embed/6Ln7_fZmEFE",
-            paid: false,
-        },
-    ];
-
-    /**  
-        handle open Chapter based on chapter lenght index test
-        logic : Count chapter lenght and compare to dataDummy.length + pay status to open next chapter,
-                if pay status is false (not buy) return chapter 2 without opening that chapter.
-
-                totalItemChapterClicked is get from API to count if all item on prev chapter is clicked or not,
-                if totalItemChapterClicked === dataDummy.length && pay === true then open next chapter.
-
-        const handleOpenChapter = () => {
-            const lenghtChapter = dataDummy.length;
-            totalItemChapterClicked = useSelector((state) => state.itemChapterClicked);
-
-            if (dataDummy.length > 0 && totalItemClicked === dataDummy.length && pay === true) {
-                setSelectedVideo(dataDummySecond(false));
-            }else {
-                return chapter 2 without opening that chapter
-            }
-        };
-    */
+    function extractVideoId(videoURL) {
+        const videoId = videoURL.split("/").pop().split("?")[0];
+        const linkEmbed = `https://www.youtube.com/embed/${videoId}`;
+        return linkEmbed;
+    }
 
     const handleVideoSelect = (videoSrc) => {
         onVideoSelect(videoSrc);
@@ -134,59 +41,80 @@ const VideoCardList = ({ onVideoSelect }) => {
                     </div>
                 </div>
 
-                <div className="p-1 mt-2 w-full md:max-w-[349px] mx-auto">
-                    <div className="flex justify-between items-center">
-                        <h1 className="text-[12px]  text-darkblue font-extrabold">
-                            Chapter 1 - Pendahuluan
-                        </h1>
-                        <p className="text-[12px] font-extrabold text-[#489CFF]">
-                            60 Menit
-                        </p>
-                    </div>
-                    {dataDummy.map((item) => (
+                {courseMaterial.length > 0 ? (
+                    courseMaterial.map((chapter) => (
                         <div
-                            key={item.id}
-                            onClick={() => handleVideoSelect(item.videoSrc)}
-                            className="h-[52px] p-2 cursor-pointer"
+                            key={chapter.id}
+                            className="p-1 mt-2 w-full md:max-w-[350px] mx-auto"
                         >
                             <div className="flex justify-between items-center">
-                                <div className="flex gap-2 items-center mt-2">
-                                    <h1 className="bg-[#EBF3FC] rounded-full w-[36px] h-[36px] flex justify-center items-center">
-                                        {item.number}
-                                    </h1>
-                                    <h1
-                                        className={`text-[12px] max-w-[251px] ${
-                                            selectedVideo === item.videoSrc
-                                                ? "text-[#00CC00]"
-                                                : ""
-                                        }`}
-                                    >
-                                        {item.title}
-                                    </h1>
-                                </div>
-                                {item.paid === true ? (
-                                    <img
-                                        src={
-                                            selectedVideo === item.videoSrc
-                                                ? "/icon/Pause.svg"
-                                                : "/icon/Play.svg"
-                                        }
-                                        alt="play pause icon"
-                                    />
-                                ) : (
-                                    <img
-                                        src="/icon/lock.svg"
-                                        alt="lock icon"
-                                        className="w-6 h-6 opacity-50 cursor-not-allowed"
-                                    />
-                                )}
+                                <h2 className="text-[12px] mx-1 text-darkblue font-extrabold">
+                                    Chapter {chapter.step} - {chapter.title}
+                                </h2>
+                                <p className="text-[11px] font-extrabold text-center text-[#489CFF]">
+                                    {chapter.totalDuration} Menit
+                                </p>
                             </div>
-                            <div className="border-t mt-2 border-[#EBF3FC]"></div>
+                            {chapter.material.map((material) => (
+                                <div
+                                    key={material.id}
+                                    onClick={() =>
+                                        handleVideoSelect(
+                                            extractVideoId(material.videoURL)
+                                        )
+                                    }
+                                    className="h-[52px] p-2 cursor-pointer"
+                                >
+                                    <div className="flex justify-between items-center">
+                                        <div className="flex gap-2 items-center mt-2">
+                                            <h1 className="bg-[#EBF3FC] rounded-full w-[36px] h-[36px] flex justify-center items-center">
+                                                {material.step}
+                                            </h1>
+                                            <h1
+                                                className={`text-[12px] max-w-[251px] ${
+                                                    selectedVideo ===
+                                                    extractVideoId(
+                                                        material.videoURL
+                                                    )
+                                                        ? "text-[#00CC00]"
+                                                        : ""
+                                                }`}
+                                            >
+                                                {material.title}
+                                            </h1>
+                                        </div>
+                                        {material.status === "Selesai" ? (
+                                            <img
+                                                src={
+                                                    selectedVideo ===
+                                                    extractVideoId(
+                                                        material.videoURL
+                                                    )
+                                                        ? "/icon/Pause.svg"
+                                                        : "/icon/Play.svg"
+                                                }
+                                                alt="play pause icon"
+                                            />
+                                        ) : (
+                                            <img
+                                                src="/icon/lock.svg"
+                                                alt="lock icon"
+                                                className="w-6 h-6 opacity-50 cursor-not-allowed"
+                                            />
+                                        )}
+                                    </div>
+                                    <div className="border-t mt-2 border-[#EBF3FC]"></div>
+                                </div>
+                            ))}
                         </div>
-                    ))}
-                </div>
+                    ))
+                ) : (
+                    <p className="p-1 mt-2 w-full md:max-w-[350px] mx-auto">
+                        Data Not Available
+                    </p>
+                )}
 
-                {/* add conditional for play non free video here  */}
+                {/* add conditional for play non free video here
                 <div className="p-1 mt-2 w-full md:max-w-[349px] mx-auto">
                     <div className="flex justify-between items-center">
                         <h1 className="text-[12px]  text-darkblue font-extrabold">
@@ -280,7 +208,7 @@ const VideoCardList = ({ onVideoSelect }) => {
                             </div>
                         )
                     )}
-                </div>
+                </div> */}
             </div>
         </div>
     );

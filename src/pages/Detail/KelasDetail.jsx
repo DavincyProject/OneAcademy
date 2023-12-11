@@ -9,6 +9,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { detailsCourse } from "../../redux/actions/courseActions";
+import  DetailsClassSkeleton  from "../../components/skeleton/DetailsClassSkeleton";
 // import Enrollment from "../../components/Details/Enrollment";
 
 const KelasDetail = () => {
@@ -20,7 +21,16 @@ const KelasDetail = () => {
 
     useEffect(() => {
         dispatch(detailsCourse(id));
+        return () => {
+            dispatch(detailsCourse(null));
+        };
     }, [dispatch, id]);
+
+    if (courseDetails <= 0) {
+        return (
+            <DetailsClassSkeleton />
+        );
+    }
 
     return (
         <div>

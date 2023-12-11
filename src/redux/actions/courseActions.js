@@ -2,7 +2,6 @@ import axios from "axios";
 import { ENDPOINTS } from "../../utils/endpointApi";
 import toast from "react-hot-toast";
 import {
-    setCourseChapter,
     setCourseDetails,
     setCourseMaterial,
     setCoursePage,
@@ -51,14 +50,17 @@ export const listCourse = (page) => async (dispatch) => {
 };
 
 export const detailsCourse = (id) => async (dispatch) => {
+    if (!id) {
+        dispatch(setCourseDetails([]));
+        return;
+    }
     const detailCourse = ENDPOINTS.detailcourse(id);
     try {
         const response = await axios.get(detailCourse);
-        const { course, materials, chapters } = response.data;
+        const { course, chapters } = response.data;
 
         dispatch(setCourseDetails(course));
-        dispatch(setCourseMaterial(materials));
-        dispatch(setCourseChapter(chapters));
+        dispatch(setCourseMaterial(chapters));
     } catch (error) {
         if (axios.isAxiosError(error)) {
             toast.error(`${error?.response?.data?.error}`, {

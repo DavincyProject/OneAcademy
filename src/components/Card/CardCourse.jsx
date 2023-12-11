@@ -4,6 +4,7 @@ import { BiCategory } from "react-icons/bi";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { listCourse } from "../../redux/actions/courseActions";
+import HomeSkeleton from "../skeleton/HomeSkeleton";
 
 // This card for HomePages
 
@@ -30,6 +31,10 @@ const CardCourse = () => {
             maximumFractionDigits: 0,
         });
     };
+
+    if (categories <= 0) {
+        return <HomeSkeleton />;
+    }
 
     return (
         <div className="flex justify-center">
