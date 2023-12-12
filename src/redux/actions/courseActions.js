@@ -99,15 +99,27 @@ export const buyCourse = (id, navigate) => async (dispatch, getState) => {
             navigate(`/payment/${id}`);
         }, 1500);
     } catch (error) {
-        console.log(error);
         if (axios.isAxiosError(error)) {
-            toast.error(`${error?.response?.data?.message}`, {
+            const errorMessage = error?.response?.data?.message;
+
+            // Check if the error message indicates an existing transaction
+            if (
+                errorMessage ===
+                "You already have a transaction for this course!"
+            ) {
+                // Redirect to the payment page
+                navigate(`/payment/${id}`);
+            } else {
+                // Handle other errors
+                toast.error(errorMessage, {
+                    duration: 2000,
+                });
+            }
+        } else {
+            // Handle non-Axios errors
+            toast.error(`${error?.data?.error}`, {
                 duration: 2000,
             });
-            return;
         }
-        toast.error(`${error?.data?.error}`, {
-            duration: 2000,
-        });
     }
 };
