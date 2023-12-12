@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { formatPrice } from "../../utils/utils";
-import { buyCourse } from "../../redux/actions/courseActions";
+import { temporarybuyCourse } from "../../redux/actions/courseActions";
 
 const BuyCourseButton = ({ id }) => {
     const navigate = useNavigate();
@@ -16,7 +16,7 @@ const BuyCourseButton = ({ id }) => {
         e.preventDefault();
 
         if (token) {
-            dispatch(buyCourse(id, navigate));
+            dispatch(temporarybuyCourse(id, navigate));
         } else {
             navigate("/login");
         }

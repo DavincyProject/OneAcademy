@@ -21,4 +21,7 @@ export const ENDPOINTS = {
     buycourses: (id) => {
         return `${API_URL}/api/v1/transaction/${id}/buy`;
     },
+    detailtransaction: (id) => {
+        return `${API_URL}/api/v1/transaction/${id}/detailTransaction`;
+    },
 };
