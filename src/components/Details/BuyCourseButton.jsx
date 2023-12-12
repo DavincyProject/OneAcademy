@@ -1,29 +1,25 @@
 import { FaShoppingCart } from "react-icons/fa";
 import PropTypes from "prop-types";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { formatPrice } from "../../utils/utils";
+import { temporarybuyCourse } from "../../redux/actions/courseActions";
 
 const BuyCourseButton = ({ id }) => {
-    const { token } = useSelector((state) => state.auth);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const prevCard = useSelector((state) => state.course.courseDetails);
+    const { token } = useSelector((state) => state.auth);
 
-    const onBuyCourse = () => {
+    const onBuyCourse = (e) => {
+        e.preventDefault();
+
         if (token) {
-            navigate(`/payment/${id}`);
+            dispatch(temporarybuyCourse(id, navigate));
         } else {
             navigate("/login");
         }
-    };
-
-    const formatPrice = (price) => {
-        // Assuming price is a number
-        return price?.toLocaleString("id-ID", {
-            style: "currency",
-            currency: "IDR",
-            maximumFractionDigits: 0,
-        });
     };
 
     return (

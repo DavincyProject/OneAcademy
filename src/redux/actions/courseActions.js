@@ -7,6 +7,7 @@ import {
     setCoursePage,
     setListCategory,
     setListCourse,
+    setTransaction,
 } from "../reducers/courseReducers";
 
 export const listCategory = () => async (dispatch) => {
@@ -17,7 +18,7 @@ export const listCategory = () => async (dispatch) => {
         dispatch(setListCategory(category));
     } catch (error) {
         if (axios.isAxiosError(error)) {
-            toast.error(`${error?.response?.data?.error}`, {
+            toast.error(`${error?.response?.data?.message}`, {
                 duration: 2000,
             });
             return;
@@ -38,7 +39,7 @@ export const listCourse = (page) => async (dispatch) => {
         dispatch(setCoursePage(totalPages));
     } catch (error) {
         if (axios.isAxiosError(error)) {
-            toast.error(`${error?.response?.data?.error}`, {
+            toast.error(`${error?.response?.data?.message}`, {
                 duration: 2000,
             });
             return;
@@ -63,7 +64,84 @@ export const detailsCourse = (id) => async (dispatch) => {
         dispatch(setCourseMaterial(chapters));
     } catch (error) {
         if (axios.isAxiosError(error)) {
-            toast.error(`${error?.response?.data?.error}`, {
+            toast.error(`${error?.response?.data?.message}`, {
+                duration: 2000,
+            });
+            return;
+        }
+        toast.error(`${error?.data?.error}`, {
+            duration: 2000,
+        });
+    }
+};
+
+export const temporarybuyCourse =
+    (id, navigate) => async (dispatch, getState) => {
+        try {
+            const temporarybuy = ENDPOINTS.buycourses(id);
+
+            const { token } = getState().auth;
+            const response = await axios.post(
+                temporarybuy,
+                {},
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+
+            const { transaction } = response.data;
+            dispatch(setTransaction(transaction));
+
+            toast.success("Processing your order..");
+
+            setTimeout(() => {
+                navigate(`/payment/${id}`);
+            }, 1500);
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                const errorMessage = error?.response?.data?.message;
+
+                // Check if the error message indicates an existing transaction
+                if (
+                    errorMessage ===
+                    "You already have a transaction for this course!"
+                ) {
+                    // Redirect to the payment page
+                    navigate(`/payment/${id}`);
+                } else {
+                    // Handle other errors
+                    toast.error(errorMessage, {
+                        duration: 2000,
+                    });
+                }
+            } else {
+                // Handle non-Axios errors
+                toast.error(`${error?.data?.error}`, {
+                    duration: 2000,
+                });
+            }
+        }
+    };
+
+export const transactionDetails = (id) => async (dispatch, getState) => {
+    try {
+        const detail = ENDPOINTS.detailtransaction(id);
+
+        const { token } = getState().auth;
+        const response = await axios.get(detail, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        const { transaction, course } = response.data;
+        dispatch(setTransaction(transaction));
+        dispatch(setCourseDetails(course));
+    } catch (error) {
+        if (axios.isAxiosError(error)) {
+            toast.error(`${error?.response?.data?.message}`, {
                 duration: 2000,
             });
             return;

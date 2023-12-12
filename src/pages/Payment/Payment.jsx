@@ -1,11 +1,20 @@
 import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { transactionDetails } from "../../redux/actions/courseActions";
 import PaymentSelect from "../../components/payment/PaymentSelect";
 import PaymentSuccess from "../../components/payment/PaymentSuccess";
 const Payment = () => {
     const { id } = useParams();
     const pay = false;
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(transactionDetails(id));
+    });
 
     return (
         <div className="container-fluid mx-auto">
