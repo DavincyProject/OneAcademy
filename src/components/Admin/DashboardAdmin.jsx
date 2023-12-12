@@ -1,45 +1,16 @@
 import { FaFilter, FaSearch } from "react-icons/fa";
 import QuickInformation from "./QuickInformation";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getTransactionData } from "../../redux/actions/adminActions";
 
 const DashboardAdmin = () => {
-    const data = [
-        {
-            id: 1,
-            userid: "Jhon Doe",
-            category: "UI/UX Design",
-            title: "Belajar web Designer dengan Figma",
-            status: "SUDAH DIBAYAR",
-            payment: "Credit Card",
-            date: "21 Sep, 2023 at 2:00 AM",
-        },
-        {
-            id: 2,
-            userid: "ganjarprabono",
-            category: "Web Development",
-            title: "CSS dan HTML dalam seminggu",
-            status: "BELUM DIBAYAR",
-            payment: "-",
-            date: "-",
-        },
-        {
-            id: 3,
-            userid: "akusiapa",
-            category: "Data Science",
-            title: "Data Cleaning untuk pemula",
-            status: "BELUM DIBAYAR",
-            payment: "-",
-            date: "-",
-        },
-        {
-            id: 4,
-            userid: "akusepuh",
-            category: "Web Development",
-            title: "Membuat website menggunakan AI",
-            status: "SUDAH DIBAYAR",
-            payment: "Bank Transfer",
-            date: "19 Sep, 2023 at 2:00 AM",
-        },
-    ];
+    const dispatch = useDispatch();
+    const { paymentStatus } = useSelector((state) => state.admin);
+
+    useEffect(() => {
+        dispatch(getTransactionData());
+    }, [dispatch]);
 
     return (
         <div className="flex flex-col w-full">
@@ -67,7 +38,7 @@ const DashboardAdmin = () => {
                         {/* head */}
                         <thead>
                             <tr className="bg-[#EBF3FC] text-black">
-                                <th>ID</th>
+                                <th>User Name</th>
                                 <th>Kategori</th>
                                 <th>Judul Kelas</th>
                                 <th>Status</th>
@@ -76,11 +47,11 @@ const DashboardAdmin = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {data.map((item) => (
+                            {paymentStatus.map((item) => (
                                 <tr key={item.id}>
-                                    <th>{item.userid}</th>
-                                    <td>{item.category}</td>
-                                    <td>{item.title}</td>
+                                    <th>{item?.user?.profile?.name}</th>
+                                    <td>{item?.course?.category?.name}</td>
+                                    <td>{item?.course?.title}</td>
                                     <td
                                         className={`font-bold text-xs ${
                                             item.status === "SUDAH DIBAYAR"
@@ -90,8 +61,8 @@ const DashboardAdmin = () => {
                                     >
                                         {item.status}
                                     </td>
-                                    <td>{item.payment}</td>
-                                    <td>{item.date}</td>
+                                    <td>{item.paymentMethod}</td>
+                                    <td>{item.paymentDate}</td>
                                 </tr>
                             ))}
                         </tbody>
