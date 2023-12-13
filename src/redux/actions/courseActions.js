@@ -98,7 +98,7 @@ export const temporarybuyCourse =
 
             setTimeout(() => {
                 navigate(`/payment/${id}`);
-            }, 1500);
+            }, 2000);
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 const errorMessage = error?.response?.data?.message;
