@@ -14,13 +14,25 @@ const UpdateChapter = () => {
   const category = useSelector((state) => state.course.listCategory);
 
   const [image, setImage] = useState(null);
-  const [title, setTitle] = useState(details.title);
-  const [instructor, setInstructor] = useState(details.instructor);
-  const [description, setDescription] = useState(details.description);
-  const [price, setPrice] = useState(details.price);
-  const [level, setLevel] = useState(details.level);
-  const [courseType, setCourseType] = useState(details.courseType);
-  const [categoryId, setCategoryId] = useState(details.categoryId);
+  const [title, setTitle] = useState("");
+  const [price, setPrice] = useState("");
+  const [level, setLevel] = useState("");
+  const [courseType, setCourseType] = useState("");
+  const [categoryId, setCategoryId] = useState("");
+  const [instructor, setInstructor] = useState("");
+  const [description, setDescription] = useState("");
+
+  console.log(
+    id,
+    image,
+    title,
+    instructor,
+    description,
+    price,
+    level,
+    courseType,
+    categoryId
+  );
 
   useEffect(() => {
     dispatch(listCategory());
@@ -138,7 +150,7 @@ const UpdateChapter = () => {
                   value={courseType}
                   onChange={(e) => setCourseType(e.target.value)}
                 >
-                  <option disabled selected>
+                  <option disabled defaultValue={details.courseType}>
                     active : {details.courseType}
                   </option>
                   <option value="Gratis">Gratis</option>
@@ -155,7 +167,7 @@ const UpdateChapter = () => {
                   value={level}
                   onChange={(e) => setLevel(e.target.value)}
                 >
-                  <option disabled selected>
+                  <option disabled defaultValue={details.level}>
                     active : {details.level}
                   </option>
                   <option value="Beginner">Beginner</option>
@@ -189,7 +201,7 @@ const UpdateChapter = () => {
                 ></textarea>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Simpan</button>
+                <button className="btn btn-primary">Update Data</button>
               </div>
             </form>
           </div>
