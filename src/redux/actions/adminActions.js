@@ -1,16 +1,17 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 import { isAxiosError } from "axios";
-import { setPaymentStatus } from "../reducers/adminReducers";
+import { setPaymentStatus, setTotalPages } from "../reducers/adminReducers";
+import { ENDPOINTS } from "../../utils/endpointApi";
 
-export const getTransactionData = () => async (dispatch) => {
+export const getTransactionData = (page) => async (dispatch) => {
     try {
-        const response = await axios.get(
-            `${import.meta.env.VITE_BASE_URL}/api/v1/transaction`
-        );
+        const datatransaction = ENDPOINTS.transactioncourse(page);
+        const response = await axios.get(datatransaction);
 
-        const { transactions } = response.data;
+        const { transactions, totalPages } = response.data;
         dispatch(setPaymentStatus(transactions));
+        dispatch(setTotalPages(totalPages));
     } catch (error) {
         if (isAxiosError(error)) {
             toast.error(`${error?.response?.data?.message}`, {

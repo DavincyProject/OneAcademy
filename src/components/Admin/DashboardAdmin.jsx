@@ -3,14 +3,25 @@ import QuickInformation from "./QuickInformation";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getTransactionData } from "../../redux/actions/adminActions";
+import { useState } from "react";
 
 const DashboardAdmin = () => {
     const dispatch = useDispatch();
-    const { paymentStatus } = useSelector((state) => state.admin);
+    const [currentPage, setCurrentPage] = useState(1);
+    const { paymentStatus, totalPages } = useSelector((state) => state.admin);
 
+    console.log(paymentStatus);
     useEffect(() => {
-        dispatch(getTransactionData());
-    }, [dispatch]);
+        dispatch(getTransactionData(currentPage));
+    }, [dispatch, currentPage]);
+
+    const totalPage = totalPages || 1;
+
+    const handlePageChange = (page) => {
+        if (page >= 1 && page <= totalPage && page !== currentPage) {
+            setCurrentPage(page);
+        }
+    };
 
     return (
         <div className="flex flex-col w-full">
@@ -61,12 +72,38 @@ const DashboardAdmin = () => {
                                     >
                                         {item.status}
                                     </td>
-                                    <td>{item.paymentMethod}</td>
+                                    <td>{item.paymentMethod || "-"}</td>
                                     <td>{item.paymentDate}</td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
+                    {/* Pagination */}
+                    <div className="flex items-center justify-center my-5">
+                        <div className="join">
+                            <button
+                                onClick={() =>
+                                    handlePageChange(currentPage - 1)
+                                }
+                                disabled={currentPage === 1}
+                                className="join-item btn btn-blue"
+                            >
+                                «
+                            </button>
+                            <button className="join-item btn btn-blue">
+                                {currentPage}
+                            </button>
+                            <button
+                                onClick={() =>
+                                    handlePageChange(currentPage + 1)
+                                }
+                                disabled={currentPage === totalPages}
+                                className="join-item btn btn-blue"
+                            >
+                                »
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

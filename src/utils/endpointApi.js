@@ -24,4 +24,9 @@ export const ENDPOINTS = {
     detailtransaction: (id) => {
         return `${API_URL}/api/v1/transaction/${id}/detailTransaction`;
     },
+
+    //admin endpoints
+    transactioncourse: (page) => {
+        return `${API_URL}/api/v1/transaction/?page=${page}`;
+    },
 };

@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     paymentStatus: [],
+    totalPages: [],
 };
 
 const AdminSlice = createSlice({
@@ -11,8 +12,11 @@ const AdminSlice = createSlice({
         setPaymentStatus: (state, action) => {
             state.paymentStatus = action.payload;
         },
+        setTotalPages: (state, action) => {
+            state.totalPages = action.payload;
+        },
     },
 });
 
-export const { setPaymentStatus } = AdminSlice.actions;
+export const { setPaymentStatus, setTotalPages } = AdminSlice.actions;
 export default AdminSlice.reducer;
