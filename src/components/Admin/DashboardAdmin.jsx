@@ -10,7 +10,6 @@ const DashboardAdmin = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const { paymentStatus, totalPages } = useSelector((state) => state.admin);
 
-    console.log(paymentStatus);
     useEffect(() => {
         dispatch(getTransactionData(currentPage));
     }, [dispatch, currentPage]);

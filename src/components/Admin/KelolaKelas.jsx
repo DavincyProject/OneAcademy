@@ -1,56 +1,31 @@
 import QuickInformation from "./QuickInformation";
 import { FaFilter, FaSearch } from "react-icons/fa";
 import AddClass from "./AddClass";
+import { Link } from "react-router-dom";
+import { formatPrice } from "../../utils/utils";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { listCourse } from "../../redux/actions/courseActions";
 
 const KelolaKelas = () => {
-    const data = [
-        {
-            id: 1,
-            classid: "UIUX0123",
-            category: "UI/UX Design",
-            title: "Belajar web Designer dengan Figma",
-            type: "GRATIS",
-            level: "Beginner",
-            price: 0,
-        },
-        {
-            id: 2,
-            classid: "WD1123",
-            category: "Web Development",
-            title: "CSS dan HTML dalam seminggu",
-            type: "PREMIUM",
-            level: "Intermediate",
-            price: 999999999,
-        },
-        {
-            id: 3,
-            classid: "DS0323",
-            category: "Data Science",
-            title: "Data Cleaning untuk pemula",
-            type: "PREMIUM",
-            level: "Beginner",
-            price: 123000,
-        },
-        {
-            id: 4,
-            classid: "WD0153",
-            category: "Web Development",
-            title: "Membuat website menggunakan AI",
-            type: "GRATIS",
-            level: "Advanced",
-            price: 0,
-        },
-    ];
+    const [currentPage, setCurrentPage] = useState(1);
+    const dispatch = useDispatch();
 
-    const formatPrice = (price) => {
-        // Assuming price is a number
-        return price.toLocaleString("id-ID", {
-            style: "currency",
-            currency: "IDR",
-            maximumFractionDigits: 0,
-        });
+    const course = useSelector((state) => state.course.listCourse);
+    const { coursePage } = useSelector((state) => state.course);
+
+    useEffect(() => {
+        dispatch(listCourse(currentPage));
+    }, [dispatch, currentPage]);
+
+    const totalPages = coursePage || 1;
+
+    const handlePageChange = (page) => {
+        if (page >= 1 && page <= totalPages && page !== currentPage) {
+            setCurrentPage(page);
+        }
     };
-
     return (
         <div className="flex flex-col w-full">
             {/* Quick Information About class and classs */}
@@ -78,7 +53,7 @@ const KelolaKelas = () => {
                         {/* head */}
                         <thead>
                             <tr className="bg-[#EBF3FC] text-black">
-                                <th>Kode Kelas</th>
+                                <th>Instructor</th>
                                 <th>Kategori</th>
                                 <th>Nama Kelas</th>
                                 <th>Tipe Kelas</th>
@@ -88,26 +63,29 @@ const KelolaKelas = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {data.map((item) => (
+                            {course.map((item) => (
                                 <tr key={item.id}>
-                                    <th>{item.classid}</th>
-                                    <td>{item.category}</td>
+                                    <th>{item.instructor}</th>
+                                    <td>{item.category.name}</td>
                                     <td>{item.title}</td>
                                     <td
                                         className={`font-bold text-xs ${
-                                            item.type === "GRATIS"
+                                            item.courseType === "Gratis"
                                                 ? "text-green-500"
                                                 : "text-darkblue"
                                         }`}
                                     >
-                                        {item.type}
+                                        {item.courseType}
                                     </td>
                                     <td>{item.level}</td>
                                     <td>{formatPrice(item?.price)}</td>
                                     <td className="flex gap-2">
-                                        <button className="badge-darkblue p-1 rounded-md">
+                                        <Link
+                                            to={`/admin/chapter/${item.id}`}
+                                            className="badge-darkblue p-1 rounded-md"
+                                        >
                                             Ubah
-                                        </button>
+                                        </Link>
                                         <button className="badge-red p-1 rounded-md">
                                             Hapus
                                         </button>
@@ -116,6 +94,32 @@ const KelolaKelas = () => {
                             ))}
                         </tbody>
                     </table>
+                    {/* Pagination */}
+                    <div className="flex items-center justify-center my-5">
+                        <div className="join">
+                            <button
+                                onClick={() =>
+                                    handlePageChange(currentPage - 1)
+                                }
+                                disabled={currentPage === 1}
+                                className="join-item btn btn-blue"
+                            >
+                                «
+                            </button>
+                            <button className="join-item btn btn-blue">
+                                {currentPage}
+                            </button>
+                            <button
+                                onClick={() =>
+                                    handlePageChange(currentPage + 1)
+                                }
+                                disabled={currentPage === totalPages}
+                                className="join-item btn btn-blue"
+                            >
+                                »
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

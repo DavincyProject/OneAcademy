@@ -23,7 +23,7 @@ const Navbar = () => {
 
     const isHidden =
         hidePath.includes(location.pathname) ||
-        location.pathname.startsWith("/forgot/");
+        location.pathname.startsWith("/forgot/" && "/admin/chapter/");
 
     // useEffect(() => {
     //     dispatch(getProfileData(token));

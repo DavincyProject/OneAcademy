@@ -29,4 +29,10 @@ export const ENDPOINTS = {
     transactioncourse: (page) => {
         return `${API_URL}/api/v1/transaction/?page=${page}`;
     },
+    admincoursedetails: (id) => {
+        return `${API_URL}/api/v1/course/${id}`;
+    },
+    chapterupdate: (id) => {
+        return `${API_URL}/api/v1/course/update/${id}`;
+    },
 };

@@ -32,7 +32,7 @@ export const login = (email, password, navigate) => async (dispatch) => {
 };
 
 export const register =
-    (name, email, phone, password, roleId, navigate) => async () => {
+    (name, email, phone, password, navigate) => async () => {
         try {
             const response = await axios.post(ENDPOINTS.register, {
                 name,
@@ -42,11 +42,10 @@ export const register =
                 roleId: 2,
             });
 
-            const { email } = response.data.user;
-            const { message } = response.data;
+            const { message, user } = response.data;
 
             toast.success(message);
-            localStorage.setItem("email", email);
+            localStorage.setItem("email", user.email);
 
             setTimeout(() => {
                 navigate("/validate");

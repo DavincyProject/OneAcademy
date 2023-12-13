@@ -19,8 +19,46 @@ export const getTransactionData = (page) => async (dispatch) => {
             });
             return;
         }
-        toast.error(`${error?.data?.error}`, {
+        toast.error(`${error?.error}`, {
             duration: 2000,
         });
     }
 };
+
+export const updateChapter =
+    (
+        id,
+        image,
+        title,
+        instructor,
+        description,
+        price,
+        level,
+        courseType,
+        categoryId
+    ) =>
+    async () => {
+        try {
+            const chapterupdate = ENDPOINTS.updateChapter(id);
+            await axios.put(chapterupdate, {
+                id,
+                image,
+                title,
+                instructor,
+                description,
+                price,
+                level,
+                courseType,
+                categoryId,
+            });
+
+            toast.success(`Chapter ${id} updated successfully`);
+        } catch (error) {
+            if (isAxiosError(error)) {
+                toast.error(`${error?.response?.data?.message}`, {
+                    duration: 2000,
+                });
+                return;
+            }
+        }
+    };
