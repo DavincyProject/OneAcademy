@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { updateChapter } from "../../../redux/actions/adminActions";
 import { useParams } from "react-router-dom";
-import { useCallback, useState } from "react";
-import Proptype from "prop-types";
+import { useState, useEffect } from "react";
 import { listCategory } from "../../../redux/actions/courseActions";
-import { useEffect } from "react";
 import { toast } from "react-hot-toast";
+import ImageUploading from "react-images-uploading";
+import Proptype from "prop-types";
 
 const UpdateChapter = () => {
     const { id } = useParams();
@@ -27,6 +27,11 @@ const UpdateChapter = () => {
         dispatch(listCategory());
     }, [dispatch]);
 
+    const handleSubmitImage = (imageList, addUpdateIndex) => {
+        console.log(imageList, addUpdateIndex);
+        setImage(imageList[0].data_url);
+    };
+
     const handleUpdateData = (e) => {
         e.preventDefault();
 
@@ -34,18 +39,6 @@ const UpdateChapter = () => {
             toast.error("Please enter price");
             return;
         }
-
-        console.log(
-            id,
-            image,
-            title,
-            instructor,
-            description,
-            price,
-            level,
-            courseType,
-            categoryId
-        );
 
         dispatch(
             updateChapter(
@@ -61,22 +54,6 @@ const UpdateChapter = () => {
             )
         );
     };
-
-    const handleImageChange = useCallback(
-        (e) => {
-            const newImage = e.target.files[0];
-
-            if (newImage) {
-                const formData = new FormData();
-                formData.append("image", newImage);
-                setImage(formData);
-            } else {
-                setImage(details.image?.url);
-            }
-        },
-        [details.image?.url]
-    );
-
     return (
         <>
             <button
@@ -102,12 +79,35 @@ const UpdateChapter = () => {
                                         Thumbnail Kelas
                                     </span>
                                 </label>
-                                <input
-                                    type="file"
-                                    className="file-input file-input-bordered"
-                                    onChange={handleImageChange}
-                                />
+                                <ImageUploading
+                                    multiple
+                                    value={image}
+                                    onChange={handleSubmitImage}
+                                    dataURLKey="data_url"
+                                >
+                                    {({
+                                        onImageUpload,
+
+                                        dragProps,
+                                    }) => (
+                                        <input
+                                            type="file"
+                                            className="file-input file-input-bordered"
+                                            onClick={onImageUpload}
+                                            {...dragProps}
+                                        />
+                                    )}
+                                </ImageUploading>
                             </div>
+                            {/* <ImageUploading
+                                    value={image}
+                                    onChange={handleSubmitImage}
+                                >
+                                    <input
+                                        type="file"
+                                        className="file-input file-input-bordered"
+                                    />
+                                </ImageUploading> */}
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">
@@ -249,5 +249,5 @@ const UpdateChapter = () => {
 
 export default UpdateChapter;
 UpdateChapter.propTypes = {
-    details: Proptype.object,
+    details: Proptype.arrayOf(Proptype.object),
 };
