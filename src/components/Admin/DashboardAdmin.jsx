@@ -1,9 +1,10 @@
 import { FaFilter, FaSearch } from "react-icons/fa";
-import QuickInformation from "./QuickInformation";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getTransactionData } from "../../redux/actions/adminActions";
 import { useState } from "react";
+import { formatDateAndTime } from "../../utils/utils";
+import QuickInformation from "./QuickInformation";
 
 const DashboardAdmin = () => {
     const dispatch = useDispatch();
@@ -64,15 +65,19 @@ const DashboardAdmin = () => {
                                     <td>{item?.course?.title}</td>
                                     <td
                                         className={`font-bold text-xs ${
-                                            item.status === "SUDAH DIBAYAR"
-                                                ? "text-green-500"
-                                                : "text-red-500"
+                                            item.status === "Belum Bayar"
+                                                ? "text-red-500"
+                                                : "text-green-500"
                                         }`}
                                     >
                                         {item.status}
                                     </td>
-                                    <td>{item.paymentMethod || "-"}</td>
-                                    <td>{item.paymentDate}</td>
+                                    <td className="text-center">
+                                        {item.paymentMethod || "-"}
+                                    </td>
+                                    <td className="text-center">
+                                        {formatDateAndTime(item.paymentDate)}
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>
