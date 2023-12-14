@@ -78,7 +78,7 @@ export const detailsCourse = (id) => async (dispatch) => {
 export const temporarybuyCourse =
     (id, navigate) => async (dispatch, getState) => {
         try {
-            const temporarybuy = ENDPOINTS.buycourses(id);
+            const temporarybuy = ENDPOINTS.temporarybuycourses(id);
 
             const { token } = getState().auth;
             const response = await axios.post(
@@ -139,6 +139,34 @@ export const transactionDetails = (id) => async (dispatch, getState) => {
         const { transaction, course } = response.data;
         dispatch(setTransaction(transaction));
         dispatch(setCourseDetails(course));
+    } catch (error) {
+        if (axios.isAxiosError(error)) {
+            toast.error(`${error?.response?.data?.message}`, {
+                duration: 2000,
+            });
+            return;
+        }
+        toast.error(`${error?.data?.error}`, {
+            duration: 2000,
+        });
+    }
+};
+
+export const payCourses = (idcourse) => async (getState) => {
+    try {
+        const pay = ENDPOINTS.paycourses(idcourse);
+        const { token } = getState().auth;
+        await axios.post(
+            pay,
+            {},
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
+
+        toast.success("Payment success!");
     } catch (error) {
         if (axios.isAxiosError(error)) {
             toast.error(`${error?.response?.data?.message}`, {

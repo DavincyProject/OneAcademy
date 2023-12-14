@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import { validatePhoneInput } from "../../utils/utils";
 // import { useDispatch } from "react-redux";
 
 const EditProfile = () => {
@@ -10,19 +11,6 @@ const EditProfile = () => {
     const [kota, setKota] = useState("");
 
     // const dispatch = useDispatch();
-
-    const validateNomor = (e) => {
-        const inputValue = e.target.value;
-
-        //menghilangkan karakter yang bukan angka
-        const numericValue = inputValue.replace(/\D/g, "");
-
-        // mengatur panjang maksimal nomor telepon ke 15
-        const maxLength = 14;
-        const truncateValueNomor = numericValue.slice(0, maxLength);
-
-        setTelepon(truncateValueNomor);
-    };
 
     const handleImageChange = useCallback((e) => {
         const image = e.target.files[0];
@@ -114,7 +102,12 @@ const EditProfile = () => {
                     </div>
                     <input
                         value={telepon}
-                        onChange={validateNomor}
+                        onChange={(e) => {
+                            const input = e.target.value;
+                            if (validatePhoneInput(input)) {
+                                setTelepon(input);
+                            }
+                        }}
                         type="tel"
                         placeholder="Masukkan Nomor Telepon"
                         className="input input-bordered placeholder:text-[12px] placeholder:text-[#8A8A8A] w-full rounded-2xl max-w-xs"

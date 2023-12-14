@@ -32,21 +32,20 @@ export const login = (email, password, navigate) => async (dispatch) => {
 };
 
 export const register =
-    (name, email, phone, password, roleId, navigate) => async () => {
+    (email, password, name, phone, navigate) => async () => {
         try {
             const response = await axios.post(ENDPOINTS.register, {
-                name,
                 email,
+                name,
                 phone,
                 password,
                 roleId: 2,
             });
 
-            const { email } = response.data.user;
-            const { message } = response.data;
+            const { message, user } = response.data;
 
             toast.success(message);
-            localStorage.setItem("email", email);
+            localStorage.setItem("email", user.email);
 
             setTimeout(() => {
                 navigate("/validate");
@@ -54,7 +53,7 @@ export const register =
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 toast.error(`${error?.response?.data?.message}`, {
-                    duration: 2000,
+                    duration: 1500,
                 });
                 return;
             }
@@ -87,7 +86,7 @@ export const activateAccount = (OTP, navigate) => async () => {
                 duration: 2000,
             });
         } else {
-            toast.error(`${error?.message}`, {
+            toast.error(`${error?.error}`, {
                 duration: 2000,
             });
         }
