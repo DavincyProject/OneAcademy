@@ -160,8 +160,7 @@ const KelasDetail = () => {
                             }
                         />
                     ) : (
-                        // Tampilkan pesan atau elemen lain ketika token pengguna belum ada
-                        <p>Silakan masuk untuk melihat video.</p>
+                        <h1>Login to see Material Chapter</h1>
                     )}
                 </div>
             </div>
