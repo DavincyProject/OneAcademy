@@ -1,16 +1,21 @@
 import { useState, useEffect } from "react";
 import {
     payCourses,
+    payCoursesWithoutPayment,
     transactionDetails,
 } from "../../redux/actions/courseActions";
 import { useDispatch, useSelector } from "react-redux";
 import { formatPrice } from "../../utils/utils";
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-const PaymentSelect = ({ id }) => {
+const PaymentSelect = () => {
     const [cardNumber, setCardNumber] = useState("");
 
+    const { id } = useParams();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const detailsCourse = useSelector((state) => state.course?.courseDetails);
     const detailsTransaction = useSelector(
         (state) => state.course?.transaction
@@ -21,7 +26,17 @@ const PaymentSelect = ({ id }) => {
     }, [dispatch, id]);
 
     const handlePayment = () => {
-        dispatch(payCourses(detailsTransaction?.id));
+        if (detailsTransaction.totalPrice > 0) {
+            dispatch(payCourses(detailsTransaction?.id, id, navigate));
+            console.log("payment with payment", detailsTransaction?.id);
+        }
+
+        if (detailsTransaction.totalPrice <= 0) {
+            dispatch(
+                payCoursesWithoutPayment(detailsTransaction?.id, id, navigate)
+            );
+            console.log("payment without payment", detailsTransaction?.id);
+        }
     };
 
     const handleCardNumberChange = (e) => {

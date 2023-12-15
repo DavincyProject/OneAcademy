@@ -31,9 +31,8 @@ export const formatDateAndTimeWithOffset = (
         year: "numeric",
         month: "long",
         day: "numeric",
-        hour: "numeric",
-        minute: "numeric",
-        second: "numeric",
-        timeZoneName: "short",
+        hour: "2-digit",
+        minute: "2-digit",
+        timeZoneName: "long",
     });
 };

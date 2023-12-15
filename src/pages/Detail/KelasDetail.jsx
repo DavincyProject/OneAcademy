@@ -15,9 +15,10 @@ import DetailsClassSkeleton from "../../components/skeleton/DetailsClassSkeleton
 const KelasDetail = () => {
   const [activeVideo, setActiveVideo] = useState("");
 
-  const { id } = useParams();
-  const dispatch = useDispatch();
-  const { courseDetails } = useSelector((state) => state.course);
+    const { id } = useParams();
+    const dispatch = useDispatch();
+    const { token } = useSelector((state) => state.auth);
+    const { courseDetails } = useSelector((state) => state.course);
 
   useEffect(() => {
     dispatch(detailsCourse(id));
@@ -26,9 +27,9 @@ const KelasDetail = () => {
     };
   }, [dispatch, id]);
 
-  if (courseDetails <= 0) {
-    return <DetailsClassSkeleton />;
-  }
+    if (courseDetails <= 0) {
+        return <DetailsClassSkeleton />;
+    }
 
   return (
     <div>
@@ -89,49 +90,68 @@ const KelasDetail = () => {
         </div>
       </div>
 
-      <div className="flex flex-col md:flex-row mx-3 md:ml-10 xl:ml-10">
-        <div className="md:flex-col">
-          <div className="p-5 order-2 lg:order-1">
-            {/* Video component di sini */}
-            <VideoPlayer videoSrc={activeVideo} />
-          </div>
-          <div className="w-full md:w-[65vw] p-5">
-            <div className="collapse collapse-arrow bg-darkblue rounded-[4px] shadow-md mb-2">
-              <input type="checkbox" />
-              <div className="collapse-title text-white text-xl font-medium">
-                <h1>Kelas Ini Ditujukan Untuk</h1>
-              </div>
-              <div className="collapse-content bg-white">
-                <div className="w-full px-4">
-                  <ol className="text-sm font-semibold text-justify py-3 list-decimal">
-                    <li>
-                      Anda yang ingin memahami poin penting{" "}
-                      {courseDetails?.category?.name}
-                    </li>
-                    <li>
-                      Anda yang ingin bekerja di bidang{" "}
-                      {courseDetails?.category?.name}
-                    </li>
-                    <li>
-                      Anda yang ingin melatih skill mengenai{" "}
-                      {courseDetails?.category?.name}
-                    </li>
-                    <li>
-                      Anda yang ingin mengembangkan pengetahuan terhadap{" "}
-                      {courseDetails?.category?.name}
-                    </li>
-                  </ol>
+            <div className="flex flex-col md:flex-row mx-3 md:ml-10 xl:ml-10">
+                <div className="md:flex-col">
+                    <div className="p-5 order-2 lg:order-1">
+                        {/* Video component di sini */}
+                        <VideoPlayer videoSrc={activeVideo} />
+                    </div>
+                    <div className="w-full md:w-[65vw] p-5">
+                        <div className="collapse collapse-arrow bg-darkblue rounded-[4px] shadow-md mb-2">
+                            <input type="checkbox" />
+                            <div className="collapse-title text-white text-xl font-medium">
+                                <h1>Kelas Ini Ditujukan Untuk</h1>
+                            </div>
+                            <div className="collapse-content bg-white">
+                                <div className="w-full px-4">
+                                    <ol className="text-sm font-semibold text-justify py-3 list-decimal">
+                                        <li>
+                                            Anda yang ingin memahami poin
+                                            penting{" "}
+                                            {courseDetails?.category?.name}
+                                        </li>
+                                        <li>
+                                            Anda yang ingin bekerja di bidang{" "}
+                                            {courseDetails?.category?.name}
+                                        </li>
+                                        <li>
+                                            Anda yang ingin melatih skill
+                                            mengenai{" "}
+                                            {courseDetails?.category?.name}
+                                        </li>
+                                        <li>
+                                            Anda yang ingin mengembangkan
+                                            pengetahuan terhadap{" "}
+                                            {courseDetails?.category?.name}
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="collapse collapse-arrow bg-darkblue rounded-[4px] shadow-md">
+                            <input type="checkbox" />
+                            <div className="collapse-title text-white text-xl font-medium">
+                                <h1>Tentang kelas</h1>
+                            </div>
+                            <div className="collapse-content bg-white">
+                                <div className="w-full text-sm font-semibold py-3 text-justify rounded-md">
+                                    {courseDetails.description}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-            <div className="collapse collapse-arrow bg-darkblue rounded-[4px] shadow-md">
-              <input type="checkbox" />
-              <div className="collapse-title text-white text-xl font-medium">
-                <h1>Tentang kelas</h1>
-              </div>
-              <div className="collapse-content bg-white">
-                <div className="w-full text-sm font-semibold py-3 text-justify rounded-md">
-                  {courseDetails.description}
+                <div className="p-2 lg:order-2">
+                    {token ? (
+                        <VideoCardList
+                            onVideoSelect={(videoSrc) =>
+                                setActiveVideo(videoSrc)
+                            }
+                        />
+                    ) : (
+                        // Tampilkan pesan atau elemen lain ketika token pengguna belum ada
+                        <p>Silakan masuk untuk melihat video.</p>
+                    )}
                 </div>
               </div>
             </div>

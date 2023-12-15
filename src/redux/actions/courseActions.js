@@ -18,14 +18,23 @@ export const listCategory = () => async (dispatch) => {
         dispatch(setListCategory(category));
     } catch (error) {
         if (axios.isAxiosError(error)) {
-            toast.error(`${error?.response?.data?.message}`, {
+            if (error.response) {
+                const errorMessage = error.response.data.message;
+                toast.error(errorMessage, {
+                    duration: 2000,
+                });
+            } else {
+                // Respon tidak diterima dari server
+                toast.error("Error: No response received from the server", {
+                    duration: 2000,
+                });
+            }
+        } else {
+            // Kesalahan selain dari Axios
+            toast.error("An unexpected error occurred", {
                 duration: 2000,
             });
-            return;
         }
-        toast.error(`${error?.data?.error}`, {
-            duration: 2000,
-        });
     }
 };
 
@@ -39,14 +48,23 @@ export const listCourse = (page) => async (dispatch) => {
         dispatch(setCoursePage(totalPages));
     } catch (error) {
         if (axios.isAxiosError(error)) {
-            toast.error(`${error?.response?.data?.message}`, {
+            if (error.response) {
+                const errorMessage = error.response.data.message;
+                toast.error(errorMessage, {
+                    duration: 2000,
+                });
+            } else {
+                // Respon tidak diterima dari server
+                toast.error("Error: No response received from the server", {
+                    duration: 2000,
+                });
+            }
+        } else {
+            // Kesalahan selain dari Axios
+            toast.error("An unexpected error occurred", {
                 duration: 2000,
             });
-            return;
         }
-        toast.error(`${error?.data?.error}`, {
-            duration: 2000,
-        });
     }
 };
 
@@ -64,14 +82,23 @@ export const detailsCourse = (id) => async (dispatch) => {
         dispatch(setCourseMaterial(chapters));
     } catch (error) {
         if (axios.isAxiosError(error)) {
-            toast.error(`${error?.response?.data?.message}`, {
+            if (error.response) {
+                const errorMessage = error.response.data.message;
+                toast.error(errorMessage, {
+                    duration: 2000,
+                });
+            } else {
+                // Respon tidak diterima dari server
+                toast.error("Error: No response received from the server", {
+                    duration: 2000,
+                });
+            }
+        } else {
+            // Kesalahan selain dari Axios
+            toast.error("An unexpected error occurred", {
                 duration: 2000,
             });
-            return;
         }
-        toast.error(`${error?.data?.error}`, {
-            duration: 2000,
-        });
     }
 };
 
@@ -137,28 +164,40 @@ export const transactionDetails = (id) => async (dispatch, getState) => {
         });
 
         const { transaction, course } = response.data;
+        localStorage.setItem("date", transaction.paymentDate);
         dispatch(setTransaction(transaction));
         dispatch(setCourseDetails(course));
     } catch (error) {
         if (axios.isAxiosError(error)) {
-            toast.error(`${error?.response?.data?.message}`, {
+            if (error.response) {
+                const errorMessage = error.response.data.message;
+                toast.error(errorMessage, {
+                    duration: 2000,
+                });
+            } else {
+                // Respon tidak diterima dari server
+                toast.error("Error: No response received from the server", {
+                    duration: 2000,
+                });
+            }
+        } else {
+            // Kesalahan selain dari Axios
+            toast.error("An unexpected error occurred", {
                 duration: 2000,
             });
-            return;
         }
-        toast.error(`${error?.data?.error}`, {
-            duration: 2000,
-        });
     }
 };
 
-export const payCourses = (idcourse) => async (getState) => {
+export const payCourses = (transcationid) => async (dispatch, getState) => {
     try {
-        const pay = ENDPOINTS.paycourses(idcourse);
+        const pay = ENDPOINTS.paycourses(transcationid);
         const { token } = getState().auth;
         await axios.post(
             pay,
-            {},
+            {
+                paymentMethod: "Credit Card",
+            },
             {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -167,15 +206,74 @@ export const payCourses = (idcourse) => async (getState) => {
         );
 
         toast.success("Payment success!");
+
+        setTimeout(() => {
+            window.location.reload();
+            // navigate(`/payment/${id}`);
+        }, 1000);
     } catch (error) {
         if (axios.isAxiosError(error)) {
-            toast.error(`${error?.response?.data?.message}`, {
+            if (error.response) {
+                const errorMessage = error.response.data.message;
+                toast.error(errorMessage, {
+                    duration: 2000,
+                });
+            } else {
+                // Respon tidak diterima dari server
+                toast.error("Error: No response received from the server", {
+                    duration: 2000,
+                });
+            }
+        } else {
+            // Kesalahan selain dari Axios
+            toast.error("An unexpected error occurred", {
                 duration: 2000,
             });
-            return;
         }
-        toast.error(`${error?.data?.error}`, {
-            duration: 2000,
-        });
     }
 };
+
+export const payCoursesWithoutPayment =
+    (transcationid) => async (dispatch, getState) => {
+        try {
+            const pay = ENDPOINTS.paycourses(transcationid);
+            const { token } = getState().auth;
+            await axios.post(
+                pay,
+                {},
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+
+            toast.success("Payment success!");
+
+            setTimeout(() => {
+                window.location.reload();
+                // navigate(`/payment/${id}`);
+            }, 1000);
+        } catch (error) {
+            console.error(error);
+
+            if (axios.isAxiosError(error)) {
+                if (error.response) {
+                    const errorMessage = error.response.data.message;
+                    toast.error(errorMessage, {
+                        duration: 2000,
+                    });
+                } else {
+                    // Respon tidak diterima dari server
+                    toast.error("Error: No response received from the server", {
+                        duration: 2000,
+                    });
+                }
+            } else {
+                // Kesalahan selain dari Axios
+                toast.error("An unexpected error occurred", {
+                    duration: 2000,
+                });
+            }
+        }
+    };

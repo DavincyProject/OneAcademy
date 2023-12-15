@@ -114,7 +114,7 @@ const VideoCardList = ({ onVideoSelect }) => {
                     </p>
                 )}
 
-                {/* add conditional for play non free video here
+                {/* add conditional for play non free video here and need to be paid
                 <div className="p-1 mt-2 w-full md:max-w-[349px] mx-auto">
                     <div className="flex justify-between items-center">
                         <h1 className="text-[12px]  text-darkblue font-extrabold">
