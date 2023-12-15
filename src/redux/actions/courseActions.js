@@ -208,7 +208,6 @@ export const payCourses = (transcationid) => async (dispatch, getState) => {
         toast.success("Payment success!");
 
         setTimeout(() => {
-            localStorage.removeItem("date");
             window.location.reload();
             // navigate(`/payment/${id}`);
         }, 1000);
@@ -252,7 +251,6 @@ export const payCoursesWithoutPayment =
             toast.success("Payment success!");
 
             setTimeout(() => {
-                localStorage.removeItem("date");
                 window.location.reload();
                 // navigate(`/payment/${id}`);
             }, 1000);

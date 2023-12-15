@@ -5,6 +5,12 @@ import { Link } from "react-router-dom";
 const PaymentSuccess = () => {
     const { id } = useParams();
 
+    if (localStorage.getItem("date")) {
+        setTimeout(() => {
+            localStorage.removeItem("date");
+        }, 1500);
+    }
+
     const detailsCourse = useSelector((state) => state.course?.courseDetails);
 
     return (

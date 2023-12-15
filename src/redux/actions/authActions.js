@@ -17,6 +17,7 @@ export const login = (email, password, navigate) => async (dispatch) => {
         const { token } = data;
 
         dispatch(setToken(token));
+        localStorage.removeItem("countdown");
         navigate("/");
     } catch (error) {
         if (axios.isAxiosError(error)) {
@@ -158,6 +159,7 @@ export const resetPassword = (email) => async () => {
         });
 
         const { message } = response.data;
+        localStorage.removeItem("countdown");
         toast.success(message);
     } catch (error) {
         if (axios.isAxiosError(error)) {
