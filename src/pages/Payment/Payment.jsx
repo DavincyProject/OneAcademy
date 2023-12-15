@@ -22,7 +22,7 @@ const Payment = () => {
         dispatch(transactionDetails(id));
         const delay = setTimeout(() => {
             setFormattedDatePayment(
-                formatDateAndTimeWithOffset(transactionData?.paymentDate)
+                formatDateAndTimeWithOffset(localStorage.getItem("date"))
             );
             setIsLoading(false); // Mark loading as complete
         }, 2000);
@@ -67,7 +67,7 @@ const Payment = () => {
             ) : (
                 <>
                     {transactionData?.status === "Belum Bayar" ? (
-                        <PaymentSelect id={id} />
+                        <PaymentSelect />
                     ) : (
                         <PaymentSuccess />
                     )}
