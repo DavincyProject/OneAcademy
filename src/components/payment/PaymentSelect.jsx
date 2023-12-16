@@ -28,14 +28,12 @@ const PaymentSelect = () => {
     const handlePayment = () => {
         if (detailsTransaction.totalPrice > 0) {
             dispatch(payCourses(detailsTransaction?.id, id, navigate));
-            console.log("payment with payment", detailsTransaction?.id);
         }
 
         if (detailsTransaction.totalPrice <= 0) {
             dispatch(
                 payCoursesWithoutPayment(detailsTransaction?.id, id, navigate)
             );
-            console.log("payment without payment", detailsTransaction?.id);
         }
     };
 

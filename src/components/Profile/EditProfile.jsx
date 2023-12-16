@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import { validatePhoneInput } from "../../utils/utils";
-// import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const EditProfile = () => {
     const [image, setImage] = useState();
@@ -10,7 +10,9 @@ const EditProfile = () => {
     const [negara, setNegara] = useState("");
     const [kota, setKota] = useState("");
 
-    // const dispatch = useDispatch();
+    const { profileData } = useSelector((state) => state.profile);
+
+    console.log(profileData);
 
     const handleImageChange = useCallback((e) => {
         const image = e.target.files[0];

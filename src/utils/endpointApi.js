@@ -9,8 +9,10 @@ export const ENDPOINTS = {
     resetpassword: `${API_URL}/api/v1/user/reset-password`,
     setpassword: `${API_URL}/api/v1/user/set-password`,
 
+    //users endpoints
+    profile: `${API_URL}/api/v1/user/me`,
+
     //course endpoints
-    // updateprofile: `${API_URL}/api/v1/profile/`,
     category: `${API_URL}/api/v1/category`,
     listcourse: (page) => {
         return `${API_URL}/api/v1/course/?page=${page}`;

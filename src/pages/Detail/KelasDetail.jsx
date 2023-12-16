@@ -10,22 +10,37 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { detailsCourse } from "../../redux/actions/courseActions";
 import DetailsClassSkeleton from "../../components/skeleton/DetailsClassSkeleton";
-// import Enrollment from "../../components/Details/Enrollment";
+import Enrollment from "../../components/Details/Enrollment";
+import { logout } from "../../redux/actions/authActions";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const KelasDetail = () => {
     const [activeVideo, setActiveVideo] = useState("");
 
     const { id } = useParams();
     const dispatch = useDispatch();
-    const { token } = useSelector((state) => state.auth);
-    const { courseDetails } = useSelector((state) => state.course);
+    const navigate = useNavigate();
+
+    const { courseDetails, transaction } = useSelector((state) => state.course);
+    const { idUser } = useSelector((state) => state.auth);
+    const idProfile = useSelector((state) => state.profile?.profileData?.id);
 
     useEffect(() => {
-        dispatch(detailsCourse(id));
+        const delay = setTimeout(() => {
+            if (idUser !== idProfile) {
+                dispatch(logout(navigate));
+                toast.error("Kamu harus login terlebih dahulu");
+            } else {
+                dispatch(detailsCourse(id));
+            }
+        }, 1000);
+
         return () => {
+            clearTimeout(delay);
             dispatch(detailsCourse(null));
         };
-    }, [dispatch, id]);
+    }, []);
 
     if (courseDetails <= 0) {
         return <DetailsClassSkeleton />;
@@ -59,7 +74,7 @@ const KelasDetail = () => {
                         </div>
                         <h1 className="text-[14px]">{courseDetails.title}</h1>
                         <p className="text-[12px] font-bold">
-                            {courseDetails.instructor}
+                            {courseDetails?.instructor}
                         </p>
                         <div className="flex gap-4">
                             <div className="flex gap-1">
@@ -68,7 +83,7 @@ const KelasDetail = () => {
                                     alt="level icon"
                                 ></img>
                                 <h1 className="text-[12px] text-darkblue font-semibold">
-                                    {courseDetails.level}
+                                    {courseDetails?.level}
                                 </h1>
                             </div>
                             <div className="flex gap-1">
@@ -94,8 +109,11 @@ const KelasDetail = () => {
                                 </span>
                             </button>
                             {/* need to add logic to send id course into transaction pages */}
-                            <BuyCourseButton id={id} />
-                            {/* <Enrollment /> */}
+                            {transaction?.status === "Sudah Bayar" ? (
+                                <Enrollment />
+                            ) : (
+                                <BuyCourseButton id={id} />
+                            )}
                         </div>
                     </div>
                 </div>
@@ -146,14 +164,14 @@ const KelasDetail = () => {
                             </div>
                             <div className="collapse-content bg-white">
                                 <div className="w-full text-sm font-semibold py-3 text-justify rounded-md">
-                                    {courseDetails.description}
+                                    {courseDetails?.description}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="p-2 lg:order-2">
-                    {token ? (
+                    {transaction?.status === "Sudah Bayar" ? (
                         <VideoCardList
                             onVideoSelect={(videoSrc) =>
                                 setActiveVideo(videoSrc)
@@ -161,8 +179,8 @@ const KelasDetail = () => {
                         />
                     ) : (
                         <h1>
-                            Login to see Material Chapter, this text is test
-                            only and not final version
+                            Buy to see Material Chapter, this text is test only
+                            and not final version
                         </h1>
                     )}
                 </div>

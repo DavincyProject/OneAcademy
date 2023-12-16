@@ -1,7 +1,8 @@
 import axios from "axios";
-import { setToken } from "../reducers/authReducers";
+import { setIdUser, setToken } from "../reducers/authReducers";
 import { ENDPOINTS } from "../../utils/endpointApi";
 import toast from "react-hot-toast";
+import { setProfileData } from "../reducers/profileReducers";
 
 // check token is it same with login token, if not same. redirect to login again and remove localstorage token if not same
 export const protecttoken = () => async () => {};
@@ -13,10 +14,12 @@ export const login = (email, password, navigate) => async (dispatch) => {
             password,
         });
 
-        const { data } = response.data;
-        const { token } = data;
+        const { token } = response.data.data;
+        const { id } = response.data;
 
         dispatch(setToken(token));
+        dispatch(setIdUser(id));
+        localStorage.setItem("idUser", id);
         localStorage.removeItem("countdown");
         navigate("/");
     } catch (error) {
@@ -220,6 +223,9 @@ export const forgotPassword = (password, id, navigate) => async () => {
 
 export const logout = (navigate) => (dispatch) => {
     localStorage.removeItem("token");
+    localStorage.removeItem("idUser");
     dispatch(setToken(null));
+    dispatch(setIdUser(null));
+    dispatch(setProfileData(null));
     navigate("/login");
 };
