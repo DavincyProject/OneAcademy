@@ -39,6 +39,7 @@ const EditProfile = ({ profileData }) => {
 
         setLoading(true);
 
+        
         try {
             await dispatch(updateProfile(name, phone, country, city, avatar));
         } finally {
