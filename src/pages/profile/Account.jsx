@@ -1,27 +1,25 @@
 import { useState } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import HistoryPembayaran from "../../components/Profile/HistoryPembayaran";
-import EditProfile from "../../components/Profile/EditProfile";
-import UbahPassword from "../../components/Profile/UbahPassword";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/actions/authActions";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { getProfileData } from "../../redux/actions/profileActions";
+import HistoryPembayaran from "../../components/Profile/HistoryPembayaran";
+import EditProfile from "../../components/Profile/EditProfile";
+import UbahPassword from "../../components/Profile/UbahPassword";
 
 const Account = () => {
-    
     const [activeLink, setActiveLink] = useState("profile");
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     useEffect(() => {
         dispatch(getProfileData());
-    }, []);
+    }, [dispatch]);
 
     const { profileData } = useSelector((state) => state.profile);
-    console.log(profileData);
 
     const handleClick = (link) => {
         setActiveLink(link);
@@ -34,7 +32,7 @@ const Account = () => {
     const handleRenderContent = () => {
         switch (activeLink) {
             case "profile":
-                return <EditProfile />;
+                return <EditProfile profileData={profileData} />;
             case "ubahPassword":
                 return <UbahPassword />;
             case "riwayatPembayaran":
@@ -125,7 +123,7 @@ const Account = () => {
                                             <div className="border-t mb-2 border-[#E5E5E5]"></div>
                                         </Link>
                                         <button
-                                            onClick={handleLogout()}
+                                            onClick={handleLogout}
                                             className="hover:text-red-600 w-full"
                                         >
                                             <div className="flex items-center gap-2 text-[16px] mb-2 font-bold">

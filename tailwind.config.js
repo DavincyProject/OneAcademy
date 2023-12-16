@@ -13,9 +13,8 @@ export default {
                 darkblue: "#6148FF",
             },
         },
-        daisyui: {
-            themes: false,
-        },
+
+        darkMode: false,
     },
     plugins: [daisyui, tailwindTypography],
 };
