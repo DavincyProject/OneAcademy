@@ -68,18 +68,24 @@ export const listCourse = (page) => async (dispatch) => {
     }
 };
 
-export const detailsCourse = (id) => async (dispatch) => {
+export const detailsCourse = (id) => async (dispatch, getState) => {
     if (!id) {
         dispatch(setCourseDetails([]));
         return;
     }
     const detailCourse = ENDPOINTS.detailcourse(id);
     try {
-        const response = await axios.get(detailCourse);
-        const { course, chapters } = response.data;
+        const { token } = getState().auth;
+        const response = await axios.get(detailCourse, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        const { course, chapters, transaction } = response.data;
 
         dispatch(setCourseDetails(course));
         dispatch(setCourseMaterial(chapters));
+        dispatch(setTransaction(transaction));
     } catch (error) {
         if (axios.isAxiosError(error)) {
             if (error.response) {

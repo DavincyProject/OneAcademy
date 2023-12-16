@@ -3,26 +3,23 @@ import { ENDPOINTS } from "../../utils/endpointApi";
 import { setProfileData } from "../reducers/profileReducers";
 import toast from "react-hot-toast";
 
-export const getProfileData = (token) => async (dispatch) => {
+export const getProfileData = () => async (dispatch, getState) => {
     try {
-        const response = await axios.get(ENDPOINTS.updateprofile, {
+        const { token } = getState().auth;
+        const response = await axios.get(ENDPOINTS.profile, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
         });
 
-        const { data } = response.data;
-        console.log(data);
-        dispatch(setProfileData(data));
+        const { profile } = response.data;
+        dispatch(setProfileData(profile));
     } catch (error) {
         if (axios.isAxiosError(error)) {
-            toast.error(`${error?.response?.data?.message}`, {
+            // Kesalahan selain dari Axios
+            toast.error("An unexpected error occurred", {
                 duration: 2000,
             });
-            return;
         }
-        toast.error(`${error?.data?.error}`, {
-            duration: 2000,
-        });
     }
 };

@@ -4,12 +4,31 @@ import { Link } from "react-router-dom";
 import HistoryPembayaran from "../../components/Profile/HistoryPembayaran";
 import EditProfile from "../../components/Profile/EditProfile";
 import UbahPassword from "../../components/Profile/UbahPassword";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../redux/actions/authActions";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { getProfileData } from "../../redux/actions/profileActions";
 
 const Account = () => {
+    
     const [activeLink, setActiveLink] = useState("profile");
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        dispatch(getProfileData());
+    }, []);
+
+    const { profileData } = useSelector((state) => state.profile);
+    console.log(profileData);
 
     const handleClick = (link) => {
         setActiveLink(link);
+    };
+
+    const handleLogout = () => {
+        dispatch(logout(navigate));
     };
 
     const handleRenderContent = () => {
@@ -105,7 +124,10 @@ const Account = () => {
                                             </div>
                                             <div className="border-t mb-2 border-[#E5E5E5]"></div>
                                         </Link>
-                                        <Link className="hover:text-red-600">
+                                        <button
+                                            onClick={handleLogout()}
+                                            className="hover:text-red-600 w-full"
+                                        >
                                             <div className="flex items-center gap-2 text-[16px] mb-2 font-bold">
                                                 <img
                                                     src="/Profile/log-out.svg"
@@ -114,7 +136,7 @@ const Account = () => {
                                                 <h1>Keluar</h1>
                                             </div>
                                             <div className="border-t mb-2 border-[#E5E5E5]"></div>
-                                        </Link>
+                                        </button>
                                         <h1 className="text-center my-2 text-[#8A8A8A] text-xs">
                                             Version 1.1.0
                                         </h1>
