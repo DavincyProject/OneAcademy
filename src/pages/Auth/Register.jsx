@@ -25,7 +25,7 @@ const Register = () => {
             toast.error("Semua Form Harus Diisi");
             return;
         } else if (name === "") {
-            toast.error("name masih kosong");
+            toast.error("Nama masih kosong");
             return;
         } else if (email === "") {
             toast.error("Email masih kosong");
@@ -40,10 +40,10 @@ const Register = () => {
             toast.error("Password min 8 karakter!");
             return;
         } else if (!/[A-Z]/.test(password)) {
-            toast.error("Password harus memiliki setidaknya satu huruf besar!");
+            toast.error("Password harus memiliki setidaknya satu huruf besar");
             return;
         } else if (!/[0-9]/.test(password)) {
-            toast.error("Password harus memiliki setidaknya satu angka!");
+            toast.error("Password harus memiliki setidaknya satu angka");
             return;
         }
 
