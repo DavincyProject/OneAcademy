@@ -9,14 +9,8 @@ import { getProfileData } from "../../redux/actions/profileActions";
 import HistoryPembayaran from "../../components/Profile/HistoryPembayaran";
 import EditProfile from "../../components/Profile/EditProfile";
 import UbahPassword from "../../components/Profile/UbahPassword";
-import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../redux/actions/authActions";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import { getProfileData } from "../../redux/actions/profileActions";
 
 const Account = () => {
-    
     const [activeLink, setActiveLink] = useState("profile");
     const dispatch = useDispatch();
     const navigate = useNavigate();
