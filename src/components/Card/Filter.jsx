@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
+import FilterSkeleton from "../skeleton/FilterSkeleton";
 
 const Filter = () => {
     const { listCategory } = useSelector((state) => state.course);
@@ -29,18 +30,46 @@ const Filter = () => {
     ];
 
     const handleCategoryFilter = (e, categoryId) => {
-        const isChecked = e.target.checked;
         const currentParams = new URLSearchParams(searchParams);
+        const existingCategories = new Set(
+            (currentParams.get("category") || "").split(",")
+        );
 
-        if (isChecked) {
-            currentParams.append("category", categoryId);
+        if (e.target.checked) {
+            existingCategories.add(categoryId);
         } else {
-            currentParams.delete("category", categoryId);
+            existingCategories.delete(categoryId);
         }
 
-        setSearchParams(currentParams);
-        console.log(currentParams);
+        existingCategories.size > 0
+            ? currentParams.set("category", [...existingCategories].join(","))
+            : currentParams.delete("category");
+
+        setSearchParams(currentParams.toString());
     };
+
+    const handleLevelFilter = (e, levelParams) => {
+        const currentParams = new URLSearchParams(searchParams);
+        const existingLevels = new Set(
+            (currentParams.get("level") || "").split(",")
+        );
+
+        if (e.target.checked) {
+            existingLevels.add(levelParams);
+        } else {
+            existingLevels.delete(levelParams);
+        }
+
+        existingLevels.size > 0
+            ? currentParams.set("level", [...existingLevels].join(","))
+            : currentParams.delete("level");
+
+        setSearchParams(currentParams);
+    };
+
+    if (listCategory <= 0) {
+        return <FilterSkeleton />;
+    }
 
     const checkColor = `[--chkbg:theme(colors.check.100)] [--chkfg:white]`;
     return (
@@ -89,7 +118,7 @@ const Filter = () => {
                     <div className="text-left text-[#202244CC] font-medium">
                         {listCategory?.map((category) => (
                             <div
-                                key={category?.id}
+                                key={category.id}
                                 className="form-control items-start"
                             >
                                 <label className="label cursor-pointer">
@@ -122,6 +151,9 @@ const Filter = () => {
                                     <input
                                         type="checkbox"
                                         className={`checkbox bg-[#E8F1FF] border-[#B4BDC4] ${checkColor}`}
+                                        onChange={(e) =>
+                                            handleLevelFilter(e, level.params)
+                                        }
                                     />
                                     <span className="label-text ml-3 ">
                                         {level?.name}
