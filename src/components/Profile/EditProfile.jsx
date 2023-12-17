@@ -39,11 +39,12 @@ const EditProfile = ({ profileData }) => {
 
         setLoading(true);
 
-        
         try {
             await dispatch(updateProfile(name, phone, country, city, avatar));
         } finally {
-            setLoading(false);
+            setTimeout(() => {
+                setLoading(false);
+            }, 1500);
         }
     };
 

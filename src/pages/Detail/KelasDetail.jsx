@@ -121,10 +121,14 @@ const KelasDetail = () => {
 
             <div className="flex flex-col md:flex-row mx-3 md:ml-10 xl:ml-10">
                 <div className="md:flex-col">
-                    <div className="p-5 order-2 lg:order-1">
-                        {/* Video component di sini */}
-                        <VideoPlayer videoSrc={activeVideo} />
-                    </div>
+                    {transaction?.status === "Sudah Bayar" ? (
+                        <div className="p-5 order-2 lg:order-1">
+                            {/* Video component di sini */}
+                            <VideoPlayer videoSrc={activeVideo} />
+                        </div>
+                    ) : (
+                        <></>
+                    )}
                     <div className="w-full md:w-[65vw] p-5">
                         <div className="collapse collapse-arrow bg-darkblue rounded-[4px] shadow-md mb-2">
                             <input type="checkbox" />
@@ -158,7 +162,7 @@ const KelasDetail = () => {
                             </div>
                         </div>
                         <div className="collapse collapse-arrow bg-darkblue rounded-[4px] shadow-md">
-                            <input type="checkbox" />
+                            <input type="checkbox" defaultChecked />
                             <div className="collapse-title text-white text-xl font-medium">
                                 <h1>Tentang kelas</h1>
                             </div>
