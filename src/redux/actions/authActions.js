@@ -19,6 +19,7 @@ export const login = (email, password, navigate) => async (dispatch) => {
 
         dispatch(setToken(token));
         dispatch(setIdUser(id));
+
         localStorage.setItem("idUser", id);
         localStorage.removeItem("countdown");
         navigate("/");
