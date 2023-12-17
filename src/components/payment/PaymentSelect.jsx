@@ -12,6 +12,7 @@ import { useParams } from "react-router-dom";
 
 const PaymentSelect = () => {
     const [cardNumber, setCardNumber] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const { id } = useParams();
     const dispatch = useDispatch();
@@ -25,15 +26,27 @@ const PaymentSelect = () => {
         dispatch(transactionDetails(id));
     }, [dispatch, id]);
 
-    const handlePayment = () => {
-        if (detailsTransaction.totalPrice > 0) {
-            dispatch(payCourses(detailsTransaction?.id, id, navigate));
-        }
+    const handlePayment = async () => {
+        setLoading(true);
 
-        if (detailsTransaction.totalPrice <= 0) {
-            dispatch(
-                payCoursesWithoutPayment(detailsTransaction?.id, id, navigate)
-            );
+        try {
+            if (detailsTransaction.totalPrice > 0) {
+                dispatch(payCourses(detailsTransaction?.id, id, navigate));
+            }
+
+            if (detailsTransaction.totalPrice <= 0) {
+                dispatch(
+                    payCoursesWithoutPayment(
+                        detailsTransaction?.id,
+                        id,
+                        navigate
+                    )
+                );
+            }
+        } finally {
+            setTimeout(() => {
+                setLoading(false);
+            }, 1500);
         }
     };
 
@@ -254,11 +267,17 @@ const PaymentSelect = () => {
                                 className="mt-3 btn w-full h-[50px] bg-[#ff0000] hover:bg-[#f15555] text-white rounded-[25px]"
                             >
                                 <div className="flex justify-center items-center gap-2 text-sm">
-                                    Bayar dan Ikuti Kelas Selamanya
-                                    <img
-                                        src="/icon/buy-now.svg"
-                                        alt="buy icon"
-                                    ></img>
+                                    {loading ? (
+                                        "Memproses Pembelian..."
+                                    ) : (
+                                        <>
+                                            Bayar dan Ikuti Kelas Selamanya
+                                            <img
+                                                src="/icon/buy-now.svg"
+                                                alt="buy icon"
+                                            ></img>
+                                        </>
+                                    )}
                                 </div>
                             </button>
                         </div>

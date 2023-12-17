@@ -12,6 +12,8 @@ export const ENDPOINTS = {
     //users endpoints
     profile: `${API_URL}/api/v1/user/me`,
     updateprofile: `${API_URL}/api/v1/user/me`,
+    changepassword: `${API_URL}/api/v1/user/me/change-password`,
+    buyhistory: `${API_URL}/api/v1/user/me/history-transaction`,
 
     //course endpoints
     category: `${API_URL}/api/v1/category`,

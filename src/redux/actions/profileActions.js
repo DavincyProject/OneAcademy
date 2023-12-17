@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ENDPOINTS } from "../../utils/endpointApi";
-import { setProfileData } from "../reducers/profileReducers";
+import { setBuyingHistory, setProfileData } from "../reducers/profileReducers";
 import toast from "react-hot-toast";
 
 export const getProfileData = () => async (dispatch, getState) => {
@@ -28,7 +28,7 @@ export const updateProfile =
     (name, phone, country, city, avatar) => async (dispatch, getState) => {
         try {
             const { token } = getState().auth;
-            await axios.put(
+            const response = await axios.put(
                 ENDPOINTS.profile,
                 {
                     name,
@@ -43,10 +43,13 @@ export const updateProfile =
                     },
                 }
             );
+
+            const { message } = response.data;
+            toast.success(message);
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 if (error.response) {
-                    const errorMessage = error.response.data.error;
+                    const errorMessage = error.response.data.message;
                     toast.error(errorMessage, {
                         duration: 2000,
                     });
@@ -64,3 +67,76 @@ export const updateProfile =
             }
         }
     };
+
+export const changePassword =
+    (oldPassword, newPassword) => async (dispatch, getState) => {
+        try {
+            const { token } = getState().auth;
+            const response = await axios.put(
+                ENDPOINTS.changepassword,
+                {
+                    oldPassword,
+                    newPassword,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+
+            const { message } = response.data;
+            toast.success(message);
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                if (error.response) {
+                    const errorMessage = error.response.data.message;
+                    toast.error(errorMessage, {
+                        duration: 2000,
+                    });
+                } else {
+                    // Respon tidak diterima dari server
+                    toast.error("Error: No response received from the server", {
+                        duration: 2000,
+                    });
+                }
+            } else {
+                // Kesalahan selain dari Axios
+                toast.error("An unexpected error occurred", {
+                    duration: 2000,
+                });
+            }
+        }
+    };
+
+export const buyingHistory = () => async (dispatch, getState) => {
+    try {
+        const { token } = getState().auth;
+        const response = await axios.get(ENDPOINTS.buyhistory, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        dispatch(setBuyingHistory(response.data));
+    } catch (error) {
+        if (axios.isAxiosError(error)) {
+            if (error.response) {
+                const errorMessage = error.response.data.message;
+                toast.error(errorMessage, {
+                    duration: 2000,
+                });
+            } else {
+                // Respon tidak diterima dari server
+                toast.error("Error: No response received from the server", {
+                    duration: 2000,
+                });
+            }
+        } else {
+            // Kesalahan selain dari Axios
+            toast.error("An unexpected error occurred", {
+                duration: 2000,
+            });
+        }
+    }
+};
