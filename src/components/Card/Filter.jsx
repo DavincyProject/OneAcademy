@@ -1,9 +1,11 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import FilterSkeleton from "../skeleton/FilterSkeleton";
+import { useEffect } from "react";
+import { listCategory } from "../../redux/actions/courseActions";
+import { setCourseFilter } from "../../redux/reducers/courseReducers";
 
 const Filter = () => {
-    const { listCategory } = useSelector((state) => state.course);
     const [searchParams, setSearchParams] = useSearchParams();
 
     const level = [
@@ -29,6 +31,29 @@ const Filter = () => {
         },
     ];
 
+    const dispatch = useDispatch();
+
+    const categoryList = useSelector((state) => state.course.listCategory);
+
+    useEffect(() => {
+        dispatch(listCategory());
+        handleParamsChange();
+    }, [dispatch, listCategory]);
+
+    const handleParamsChange = () => {
+        // Ambil nilai parameter dari URL
+        const categoryParams = searchParams.get("category");
+        const levelParams = searchParams.get("level");
+
+        // Bersihkan nilai parameter dan set ke dalam Redux state
+        dispatch(
+            setCourseFilter({
+                category: categoryParams,
+                level: levelParams,
+            })
+        );
+    };
+
     const handleCategoryFilter = (e, categoryId) => {
         const currentParams = new URLSearchParams(searchParams);
         const existingCategories = new Set(
@@ -41,11 +66,19 @@ const Filter = () => {
             existingCategories.delete(categoryId);
         }
 
-        existingCategories.size > 0
-            ? currentParams.set("category", [...existingCategories].join(","))
-            : currentParams.delete("category");
+        const categoriesArray = [...existingCategories];
 
-        setSearchParams(currentParams.toString());
+        if (categoriesArray.length > 0) {
+            currentParams.set("category", categoriesArray.join(","));
+        } else {
+            currentParams.delete("category");
+        }
+
+        setSearchParams(
+            currentParams.toString().replace(/^,/, "") // Menghapus koma di awal string
+        );
+
+        handleParamsChange();
     };
 
     const handleLevelFilter = (e, levelParams) => {
@@ -65,9 +98,10 @@ const Filter = () => {
             : currentParams.delete("level");
 
         setSearchParams(currentParams);
+        handleParamsChange();
     };
 
-    if (listCategory <= 0) {
+    if (categoryList <= 0) {
         return <FilterSkeleton />;
     }
 
@@ -116,7 +150,7 @@ const Filter = () => {
                         Kategori
                     </h2>
                     <div className="text-left text-[#202244CC] font-medium">
-                        {listCategory?.map((category) => (
+                        {categoryList?.map((category) => (
                             <div
                                 key={category.id}
                                 className="form-control items-start"

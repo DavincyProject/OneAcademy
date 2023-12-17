@@ -17,6 +17,9 @@ export const ENDPOINTS = {
 
     //course endpoints
     category: `${API_URL}/api/v1/category`,
+    filtersearch: (page) => {
+        `${API_URL}/api/v1/course/filtersearch/?page=${page}`;
+    },
     listcourse: (page) => {
         return `${API_URL}/api/v1/course/?page=${page}`;
     },

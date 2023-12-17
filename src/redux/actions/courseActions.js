@@ -282,9 +282,9 @@ export const payCoursesWithoutPayment =
         }
     };
 
-export const searchFilter = () => async (dispatch) => {
+export const searchFilter = (filters, page) => async (dispatch) => {
     try {
-        dispatch;
+        const response = await axios.get();
     } catch (error) {
         if (axios.isAxiosError(error)) {
             if (error.response) {
