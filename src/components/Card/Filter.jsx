@@ -161,6 +161,7 @@ const Filter = ({ page }) => {
                 <input
                   type="checkbox"
                   className={`checkbox bg-[#E8F1FF] border-[#B4BDC4] ${checkColor}`}
+                  checked={searchParams.get("orderBy") === "newest"}
                   onChange={handleNewestFilter}
                 />
                 <span className="label-text ml-3 ">Paling Baru</span>
@@ -182,6 +183,7 @@ const Filter = ({ page }) => {
                 <input
                   type="checkbox"
                   className={`checkbox bg-[#E8F1FF] border-[#B4BDC4] ${checkColor}`}
+                  checked={searchParams.get("promo") === "true"}
                   onChange={handlePromoFilter}
                 />
                 <span className="label-text ml-3">Promo</span>
