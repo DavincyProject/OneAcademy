@@ -68,18 +68,24 @@ export const listCourse = (page) => async (dispatch) => {
     }
 };
 
-export const detailsCourse = (id) => async (dispatch) => {
+export const detailsCourse = (id) => async (dispatch, getState) => {
     if (!id) {
         dispatch(setCourseDetails([]));
         return;
     }
     const detailCourse = ENDPOINTS.detailcourse(id);
     try {
-        const response = await axios.get(detailCourse);
-        const { course, chapters } = response.data;
+        const { token } = getState().auth;
+        const response = await axios.get(detailCourse, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        const { course, chapters, transaction } = response.data;
 
         dispatch(setCourseDetails(course));
         dispatch(setCourseMaterial(chapters));
+        dispatch(setTransaction(transaction));
     } catch (error) {
         if (axios.isAxiosError(error)) {
             if (error.response) {
@@ -255,8 +261,6 @@ export const payCoursesWithoutPayment =
                 // navigate(`/payment/${id}`);
             }, 1000);
         } catch (error) {
-            console.error(error);
-
             if (axios.isAxiosError(error)) {
                 if (error.response) {
                     const errorMessage = error.response.data.message;
@@ -277,3 +281,28 @@ export const payCoursesWithoutPayment =
             }
         }
     };
+
+export const searchFilter = (filters, page) => async (dispatch) => {
+    try {
+        const response = await axios.get();
+    } catch (error) {
+        if (axios.isAxiosError(error)) {
+            if (error.response) {
+                const errorMessage = error.response.data.message;
+                toast.error(errorMessage, {
+                    duration: 2000,
+                });
+            } else {
+                // Respon tidak diterima dari server
+                toast.error("Error: No response received from the server", {
+                    duration: 2000,
+                });
+            }
+        } else {
+            // Kesalahan selain dari Axios
+            toast.error("An unexpected error occurred", {
+                duration: 2000,
+            });
+        }
+    }
+};

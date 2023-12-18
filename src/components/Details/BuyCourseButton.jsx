@@ -4,21 +4,29 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { formatPrice } from "../../utils/utils";
 import { temporarybuyCourse } from "../../redux/actions/courseActions";
+import { useState } from "react";
 
 const BuyCourseButton = ({ id }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const [loading, setLoading] = useState(false);
 
     const prevCard = useSelector((state) => state.course.courseDetails);
     const { token } = useSelector((state) => state.auth);
 
-    const onBuyCourse = (e) => {
+    const onBuyCourse = async (e) => {
         e.preventDefault();
 
-        if (token) {
-            dispatch(temporarybuyCourse(id, navigate));
-        } else {
-            navigate("/login");
+        setLoading(true);
+
+        try {
+            if (token) {
+                await dispatch(temporarybuyCourse(id, navigate));
+            } else {
+                navigate("/login");
+            }
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -156,11 +164,17 @@ const BuyCourseButton = ({ id }) => {
                             className="mt-3 w-[320px] h-[48px] bg-darkblue text-white rounded-[25px]"
                         >
                             <span className="flex justify-center items-center gap-2">
-                                Beli Sekarang
-                                <img
-                                    src="/icon/buy-now.svg"
-                                    alt="buy icon"
-                                ></img>
+                                {loading ? (
+                                    "Memproses Pembelian..."
+                                ) : (
+                                    <>
+                                        Beli Sekarang
+                                        <img
+                                            src="/icon/buy-now.svg"
+                                            alt="buy icon"
+                                        ></img>
+                                    </>
+                                )}
                             </span>
                         </button>
                     </div>

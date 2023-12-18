@@ -53,9 +53,14 @@ const Enrollment = ({ id }) => {
                     </div>
 
                     <div className="modal-action flex justify-center">
-                        <button className="font-bold text-base mt-3 w-[320px] h-[48px] bg-darkblue text-white rounded-[25px]">
-                            Ikuti Kelas
-                        </button>
+                        <form method="dialog">
+                            <button
+                                alt="close button"
+                                className="font-bold text-base mt-3 w-[320px] h-[48px] bg-darkblue text-white rounded-[25px]"
+                            >
+                                Ikuti Kelas
+                            </button>
+                        </form>
                     </div>
                 </div>
             </dialog>

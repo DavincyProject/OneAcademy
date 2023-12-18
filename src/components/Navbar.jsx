@@ -3,13 +3,19 @@ import { useLocation, Link, useNavigate } from "react-router-dom";
 import { FaRegBell, FaRegUser, FaListUl } from "react-icons/fa";
 import { logout } from "../redux/actions/authActions";
 import { CiLogout } from "react-icons/ci";
-// import { useEffect } from "react";
-// import { getProfileData } from "../redux/actions/profileActions";
+import { useEffect } from "react";
+import { getProfileData } from "../redux/actions/profileActions";
+
 const Navbar = () => {
-    const { token } =
-        useSelector((state) => state.auth) || localStorage.getItem("token");
+    const { token } = useSelector((state) => state.auth);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (token) {
+            dispatch(getProfileData());
+        }
+    }, [dispatch, token]);
 
     const location = useLocation();
     const hidePath = [
@@ -23,11 +29,8 @@ const Navbar = () => {
 
     const isHidden =
         hidePath.includes(location.pathname) ||
-        location.pathname.startsWith("/forgot/" && "/admin/chapter/");
-
-    // useEffect(() => {
-    //     dispatch(getProfileData(token));
-    // }, [dispatch, token]);
+        location.pathname.startsWith("/forgot/") ||
+        location.pathname.startsWith("/admin/chapter/");
 
     if (isHidden) {
         return null;

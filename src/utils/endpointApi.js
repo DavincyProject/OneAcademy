@@ -9,9 +9,17 @@ export const ENDPOINTS = {
     resetpassword: `${API_URL}/api/v1/user/reset-password`,
     setpassword: `${API_URL}/api/v1/user/set-password`,
 
+    //users endpoints
+    profile: `${API_URL}/api/v1/user/me`,
+    updateprofile: `${API_URL}/api/v1/user/me`,
+    changepassword: `${API_URL}/api/v1/user/me/change-password`,
+    buyhistory: `${API_URL}/api/v1/user/me/history-transaction`,
+
     //course endpoints
-    // updateprofile: `${API_URL}/api/v1/profile/`,
     category: `${API_URL}/api/v1/category`,
+    filtersearch: (page) => {
+        `${API_URL}/api/v1/course/filtersearch/?page=${page}`;
+    },
     listcourse: (page) => {
         return `${API_URL}/api/v1/course/?page=${page}`;
     },
