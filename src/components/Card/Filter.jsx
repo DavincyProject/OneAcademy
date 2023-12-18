@@ -175,6 +175,10 @@ const Filter = ({ page }) => {
                   <input
                     type="checkbox"
                     className={`checkbox bg-[#E8F1FF] border-[#B4BDC4] ${checkColor}`}
+                    checked={searchParams
+                      .get("level")
+                      ?.split(",")
+                      .includes(level.params)}
                     onChange={(e) => handleLevelFilter(e, level.params)}
                   />
                   <span className="label-text ml-3 ">{level?.name}</span>
