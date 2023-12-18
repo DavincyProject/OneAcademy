@@ -7,12 +7,14 @@ import { useEffect } from "react";
 import { listCourse } from "../../redux/actions/courseActions";
 import ClassCardSkeleton from "../../components/skeleton/ClassCardSkeleton";
 import { useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Class = () => {
   const [selectedFilter, setSelectedFilter] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { coursePage } = useSelector((state) => state.course);
   const { token } = useSelector((state) => state.auth);
@@ -29,6 +31,13 @@ const Class = () => {
     if (page >= 1 && page <= totalPages && page !== currentPage) {
       setCurrentPage(page);
     }
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    const searchQuery = e.target.elements[0].value;
+
+    navigate(`/class?name=${searchQuery}`);
   };
 
   const handleFilterChange = (filter) => {
@@ -61,7 +70,10 @@ const Class = () => {
       <div className="flex flex-col justify-center items-center w-full p-2 px-3 lg:px-0">
         <div className="flex flex-grow justify-between items-center mt-[30px] w-full max-w-[1000px]">
           <h1 className="text-base lg:text-[24px] font-bold">Kelas Tersedia</h1>
-          <form className="relative flex flex-row">
+          <form
+            onSubmit={handleSearchSubmit}
+            className="relative flex flex-row"
+          >
             <input
               type="search"
               placeholder="Cari Kelas"

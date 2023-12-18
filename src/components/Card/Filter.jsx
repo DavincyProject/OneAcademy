@@ -40,13 +40,51 @@ const Filter = ({ page }) => {
     const categoryParams = searchParams.get("category");
     const levelParams = searchParams.get("level");
     const courseTypeParams = searchParams.get("courseType");
+    const promoParams = searchParams.get("promo");
+    const newestParams = searchParams.get("orderBy");
+    const searchName = searchParams.get("name");
 
     const filters = {
       category: categoryParams,
       level: levelParams,
       courseType: courseTypeParams,
+      promo: promoParams,
+      orderBy: newestParams,
+      name: searchName,
     };
     dispatch(searchFilter(filters, page));
+  };
+
+  const handleNewestFilter = (e) => {
+    const currentParams = new URLSearchParams(searchParams);
+
+    if (e.target.checked) {
+      currentParams.set("orderBy", "newest");
+    } else {
+      currentParams.delete("orderBy");
+    }
+
+    setSearchParams(currentParams).then(() => {
+      handleParamsChange();
+    });
+  };
+
+  // const handlePopularFilter = (e) => {
+  //   menghandle checkbox "Paling Populer" akan diubah ketika api sudah bisa menerima popular
+  // };
+
+  const handlePromoFilter = (e) => {
+    const currentParams = new URLSearchParams(searchParams);
+
+    if (e.target.checked) {
+      currentParams.set("promo", "true");
+    } else {
+      currentParams.delete("promo");
+    }
+
+    setSearchParams(currentParams).then(() => {
+      handleParamsChange();
+    });
   };
 
   const handleCategoryFilter = (e, categoryId) => {
@@ -123,17 +161,20 @@ const Filter = ({ page }) => {
                 <input
                   type="checkbox"
                   className={`checkbox bg-[#E8F1FF] border-[#B4BDC4] ${checkColor}`}
+                  onChange={handleNewestFilter}
                 />
                 <span className="label-text ml-3 ">Paling Baru</span>
               </label>
             </div>
-            <div className="form-control items-start">
-              <label className="label cursor-pointer">
+            <div className="form-control items-start opacity-50 ">
+              <label className="label cursor-pointer hover:cursor-not-allowed">
                 <input
+                  disabled
                   type="checkbox"
                   className={`checkbox bg-[#E8F1FF] border-[#B4BDC4] ${checkColor}`}
+                  // onChange={handlePopularFilter}
                 />
-                <span className="label-text ml-3 ">Paling Populer</span>
+                <span className="label-text ml-3">Paling Populer</span>
               </label>
             </div>
             <div className="form-control items-start">
@@ -141,6 +182,7 @@ const Filter = ({ page }) => {
                 <input
                   type="checkbox"
                   className={`checkbox bg-[#E8F1FF] border-[#B4BDC4] ${checkColor}`}
+                  onChange={handlePromoFilter}
                 />
                 <span className="label-text ml-3">Promo</span>
               </label>
@@ -194,7 +236,7 @@ const Filter = ({ page }) => {
             onClick={handleRemoveFilter}
             className="btn btn-ghost w-full mb-4 text-red-500 font-medium"
           >
-            Hapus Filter
+            Hapus Filter dan Pencarian
           </button>
         </div>
       </div>
