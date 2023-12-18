@@ -105,12 +105,16 @@ const Navbar = () => {
           <div className="flex-none gap-2">
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                <div className="w-10 rounded-full">
-                  <img
-                    alt="User Profile Image"
-                    src={profileImage ? profileImage : "/profile.jpg"}
-                  />
-                </div>
+                {profileImage ? (
+                  <div className="w-10 rounded-full">
+                    <img
+                      alt="User Profile Image"
+                      src={profileImage ? profileImage : "/profile.jpg"}
+                    />
+                  </div>
+                ) : (
+                  <div className="skeleton bg-zinc-500 animate-pulse w-10 rounded-full"></div>
+                )}
               </label>
               <ul className="mt-3 z-[1] p-2 text-darkblue shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
                 <li className="my-2 hover:bg-slate-200 rounded-md">
