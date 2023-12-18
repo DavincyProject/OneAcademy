@@ -42,6 +42,7 @@ const Filter = ({ page }) => {
     const courseTypeParams = searchParams.get("courseType");
     const promoParams = searchParams.get("promo");
     const newestParams = searchParams.get("orderBy");
+    const searchName = searchParams.get("name");
 
     const filters = {
       category: categoryParams,
@@ -49,6 +50,7 @@ const Filter = ({ page }) => {
       courseType: courseTypeParams,
       promo: promoParams,
       orderBy: newestParams,
+      name: searchName,
     };
     dispatch(searchFilter(filters, page));
   };
@@ -234,7 +236,7 @@ const Filter = ({ page }) => {
             onClick={handleRemoveFilter}
             className="btn btn-ghost w-full mb-4 text-red-500 font-medium"
           >
-            Hapus Filter
+            Hapus Filter dan Pencarian
           </button>
         </div>
       </div>
