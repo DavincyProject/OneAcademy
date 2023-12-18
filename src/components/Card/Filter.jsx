@@ -39,10 +39,12 @@ const Filter = ({ page }) => {
   const handleParamsChange = () => {
     const categoryParams = searchParams.get("category");
     const levelParams = searchParams.get("level");
+    const courseTypeParams = searchParams.get("courseType");
 
     const filters = {
       category: categoryParams,
       level: levelParams,
+      courseType: courseTypeParams,
     };
     dispatch(searchFilter(filters, page));
   };

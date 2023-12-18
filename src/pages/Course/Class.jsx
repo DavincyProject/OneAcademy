@@ -6,10 +6,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { listCourse } from "../../redux/actions/courseActions";
 import ClassCardSkeleton from "../../components/skeleton/ClassCardSkeleton";
+import { useSearchParams } from "react-router-dom";
 
 const Class = () => {
   const [selectedFilter, setSelectedFilter] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch();
 
   const { coursePage } = useSelector((state) => state.course);
@@ -31,6 +33,20 @@ const Class = () => {
 
   const handleFilterChange = (filter) => {
     setSelectedFilter(filter);
+
+    if (filter === "Premium Class") {
+      const currentParams = new URLSearchParams(searchParams);
+      currentParams.set("courseType", "premium");
+      setSearchParams(currentParams);
+    } else if (filter === "Free") {
+      const currentParams = new URLSearchParams(searchParams);
+      currentParams.set("courseType", "gratis");
+      setSearchParams(currentParams);
+    } else {
+      const currentParams = new URLSearchParams(searchParams);
+      currentParams.delete("courseType");
+      setSearchParams(currentParams);
+    }
   };
 
   let filters;
