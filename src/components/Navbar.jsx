@@ -8,6 +8,10 @@ import { getProfileData } from "../redux/actions/profileActions";
 
 const Navbar = () => {
   const { token } = useSelector((state) => state.auth);
+  const profileImage = useSelector(
+    (state) => state.profile?.profileData?.avatar
+  );
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -15,7 +19,7 @@ const Navbar = () => {
     if (token) {
       dispatch(getProfileData());
     }
-  }, [dispatch, token]);
+  }, [dispatch, token, profileImage]);
 
   const location = useLocation();
   const hidePath = [
@@ -102,7 +106,10 @@ const Navbar = () => {
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
-                  <img alt="Tailwind CSS Navbar component" src="/profile.jpg" />
+                  <img
+                    alt="User Profile Image"
+                    src={profileImage ? profileImage : "/profile.jpg"}
+                  />
                 </div>
               </label>
               <ul className="mt-3 z-[1] p-2 text-darkblue shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
