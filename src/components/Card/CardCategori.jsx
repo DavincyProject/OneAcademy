@@ -19,8 +19,12 @@ const CardCategori = () => {
     navigate(`/class?category=${categoryId}`);
   };
 
-  if (categoryList <= 0) {
-    return <CategorySkeleton />;
+  {
+    categoryList.length <= 1 ? (
+      <CategorySkeleton />
+    ) : (
+      "Category is not Available Now"
+    );
   }
 
   return (

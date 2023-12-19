@@ -76,7 +76,11 @@ const Navbar = () => {
               type="submit"
               className="absolute bottom-1/2 right-4 translate-y-1/2 rounded-lg bg-darkblue p-1"
             >
-              <img src="/icon/search.svg" className="w-7" alt="search icon" />
+              <img
+                src="/icon/search.svg"
+                className="w-7 sm:w-5"
+                alt="search icon"
+              />
             </button>
           </form>
         ) : (
