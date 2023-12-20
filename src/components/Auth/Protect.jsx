@@ -5,13 +5,16 @@ import PropTypes from "prop-types";
 
 const Protect = ({ children }) => {
     const navigate = useNavigate();
-    const { token } = useSelector((state) => state.auth);
+    const { token, idUser } = useSelector((state) => state.auth);
 
     useEffect(() => {
-        if (token) {
+        if (token && idUser) {
             navigate("/");
+        } else {
+            localStorage.removeItem("token");
+            localStorage.removeItem("idUser");
         }
-    });
+    }, [idUser, navigate, token]);
 
     return children ? children : <Outlet />;
 };

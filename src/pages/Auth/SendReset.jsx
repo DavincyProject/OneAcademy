@@ -2,10 +2,53 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { resetPassword } from "../../redux/actions/authActions";
 import toast from "react-hot-toast";
+import { useEffect } from "react";
 
 const SendReset = () => {
     const [email, setEmail] = useState("");
+    const [isButtonDisabled, setButtonDisabled] = useState(false);
+    const [countdown, setCountdown] = useState(30);
+
     const dispatch = useDispatch();
+    let interval;
+
+    useEffect(() => {
+        const storedCountdown = parseInt(
+            localStorage.getItem("countdown") || "0",
+            10
+        );
+
+        if (storedCountdown > 0 && storedCountdown <= 30) {
+            setCountdown(storedCountdown);
+            setButtonDisabled(true);
+            startCountdown();
+        } else {
+            setCountdown(30);
+        }
+
+        // Cleanup function to clear the interval when the component unmounts
+        return () => clearInterval(interval);
+    }, []);
+
+    const startCountdown = () => {
+        // Clear the previous interval before starting a new one
+        clearInterval(interval);
+
+        interval = setInterval(() => {
+            setCountdown((prevCountdown) => {
+                localStorage.setItem("countdown", String(prevCountdown));
+
+                if (prevCountdown === 1) {
+                    clearInterval(interval);
+                    setButtonDisabled(false);
+                    localStorage.clear("countdown");
+                    return 30;
+                }
+
+                return prevCountdown - 1;
+            });
+        }, 1000);
+    };
 
     const handleReset = (e) => {
         e.preventDefault();
@@ -15,9 +58,9 @@ const SendReset = () => {
             return;
         }
 
-        //send email to api for getting mail reset
-        console.log("email terkirim:", email);
         dispatch(resetPassword(email));
+        setButtonDisabled(true);
+        startCountdown();
     };
 
     return (
@@ -45,8 +88,15 @@ const SendReset = () => {
                             </div>
                         </div>
                     </div>
-                    <button className="btn btn-primary w-full text-[14px] bg-darkblue text-white py-[10px] rounded-2xl mt-5">
-                        Kirim
+                    <button
+                        className={`btn btn-primary w-full text-[14px] bg-darkblue text-white py-[10px] rounded-2xl mt-5 ${
+                            isButtonDisabled
+                                ? "cursor-not-allowed opacity-70"
+                                : ""
+                        }`}
+                        disabled={isButtonDisabled}
+                    >
+                        {isButtonDisabled ? `Kirim (${countdown}s)` : "Kirim"}
                     </button>
                 </form>
             </div>

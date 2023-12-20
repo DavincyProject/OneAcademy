@@ -18,13 +18,19 @@ import Protect from "./components/Auth/Protect";
 import Account from "./pages/profile/Account";
 import Class from "./pages/Course/Class";
 import Payment from "./pages/Payment/Payment";
-import ProtectedProfile from "./components/Auth/ProtectedProfile";
+// import ProtectedProfile from "./components/Auth/ProtectedProfile";
+import KelolaChapter from "./pages/Admin/KelolaChapter";
+
 function App() {
     return (
         <>
             <Provider store={store}>
                 <BrowserRouter>
-                    <Toaster position="bottom-center" reverseOrder={false} />
+                    <Toaster
+                        position="bottom-center"
+                        reverseOrder={false}
+                        className="z-50"
+                    />
                     <Navbar />
                     <Routes>
                         {/* Guest routes */}
@@ -33,14 +39,14 @@ function App() {
                         <Route path="/class" element={<Class />} />
 
                         {/* Profile routes, Check if user is not login */}
-                        <Route element={<ProtectedProfile />}>
-                            <Route
-                                path="/notification"
-                                element={<Notification />}
-                            />
-                            <Route path="/account" element={<Account />} />
-                            <Route path="/payment/:id" element={<Payment />} />
-                        </Route>
+                        {/* <Route element={<ProtectedProfile />}> */}
+                        <Route
+                            path="/notification"
+                            element={<Notification />}
+                        />
+                        <Route path="/account" element={<Account />} />
+                        <Route path="/payment/:id" element={<Payment />} />
+                        {/* </Route> */}
 
                         {/* User Authorization */}
                         <Route element={<Protect />}>
@@ -61,6 +67,10 @@ function App() {
                         <Route
                             path="/admin/dashboard"
                             element={<AdminDashboard />}
+                        />
+                        <Route
+                            path="/admin/chapter/:id"
+                            element={<KelolaChapter />}
                         />
 
                         {/* Handle Pages Not Found */}

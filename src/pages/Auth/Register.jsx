@@ -5,12 +5,13 @@ import { FaRegEyeSlash } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { register } from "../../redux/actions/authActions";
+import { validatePhoneInput } from "../../utils/utils";
 import toast from "react-hot-toast";
 
 const Register = () => {
-    const [nama, setNama] = useState("");
+    const [name, setname] = useState("");
     const [email, setEmail] = useState("");
-    const [nomor, setNomor] = useState("");
+    const [phone, setPhone] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
@@ -20,16 +21,16 @@ const Register = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (!nama && !email && !nomor && !password) {
+        if (!name && !email && !phone && !password) {
             toast.error("Semua Form Harus Diisi");
             return;
-        } else if (nama === "") {
+        } else if (name === "") {
             toast.error("Nama masih kosong");
             return;
         } else if (email === "") {
             toast.error("Email masih kosong");
             return;
-        } else if (nomor === "") {
+        } else if (phone === "") {
             toast.error("Nomor Telepon masih kosong");
             return;
         } else if (password === "") {
@@ -38,13 +39,15 @@ const Register = () => {
         } else if (password.length < 8) {
             toast.error("Password min 8 karakter!");
             return;
+        } else if (!/[A-Z]/.test(password)) {
+            toast.error("Password harus memiliki setidaknya satu huruf besar");
+            return;
+        } else if (!/[0-9]/.test(password)) {
+            toast.error("Password harus memiliki setidaknya satu angka");
+            return;
         }
 
-        console.log("Email:", email);
-        console.log("Password:", password);
-        console.log("nama:", nama);
-        console.log("nomor:", nomor);
-        dispatch(register(email, password, nama, nomor, navigate));
+        dispatch(register(email, password, name, phone, navigate));
     };
 
     const togglePassword = () => {
@@ -61,14 +64,14 @@ const Register = () => {
                     <div className="flex flex-col gap-5 ">
                         <div className="flex flex-col">
                             <label className="text-[12px] mb-[4px] font-Poppins">
-                                Nama
+                                name
                             </label>
                             <input
                                 type="text"
                                 className="border w-full p-2 rounded-2xl"
-                                placeholder="Nama Lengkap"
-                                value={nama}
-                                onChange={(e) => setNama(e.target.value)}
+                                placeholder="nama Lengkap"
+                                value={name}
+                                onChange={(e) => setname(e.target.value)}
                             />
                         </div>
                         <div className="flex flex-col">
@@ -91,8 +94,13 @@ const Register = () => {
                                 type="text"
                                 inputMode="numeric"
                                 maxLength={14}
-                                value={nomor}
-                                onChange={(e) => setNomor(e.target.value)}
+                                value={phone}
+                                onChange={(e) => {
+                                    const input = e.target.value;
+                                    if (validatePhoneInput(input)) {
+                                        setPhone(input);
+                                    }
+                                }}
                                 placeholder="+62"
                                 className="border w-full p-2 rounded-2xl appearance-none"
                             />

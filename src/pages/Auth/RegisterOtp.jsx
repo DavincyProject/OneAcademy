@@ -1,18 +1,23 @@
 import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import { useState, useEffect } from "react";
-import toast from "react-hot-toast";
 import OtpInput from "react-otp-input";
+import { useDispatch } from "react-redux";
+import { activateAccount, resendOtp } from "../../redux/actions/authActions";
+import { useNavigate } from "react-router-dom";
 
 const RegisterOtp = () => {
-    const [otp, setOtp] = useState("");
+    const [OTP, setOtp] = useState("");
     const [resendTimeout, setResendTimeout] = useState(60);
+    const email = localStorage.getItem("email");
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleSubmitOtp = (e) => {
         e.preventDefault();
-        console.log(otp);
 
-        toast.success("OTP Berhasil Dikirim");
+        dispatch(activateAccount(OTP, navigate));
     };
 
     useEffect(() => {
@@ -30,9 +35,7 @@ const RegisterOtp = () => {
     }, [resendTimeout]);
 
     const handleResendClick = () => {
-        // Handle logic for resending OTP here
-        // code here
-
+        dispatch(resendOtp());
         //setTimeout to 60 again
         setResendTimeout(60);
     };
@@ -54,10 +57,10 @@ const RegisterOtp = () => {
                         <div className="flex flex-col">
                             <label className="text-[12px] text-sm lg:text-base mb-[4px] text-center font-Poppins">
                                 Ketik 6 digit kode yang dikirimkan ke{" "}
-                                <span className="font-bold">mail</span>
+                                <span className="font-bold">{email}</span>
                             </label>
                             <OtpInput
-                                value={otp}
+                                value={OTP}
                                 onChange={setOtp}
                                 numInputs={6}
                                 inputType="text"

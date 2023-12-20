@@ -1,29 +1,33 @@
 import { FaShoppingCart } from "react-icons/fa";
 import PropTypes from "prop-types";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { formatPrice } from "../../utils/utils";
+import { temporarybuyCourse } from "../../redux/actions/courseActions";
+import { useState } from "react";
 
 const BuyCourseButton = ({ id }) => {
-    const { token } = useSelector((state) => state.auth);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const [loading, setLoading] = useState(false);
 
     const prevCard = useSelector((state) => state.course.courseDetails);
+    const { token } = useSelector((state) => state.auth);
 
-    const onBuyCourse = () => {
-        if (token) {
-            navigate(`/payment/${id}`);
-        } else {
-            navigate("/login");
+    const onBuyCourse = async (e) => {
+        e.preventDefault();
+
+        setLoading(true);
+
+        try {
+            if (token) {
+                await dispatch(temporarybuyCourse(id, navigate));
+            } else {
+                navigate("/login");
+            }
+        } finally {
+            setLoading(false);
         }
-    };
-
-    const formatPrice = (price) => {
-        // Assuming price is a number
-        return price?.toLocaleString("id-ID", {
-            style: "currency",
-            currency: "IDR",
-            maximumFractionDigits: 0,
-        });
     };
 
     return (
@@ -160,11 +164,17 @@ const BuyCourseButton = ({ id }) => {
                             className="mt-3 w-[320px] h-[48px] bg-darkblue text-white rounded-[25px]"
                         >
                             <span className="flex justify-center items-center gap-2">
-                                Beli Sekarang
-                                <img
-                                    src="/icon/buy-now.svg"
-                                    alt="buy icon"
-                                ></img>
+                                {loading ? (
+                                    "Memproses Pembelian..."
+                                ) : (
+                                    <>
+                                        Beli Sekarang
+                                        <img
+                                            src="/icon/buy-now.svg"
+                                            alt="buy icon"
+                                        ></img>
+                                    </>
+                                )}
                             </span>
                         </button>
                     </div>

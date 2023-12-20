@@ -35,7 +35,6 @@ const Login = () => {
         }
 
         dispatch(login(email, password, navigate));
-        console.log(email, password);
         setError(null);
     };
 

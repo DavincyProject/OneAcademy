@@ -1,11 +1,34 @@
 import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { formatDateAndTimeWithOffset } from "../../utils/utils";
+import { transactionDetails } from "../../redux/actions/courseActions";
 import PaymentSelect from "../../components/payment/PaymentSelect";
 import PaymentSuccess from "../../components/payment/PaymentSuccess";
+import { useState } from "react";
+import PaymentMethodSkeleton from "../../components/skeleton/PaymentTimeSkeleton";
+
 const Payment = () => {
     const { id } = useParams();
-    const pay = false;
+    const [formattedDatePayment, setFormattedDatePayment] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+
+    const transactionData = useSelector((state) => state?.course?.transaction);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(transactionDetails(id));
+        const delay = setTimeout(() => {
+            setFormattedDatePayment(
+                formatDateAndTimeWithOffset(localStorage.getItem("date"))
+            );
+            setIsLoading(false); // Mark loading as complete
+        }, 2000);
+
+        return () => clearTimeout(delay);
+    }, [dispatch, id]);
 
     return (
         <div className="container-fluid mx-auto">
@@ -19,20 +42,37 @@ const Payment = () => {
                         Kembali
                     </Link>
                     <div className="flex justify-center items-center">
-                        {pay ? (
-                            <h1 className="text-center w-[343px] md:w-[936px] text-[13px] bg-[#73CA5C] md:text-[16px] font-bold text-white p-4 rounded-xl py-4 px-7">
-                                Terima kasih atas pembayaran transaksi
-                            </h1>
+                        {isLoading ? (
+                            <h1 className="skeleton bg-zinc-500 animate-pulse w-[343px] md:w-[936px] p-4 rounded-xl py-4 px-7"></h1>
                         ) : (
-                            <h1 className="text-center w-[343px] md:w-[936px] bg-[#ff0000] text-[13px] md:text-[16px] font-bold text-white p-4 rounded-xl py-4 px-7">
-                                Selesaikan Pembayaran sampai 10 Maret 2023 12:00
-                            </h1>
+                            <>
+                                {transactionData?.status === "Belum Bayar" ? (
+                                    <h1 className="text-center w-[343px] md:w-[936px] bg-[#ff0000] text-[13px] md:text-[16px] font-bold text-white p-4 rounded-xl py-4 px-7">
+                                        Selesaikan Pembayaran sampai{" "}
+                                        {formattedDatePayment}
+                                    </h1>
+                                ) : (
+                                    <h1 className="text-center w-[343px] md:w-[936px] text-[13px] bg-[#73CA5C] md:text-[16px] font-bold text-white p-4 rounded-xl py-4 px-7">
+                                        Terima kasih atas pembayaran transaksi
+                                    </h1>
+                                )}
+                            </>
                         )}
                     </div>
                 </div>
             </div>
 
-            {pay ? <PaymentSuccess /> : <PaymentSelect id={id} />}
+            {isLoading ? (
+                <PaymentMethodSkeleton />
+            ) : (
+                <>
+                    {transactionData?.status === "Belum Bayar" ? (
+                        <PaymentSelect />
+                    ) : (
+                        <PaymentSuccess />
+                    )}
+                </>
+            )}
         </div>
     );
 };

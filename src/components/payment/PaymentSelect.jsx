@@ -1,8 +1,54 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import {
+    payCourses,
+    payCoursesWithoutPayment,
+    transactionDetails,
+} from "../../redux/actions/courseActions";
+import { useDispatch, useSelector } from "react-redux";
+import { formatPrice } from "../../utils/utils";
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-const PaymentSelect = ({ id }) => {
+const PaymentSelect = () => {
     const [cardNumber, setCardNumber] = useState("");
+    const [loading, setLoading] = useState(false);
+
+    const { id } = useParams();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const detailsCourse = useSelector((state) => state.course?.courseDetails);
+    const detailsTransaction = useSelector(
+        (state) => state.course?.transaction
+    );
+
+    useEffect(() => {
+        dispatch(transactionDetails(id));
+    }, [dispatch, id]);
+
+    const handlePayment = async () => {
+        setLoading(true);
+
+        try {
+            if (detailsTransaction.totalPrice > 0) {
+                dispatch(payCourses(detailsTransaction?.id, id, navigate));
+            }
+
+            if (detailsTransaction.totalPrice <= 0) {
+                dispatch(
+                    payCoursesWithoutPayment(
+                        detailsTransaction?.id,
+                        id,
+                        navigate
+                    )
+                );
+            }
+        } finally {
+            setTimeout(() => {
+                setLoading(false);
+            }, 1500);
+        }
+    };
 
     const handleCardNumberChange = (e) => {
         const inputValue = e.target.value;
@@ -10,24 +56,11 @@ const PaymentSelect = ({ id }) => {
         // Hapus semua karakter non-digit dari nomor kartu
         const digitsOnly = inputValue.replace(/\D/g, "");
 
-        // Pisahkan nomor kartu menjadi blok 4 digit
+        // Pisahkan nomor kartu menjadi 4 digit
         const formattedNumber = digitsOnly.replace(/(\d{4})/g, "$1 ").trim();
 
         setCardNumber(formattedNumber);
     };
-
-    const formatPrice = (price) => {
-        // Assuming price is a number
-        return price.toLocaleString("id-ID", {
-            style: "currency",
-            currency: "IDR",
-            maximumFractionDigits: 0,
-        });
-    };
-
-    const price = 349000;
-    const ppn = (price / 100) * 11;
-    const total_price = price + ppn;
 
     const bankList = [
         {
@@ -85,7 +118,7 @@ const PaymentSelect = ({ id }) => {
                     </div>
 
                     <div className="collapse collapse-arrow bg-darkblue rounded-[4px] shadow-md">
-                        <input type="checkbox" checked="checked" />
+                        <input type="checkbox" defaultChecked />
                         <summary className="collapse-title text-white text-xl font-medium">
                             <h1>Credit Card</h1>
                         </summary>
@@ -168,7 +201,7 @@ const PaymentSelect = ({ id }) => {
                         </div>
                     </div>
                 </div>
-                <div className="px-8 md:p-0">
+                <div key={id} className="px-8 md:p-0">
                     <div className="card w-auto md:w-[400px] h-[375px] bg-base-100 shadow-xl p-5 border border-darkblue">
                         <div className="card-body flex justify-center flex-col p-0">
                             <h1 className="font-bold text-xl mb-2">
@@ -178,23 +211,23 @@ const PaymentSelect = ({ id }) => {
                             <div className="shadow-md bg-white flex flex-col flex-grow sm:flex-none items-stretch pb-2.5 rounded-2xl max-w-[400px]">
                                 <img
                                     loading="lazy"
-                                    src="/testing_course.png"
+                                    src={detailsCourse?.image?.url}
                                     alt="image course"
                                     className="aspect-[4.04] w-full overflow-hidden h-[85px] object-cover rounded-t-2xl"
                                 />
                                 <div className="flex w-full flex-col mt-1.5 px-2.5">
                                     <div className="items-stretch self-stretch flex w-full justify-between gap-5">
                                         <div className="text-indigo-600 text-xs font-bold leading-4 flex-1">
-                                            UI/UX Design
+                                            {detailsCourse?.category?.name}
                                         </div>
                                     </div>
                                     <div className="self-stretch text-black text-xs font-bold leading-4">
                                         <span className="font-bold text-indigo-950">
-                                            Belajar Web Designer dengan Figma
+                                            {detailsCourse?.title}
                                             <br />
                                         </span>
                                         <span className=" text-black">
-                                            by Angela Doe
+                                            {detailsCourse?.instructor}
                                         </span>
                                     </div>
                                 </div>
@@ -204,7 +237,7 @@ const PaymentSelect = ({ id }) => {
                                 <div>
                                     <h1 className="text-xs font-bold">Harga</h1>
                                     <p className="text-xs font-medium">
-                                        {formatPrice(price)}
+                                        {formatPrice(detailsCourse?.price || 0)}
                                     </p>
                                 </div>
                                 <div>
@@ -212,7 +245,9 @@ const PaymentSelect = ({ id }) => {
                                         PPN 11%
                                     </h1>
                                     <p className="text-xs font-medium">
-                                        {formatPrice(ppn)}
+                                        {formatPrice(
+                                            detailsTransaction?.totalTax || 0
+                                        )}
                                     </p>
                                 </div>
                                 <div>
@@ -220,19 +255,30 @@ const PaymentSelect = ({ id }) => {
                                         Total Bayar
                                     </h1>
                                     <p className="text-darkblue text-xs font-medium">
-                                        {formatPrice(total_price)}
+                                        {formatPrice(
+                                            detailsTransaction?.totalPrice || 0
+                                        )}
                                     </p>
                                 </div>
                             </div>
 
-                            <button className="mt-3 w-full h-[50px] bg-[#ff0000] text-white rounded-[25px]">
-                                <span className="flex justify-center items-center gap-2 text-sm">
-                                    Bayar dan Ikuti Kelas Selamanya
-                                    <img
-                                        src="/icon/buy-now.svg"
-                                        alt="buy icon"
-                                    ></img>
-                                </span>
+                            <button
+                                onClick={handlePayment}
+                                className="mt-3 btn w-full h-[50px] bg-[#ff0000] hover:bg-[#f15555] text-white rounded-[25px]"
+                            >
+                                <div className="flex justify-center items-center gap-2 text-sm">
+                                    {loading ? (
+                                        "Memproses Pembelian..."
+                                    ) : (
+                                        <>
+                                            Bayar dan Ikuti Kelas Selamanya
+                                            <img
+                                                src="/icon/buy-now.svg"
+                                                alt="buy icon"
+                                            ></img>
+                                        </>
+                                    )}
+                                </div>
                             </button>
                         </div>
                     </div>
@@ -245,4 +291,5 @@ const PaymentSelect = ({ id }) => {
 export default PaymentSelect;
 PaymentSelect.propTypes = {
     id: PropTypes.node,
+    transactionId: PropTypes.node,
 };
