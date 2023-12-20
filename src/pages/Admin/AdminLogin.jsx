@@ -4,8 +4,8 @@ import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { login } from "../../redux/actions/authActions";
 import toast from "react-hot-toast";
+import { loginAdmin } from "../../redux/actions/adminActions";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
@@ -29,7 +29,7 @@ const AdminLogin = () => {
       return;
     }
 
-    dispatch(login(email, password, navigate));
+    dispatch(loginAdmin(email, password, navigate));
   };
 
   const togglePassword = () => {

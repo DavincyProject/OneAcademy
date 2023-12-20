@@ -2,12 +2,18 @@ import { useState } from "react";
 import DashboardAdmin from "../../components/Admin/DashboardAdmin";
 import KelolaKelas from "../../components/Admin/KelolaKelas";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { logoutAdmin } from "../../redux/actions/adminActions";
 
 const AdminDashboard = () => {
   const [activeLink, setActiveLink] = useState(
     localStorage.getItem("activeLink") || "dashboard"
   );
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleClick = (link) => {
     setActiveLink(link);
@@ -23,6 +29,10 @@ const AdminDashboard = () => {
       default:
         return null;
     }
+  };
+
+  const handleLogout = () => {
+    dispatch(logoutAdmin(navigate));
   };
 
   return (
@@ -53,7 +63,10 @@ const AdminDashboard = () => {
           >
             Kelola Kelas
           </button>
-          <button className="btn btn-ghost  text-white hover:text-red-700 font-bold text-xs md:text-base justify-start">
+          <button
+            onClick={handleLogout}
+            className="btn btn-ghost  text-white hover:text-red-700 font-bold text-xs md:text-base justify-start"
+          >
             Keluar
           </button>
         </div>
