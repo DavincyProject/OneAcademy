@@ -97,6 +97,38 @@ export const addcategory = (formData) => async () => {
   }
 };
 
+export const updatedCategory = (id, formData) => async () => {
+  try {
+    const updateCategory = ENDPOINTS.updatedeletecategory(id);
+    await axios.put(updateCategory, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    toast.success("Kategori berhasil diubah");
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      if (error.response) {
+        const errorMessage = error.response.data.message;
+        toast.error(errorMessage, {
+          duration: 2000,
+        });
+      } else {
+        // Respon tidak diterima dari server
+        toast.error("Error: No response received from the server", {
+          duration: 2000,
+        });
+      }
+    } else {
+      // Kesalahan selain dari Axios
+      toast.error("An unexpected error occurred", {
+        duration: 2000,
+      });
+    }
+  }
+};
+
 export const deleteCategory = (id) => async () => {
   try {
     const deletedCategory = ENDPOINTS.updatedeletecategory(id);

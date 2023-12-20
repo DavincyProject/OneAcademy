@@ -10,6 +10,7 @@ import { listCategory, listCourse } from "../../redux/actions/courseActions";
 import AddCategory from "./category/AddCategory";
 import { deleteCategory } from "../../redux/actions/adminActions";
 import { formatDateAndTime } from "../../utils/utils";
+import EditCategory from "./category/EditCategory";
 
 const KelolaKelas = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -26,7 +27,7 @@ const KelolaKelas = () => {
     };
 
     fetchData();
-  }, [dispatch, currentPage, categoryList]);
+  }, [dispatch, currentPage]);
 
   const handledeletecategory = (id) => {
     dispatch(deleteCategory(id));
@@ -152,12 +153,28 @@ const KelolaKelas = () => {
                   <td>{formatDateAndTime(list?.createdAt)}</td>
                   <td>{formatDateAndTime(list?.updatedAt)}</td>
                   <td className="flex gap-2">
-                    <Link
-                      to={`/admin/chapter/${list.id}`}
+                    <button
                       className="badge-darkblue p-1 rounded-md"
+                      onClick={() =>
+                        document.getElementById("editCategory").showModal()
+                      }
                     >
-                      Ubah
-                    </Link>
+                      Ubah <small>[Still Bug]</small>
+                    </button>
+                    <dialog id="editCategory" className="modal">
+                      <div className="modal-box">
+                        <h3 className="font-bold text-lg">Edit Kategori</h3>
+                        <div className="py-4">
+                          <EditCategory id={list.id} data={list} />
+                        </div>
+                        <div className="modal-action">
+                          <form method="dialog">
+                            <button className="btn">Close</button>
+                          </form>
+                        </div>
+                      </div>
+                    </dialog>
+
                     <button
                       onClick={() => handledeletecategory(list.id)}
                       className="badge-red p-1 rounded-md"

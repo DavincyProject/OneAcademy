@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 import { listCategory } from "../../../redux/actions/courseActions";
 import Proptype from "prop-types";
 
+// ralat update course bukan chapter, tetapi halamannya sama dengan update dan buat chapter
+
 const UpdateChapter = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -25,7 +27,7 @@ const UpdateChapter = () => {
 
   useEffect(() => {
     dispatch(listCategory());
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     setTitle(details?.title || "");
