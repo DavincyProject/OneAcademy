@@ -21,7 +21,6 @@ const Home = () => {
               <h1 className="text-[24px] font-bold">
                 Belajar <br /> dari Praktisi Terbaik!
               </h1>
-              <h1></h1>
             </div>
             <Link
               to="/class"

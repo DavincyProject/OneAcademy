@@ -22,64 +22,53 @@ import Payment from "./pages/Payment/Payment";
 import KelolaChapter from "./pages/Admin/KelolaChapter";
 
 function App() {
-    return (
-        <>
-            <Provider store={store}>
-                <BrowserRouter>
-                    <Toaster
-                        position="bottom-center"
-                        reverseOrder={false}
-                        className="z-50"
-                    />
-                    <Navbar />
-                    <Routes>
-                        {/* Guest routes */}
-                        <Route path="/" element={<Home />} />
-                        <Route path="/details/:id" element={<KelasDetail />} />
-                        <Route path="/class" element={<Class />} />
+  return (
+    <>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Toaster
+            position="bottom-center"
+            reverseOrder={false}
+            className="z-50"
+            containerStyle={{ zIndex: 999999 }}
+          />
+          <Navbar />
+          <Routes>
+            {/* Guest routes */}
+            <Route path="/" element={<Home />} />
+            <Route path="/details/:id" element={<KelasDetail />} />
+            <Route path="/class" element={<Class />} />
 
-                        {/* Profile routes, Check if user is not login */}
-                        {/* <Route element={<ProtectedProfile />}> */}
-                        <Route
-                            path="/notification"
-                            element={<Notification />}
-                        />
-                        <Route path="/account" element={<Account />} />
-                        <Route path="/payment/:id" element={<Payment />} />
-                        {/* </Route> */}
+            {/* Profile routes, Check if user is not login */}
+            {/* <Route element={<ProtectedProfile />}> */}
+            <Route path="/notification" element={<Notification />} />
+            <Route path="/account" element={<Account />} />
+            <Route path="/payment/:id" element={<Payment />} />
+            {/* </Route> */}
 
-                        {/* User Authorization */}
-                        <Route element={<Protect />}>
-                            <Route path="/login" element={<Login />} />
-                            <Route path="/register" element={<Register />} />
-                            <Route path="/validate" element={<RegisterOtp />} />
+            {/* User Authorization */}
+            <Route element={<Protect />}>
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/validate" element={<RegisterOtp />} />
 
-                            {/* Reset Password */}
-                            <Route path="/reset" element={<SendReset />} />
-                            <Route
-                                path="/forgot/:id"
-                                element={<ResetPassword />}
-                            />
-                        </Route>
+              {/* Reset Password */}
+              <Route path="/reset" element={<SendReset />} />
+              <Route path="/forgot/:id" element={<ResetPassword />} />
+            </Route>
 
-                        {/* Admin Authorization */}
-                        <Route path="/admin" element={<AdminLogin />} />
-                        <Route
-                            path="/admin/dashboard"
-                            element={<AdminDashboard />}
-                        />
-                        <Route
-                            path="/admin/chapter/:id"
-                            element={<KelolaChapter />}
-                        />
+            {/* Admin Authorization */}
+            <Route path="/admin" element={<AdminLogin />} />
+            <Route path="/admin/dashboard" element={<AdminDashboard />} />
+            <Route path="/admin/chapter/:id" element={<KelolaChapter />} />
 
-                        {/* Handle Pages Not Found */}
-                        <Route path="*" element={<NotFound />} />
-                    </Routes>
-                </BrowserRouter>
-            </Provider>
-        </>
-    );
+            {/* Handle Pages Not Found */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </Provider>
+    </>
+  );
 }
 
 export default App;

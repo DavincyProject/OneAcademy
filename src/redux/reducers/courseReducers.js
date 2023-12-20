@@ -4,9 +4,9 @@ const initialState = {
   listCategory: [],
   listCourse: [],
   filtersearch: [],
-
   courseDetails: [],
   courseMaterial: [],
+
   transaction: null,
   coursePage: null,
 };
