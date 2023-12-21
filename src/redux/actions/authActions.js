@@ -222,7 +222,9 @@ export const forgotPassword = (password, id, navigate) => async () => {
 export const logout = (navigate) => (dispatch) => {
   localStorage.removeItem("token");
   localStorage.removeItem("idUser");
+  localStorage.removeItem("idProfile");
   localStorage.removeItem("idAdmin");
+  localStorage.removeItem("activeLink");
   dispatch(setToken(null));
   dispatch(setIdUser(null));
   dispatch(setProfileData(null));

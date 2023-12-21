@@ -4,6 +4,8 @@ import { useState } from "react";
 const VideoPlayer = ({ videoSrc }) => {
   const [isPlaying, setIsPlaying] = useState(false);
 
+  console.log(videoSrc);
+
   const togglePlay = () => {
     setIsPlaying(!isPlaying);
   };

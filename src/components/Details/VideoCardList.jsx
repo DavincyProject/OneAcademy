@@ -1,16 +1,28 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
+// import { useParams } from "react-router-dom";
 
 const VideoCardList = ({ onVideoSelect }) => {
+  // const { id } = useParams();
   const [selectedVideo, setSelectedVideo] = useState(null);
 
   const { courseMaterial, transaction } = useSelector((state) => state.course);
 
   function extractVideoId(videoURL) {
-    const videoId = videoURL.split("/").pop().split("?")[0];
-    const linkEmbed = `https://www.youtube.com/embed/${videoId}`;
-    return linkEmbed;
+    try {
+      const url = new URL(videoURL);
+      if (url.hostname === "www.youtube.com" && url.pathname === "/watch") {
+        const videoId = url.searchParams.get("v");
+        if (videoId) {
+          const linkEmbed = `https://www.youtube.com/embed/${videoId}`;
+          return linkEmbed;
+        }
+      }
+      throw new Error("Invalid YouTube URL");
+    } catch (error) {
+      return null;
+    }
   }
 
   const handleVideoSelect = (videoSrc) => {
@@ -50,45 +62,37 @@ const VideoCardList = ({ onVideoSelect }) => {
                   {chapter.totalDuration} Menit
                 </p>
               </div>
-              {chapter.material.map((material) => (
+              {chapter.material.map((materials) => (
                 <div
-                  key={material.id}
+                  key={materials.id}
                   onClick={() =>
-                    handleVideoSelect(extractVideoId(material.videoURL))
+                    handleVideoSelect(extractVideoId(materials.videoURL))
                   }
                   className="h-[52px] p-2 cursor-pointer"
                 >
                   <div className="flex justify-between items-center">
                     <div className="flex gap-2 items-center mt-2">
                       <h1 className="bg-[#EBF3FC] rounded-full w-[36px] h-[36px] flex justify-center items-center">
-                        {material.step}
+                        {materials.step}
                       </h1>
                       <h1
                         className={`text-[12px] max-w-[251px] ${
-                          selectedVideo === extractVideoId(material.videoURL)
+                          selectedVideo === extractVideoId(materials.videoURL)
                             ? "text-[#00CC00]"
                             : ""
                         }`}
                       >
-                        {material.title}
+                        {materials.title}
                       </h1>
                     </div>
-                    {transaction?.status === "Sudah Bayar" ? (
-                      <img
-                        src={
-                          selectedVideo === extractVideoId(material.videoURL)
-                            ? "/icon/Pause.svg"
-                            : "/icon/Play.svg"
-                        }
-                        alt="play pause icon"
-                      />
-                    ) : (
-                      <img
-                        src="/icon/lock.svg"
-                        alt="lock icon"
-                        className="w-6 h-6 opacity-50 cursor-not-allowed"
-                      />
-                    )}
+                    <img
+                      src={
+                        selectedVideo === extractVideoId(materials.videoURL)
+                          ? "/icon/Pause.svg"
+                          : "/icon/Play.svg"
+                      }
+                      alt="play pause icon"
+                    />
                   </div>
                   <div className="border-t mt-2 border-[#EBF3FC]"></div>
                 </div>

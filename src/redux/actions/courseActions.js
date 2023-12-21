@@ -8,6 +8,7 @@ import {
   setFilterSearch,
   setListCategory,
   setListCourse,
+  setProgressCourse,
   setTransaction,
 } from "../reducers/courseReducers";
 
@@ -296,6 +297,66 @@ export const searchFilter = (filters, currentPage) => async (dispatch) => {
     const { courses, totalPages } = response.data;
     dispatch(setFilterSearch(courses));
     dispatch(setCoursePage(totalPages));
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      if (error.response) {
+        const errorMessage = error.response.data.message;
+        toast.error(errorMessage, {
+          duration: 2000,
+        });
+      } else {
+        // Respon tidak diterima dari server
+        toast.error("Error: No response received from the server", {
+          duration: 2000,
+        });
+      }
+    } else {
+      // Kesalahan selain dari Axios
+      toast.error("An unexpected error occurred", {
+        duration: 2000,
+      });
+    }
+  }
+};
+
+export const addProgress = (materialid) => async (dispatch, getState) => {
+  try {
+    const add = ENDPOINTS.addprogress(materialid);
+    const { token } = getState().auth;
+    await axios.put(add, { authorization: `Bearer ${token}` });
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      if (error.response) {
+        const errorMessage = error.response.data.message;
+        toast.error(errorMessage, {
+          duration: 2000,
+        });
+      } else {
+        // Respon tidak diterima dari server
+        toast.error("Error: No response received from the server", {
+          duration: 2000,
+        });
+      }
+    } else {
+      // Kesalahan selain dari Axios
+      toast.error("An unexpected error occurred", {
+        duration: 2000,
+      });
+    }
+  }
+};
+
+export const getProgress = (id) => async (dispatch, getState) => {
+  try {
+    const getDataProgress = ENDPOINTS.checkprogress(id);
+    const { token } = getState().auth;
+    const response = await axios.get(getDataProgress, {
+      Authorization: `Bearer ${token}`,
+    });
+
+    const { progress } = response.data;
+
+    dispatch(setProgressCourse(progress));
   } catch (error) {
     if (axios.isAxiosError(error)) {
       if (error.response) {

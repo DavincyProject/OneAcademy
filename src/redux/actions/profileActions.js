@@ -13,6 +13,8 @@ export const getProfileData = () => async (dispatch, getState) => {
     });
 
     const { profile } = response.data;
+
+    localStorage.setItem("idProfile", profile.id);
     dispatch(setProfileData(profile));
   } catch (error) {
     if (axios.isAxiosError(error)) {

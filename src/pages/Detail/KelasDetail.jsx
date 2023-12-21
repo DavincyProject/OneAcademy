@@ -25,7 +25,7 @@ const KelasDetail = () => {
 
   const { courseDetails, transaction } = useSelector((state) => state.course);
   const { idUser } = useSelector((state) => state.auth);
-  const idProfile = useSelector((state) => state.profile?.profileData?.id);
+  const idProfile = localStorage.getItem("idProfile");
 
   useEffect(() => {
     const delay = setTimeout(() => {

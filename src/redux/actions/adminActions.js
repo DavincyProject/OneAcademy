@@ -7,6 +7,8 @@ import {
   setTotalPages,
 } from "../reducers/adminReducers";
 import { ENDPOINTS } from "../../utils/endpointApi";
+import { setIdUser, setToken } from "../reducers/authReducers";
+import { setProfileData } from "../reducers/profileReducers";
 
 export const loginAdmin = (email, password, navigate) => async (dispatch) => {
   try {
@@ -244,6 +246,14 @@ export const updateCourse = (id, formData) => async (dispatch, getState) => {
 export const logoutAdmin = (navigate) => (dispatch) => {
   localStorage.removeItem("tokenAdmin");
   localStorage.removeItem("idAdmin");
+  localStorage.removeItem("idAdmin");
+  localStorage.removeItem("activeLink");
+  localStorage.removeItem("token");
+  localStorage.removeItem("idUser");
+  localStorage.removeItem("idProfile");
+  dispatch(setToken(null));
+  dispatch(setIdUser(null));
+  dispatch(setProfileData(null));
   dispatch(setTokenAdmin(null));
   dispatch(setIdAdmin(null));
   navigate("/admin");
