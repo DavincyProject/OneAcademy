@@ -1,15 +1,18 @@
 import { useSelector } from "react-redux";
 import { useNavigate, Outlet } from "react-router-dom";
 import PropTypes from "prop-types";
+import { useEffect } from "react";
 
 const ProtectAdmin = ({ children }) => {
   const navigate = useNavigate();
 
-  const { role } = useSelector((state) => state.auth);
+  const { role, token, idUser } = useSelector((state) => state.auth);
 
-  if (role !== "ADMIN") {
-    navigate("/");
-  }
+  useEffect(() => {
+    if (token === null && idUser === null && role !== "ADMIN") {
+      navigate("/");
+    }
+  }, [token, idUser, role, navigate]);
 
   return children ? children : <Outlet />;
 };
