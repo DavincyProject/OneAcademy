@@ -1,7 +1,51 @@
 import axios from "axios";
 import toast from "react-hot-toast";
-import { setPaymentStatus, setTotalPages } from "../reducers/adminReducers";
+import {
+  setIdAdmin,
+  setPaymentStatus,
+  setTokenAdmin,
+  setTotalPages,
+} from "../reducers/adminReducers";
 import { ENDPOINTS } from "../../utils/endpointApi";
+import { setIdUser, setToken } from "../reducers/authReducers";
+import { setProfileData } from "../reducers/profileReducers";
+
+export const loginAdmin = (email, password, navigate) => async (dispatch) => {
+  try {
+    const response = await axios.post(ENDPOINTS.login, {
+      email,
+      password,
+    });
+
+    const { token } = response.data.data;
+    const { id } = response.data;
+
+    dispatch(setTokenAdmin(token));
+    dispatch(setIdAdmin(id));
+
+    localStorage.setItem("idAdmin", id);
+    navigate("/admin/dashboard");
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      if (error.response) {
+        const errorMessage = error.response.data.error;
+        toast.error(errorMessage, {
+          duration: 2000,
+        });
+      } else {
+        // Respon tidak diterima dari server
+        toast.error("Error: No response received from the server", {
+          duration: 2000,
+        });
+      }
+    } else {
+      // Kesalahan selain dari Axios
+      toast.error("An unexpected error occurred", {
+        duration: 2000,
+      });
+    }
+  }
+};
 
 export const getTransactionData = (page) => async (dispatch) => {
   try {
@@ -35,11 +79,11 @@ export const getTransactionData = (page) => async (dispatch) => {
 
 export const addcourse = (formData) => async (dispatch, getState) => {
   try {
-    const { token } = getState.adminAuth;
+    const { tokenAdmin } = getState().admin;
     await axios.post(ENDPOINTS.addcategory, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${tokenAdmin}`,
       },
     });
 
@@ -97,6 +141,38 @@ export const addcategory = (formData) => async () => {
   }
 };
 
+export const updatedCategory = (id, formData) => async () => {
+  try {
+    const updateCategory = ENDPOINTS.updatedeletecategory(id);
+    await axios.put(updateCategory, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    toast.success("Kategori berhasil diubah");
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      if (error.response) {
+        const errorMessage = error.response.data.message;
+        toast.error(errorMessage, {
+          duration: 2000,
+        });
+      } else {
+        // Respon tidak diterima dari server
+        toast.error("Error: No response received from the server", {
+          duration: 2000,
+        });
+      }
+    } else {
+      // Kesalahan selain dari Axios
+      toast.error("An unexpected error occurred", {
+        duration: 2000,
+      });
+    }
+  }
+};
+
 export const deleteCategory = (id) => async () => {
   try {
     const deletedCategory = ENDPOINTS.updatedeletecategory(id);
@@ -127,7 +203,7 @@ export const deleteCategory = (id) => async () => {
 
 export const updateCourse = (id, formData) => async (dispatch, getState) => {
   try {
-    const { token } = getState.adminAuth;
+    const { tokenAdmin } = getState().admin;
     const chapterupdate = ENDPOINTS.courseupdate(id);
 
     await axios.put(
@@ -139,7 +215,7 @@ export const updateCourse = (id, formData) => async (dispatch, getState) => {
       {
         headers: {
           "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${tokenAdmin}`,
         },
       }
     );
@@ -165,4 +241,20 @@ export const updateCourse = (id, formData) => async (dispatch, getState) => {
       });
     }
   }
+};
+
+export const logoutAdmin = (navigate) => (dispatch) => {
+  localStorage.removeItem("tokenAdmin");
+  localStorage.removeItem("idAdmin");
+  localStorage.removeItem("idAdmin");
+  localStorage.removeItem("activeLink");
+  localStorage.removeItem("token");
+  localStorage.removeItem("idUser");
+  localStorage.removeItem("idProfile");
+  dispatch(setToken(null));
+  dispatch(setIdUser(null));
+  dispatch(setProfileData(null));
+  dispatch(setTokenAdmin(null));
+  dispatch(setIdAdmin(null));
+  navigate("/admin");
 };

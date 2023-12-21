@@ -36,6 +36,13 @@ export const ENDPOINTS = {
     return `${API_URL}/api/v1/transaction/${transcationid}/pay`;
   },
 
+  addprogress: (materialid) => {
+    return `${API_URL}/api/v1/myClass/progress/complete/${materialid}`;
+  },
+  checkprogress: (courseid) => {
+    return `${API_URL}/api/v1/myClass/progress/course/${courseid}`;
+  },
+
   //admin endpoints
   transactioncourse: (page) => {
     return `${API_URL}/api/v1/transaction/?page=${page}`;

@@ -2,6 +2,7 @@ import axios from "axios";
 import { ENDPOINTS } from "../../utils/endpointApi";
 import { setBuyingHistory, setProfileData } from "../reducers/profileReducers";
 import toast from "react-hot-toast";
+import { setRole } from "../reducers/authReducers";
 
 export const getProfileData = () => async (dispatch, getState) => {
   try {
@@ -13,6 +14,9 @@ export const getProfileData = () => async (dispatch, getState) => {
     });
 
     const { profile } = response.data;
+
+    localStorage.setItem("idProfile", profile.id);
+    dispatch(setRole(profile.role.name));
     dispatch(setProfileData(profile));
   } catch (error) {
     if (axios.isAxiosError(error)) {

@@ -20,7 +20,6 @@ const Class = () => {
   const { token } = useSelector((state) => state.auth);
   const { filtersearch } = useSelector((state) => state.course);
 
-  console.log(currentPage);
   useEffect(() => {
     dispatch(listCourse(currentPage));
   }, [dispatch, currentPage]);

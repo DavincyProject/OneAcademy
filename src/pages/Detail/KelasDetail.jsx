@@ -25,10 +25,15 @@ const KelasDetail = () => {
 
   const { courseDetails, transaction } = useSelector((state) => state.course);
   const { idUser } = useSelector((state) => state.auth);
-  const idProfile = useSelector((state) => state.profile?.profileData?.id);
+  const idProfile = localStorage.getItem("idProfile");
 
   useEffect(() => {
     const delay = setTimeout(() => {
+      if (idUser === null) {
+        dispatch(logout(navigate));
+        toast.error("Kamu harus login terlebih dahulu");
+      }
+
       if (idUser !== idProfile) {
         dispatch(logout(navigate));
         toast.error("Kamu harus login terlebih dahulu");
