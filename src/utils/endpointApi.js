@@ -63,4 +63,9 @@ export const ENDPOINTS = {
   updatedeletecategory: (id) => {
     return `${API_URL}/api/v1/category/${id}`;
   },
+
+  addchapter: `${API_URL}/api/v1/chapter/create`,
+  updatedeletechapter: (id) => {
+    return `${API_URL}/api/v1/chapter/${id}`;
+  },
 };

@@ -267,6 +267,80 @@ export const deleteCategory = (id) => async () => {
   }
 };
 
+export const addChapter =
+  (totalDuration, step, title, id) => async (dispatch, getState) => {
+    try {
+      const { token } = getState().auth;
+      await axios.post(
+        ENDPOINTS.addchapter,
+        {
+          totalDuration,
+          step,
+          title,
+          courseId: id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      toast.success("Chapter baru berhasil dibuat");
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        if (error.response) {
+          const errorMessage = error.response.data.message;
+          toast.error(errorMessage, {
+            duration: 2000,
+          });
+        } else {
+          // Respon tidak diterima dari server
+          toast.error("Error: No response received from the server", {
+            duration: 2000,
+          });
+        }
+      } else {
+        // Kesalahan selain dari Axios
+        toast.error("An unexpected error occurred", {
+          duration: 2000,
+        });
+      }
+    }
+  };
+
+export const deleteChapter = (id) => async (getState) => {
+  try {
+    const { token } = getState().auth;
+    const chapterDeleteRequest = ENDPOINTS.updatedeletechapter(id);
+    await axios.delete(chapterDeleteRequest, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    toast.success("Chapter berhasil dihapus");
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      if (error.response) {
+        const errorMessage = error.response.data.message;
+        toast.error(errorMessage, {
+          duration: 2000,
+        });
+      } else {
+        // Respon tidak diterima dari server
+        toast.error("Error: No response received from the server", {
+          duration: 2000,
+        });
+      }
+    } else {
+      // Kesalahan selain dari Axios
+      toast.error("An unexpected error occurred", {
+        duration: 2000,
+      });
+    }
+  }
+};
+
 export const logoutAdmin = (navigate) => (dispatch) => {
   localStorage.removeItem("tokenAdmin");
   localStorage.removeItem("idAdmin");

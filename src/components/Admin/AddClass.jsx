@@ -42,6 +42,16 @@ const AddClass = () => {
 
     try {
       await dispatch(addcourse(formData));
+
+      // Clear form fields on success
+      setTitle("");
+      setInstructor("");
+      setCourseType("");
+      setLevel("");
+      setPrice("");
+      setDescription("");
+      setImage(null);
+      setCategoryId("");
     } finally {
       setTimeout(() => {
         setLoading(false);
