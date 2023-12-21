@@ -98,7 +98,7 @@ const KelolaKelas = () => {
                       to={`/admin/chapter/${item.id}`}
                       className="badge-darkblue p-1 rounded-md"
                     >
-                      Ubah
+                      Detail
                     </Link>
                     <button
                       onClick={() => handledeletecourse(item.id)}

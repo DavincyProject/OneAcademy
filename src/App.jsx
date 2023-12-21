@@ -30,8 +30,7 @@ function App() {
           <Toaster
             position="bottom-center"
             reverseOrder={false}
-            className="z-50"
-            containerStyle={{ zIndex: 999999 }}
+            className="custom-toaster"
           />
           <Navbar />
           <Routes>

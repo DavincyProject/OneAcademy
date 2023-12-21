@@ -12,14 +12,19 @@ export const login = (email, password, navigate) => async (dispatch) => {
     });
 
     const { token } = response.data.data;
-    const { id } = response.data;
+    const { id, roleId } = response.data;
 
     dispatch(setToken(token));
     dispatch(setIdUser(id));
 
     localStorage.setItem("idUser", id);
     localStorage.removeItem("countdown");
-    navigate("/");
+
+    if (roleId !== 2) {
+      navigate("/admin/dashboard");
+    } else {
+      navigate("/");
+    }
   } catch (error) {
     if (axios.isAxiosError(error)) {
       if (error.response) {

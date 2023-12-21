@@ -13,7 +13,7 @@ const AddCategory = () => {
     setImage(e.target.files[0]);
   };
 
-  const handleUpdateProfile = async (e) => {
+  const handleUpdateCategory = async (e) => {
     e.preventDefault();
 
     setLoading(true);
@@ -59,7 +59,7 @@ const AddCategory = () => {
             Buat Kategori Baru
           </h3>
           <div className="py-4">
-            <form onSubmit={handleUpdateProfile}>
+            <form onSubmit={handleUpdateCategory}>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Thumbnail Kategori</span>

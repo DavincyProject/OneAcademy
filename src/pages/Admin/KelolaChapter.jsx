@@ -3,9 +3,10 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { detailsCourse } from "../../redux/actions/courseActions";
 import { useParams } from "react-router-dom";
-import UpdateChapter from "../../components/Admin/chapters/UpdateChapter";
+import UpdateCourse from "../../components/Admin/course/UpdateCourse";
 import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
+import ChapterTable from "../../components/Admin/chapter/ChapterTable";
 
 const KelolaChapter = () => {
   const { id } = useParams();
@@ -26,8 +27,10 @@ const KelolaChapter = () => {
         Kembali Ke Dashboard
       </Link>
       <div className="container-fluid flex flex-col">
-        <UpdateChapter details={courseDetails} />
-        <div>test</div>
+        <UpdateCourse details={courseDetails} />
+        <div>
+          <ChapterTable />
+        </div>
       </div>
     </div>
   );

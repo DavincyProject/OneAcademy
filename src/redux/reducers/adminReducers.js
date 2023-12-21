@@ -1,8 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  tokenAdmin: localStorage.getItem("tokenAdmin") || null,
-  idAdmin: localStorage.getItem("idAdmin") || null,
   paymentStatus: [],
   totalPages: [],
 };
