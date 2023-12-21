@@ -45,7 +45,8 @@ const AddClass = () => {
     } finally {
       setTimeout(() => {
         setLoading(false);
-      }, 1500);
+        document.getElementById("addClass").close();
+      }, 1700);
     }
   };
   return (
@@ -54,7 +55,11 @@ const AddClass = () => {
         className="btn btn-ghost badge-darkblue rounded-3xl text-white hover:bg-gray-700"
         onClick={() => document.getElementById("addClass").showModal()}
       >
-        <IoAddCircleOutline size={20} color="white" />
+        <IoAddCircleOutline
+          size={20}
+          color="white"
+          className="hidden md:block"
+        />
         <small>Tambah Kelas</small>
       </button>
       <dialog id="addClass" className="modal">
@@ -136,11 +141,9 @@ const AddClass = () => {
                   value={courseType}
                   onChange={(e) => setCourseType(e.target.value)}
                 >
-                  <option disabled defaultValue>
-                    -- Pilih Tipe Kelas --
-                  </option>
-                  <option value={"gratis"}>GRATIS</option>
-                  <option value={"premium"}>PREMIUM</option>
+                  <option>--Pilih Tipe Kelas--</option>
+                  <option value="Gratis">Gratis</option>
+                  <option value="Premium">Premium</option>
                 </select>
               </div>
 
@@ -153,12 +156,10 @@ const AddClass = () => {
                   value={level}
                   onChange={(e) => setLevel(e.target.value)}
                 >
-                  <option disabled defaultValue>
-                    -- Pilih Level --
-                  </option>
-                  <option value={"beginner"}>Beginner</option>
-                  <option value={"intermediate"}>Intermediate</option>
-                  <option value={"advanced"}>Advanced</option>
+                  <option>--Pilih Level--</option>
+                  <option value="Beginner">Beginner</option>
+                  <option value="Intermediate">Intermediate</option>
+                  <option value="Advanced">Advanced</option>
                 </select>
               </div>
 
@@ -188,9 +189,12 @@ const AddClass = () => {
               </div>
               <div className="form-control mt-6">
                 <button className="btn btn-primary">
-                  {loading ? "Menyimpan..." : "Tambah Kelas"}
+                  {loading ? "Membuat Kelas..." : "Tambah Kelas"}
                 </button>
               </div>
+              <small>
+                ketika berhasil dibuat, pop up akan otomatis diclose
+              </small>
             </form>
           </div>
         </div>

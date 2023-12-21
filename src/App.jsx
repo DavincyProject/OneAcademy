@@ -10,7 +10,7 @@ import RegisterOtp from "./pages/Auth/RegisterOtp";
 import KelasDetail from "./pages/Detail/KelasDetail";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
-import AdminLogin from "./pages/Admin/AdminLogin";
+// import AdminLogin from "./pages/Admin/AdminLogin";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
 import Notification from "./pages/profile/Notification";
 import { Toaster } from "react-hot-toast";
@@ -60,7 +60,7 @@ function App() {
 
             {/* Admin Authorization */}
             <Route element={<ProtectAdmin />}>
-              <Route path="/admin" element={<AdminLogin />} />
+              {/* <Route path="/admin" element={<AdminLogin />} /> use the same login as user */}
               <Route path="/admin/dashboard" element={<AdminDashboard />} />
               <Route path="/admin/chapter/:id" element={<KelolaChapter />} />
 
