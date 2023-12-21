@@ -11,6 +11,7 @@ const ChapterTable = () => {
   const handleDeleteChapter = (chapterId) => {
     dispatch(deleteChapter(chapterId));
   };
+
   return (
     <>
       <div className="p-1 container-fluid flex justify-between items-center mt-2">
