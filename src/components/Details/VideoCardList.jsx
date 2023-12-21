@@ -1,13 +1,24 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import { useSelector } from "react-redux";
-// import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { addProgress, getProgress } from "../../redux/actions/courseActions";
+import { useParams } from "react-router-dom";
 
 const VideoCardList = ({ onVideoSelect }) => {
-  // const { id } = useParams();
+  const { id } = useParams();
   const [selectedVideo, setSelectedVideo] = useState(null);
-
   const { courseMaterial, transaction } = useSelector((state) => state.course);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getProgress(id));
+  }, []);
+
+  const handleAddProgress = (materialId) => {
+    dispatch(addProgress(materialId));
+  };
 
   function extractVideoId(videoURL) {
     try {
@@ -65,9 +76,10 @@ const VideoCardList = ({ onVideoSelect }) => {
               {chapter.material.map((materials) => (
                 <div
                   key={materials.id}
-                  onClick={() =>
-                    handleVideoSelect(extractVideoId(materials.videoURL))
-                  }
+                  onClick={() => {
+                    handleVideoSelect(extractVideoId(materials.videoURL));
+                    handleAddProgress(materials.id);
+                  }}
                   className="h-[52px] p-2 cursor-pointer"
                 >
                   <div className="flex justify-between items-center">

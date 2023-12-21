@@ -1,5 +1,5 @@
 import axios from "axios";
-import { setIdUser, setToken } from "../reducers/authReducers";
+import { setIdUser, setRole, setToken } from "../reducers/authReducers";
 import { ENDPOINTS } from "../../utils/endpointApi";
 import toast from "react-hot-toast";
 import { setProfileData } from "../reducers/profileReducers";
@@ -228,5 +228,6 @@ export const logout = (navigate) => (dispatch) => {
   dispatch(setToken(null));
   dispatch(setIdUser(null));
   dispatch(setProfileData(null));
+  dispatch(setRole(null));
   navigate("/login");
 };

@@ -20,6 +20,7 @@ import Class from "./pages/Course/Class";
 import Payment from "./pages/Payment/Payment";
 // import ProtectedProfile from "./components/Auth/ProtectedProfile";
 import KelolaChapter from "./pages/Admin/KelolaChapter";
+import ProtectAdmin from "./components/Auth/ProtectAdmin";
 
 function App() {
   return (
@@ -58,12 +59,14 @@ function App() {
             </Route>
 
             {/* Admin Authorization */}
-            <Route path="/admin" element={<AdminLogin />} />
-            <Route path="/admin/dashboard" element={<AdminDashboard />} />
-            <Route path="/admin/chapter/:id" element={<KelolaChapter />} />
+            <Route element={<ProtectAdmin />}>
+              <Route path="/admin" element={<AdminLogin />} />
+              <Route path="/admin/dashboard" element={<AdminDashboard />} />
+              <Route path="/admin/chapter/:id" element={<KelolaChapter />} />
 
-            {/* Handle Pages Not Found */}
-            <Route path="*" element={<NotFound />} />
+              {/* Handle Pages Not Found */}
+              <Route path="*" element={<NotFound />} />
+            </Route>
           </Routes>
         </BrowserRouter>
       </Provider>

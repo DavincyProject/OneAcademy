@@ -29,6 +29,11 @@ const KelasDetail = () => {
 
   useEffect(() => {
     const delay = setTimeout(() => {
+      if (idUser === null) {
+        dispatch(logout(navigate));
+        toast.error("Kamu harus login terlebih dahulu");
+      }
+
       if (idUser !== idProfile) {
         dispatch(logout(navigate));
         toast.error("Kamu harus login terlebih dahulu");

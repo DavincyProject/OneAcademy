@@ -292,7 +292,6 @@ export const searchFilter = (filters, currentPage) => async (dispatch) => {
         params: filters,
       }
     );
-    console.log(currentPage);
 
     const { courses, totalPages } = response.data;
     dispatch(setFilterSearch(courses));
@@ -323,7 +322,15 @@ export const addProgress = (materialid) => async (dispatch, getState) => {
   try {
     const add = ENDPOINTS.addprogress(materialid);
     const { token } = getState().auth;
-    await axios.put(add, { authorization: `Bearer ${token}` });
+    await axios.put(
+      add,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
   } catch (error) {
     if (axios.isAxiosError(error)) {
       if (error.response) {
@@ -351,7 +358,9 @@ export const getProgress = (id) => async (dispatch, getState) => {
     const getDataProgress = ENDPOINTS.checkprogress(id);
     const { token } = getState().auth;
     const response = await axios.get(getDataProgress, {
-      Authorization: `Bearer ${token}`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     });
 
     const { progress } = response.data;
