@@ -55,6 +55,9 @@ export const ENDPOINTS = {
   courseupdate: (id) => {
     return `${API_URL}/api/v1/course/update/${id}`;
   },
+  deletecourse: (id) => {
+    return `${API_URL}/api/v1/course/${id}`;
+  },
 
   addcategory: `${API_URL}/api/v1/category/create`,
   updatedeletecategory: (id) => {

@@ -1,51 +1,47 @@
 import axios from "axios";
 import toast from "react-hot-toast";
-import {
-  setIdAdmin,
-  setPaymentStatus,
-  setTokenAdmin,
-  setTotalPages,
-} from "../reducers/adminReducers";
+import { setPaymentStatus, setTotalPages } from "../reducers/adminReducers";
 import { ENDPOINTS } from "../../utils/endpointApi";
 import { setIdUser, setToken } from "../reducers/authReducers";
 import { setProfileData } from "../reducers/profileReducers";
+import { listCourse } from "./courseActions";
 
-export const loginAdmin = (email, password, navigate) => async (dispatch) => {
-  try {
-    const response = await axios.post(ENDPOINTS.login, {
-      email,
-      password,
-    });
+// export const loginAdmin = (email, password, navigate) => async (dispatch) => {
+//   try {
+//     const response = await axios.post(ENDPOINTS.login, {
+//       email,
+//       password,
+//     });
 
-    const { token } = response.data.data;
-    const { id } = response.data;
+//     const { token } = response.data.data;
+//     const { id } = response.data;
 
-    dispatch(setTokenAdmin(token));
-    dispatch(setIdAdmin(id));
+//     dispatch(setTokenAdmin(token));
+//     dispatch(setIdAdmin(id));
 
-    localStorage.setItem("idAdmin", id);
-    navigate("/admin/dashboard");
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      if (error.response) {
-        const errorMessage = error.response.data.error;
-        toast.error(errorMessage, {
-          duration: 2000,
-        });
-      } else {
-        // Respon tidak diterima dari server
-        toast.error("Error: No response received from the server", {
-          duration: 2000,
-        });
-      }
-    } else {
-      // Kesalahan selain dari Axios
-      toast.error("An unexpected error occurred", {
-        duration: 2000,
-      });
-    }
-  }
-};
+//     localStorage.setItem("idAdmin", id);
+//     navigate("/admin/dashboard");
+//   } catch (error) {
+//     if (axios.isAxiosError(error)) {
+//       if (error.response) {
+//         const errorMessage = error.response.data.error;
+//         toast.error(errorMessage, {
+//           duration: 2000,
+//         });
+//       } else {
+//         // Respon tidak diterima dari server
+//         toast.error("Error: No response received from the server", {
+//           duration: 2000,
+//         });
+//       }
+//     } else {
+//       // Kesalahan selain dari Axios
+//       toast.error("An unexpected error occurred", {
+//         duration: 2000,
+//       });
+//     }
+//   }
+// };
 
 export const getTransactionData = (page) => async (dispatch) => {
   try {
@@ -79,19 +75,89 @@ export const getTransactionData = (page) => async (dispatch) => {
 
 export const addcourse = (formData) => async (dispatch, getState) => {
   try {
-    const { tokenAdmin } = getState().admin;
-    await axios.post(ENDPOINTS.addcategory, formData, {
+    const { token } = getState().auth;
+    await axios.post(ENDPOINTS.addcourse, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
-        Authorization: `Bearer ${tokenAdmin}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
+    dispatch(listCourse(getState().course.coursePage));
     toast.success("Kelas baru berhasil dibuat");
   } catch (error) {
     if (axios.isAxiosError(error)) {
       if (error.response) {
         const errorMessage = error.response.data.message;
+        toast.error(errorMessage, {
+          duration: 2000,
+        });
+      } else {
+        // Respon tidak diterima dari server
+        toast.error("Error: No response received from the server", {
+          duration: 2000,
+        });
+      }
+    } else {
+      // Kesalahan selain dari Axios
+      toast.error("An unexpected error occurred", {
+        duration: 2000,
+      });
+    }
+  }
+};
+
+export const updateCourse = (id, formData) => async (dispatch, getState) => {
+  try {
+    const { token } = getState().auth;
+    const chapterupdate = ENDPOINTS.courseupdate(id);
+
+    await axios.put(chapterupdate, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    toast.success(`Chapter ${id} updated successfully`);
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      if (error.response) {
+        const errorMessage = error.response.data.message;
+        toast.error(errorMessage, {
+          duration: 2000,
+        });
+      } else {
+        // Respon tidak diterima dari server
+        toast.error("Error: No response received from the server", {
+          duration: 2000,
+        });
+      }
+    } else {
+      // Kesalahan selain dari Axios
+      toast.error("An unexpected error occurred", {
+        duration: 2000,
+      });
+    }
+  }
+};
+
+export const deleteCourse = (id) => async (dispatch, getState) => {
+  try {
+    const { token } = getState().auth;
+    const courseDeleteRequest = ENDPOINTS.deletecourse(id);
+    await axios.delete(courseDeleteRequest, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    dispatch(listCourse(getState().course.coursePage));
+    toast.success("Kelas berhasil dihapus");
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      if (error.response) {
+        const errorMessage = error.response.data.status;
         toast.error(errorMessage, {
           duration: 2000,
         });
@@ -201,48 +267,6 @@ export const deleteCategory = (id) => async () => {
   }
 };
 
-export const updateCourse = (id, formData) => async (dispatch, getState) => {
-  try {
-    const { tokenAdmin } = getState().admin;
-    const chapterupdate = ENDPOINTS.courseupdate(id);
-
-    await axios.put(
-      chapterupdate,
-      {
-        id,
-        formData,
-      },
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${tokenAdmin}`,
-        },
-      }
-    );
-
-    toast.success(`Chapter ${id} updated successfully`);
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      if (error.response) {
-        const errorMessage = error.response.data.message;
-        toast.error(errorMessage, {
-          duration: 2000,
-        });
-      } else {
-        // Respon tidak diterima dari server
-        toast.error("Error: No response received from the server", {
-          duration: 2000,
-        });
-      }
-    } else {
-      // Kesalahan selain dari Axios
-      toast.error("An unexpected error occurred", {
-        duration: 2000,
-      });
-    }
-  }
-};
-
 export const logoutAdmin = (navigate) => (dispatch) => {
   localStorage.removeItem("tokenAdmin");
   localStorage.removeItem("idAdmin");
@@ -254,7 +278,5 @@ export const logoutAdmin = (navigate) => (dispatch) => {
   dispatch(setToken(null));
   dispatch(setIdUser(null));
   dispatch(setProfileData(null));
-  dispatch(setTokenAdmin(null));
-  dispatch(setIdAdmin(null));
-  navigate("/admin");
+  navigate("/");
 };

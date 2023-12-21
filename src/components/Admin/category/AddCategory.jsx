@@ -37,7 +37,11 @@ const AddCategory = () => {
         className="btn btn-ghost badge-darkblue rounded-3xl text-white hover:bg-gray-700"
         onClick={() => document.getElementById("addCategory").showModal()}
       >
-        <IoAddCircleOutline size={20} color="white" />
+        <IoAddCircleOutline
+          size={20}
+          color="white"
+          className="hidden md:block"
+        />
         <small>Tambah Kategori</small>
       </button>
       <dialog id="addCategory" className="modal">
