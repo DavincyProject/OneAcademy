@@ -6,7 +6,7 @@ import { useEffect } from "react";
 const ProtectAdmin = ({ children }) => {
   const navigate = useNavigate();
 
-  const { role, token, idUser } = useSelector((state) => state.auth);
+  const { role } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (role === "USER") {
