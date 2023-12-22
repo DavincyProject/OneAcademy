@@ -68,4 +68,9 @@ export const ENDPOINTS = {
   updatedeletechapter: (id) => {
     return `${API_URL}/api/v1/chapter/${id}`;
   },
+
+  addmaterial: `${API_URL}/api/v1/material/create`,
+  updatedeletematerial: (materialId) => {
+    return `${API_URL}/api/v1/material/${materialId}`;
+  },
 };
