@@ -1,62 +1,62 @@
 import { useState } from "react";
-import { IoAddCircleOutline } from "react-icons/io5";
-import { useDispatch } from "react-redux";
-import { addChapter } from "../../../redux/actions/adminActions";
+import Proptype from "prop-types";
 import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { updatedChapter } from "../../../redux/actions/adminActions";
+import { useEffect } from "react";
 
-const AddChapter = () => {
+const EditChapter = ({ chapterId, data }) => {
   const { id } = useParams();
-
-  const [totalDuration, setTotalDuration] = useState("");
-  const [step, setStep] = useState("");
-  const [title, setTitle] = useState("");
-  const [loading, setLoading] = useState(false);
-
   const dispatch = useDispatch();
 
-  const handleAddChapter = async (e) => {
+  const [totalDuration, setTotalDuration] = useState(data?.totalDuration || "");
+  const [step, setStep] = useState(data?.step || "");
+  const [title, setTitle] = useState(data?.title || "");
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setTotalDuration(data?.totalDuration || "");
+    setStep(data?.step || "");
+    setTitle(data?.title || "");
+  }, [data]);
+
+  const handleUpdateChapter = async (e) => {
     e.preventDefault();
+
+    console.log(totalDuration, step, title, id, chapterId);
 
     setLoading(true);
 
     try {
-      await dispatch(addChapter(totalDuration, step, title, id));
+      await dispatch(updatedChapter(totalDuration, step, title, id, chapterId));
     } finally {
       setTimeout(() => {
         setLoading(false);
       }, 1500);
     }
   };
-
   return (
     <div>
+      {/* You can open the modal using document.getElementById('ID').showModal() method */}
       <button
-        className="btn btn-ghost badge-darkblue rounded-3xl text-white hover:bg-gray-700"
-        onClick={() => document.getElementById("addChapter").showModal()}
+        className="badge-darkblue p-1 rounded-md"
+        onClick={() =>
+          document.getElementById(`editChapter_${data.id}`).showModal()
+        }
       >
-        <IoAddCircleOutline
-          size={20}
-          color="white"
-          className="hidden md:block"
-        />
-        <small>Tambah Chapter</small>
+        Edit Chapter
       </button>
-      <dialog id="addChapter" className="modal">
+      <dialog id={`editChapter_${data.id}`} className="modal">
         <div className="modal-box">
           <form method="dialog">
-            <button className="text-darkblue btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-              <img
-                src="/icon/close.svg"
-                className="w-10 absolute bottom-1"
-                alt="close button"
-              />
+            {/* if there is a button in form, it will close the modal */}
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+              ✕
             </button>
           </form>
-          <h3 className="font-bold text-lg text-darkblue text-center mt-5">
-            Buat Chapter Baru
-          </h3>
+          <h3 className="font-bold text-lg">Edit Chapter</h3>
           <div className="py-4">
-            <form onSubmit={handleAddChapter}>
+            <form onSubmit={handleUpdateChapter}>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Total Durasi</span>
@@ -95,7 +95,7 @@ const AddChapter = () => {
               </div>
               <div className="form-control mt-6">
                 <button className="btn btn-primary">
-                  {loading ? "Membuat Chapter..." : "Buat Chapter"}
+                  {loading ? "Mengupdate Chapter..." : "Update Chapter"}
                 </button>
               </div>
             </form>
@@ -106,4 +106,8 @@ const AddChapter = () => {
   );
 };
 
-export default AddChapter;
+export default EditChapter;
+EditChapter.propTypes = {
+  chapterId: Proptype.string,
+  data: Proptype.string,
+};

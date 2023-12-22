@@ -7,6 +7,7 @@ import UpdateCourse from "../../components/Admin/course/UpdateCourse";
 import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import ChapterTable from "../../components/Admin/chapter/ChapterTable";
+import MaterialTable from "../../components/Admin/chapter/MaterialTable";
 
 const KelolaChapter = () => {
   const { id } = useParams();
@@ -30,6 +31,7 @@ const KelolaChapter = () => {
         <UpdateCourse details={courseDetails} />
         <div>
           <ChapterTable />
+          <MaterialTable />
         </div>
       </div>
     </div>
