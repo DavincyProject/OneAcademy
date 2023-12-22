@@ -469,6 +469,7 @@ export const logoutAdmin = (navigate) => (dispatch) => {
   localStorage.removeItem("token");
   localStorage.removeItem("idUser");
   localStorage.removeItem("idProfile");
+  localStorage.removeItem("r");
   dispatch(setToken(null));
   dispatch(setIdUser(null));
   dispatch(setProfileData(null));
