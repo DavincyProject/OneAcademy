@@ -19,6 +19,7 @@ export const login = (email, password, navigate) => async (dispatch) => {
 
     localStorage.setItem("idUser", id);
     localStorage.removeItem("countdown");
+    localStorage.setItem("r", roleId);
 
     if (roleId !== 2) {
       navigate("/admin/dashboard");
@@ -230,6 +231,7 @@ export const logout = (navigate) => (dispatch) => {
   localStorage.removeItem("idProfile");
   localStorage.removeItem("idAdmin");
   localStorage.removeItem("activeLink");
+  localStorage.removeItem("r");
   dispatch(setToken(null));
   dispatch(setIdUser(null));
   dispatch(setProfileData(null));
