@@ -384,6 +384,83 @@ export const deleteChapter = (chapterId) => async (dispatch, getState) => {
   }
 };
 
+export const createMaterial =
+  (step, title, videoURL, duration, id, chapterId) =>
+  async (dispatch, getState) => {
+    try {
+      const { token } = getState().auth;
+      await axios.post(
+        ENDPOINTS.addmaterial,
+        {
+          step,
+          title,
+          videoURL,
+          duration,
+          courseId: id,
+          chapterId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      toast.success("Material baru berhasil dibuat");
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        if (error.response) {
+          const errorMessage = error.response.data.message;
+          toast.error(errorMessage, {
+            duration: 2000,
+          });
+        } else {
+          // Respon tidak diterima dari server
+          toast.error("Error: No response received from the server", {
+            duration: 2000,
+          });
+        }
+      } else {
+        // Kesalahan selain dari Axios
+        toast.error("An unexpected error occurred", {
+          duration: 2000,
+        });
+      }
+    }
+  };
+
+export const deleteMaterial = (materialId) => async (dispatch, getState) => {
+  try {
+    const { token } = getState().auth;
+    const materialDeleteRequest = ENDPOINTS.updatedeletematerial(materialId);
+    await axios.delete(materialDeleteRequest, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    toast.success("Material berhasil dihapus");
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      if (error.response) {
+        const errorMessage = error.response.data.message;
+        toast.error(errorMessage, {
+          duration: 2000,
+        });
+      } else {
+        // Respon tidak diterima dari server
+        toast.error("Error: No response received from the server", {
+          duration: 2000,
+        });
+      }
+    } else {
+      // Kesalahan selain dari Axios
+      toast.error("An unexpected error occurred", {
+        duration: 2000,
+      });
+    }
+  }
+};
+
 export const logoutAdmin = (navigate) => (dispatch) => {
   localStorage.removeItem("tokenAdmin");
   localStorage.removeItem("idAdmin");

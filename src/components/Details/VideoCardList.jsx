@@ -16,7 +16,7 @@ const VideoCardList = ({ onVideoSelect }) => {
 
   useEffect(() => {
     dispatch(getProgress(id));
-  }, [progressCourse]);
+  }, []);
 
   const handleAddProgress = (materialId) => {
     dispatch(addProgress(materialId));
@@ -48,10 +48,10 @@ const VideoCardList = ({ onVideoSelect }) => {
     (item) => item.isCompleted
   ).length;
 
-  const progressPercentage = (
-    (completedMaterials / materialLenght) *
-    100
-  ).toFixed(2);
+  const progressPercentage =
+    materialLenght > 0
+      ? ((completedMaterials / materialLenght) * 100).toFixed(2)
+      : 0;
 
   return (
     <div className="container-fluid xs:w-full sm:max-w-[320px] xl:max-w-[400px] lg:absolute lg:top-[8rem] md:right-5 xl:right-20">
@@ -62,7 +62,7 @@ const VideoCardList = ({ onVideoSelect }) => {
             <img src="/icon/progress-check.svg" alt="progress check" />
             <div className="w-[150px] h-[16px] bg-gray-200 rounded-full dark:bg-gray-700">
               <div
-                className="bg-darkblue h-[16px] text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
+                className="bg-darkblue h-[16px] text-xs font-medium text-blue-200 text-center p-0.5 leading-none rounded-full"
                 style={{ width: `${progressPercentage}%` }}
               >
                 {`${progressPercentage}%`}
