@@ -9,10 +9,10 @@ const ProtectAdmin = ({ children }) => {
   const { role, token, idUser } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    if (token === null && idUser === null && role !== "ADMIN") {
+    if (role === "USER") {
       navigate("/");
     }
-  }, [token, idUser, role, navigate]);
+  }, [role, navigate]);
 
   return children ? children : <Outlet />;
 };

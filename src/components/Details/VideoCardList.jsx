@@ -8,13 +8,15 @@ import { useParams } from "react-router-dom";
 const VideoCardList = ({ onVideoSelect }) => {
   const { id } = useParams();
   const [selectedVideo, setSelectedVideo] = useState(null);
-  const { courseMaterial, transaction } = useSelector((state) => state.course);
+  const { courseMaterial, transaction, progressCourse } = useSelector(
+    (state) => state.course
+  );
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getProgress(id));
-  }, []);
+  }, [progressCourse]);
 
   const handleAddProgress = (materialId) => {
     dispatch(addProgress(materialId));
@@ -41,6 +43,16 @@ const VideoCardList = ({ onVideoSelect }) => {
     setSelectedVideo(videoSrc);
   };
 
+  const materialLenght = progressCourse.length;
+  const completedMaterials = progressCourse.filter(
+    (item) => item.isCompleted
+  ).length;
+
+  const progressPercentage = (
+    (completedMaterials / materialLenght) *
+    100
+  ).toFixed(2);
+
   return (
     <div className="container-fluid xs:w-full sm:max-w-[320px] xl:max-w-[400px] lg:absolute lg:top-[8rem] md:right-5 xl:right-20">
       <div className="p-3 h-full w-full relative flex flex-col text-gray-700 bg-white drop-shadow-lg shadow-lg lg:max-w-[400px] rounded-md bg-clip-border">
@@ -51,9 +63,9 @@ const VideoCardList = ({ onVideoSelect }) => {
             <div className="w-[150px] h-[16px] bg-gray-200 rounded-full dark:bg-gray-700">
               <div
                 className="bg-darkblue h-[16px] text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
-                style={{ width: "70%" }}
+                style={{ width: `${progressPercentage}%` }}
               >
-                70%
+                {`${progressPercentage}%`}
               </div>
             </div>
           </div>

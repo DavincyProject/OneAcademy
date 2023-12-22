@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import AddChapter from "./AddChapter";
 import { formatDateAndTime } from "../../../utils/utils";
-import { Link } from "react-router-dom";
 import { deleteChapter } from "../../../redux/actions/adminActions";
+import EditChapter from "./EditChapter";
 
 const ChapterTable = () => {
   const dispatch = useDispatch();
@@ -25,6 +25,7 @@ const ChapterTable = () => {
             <tr>
               <th>Chapter</th>
               <th>Name</th>
+              <th>Duration</th>
               <th>Chapter id</th>
               <th>Created At</th>
               <th>Aksi</th>
@@ -36,15 +37,11 @@ const ChapterTable = () => {
               <tr key={chapter.id} className="hover">
                 <th>{chapter.step}</th>
                 <td>{chapter.title}</td>
+                <td>{chapter.totalDuration}</td>
                 <td>{chapter.id}</td>
                 <td>{formatDateAndTime(chapter.createdAt)}</td>
                 <td className="flex gap-2">
-                  <Link
-                    // to={`/admin/chapter/${chapter.id}`}
-                    className="badge-darkblue p-1 rounded-md"
-                  >
-                    Detail
-                  </Link>
+                  <EditChapter chapterId={chapter.id} data={chapter} />
                   <button
                     onClick={() => handleDeleteChapter(chapter.id)}
                     className="badge-red p-1 rounded-md"

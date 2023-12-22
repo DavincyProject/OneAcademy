@@ -308,10 +308,53 @@ export const addChapter =
     }
   };
 
-export const deleteChapter = (id) => async (getState) => {
+export const updatedChapter =
+  (totalDuration, step, title, id, chapterId) => async (dispatch, getState) => {
+    try {
+      const updateChapter = ENDPOINTS.updatedeletechapter(chapterId);
+      const { token } = getState().auth;
+      await axios.put(
+        updateChapter,
+        {
+          totalDuration,
+          step,
+          title,
+          courseId: id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      toast.success("Chapter berhasil diubah");
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        if (error.response) {
+          const errorMessage = error.response.data.message;
+          toast.error(errorMessage, {
+            duration: 2000,
+          });
+        } else {
+          // Respon tidak diterima dari server
+          toast.error("Error: No response received from the server", {
+            duration: 2000,
+          });
+        }
+      } else {
+        // Kesalahan selain dari Axios
+        toast.error("An unexpected error occurred", {
+          duration: 2000,
+        });
+      }
+    }
+  };
+
+export const deleteChapter = (chapterId) => async (dispatch, getState) => {
   try {
     const { token } = getState().auth;
-    const chapterDeleteRequest = ENDPOINTS.updatedeletechapter(id);
+    const chapterDeleteRequest = ENDPOINTS.updatedeletechapter(chapterId);
     await axios.delete(chapterDeleteRequest, {
       headers: {
         Authorization: `Bearer ${token}`,
