@@ -308,10 +308,10 @@ export const addChapter =
     }
   };
 
-export const deleteChapter = (id) => async (getState) => {
+export const deleteChapter = (chapterId) => async (dispatch, getState) => {
   try {
     const { token } = getState().auth;
-    const chapterDeleteRequest = ENDPOINTS.updatedeletechapter(id);
+    const chapterDeleteRequest = ENDPOINTS.updatedeletechapter(chapterId);
     await axios.delete(chapterDeleteRequest, {
       headers: {
         Authorization: `Bearer ${token}`,
