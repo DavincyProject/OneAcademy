@@ -22,6 +22,7 @@ import Payment from "./pages/Payment/Payment";
 import KelolaChapter from "./pages/Admin/KelolaChapter";
 import ProtectAdmin from "./components/Auth/ProtectAdmin";
 import KelolaMaterial from "./pages/Admin/KelolaMaterial";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -72,6 +73,7 @@ function App() {
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>
+          <Footer />
         </BrowserRouter>
       </Provider>
     </>

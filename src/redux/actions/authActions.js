@@ -193,7 +193,7 @@ export const resetPassword = (email) => async () => {
 export const forgotPassword = (password, id, navigate) => async () => {
   try {
     const response = await axios.post(ENDPOINTS.setpassword, {
-      id,
+      key: id,
       password,
     });
 
