@@ -1,10 +1,65 @@
 /* Default Font */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,700;0,800;1,300;1,400;1,500;1,700;1,800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 * {
-    font-family: "Poppins", sans-serif;
+  font-family: "Montserrat", sans-serif;
+}
+
+.font-Poppins {
+  font-family: "Poppins", sans-serif;
+}
+
+.input-border-b {
+  border-bottom-width: 1px;
+  border-bottom-color: #d0d0d0;
+  border-bottom-style: solid;
+}
+
+.badge-red {
+  background-color: #ff0000;
+  color: white;
+}
+
+.badge-green {
+  background-color: #73ca5c;
+  color: white;
+}
+
+.badge-lightwhite {
+  background-color: #e8f1ff;
+  color: black;
+}
+
+.badge-darkblue {
+  background-color: #6148ff;
+  color: white;
+}
+
+.badge-blue {
+  background-color: #489cff;
+  color: white;
+}
+
+.btn-blue {
+  background-color: #6148ff;
+  color: white;
+}
+
+.btn-active {
+  background-color: #8030db;
+  color: white;
+}
+
+.btn-base {
+  background-color: white;
+  color: #8a8a8a;
+}
+
+.custom-toaster {
+  z-index: 10000;
 }
