@@ -2,7 +2,7 @@ import { useState } from "react";
 import DashboardAdmin from "../../components/Admin/DashboardAdmin";
 import KelolaKelas from "../../components/Admin/KelolaKelas";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logoutAdmin } from "../../redux/actions/adminActions";
 
@@ -14,6 +14,8 @@ const AdminDashboard = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const { profileData } = useSelector((state) => state.profile);
 
   const handleClick = (link) => {
     setActiveLink(link);
@@ -85,7 +87,7 @@ const AdminDashboard = () => {
 
           <div className="flex-1">
             <a className="btn btn-ghost text-xl text-darkblue font-bold">
-              Hi, Admin!
+              Hi, {profileData.name}!
             </a>
           </div>
 

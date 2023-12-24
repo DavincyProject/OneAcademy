@@ -3,6 +3,7 @@ const API_URL = import.meta.env.VITE_BASE_URL;
 export const ENDPOINTS = {
   //auth endpoints
   login: `${API_URL}/api/v1/user/login`,
+  loginWithGoogle: `${API_URL}/api/v1/user/auth/google`,
   register: `${API_URL}/api/v1/user/register`,
   activateaccount: `${API_URL}/api/v1/user/verify`,
   resendotp: `${API_URL}/api/v1/user/resetOTP`,

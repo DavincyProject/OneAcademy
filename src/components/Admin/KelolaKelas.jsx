@@ -63,7 +63,7 @@ const KelolaKelas = () => {
           </div>
         </div>
         <div className="overflow-x-auto my-3 rounded-md">
-          <table className="table ">
+          <table className="table shadow-lg border rounded-lg">
             {/* head */}
             <thead>
               <tr className="bg-[#EBF3FC] text-black">
@@ -141,7 +141,7 @@ const KelolaKelas = () => {
           <AddCategory />
         </div>
         <div className="overflow-x-auto my-3 rounded-md">
-          <table className="table ">
+          <table className="table shadow-lg border rounded-lg">
             {/* head */}
             <thead>
               <tr className="bg-[#EBF3FC] text-black">
