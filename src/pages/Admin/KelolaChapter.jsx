@@ -50,6 +50,7 @@ const KelolaChapter = () => {
         <UpdateCourse details={courseDetails} />
         <div>
           <ChapterTable />
+          <div className="divider"></div>
           <MaterialTable />
         </div>
       </div>

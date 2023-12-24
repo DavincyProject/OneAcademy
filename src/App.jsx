@@ -21,7 +21,6 @@ import Payment from "./pages/Payment/Payment";
 // import ProtectedProfile from "./components/Auth/ProtectedProfile";
 import KelolaChapter from "./pages/Admin/KelolaChapter";
 import ProtectAdmin from "./components/Auth/ProtectAdmin";
-import KelolaMaterial from "./pages/Admin/KelolaMaterial";
 import Footer from "./components/Footer";
 
 function App() {
@@ -64,10 +63,6 @@ function App() {
               {/* <Route path="/admin" element={<AdminLogin />} /> use the same login as user */}
               <Route path="/admin/dashboard" element={<AdminDashboard />} />
               <Route path="/admin/chapter/:id" element={<KelolaChapter />} />
-              <Route
-                path="/admin/chapter/materials/:id"
-                element={<KelolaMaterial />}
-              />
 
               {/* Handle Pages Not Found */}
               <Route path="*" element={<NotFound />} />

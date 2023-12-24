@@ -120,7 +120,7 @@ const AddClass = () => {
                   type="text"
                   value={instructor}
                   onChange={(e) => setInstructor(e.target.value)}
-                  placeholder="Masukkan nama kelas..."
+                  placeholder="Masukkan nama Instruktur..."
                   className="input input-bordered"
                 />
               </div>
@@ -134,6 +134,9 @@ const AddClass = () => {
                   value={categoryId}
                   onChange={(e) => setCategoryId(e.target.value)}
                 >
+                  <option value="" disabled>
+                    Pilih Kategori
+                  </option>
                   {category?.map((item) => (
                     <option key={item.id} value={item.id}>
                       {item.name}
@@ -151,7 +154,7 @@ const AddClass = () => {
                   value={courseType}
                   onChange={(e) => setCourseType(e.target.value)}
                 >
-                  <option>--Pilih Tipe Kelas--</option>
+                  <option>Pilih Tipe Kelas</option>
                   <option value="Gratis">Gratis</option>
                   <option value="Premium">Premium</option>
                 </select>
@@ -166,7 +169,7 @@ const AddClass = () => {
                   value={level}
                   onChange={(e) => setLevel(e.target.value)}
                 >
-                  <option>--Pilih Level--</option>
+                  <option>Pilih Level</option>
                   <option value="Beginner">Beginner</option>
                   <option value="Intermediate">Intermediate</option>
                   <option value="Advanced">Advanced</option>

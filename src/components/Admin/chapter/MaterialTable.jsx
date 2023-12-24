@@ -27,7 +27,7 @@ const MaterialTable = () => {
           <AddMaterial />
         </div>
         <div className="overflow-x-auto">
-          <table className="table ">
+          <table className="table shadow-lg border rounded-lg">
             {/* head */}
             <thead className="bg-zinc-500 text-white">
               <tr>
@@ -65,7 +65,7 @@ const MaterialTable = () => {
               ))}
             </tbody>
           </table>
-          <small className="text-red-500">
+          <small className="text-red-500 font-semibold">
             jika tidak muncul data yang baru, refresh halaman ini
           </small>
         </div>
