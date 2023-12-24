@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/actions/authActions";
 import toast from "react-hot-toast";
+// import GoogleOAuth from "../../components/Auth/GoogleOAuth";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -93,16 +94,20 @@ const Login = () => {
           <button className="btn btn-primary w-full text-[14px] font-medium bg-darkblue text-white py-[10px] rounded-2xl mt-5">
             Masuk
           </button>
-          <div className="flex justify-center items-center gap-2 mt-6">
-            <h1 className="text-[14px] font-normal font-Poppins">
-              Belum punya akun?
-            </h1>
-            <Link
-              to="/register"
-              className="text-darkblue text-[14px] font-bold"
-            >
-              Daftar di sini
-            </Link>
+          <div className="flex flex-col justify-center items-center gap-2 mt-6">
+            <div className="flex gap-2">
+              <h1 className="text-[14px] font-normal font-Poppins">
+                Belum punya akun?
+              </h1>
+              <Link
+                to="/register"
+                className="text-darkblue text-[14px] font-bold"
+              >
+                Daftar di sini
+              </Link>
+            </div>
+            {/* <div className="divider">Or Login With</div>
+            <GoogleOAuth /> */}
           </div>
         </form>
       </div>

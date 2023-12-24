@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { IoAddCircleOutline } from "react-icons/io5";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createMaterial } from "../../../redux/actions/adminActions";
 import { useParams } from "react-router-dom";
 
@@ -15,6 +15,7 @@ const AddMaterial = () => {
   const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
+  const { courseMaterial } = useSelector((state) => state.course);
 
   const handleAddMaterial = async (e) => {
     e.preventDefault();
@@ -113,13 +114,20 @@ const AddMaterial = () => {
                 <label className="label">
                   <span className="label-text">Chapter ID</span>
                 </label>
-                <input
+                <select
                   value={chapterId}
                   onChange={(e) => setChapterId(e.target.value)}
-                  type="text"
-                  placeholder="ambil dari daftar chapter di atas"
-                  className="input input-bordered"
-                />
+                  className="select select-bordered w-full"
+                >
+                  <option value="" disabled>
+                    Pilih Chapter ID
+                  </option>
+                  {courseMaterial.map((chapter) => (
+                    <option key={chapter.id} value={chapter.id}>
+                      {`Chapter ${chapter.step} - ${chapter.title}`}
+                    </option>
+                  ))}
+                </select>
               </div>
               <div className="form-control mt-6">
                 <button className="btn btn-primary">

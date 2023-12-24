@@ -64,7 +64,7 @@ const UpdateChapter = () => {
   return (
     <>
       <button
-        className="btn"
+        className="btn btn-primary"
         onClick={() => document.getElementById("update").showModal()}
       >
         Update Course Details

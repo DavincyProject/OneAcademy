@@ -9,9 +9,9 @@ const EditChapter = ({ chapterId, data }) => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
-  const [totalDuration, setTotalDuration] = useState(data?.totalDuration || "");
-  const [step, setStep] = useState(data?.step || "");
-  const [title, setTitle] = useState(data?.title || "");
+  const [totalDuration, setTotalDuration] = useState(data?.totalDuration ?? "");
+  const [step, setStep] = useState(data?.step ?? "");
+  const [title, setTitle] = useState(data?.title ?? "");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -109,5 +109,5 @@ const EditChapter = ({ chapterId, data }) => {
 export default EditChapter;
 EditChapter.propTypes = {
   chapterId: Proptype.string,
-  data: Proptype.string,
+  data: Proptype.object,
 };
