@@ -38,7 +38,7 @@ const TableCategory = () => {
           </thead>
           <tbody>
             {categoryList.map((list) => (
-              <tr key={list.id}>
+              <tr key={list.id} className="hover">
                 <th>
                   <small>{list.id}</small>
                 </th>

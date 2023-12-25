@@ -38,6 +38,13 @@ const VideoCardList = ({ onVideoSelect }) => {
     }
   }
 
+  const isMaterialCompleted = (materialId) => {
+    const materialProgress = progressCourse.find(
+      (item) => item.materialId === materialId
+    );
+    return materialProgress ? materialProgress.isCompleted : false;
+  };
+
   const handleVideoSelect = (videoSrc) => {
     onVideoSelect(videoSrc);
     setSelectedVideo(videoSrc);
@@ -85,42 +92,73 @@ const VideoCardList = ({ onVideoSelect }) => {
                   {chapter.totalDuration} Menit
                 </p>
               </div>
-              {chapter.material.map((materials) => (
-                <div
-                  key={materials.id}
-                  onClick={() => {
-                    handleVideoSelect(extractVideoId(materials.videoURL));
-                    handleAddProgress(materials.id);
-                  }}
-                  className="h-[52px] p-2 cursor-pointer"
-                >
-                  <div className="flex justify-between items-center">
-                    <div className="flex gap-2 items-center mt-2">
-                      <h1 className="bg-[#EBF3FC] rounded-full w-[36px] h-[36px] flex justify-center items-center">
-                        {materials.step}
-                      </h1>
-                      <h1
-                        className={`text-[12px] max-w-[251px] ${
-                          selectedVideo === extractVideoId(materials.videoURL)
-                            ? "text-[#00CC00]"
-                            : ""
-                        }`}
-                      >
-                        {materials.title}
-                      </h1>
+              {chapter.material.map((materials) => {
+                const completed = isMaterialCompleted(materials.id);
+
+                return (
+                  <div
+                    key={materials.id}
+                    onClick={() => {
+                      handleVideoSelect(extractVideoId(materials.videoURL));
+                      handleAddProgress(materials.id);
+                    }}
+                    className={`h-[52px] p-2 cursor-pointer ${
+                      completed ? "completed-material" : ""
+                    }`}
+                  >
+                    <div className="flex justify-between items-center">
+                      <div className="flex gap-2 items-center mt-2">
+                        <h1 className="bg-[#EBF3FC] rounded-full w-[36px] h-[36px] flex justify-center items-center">
+                          {materials.step}
+                        </h1>
+                        <h1
+                          className={`text-[12px] max-w-[251px] ${
+                            selectedVideo === extractVideoId(materials.videoURL)
+                              ? "text-[#00CC00]"
+                              : "text-black"
+                          } ${completed ? " text-blue-600" : ""}`}
+                        >
+                          {materials.title}
+                        </h1>
+                      </div>
+                      {completed ? (
+                        <img
+                          src={
+                            selectedVideo === extractVideoId(materials.videoURL)
+                              ? "/icon/Pause.svg"
+                              : "/icon/done.svg"
+                          }
+                          alt="done icon"
+                          className="w-4 h-4 text-blue-600 cursor-pointer"
+                          onClick={() => {
+                            handleVideoSelect(
+                              extractVideoId(materials.videoURL)
+                            );
+                            handleAddProgress(materials.id);
+                          }}
+                        />
+                      ) : (
+                        <img
+                          src={
+                            selectedVideo === extractVideoId(materials.videoURL)
+                              ? "/icon/Pause.svg"
+                              : "/icon/Play.svg"
+                          }
+                          alt="play pause icon"
+                          className="w-4 h-4 cursor-pointer"
+                          onClick={() => {
+                            handleVideoSelect(
+                              extractVideoId(materials.videoURL)
+                            );
+                            handleAddProgress(materials.id);
+                          }}
+                        />
+                      )}
                     </div>
-                    <img
-                      src={
-                        selectedVideo === extractVideoId(materials.videoURL)
-                          ? "/icon/Pause.svg"
-                          : "/icon/Play.svg"
-                      }
-                      alt="play pause icon"
-                    />
+                    <div className="border-t mt-2 border-[#EBF3FC]"></div>
                   </div>
-                  <div className="border-t mt-2 border-[#EBF3FC]"></div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           ))
         ) : (
