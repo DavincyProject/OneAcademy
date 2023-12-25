@@ -87,7 +87,7 @@ const AdminDashboard = () => {
 
           <div className="flex-1">
             <a className="btn btn-ghost text-xl text-darkblue font-bold">
-              Hi, {profileData.name}!
+              Hi, {profileData?.name}!
             </a>
           </div>
 
