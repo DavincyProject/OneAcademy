@@ -17,7 +17,7 @@ const KelolaKelas = () => {
   const dispatch = useDispatch();
 
   const course = useSelector((state) => state.course.listCourse);
-  const { coursePage } = useSelector((state) => state.course);
+  const { totalPages } = useSelector((state) => state.admin);
   const categoryList = useSelector((state) => state.course.listCategory);
 
   useEffect(() => {
@@ -37,10 +37,10 @@ const KelolaKelas = () => {
     dispatch(deleteCourse(id));
   };
 
-  const totalPages = coursePage || 1;
+  const totalPage = totalPages || 1;
 
   const handlePageChange = (page) => {
-    if (page >= 1 && page <= totalPages && page !== currentPage) {
+    if (page >= 1 && page <= totalPage && page !== currentPage) {
       setCurrentPage(page);
     }
   };
@@ -78,7 +78,7 @@ const KelolaKelas = () => {
             </thead>
             <tbody>
               {course.map((item) => (
-                <tr key={item.id}>
+                <tr key={item.id} className="hover">
                   <th>{item.instructor}</th>
                   <td>{item.category?.name}</td>
                   <td>{item.title}</td>
@@ -154,7 +154,7 @@ const KelolaKelas = () => {
             </thead>
             <tbody>
               {categoryList.map((list) => (
-                <tr key={list.id}>
+                <tr key={list.id} className="hover">
                   <th>
                     <small>{list.id}</small>
                   </th>
