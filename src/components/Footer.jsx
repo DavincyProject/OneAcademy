@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 
 const Footer = () => {
   const location = useLocation();
-  const hidePath = ["/login", "/register", "/reset", "/validate"];
+  const hidePath = ["/login", "/register", "/reset", "/validate", "/account"];
 
   const isHidden =
     hidePath.includes(location.pathname) ||
@@ -19,8 +19,8 @@ const Footer = () => {
 
   return (
     <div>
-      <footer className="text-white p-4 flex flex-col justify-between md:flex-row w-full h-auto px-4 py-8 border-t-4 border-indigo-500 bg-slate-950 ">
-        <div className="mb-4 flex items-center flex-col">
+      <footer className="text-white flex flex-col justify-between md:flex-row w-full h-auto px-6 py-8 border-t-4 border-indigo-500 bg-slate-950 ">
+        <div className="mb-4 flex items-center flex-col md:w-2/4">
           <img src="/testnew.svg" alt="logo" className="w-32" />
           <p className="text-sm text-center md:text-start mt-2 space-x-4">
             Website ini dibuat dengan tujuan memudahkan anda dalam hal belajar
