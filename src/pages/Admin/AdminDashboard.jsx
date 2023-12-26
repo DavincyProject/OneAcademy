@@ -5,6 +5,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logoutAdmin } from "../../redux/actions/adminActions";
+import { Link } from "react-router-dom";
 
 const AdminDashboard = () => {
   const [activeLink, setActiveLink] = useState(
@@ -65,6 +66,12 @@ const AdminDashboard = () => {
           >
             Kelola Kelas
           </button>
+          <Link
+            to={"/"}
+            className="btn btn-ghost text-white text-left font-bold text-xs md:text-base justify-start"
+          >
+            Buka Dashboard User
+          </Link>
           <button
             onClick={handleLogout}
             className="btn btn-ghost  text-white hover:text-red-700 font-bold text-xs md:text-base justify-start"
