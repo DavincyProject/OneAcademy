@@ -18,8 +18,8 @@ const VideoCardList = ({ onVideoSelect }) => {
     dispatch(getProgress(id));
   }, []);
 
-  const handleAddProgress = (materialId) => {
-    dispatch(addProgress(materialId));
+  const handleAddProgress = (materialId, id) => {
+    dispatch(addProgress(materialId, id));
   };
 
   function extractVideoId(videoURL) {
@@ -100,7 +100,7 @@ const VideoCardList = ({ onVideoSelect }) => {
                     key={materials.id}
                     onClick={() => {
                       handleVideoSelect(extractVideoId(materials.videoURL));
-                      handleAddProgress(materials.id);
+                      handleAddProgress(materials.id, id);
                     }}
                     className={`h-[52px] p-2 cursor-pointer ${
                       completed ? "completed-material" : ""
