@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { encryptValue, decryptValue } from "../../utils/encryptdecryptGoogle";
 
 const initialState = {
   token: localStorage.getItem("token") || null,
   idUser: localStorage.getItem("idUser") || null,
   role: null,
+  googleLogin: decryptValue(localStorage.getItem("googleLogin")),
 };
 
 const authSlice = createSlice({
@@ -25,8 +27,20 @@ const authSlice = createSlice({
     setRole: (state, action) => {
       state.role = action.payload;
     },
+    setGoogleLogin: (state, action) => {
+      const encryptedValue = encryptValue(action.payload);
+
+      if (encryptedValue) {
+        localStorage.setItem("googleLogin", encryptedValue);
+      } else {
+        localStorage.removeItem("googleLogin");
+      }
+
+      state.googleLogin = decryptValue(localStorage.getItem("googleLogin"));
+    },
   },
 });
 
-export const { setToken, setIdUser, setRole } = authSlice.actions;
+export const { setToken, setIdUser, setRole, setGoogleLogin } =
+  authSlice.actions;
 export default authSlice.reducer;
