@@ -2,6 +2,8 @@ import axios from "axios";
 import { ENDPOINTS } from "../../utils/endpointApi";
 import { setBuyingHistory, setProfileData } from "../reducers/profileReducers";
 import toast from "react-hot-toast";
+import { setRole } from "../reducers/authReducers";
+import handleApiError from "../../utils/handleApiError";
 
 export const getProfileData = () => async (dispatch, getState) => {
   try {
@@ -13,14 +15,12 @@ export const getProfileData = () => async (dispatch, getState) => {
     });
 
     const { profile } = response.data;
+
+    localStorage.setItem("idProfile", profile.id);
+    dispatch(setRole(profile.role.name));
     dispatch(setProfileData(profile));
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      // Kesalahan selain dari Axios
-      toast.error("An unexpected error occurred", {
-        duration: 2000,
-      });
-    }
+    handleApiError(error);
   }
 };
 
@@ -39,24 +39,7 @@ export const updateProfile = (formData) => async (dispatch, getState) => {
 
     window.location.reload();
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      if (error.response) {
-        const errorMessage = error.response.data.message;
-        toast.error(errorMessage, {
-          duration: 2000,
-        });
-      } else {
-        // Respon tidak diterima dari server
-        toast.error("Error: No response received from the server", {
-          duration: 2000,
-        });
-      }
-    } else {
-      // Kesalahan selain dari Axios
-      toast.error("An unexpected error occurred", {
-        duration: 2000,
-      });
-    }
+    handleApiError(error);
   }
 };
 
@@ -80,24 +63,7 @@ export const changePassword =
       const { message } = response.data;
       toast.success(message);
     } catch (error) {
-      if (axios.isAxiosError(error)) {
-        if (error.response) {
-          const errorMessage = error.response.data.message;
-          toast.error(errorMessage, {
-            duration: 2000,
-          });
-        } else {
-          // Respon tidak diterima dari server
-          toast.error("Error: No response received from the server", {
-            duration: 2000,
-          });
-        }
-      } else {
-        // Kesalahan selain dari Axios
-        toast.error("An unexpected error occurred", {
-          duration: 2000,
-        });
-      }
+      handleApiError(error);
     }
   };
 
@@ -112,23 +78,6 @@ export const buyingHistory = () => async (dispatch, getState) => {
 
     dispatch(setBuyingHistory(response.data));
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      if (error.response) {
-        const errorMessage = error.response.data.message;
-        toast.error(errorMessage, {
-          duration: 2000,
-        });
-      } else {
-        // Respon tidak diterima dari server
-        toast.error("Error: No response received from the server", {
-          duration: 2000,
-        });
-      }
-    } else {
-      // Kesalahan selain dari Axios
-      toast.error("An unexpected error occurred", {
-        duration: 2000,
-      });
-    }
+    handleApiError(error);
   }
 };

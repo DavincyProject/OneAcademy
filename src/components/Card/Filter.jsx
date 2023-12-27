@@ -64,9 +64,7 @@ const Filter = ({ page }) => {
       currentParams.delete("orderBy");
     }
 
-    setSearchParams(currentParams).then(() => {
-      handleParamsChange();
-    });
+    setSearchParams(currentParams);
   };
 
   // const handlePopularFilter = (e) => {
@@ -82,9 +80,7 @@ const Filter = ({ page }) => {
       currentParams.delete("promo");
     }
 
-    setSearchParams(currentParams).then(() => {
-      handleParamsChange();
-    });
+    setSearchParams(currentParams);
   };
 
   const handleCategoryFilter = (e, categoryId) => {
@@ -108,9 +104,7 @@ const Filter = ({ page }) => {
 
     currentParams.set("category", finalCategory);
 
-    setSearchParams(currentParams).then(() => {
-      handleParamsChange();
-    });
+    setSearchParams(currentParams);
   };
 
   const handleLevelFilter = (e, levelParams) => {
@@ -134,15 +128,11 @@ const Filter = ({ page }) => {
 
     currentParams.set("level", finalLevels);
 
-    setSearchParams(currentParams).then(() => {
-      handleParamsChange();
-    });
+    setSearchParams(currentParams);
   };
 
   const handleRemoveFilter = () => {
-    setSearchParams(new URLSearchParams()).then(() => {
-      handleParamsChange();
-    });
+    setSearchParams(new URLSearchParams());
   };
 
   if (categoryList <= 0) {
@@ -161,7 +151,7 @@ const Filter = ({ page }) => {
                 <input
                   type="checkbox"
                   className={`checkbox bg-[#E8F1FF] border-[#B4BDC4] ${checkColor}`}
-                  checked={searchParams.get("orderBy") === "newest"}
+                  checked={searchParams.get("orderBy") === "newest" || false}
                   onChange={handleNewestFilter}
                 />
                 <span className="label-text ml-3 ">Paling Baru</span>

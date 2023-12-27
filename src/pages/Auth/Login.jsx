@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/actions/authActions";
 import toast from "react-hot-toast";
+import GoogleOAuth from "../../components/Auth/GoogleOAuth";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -42,7 +43,7 @@ const Login = () => {
 
   return (
     <div className="flex min-h-screen">
-      <div className="w-[100%] lg:w-[50%] flex justify-start items-center mx-[23px] lg:px-[145px] ">
+      <div className="w-[100%] lg:w-[50%] flex flex-col justify-center items-center mx-[23px] lg:px-[145px] ">
         <form onSubmit={handleLogin} className="w-full">
           <h1 className="text-[24px] font-bold text-darkblue mb-8">Masuk</h1>
           <div className="flex flex-col gap-5">
@@ -93,18 +94,22 @@ const Login = () => {
           <button className="btn btn-primary w-full text-[14px] font-medium bg-darkblue text-white py-[10px] rounded-2xl mt-5">
             Masuk
           </button>
-          <div className="flex justify-center items-center gap-2 mt-6">
-            <h1 className="text-[14px] font-normal font-Poppins">
-              Belum punya akun?
-            </h1>
-            <Link
-              to="/register"
-              className="text-darkblue text-[14px] font-bold"
-            >
-              Daftar di sini
-            </Link>
+          <div className="flex flex-col justify-center items-center gap-2 mt-6">
+            <div className="flex gap-2">
+              <h1 className="text-[14px] font-normal font-Poppins">
+                Belum punya akun?
+              </h1>
+              <Link
+                to="/register"
+                className="text-darkblue text-[14px] font-bold"
+              >
+                Daftar di sini
+              </Link>
+            </div>
           </div>
         </form>
+        <div className="divider">Or Login With</div>
+        <GoogleOAuth />
       </div>
 
       <div className="hidden lg:flex justify-center items-center bg-darkblue w-[50%] min-h-[100dvh]">

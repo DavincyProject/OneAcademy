@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { listCategory, listCourse } from "../../redux/actions/courseActions";
 import AddCategory from "./category/AddCategory";
-import { deleteCategory } from "../../redux/actions/adminActions";
+import { deleteCategory, deleteCourse } from "../../redux/actions/adminActions";
 import { formatDateAndTime } from "../../utils/utils";
 import EditCategory from "./category/EditCategory";
 
@@ -17,7 +17,7 @@ const KelolaKelas = () => {
   const dispatch = useDispatch();
 
   const course = useSelector((state) => state.course.listCourse);
-  const { coursePage } = useSelector((state) => state.course);
+  const { totalPages } = useSelector((state) => state.admin);
   const categoryList = useSelector((state) => state.course.listCategory);
 
   useEffect(() => {
@@ -27,16 +27,20 @@ const KelolaKelas = () => {
     };
 
     fetchData();
-  }, [dispatch, currentPage]);
+  }, [dispatch, course, currentPage]);
 
   const handledeletecategory = (id) => {
     dispatch(deleteCategory(id));
   };
 
-  const totalPages = coursePage || 1;
+  const handledeletecourse = (id) => {
+    dispatch(deleteCourse(id));
+  };
+
+  const totalPage = totalPages || 1;
 
   const handlePageChange = (page) => {
-    if (page >= 1 && page <= totalPages && page !== currentPage) {
+    if (page >= 1 && page <= totalPage && page !== currentPage) {
       setCurrentPage(page);
     }
   };
@@ -51,7 +55,6 @@ const KelolaKelas = () => {
           <h1 className="font-bold text-xl">Kelola Kelas</h1>
           <div className="flex justify-center items-center gap-2 p">
             <AddClass />
-            <AddCategory />
             <button className="badge p-4 text-darkblue border-darkblue">
               <FaFilter size={15} color="#6148FF" className="mr-2" />
               Filter
@@ -60,7 +63,7 @@ const KelolaKelas = () => {
           </div>
         </div>
         <div className="overflow-x-auto my-3 rounded-md">
-          <table className="table ">
+          <table className="table shadow-lg border rounded-lg">
             {/* head */}
             <thead>
               <tr className="bg-[#EBF3FC] text-black">
@@ -75,7 +78,7 @@ const KelolaKelas = () => {
             </thead>
             <tbody>
               {course.map((item) => (
-                <tr key={item.id}>
+                <tr key={item.id} className="hover">
                   <th>{item.instructor}</th>
                   <td>{item.category?.name}</td>
                   <td>{item.title}</td>
@@ -95,9 +98,14 @@ const KelolaKelas = () => {
                       to={`/admin/chapter/${item.id}`}
                       className="badge-darkblue p-1 rounded-md"
                     >
-                      Ubah
+                      Detail
                     </Link>
-                    <button className="badge-red p-1 rounded-md">Hapus</button>
+                    <button
+                      onClick={() => handledeletecourse(item.id)}
+                      className="badge-red p-1 rounded-md"
+                    >
+                      Hapus
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -130,9 +138,10 @@ const KelolaKelas = () => {
         {/* Table Category */}
         <div className="container-fluid flex justify-between mt-2">
           <h1 className="font-bold text-xl">Category Table</h1>
+          <AddCategory />
         </div>
         <div className="overflow-x-auto my-3 rounded-md">
-          <table className="table ">
+          <table className="table shadow-lg border rounded-lg">
             {/* head */}
             <thead>
               <tr className="bg-[#EBF3FC] text-black">
@@ -145,7 +154,7 @@ const KelolaKelas = () => {
             </thead>
             <tbody>
               {categoryList.map((list) => (
-                <tr key={list.id}>
+                <tr key={list.id} className="hover">
                   <th>
                     <small>{list.id}</small>
                   </th>
@@ -156,12 +165,14 @@ const KelolaKelas = () => {
                     <button
                       className="badge-darkblue p-1 rounded-md"
                       onClick={() =>
-                        document.getElementById("editCategory").showModal()
+                        document
+                          .getElementById(`editCategory_${list.id}`)
+                          .showModal()
                       }
                     >
-                      Ubah <small>[Still Bug]</small>
+                      Ubah
                     </button>
-                    <dialog id="editCategory" className="modal">
+                    <dialog id={`editCategory_${list.id}`} className="modal">
                       <div className="modal-box">
                         <h3 className="font-bold text-lg">Edit Kategori</h3>
                         <div className="py-4">

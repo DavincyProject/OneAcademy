@@ -2,9 +2,10 @@ import { useState } from "react";
 import DashboardAdmin from "../../components/Admin/DashboardAdmin";
 import KelolaKelas from "../../components/Admin/KelolaKelas";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logoutAdmin } from "../../redux/actions/adminActions";
+import { Link } from "react-router-dom";
 
 const AdminDashboard = () => {
   const [activeLink, setActiveLink] = useState(
@@ -14,6 +15,8 @@ const AdminDashboard = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const { profileData } = useSelector((state) => state.profile);
 
   const handleClick = (link) => {
     setActiveLink(link);
@@ -63,6 +66,12 @@ const AdminDashboard = () => {
           >
             Kelola Kelas
           </button>
+          <Link
+            to={"/"}
+            className="btn btn-ghost text-white text-left font-bold text-xs md:text-base justify-start"
+          >
+            Buka Dashboard User
+          </Link>
           <button
             onClick={handleLogout}
             className="btn btn-ghost  text-white hover:text-red-700 font-bold text-xs md:text-base justify-start"
@@ -85,7 +94,7 @@ const AdminDashboard = () => {
 
           <div className="flex-1">
             <a className="btn btn-ghost text-xl text-darkblue font-bold">
-              Hi, Admin!
+              Hi, {profileData?.name}!
             </a>
           </div>
 

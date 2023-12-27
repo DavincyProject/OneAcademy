@@ -1,8 +1,9 @@
 import axios from "axios";
-import { setIdUser, setToken } from "../reducers/authReducers";
+import { setIdUser, setRole, setToken } from "../reducers/authReducers";
 import { ENDPOINTS } from "../../utils/endpointApi";
 import toast from "react-hot-toast";
 import { setProfileData } from "../reducers/profileReducers";
+import handleApiError from "../../utils/handleApiError";
 
 export const login = (email, password, navigate) => async (dispatch) => {
   try {
@@ -12,33 +13,59 @@ export const login = (email, password, navigate) => async (dispatch) => {
     });
 
     const { token } = response.data.data;
-    const { id } = response.data;
+    const { id, roleId } = response.data;
 
     dispatch(setToken(token));
     dispatch(setIdUser(id));
 
     localStorage.setItem("idUser", id);
     localStorage.removeItem("countdown");
-    navigate("/");
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      if (error.response) {
-        const errorMessage = error.response.data.error;
-        toast.error(errorMessage, {
-          duration: 2000,
-        });
-      } else {
-        // Respon tidak diterima dari server
-        toast.error("Error: No response received from the server", {
-          duration: 2000,
-        });
-      }
+    localStorage.setItem("r", roleId);
+
+    if (roleId !== 2) {
+      navigate("/admin/dashboard");
     } else {
-      // Kesalahan selain dari Axios
-      toast.error("An unexpected error occurred", {
-        duration: 2000,
-      });
+      navigate("/");
     }
+  } catch (error) {
+    handleApiError(error);
+  }
+};
+
+export const loginWithGoogle = (accessToken, navigate) => async (dispatch) => {
+  try {
+    let data = JSON.stringify({
+      access_token: accessToken,
+    });
+
+    let config = {
+      method: "post",
+      maxBodyLength: Infinity,
+      url: ENDPOINTS.loginwithgoogle,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: data,
+    };
+
+    const response = await axios.request(config);
+    const { token, id, roleId } = response.data;
+
+    dispatch(setToken(token));
+    dispatch(setIdUser(id));
+
+    localStorage.setItem("idUser", id);
+    localStorage.removeItem("countdown");
+    localStorage.setItem("r", roleId);
+    localStorage.setItem("active", false);
+
+    if (roleId !== 2) {
+      navigate("/admin/dashboard");
+    } else {
+      navigate("/");
+    }
+  } catch (error) {
+    handleApiError(error);
   }
 };
 
@@ -62,24 +89,7 @@ export const register =
         navigate("/validate");
       }, 2000);
     } catch (error) {
-      if (axios.isAxiosError(error)) {
-        if (error.response) {
-          const errorMessage = error.response.data.message;
-          toast.error(errorMessage, {
-            duration: 2000,
-          });
-        } else {
-          // Respon tidak diterima dari server
-          toast.error("Error: No response received from the server", {
-            duration: 2000,
-          });
-        }
-      } else {
-        // Kesalahan selain dari Axios
-        toast.error("An unexpected error occurred", {
-          duration: 2000,
-        });
-      }
+      handleApiError(error);
     }
   };
 
@@ -101,24 +111,7 @@ export const activateAccount = (OTP, navigate) => async () => {
       navigate("/login");
     }, 2000);
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      if (error.response) {
-        const errorMessage = error.response.data.message;
-        toast.error(errorMessage, {
-          duration: 2000,
-        });
-      } else {
-        // Respon tidak diterima dari server
-        toast.error("Error: No response received from the server", {
-          duration: 2000,
-        });
-      }
-    } else {
-      // Kesalahan selain dari Axios
-      toast.error("An unexpected error occurred", {
-        duration: 2000,
-      });
-    }
+    handleApiError(error);
   }
 };
 
@@ -132,24 +125,7 @@ export const resendOtp = () => async () => {
 
     toast.success("Otp berhasil dikirim");
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      if (error.response) {
-        const errorMessage = error.response.data.message;
-        toast.error(errorMessage, {
-          duration: 2000,
-        });
-      } else {
-        // Respon tidak diterima dari server
-        toast.error("Error: No response received from the server", {
-          duration: 2000,
-        });
-      }
-    } else {
-      // Kesalahan selain dari Axios
-      toast.error("An unexpected error occurred", {
-        duration: 2000,
-      });
-    }
+    handleApiError(error);
   }
 };
 
@@ -163,31 +139,14 @@ export const resetPassword = (email) => async () => {
     localStorage.removeItem("countdown");
     toast.success(message);
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      if (error.response) {
-        const errorMessage = error.response.data.message;
-        toast.error(errorMessage, {
-          duration: 2000,
-        });
-      } else {
-        // Respon tidak diterima dari server
-        toast.error("Error: No response received from the server", {
-          duration: 2000,
-        });
-      }
-    } else {
-      // Kesalahan selain dari Axios
-      toast.error("An unexpected error occurred", {
-        duration: 2000,
-      });
-    }
+    handleApiError(error);
   }
 };
 
 export const forgotPassword = (password, id, navigate) => async () => {
   try {
     const response = await axios.post(ENDPOINTS.setpassword, {
-      id,
+      key: id,
       password,
     });
 
@@ -198,33 +157,15 @@ export const forgotPassword = (password, id, navigate) => async () => {
       navigate("/login");
     }, 1500);
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      if (error.response) {
-        const errorMessage = error.response.data.message;
-        toast.error(errorMessage, {
-          duration: 2000,
-        });
-      } else {
-        // Respon tidak diterima dari server
-        toast.error("Error: No response received from the server", {
-          duration: 2000,
-        });
-      }
-    } else {
-      // Kesalahan selain dari Axios
-      toast.error("An unexpected error occurred", {
-        duration: 2000,
-      });
-    }
+    handleApiError(error);
   }
 };
 
 export const logout = (navigate) => (dispatch) => {
-  localStorage.removeItem("token");
-  localStorage.removeItem("idUser");
-  localStorage.removeItem("idAdmin");
+  localStorage.clear();
   dispatch(setToken(null));
   dispatch(setIdUser(null));
   dispatch(setProfileData(null));
+  dispatch(setRole(null));
   navigate("/login");
 };
