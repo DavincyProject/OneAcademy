@@ -32,12 +32,28 @@ export const login = (email, password, navigate) => async (dispatch) => {
   }
 };
 
-export const loginWithGoogle = () => async (dispatch) => {
+export const loginWithGoogle = (accessToken, navigate) => async (dispatch) => {
   try {
-    const response = await axios.get(ENDPOINTS.loginWithGoogle);
+    let data = JSON.stringify({
+      access_token: accessToken,
+    });
+
+    let config = {
+      method: "post",
+      maxBodyLength: Infinity,
+      url: ENDPOINTS.loginwithgoogle,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: data,
+    };
+
+    const response = await axios.request(config);
     const { token } = response.data.data;
 
     dispatch(setToken(token));
+
+    navigate("/");
   } catch (error) {
     handleApiError(error);
   }
