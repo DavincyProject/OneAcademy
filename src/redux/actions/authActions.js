@@ -1,5 +1,10 @@
 import axios from "axios";
-import { setIdUser, setRole, setToken } from "../reducers/authReducers";
+import {
+  setGoogleLogin,
+  setIdUser,
+  setRole,
+  setToken,
+} from "../reducers/authReducers";
 import { ENDPOINTS } from "../../utils/endpointApi";
 import toast from "react-hot-toast";
 import { setProfileData } from "../reducers/profileReducers";
@@ -57,7 +62,7 @@ export const loginWithGoogle = (accessToken, navigate) => async (dispatch) => {
     localStorage.setItem("idUser", id);
     localStorage.removeItem("countdown");
     localStorage.setItem("r", roleId);
-    localStorage.setItem("active", false);
+    dispatch(setGoogleLogin("true"));
 
     if (roleId !== 2) {
       navigate("/admin/dashboard");
@@ -167,5 +172,6 @@ export const logout = (navigate) => (dispatch) => {
   dispatch(setIdUser(null));
   dispatch(setProfileData(null));
   dispatch(setRole(null));
+  dispatch(setGoogleLogin(null));
   navigate("/login");
 };

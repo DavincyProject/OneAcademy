@@ -2,7 +2,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { setPaymentStatus, setTotalPages } from "../reducers/adminReducers";
 import { ENDPOINTS } from "../../utils/endpointApi";
-import { setIdUser, setToken } from "../reducers/authReducers";
+import { setGoogleLogin, setIdUser, setToken } from "../reducers/authReducers";
 import { setProfileData } from "../reducers/profileReducers";
 import { listCourse } from "./courseActions";
 import handleApiError from "../../utils/handleApiError";
@@ -226,5 +226,6 @@ export const logoutAdmin = (navigate) => (dispatch) => {
   dispatch(setToken(null));
   dispatch(setIdUser(null));
   dispatch(setProfileData(null));
+  dispatch(setGoogleLogin(null));
   navigate("/");
 };
