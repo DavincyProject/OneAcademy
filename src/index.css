@@ -63,3 +63,21 @@
 .custom-toaster {
   z-index: 10000;
 }
+
+.bg-custom {
+  background-image: radial-gradient(
+    circle,
+    #161725,
+    #151724,
+    #141723,
+    #141722,
+    #131721,
+    #151a25,
+    #171c28,
+    #191f2c,
+    #1e2536,
+    #242a41,
+    #2b304b,
+    #333556
+  );
+}
