@@ -12,7 +12,7 @@ export const login = (email, password, navigate) => async (dispatch) => {
       password,
     });
 
-    const { token } = response.data.data;
+    const { token } = response.data;
     const { id, roleId } = response.data;
 
     dispatch(setToken(token));
@@ -49,11 +49,22 @@ export const loginWithGoogle = (accessToken, navigate) => async (dispatch) => {
     };
 
     const response = await axios.request(config);
-    const { token } = response.data.data;
+    const { token, id, roleId } = response.data;
+
+    console.log(token, id, roleId);
 
     dispatch(setToken(token));
+    dispatch(setIdUser(id));
 
-    navigate("/");
+    localStorage.setItem("idUser", id);
+    localStorage.removeItem("countdown");
+    localStorage.setItem("r", roleId);
+
+    if (roleId !== 2) {
+      navigate("/admin/dashboard");
+    } else {
+      navigate("/");
+    }
   } catch (error) {
     handleApiError(error);
   }
