@@ -10,7 +10,7 @@ import { getProfileData } from "../redux/actions/profileActions";
 const Navbar = () => {
   const { token, role } = useSelector((state) => state.auth);
   const profileImage = useSelector(
-    (state) => state.profile?.profileData?.avatar
+    (state) => state.profile?.profileData?.avatar ?? "/profile.jpg"
   );
 
   const navigate = useNavigate();
@@ -112,10 +112,7 @@ const Navbar = () => {
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 {profileImage ? (
                   <div className="w-10 rounded-full">
-                    <img
-                      alt="User Profile Image"
-                      src={profileImage ? profileImage : "/profile.jpg"}
-                    />
+                    <img alt="User Profile Image" src={profileImage} />
                   </div>
                 ) : (
                   <div className="skeleton bg-zinc-500 animate-pulse w-10 rounded-full"></div>

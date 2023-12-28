@@ -9,6 +9,7 @@ import { ENDPOINTS } from "../../utils/endpointApi";
 import toast from "react-hot-toast";
 import { setProfileData } from "../reducers/profileReducers";
 import handleApiError from "../../utils/handleApiError";
+import { setPaymentStatus } from "../reducers/adminReducers";
 
 export const login = (email, password, navigate) => async (dispatch) => {
   try {
@@ -54,7 +55,8 @@ export const loginWithGoogle = (accessToken, navigate) => async (dispatch) => {
     };
 
     const response = await axios.request(config);
-    const { token, id, roleId } = response.data;
+    const { token } = response.data;
+    const { id, roleId } = response.data.user;
 
     dispatch(setToken(token));
     dispatch(setIdUser(id));
@@ -173,5 +175,6 @@ export const logout = (navigate) => (dispatch) => {
   dispatch(setProfileData(null));
   dispatch(setRole(null));
   dispatch(setGoogleLogin(null));
+  dispatch(setPaymentStatus([]));
   navigate("/login");
 };

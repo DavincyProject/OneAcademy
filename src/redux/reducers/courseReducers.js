@@ -46,6 +46,7 @@ export const {
   setListCategory,
   setListCourse,
   setCourseDetails,
+  setCourseStatus,
   setCoursePage,
   setCourseMaterial,
   setProgressCourse,
