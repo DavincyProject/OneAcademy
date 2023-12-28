@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { listCourse } from "../../redux/actions/courseActions";
 import HomeSkeleton from "../skeleton/HomeSkeleton";
+import { formatPrice } from "../../utils/utils";
 
 // This card for HomePages
 
@@ -21,15 +22,6 @@ const CardCourse = () => {
 
   const handleBadgeClick = (categoryId) => {
     setSelectCategoryId(categoryId);
-  };
-
-  const formatPrice = (price) => {
-    // Assuming price is a number
-    return price.toLocaleString("id-ID", {
-      style: "currency",
-      currency: "IDR",
-      maximumFractionDigits: 0,
-    });
   };
 
   if (categories <= 0) {

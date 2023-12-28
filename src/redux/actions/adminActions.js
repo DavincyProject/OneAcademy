@@ -227,5 +227,6 @@ export const logoutAdmin = (navigate) => (dispatch) => {
   dispatch(setIdUser(null));
   dispatch(setProfileData(null));
   dispatch(setGoogleLogin(null));
+  dispatch(setPaymentStatus([]));
   navigate("/");
 };

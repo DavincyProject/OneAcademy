@@ -68,7 +68,7 @@ const EditProfile = ({ profileData }) => {
                   ? selectedImage
                   : profile?.avatar
                   ? profile?.avatar
-                  : "https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                  : "/profile.jpg"
               }
               alt="profile Image"
               id="profileImage"
