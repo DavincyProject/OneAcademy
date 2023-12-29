@@ -3,6 +3,7 @@ const API_URL = import.meta.env.VITE_BASE_URL;
 export const ENDPOINTS = {
   //auth endpoints
   login: `${API_URL}/api/v1/user/login`,
+  loginwithgoogle: `${API_URL}/api/v1/user/auth/google`,
   register: `${API_URL}/api/v1/user/register`,
   activateaccount: `${API_URL}/api/v1/user/verify`,
   resendotp: `${API_URL}/api/v1/user/resetOTP`,
@@ -36,6 +37,13 @@ export const ENDPOINTS = {
     return `${API_URL}/api/v1/transaction/${transcationid}/pay`;
   },
 
+  addprogress: (materialid) => {
+    return `${API_URL}/api/v1/myClass/progress/complete/${materialid}`;
+  },
+  checkprogress: (courseid) => {
+    return `${API_URL}/api/v1/myClass/progress/course/${courseid}`;
+  },
+
   //admin endpoints
   transactioncourse: (page) => {
     return `${API_URL}/api/v1/transaction/?page=${page}`;
@@ -48,9 +56,22 @@ export const ENDPOINTS = {
   courseupdate: (id) => {
     return `${API_URL}/api/v1/course/update/${id}`;
   },
+  deletecourse: (id) => {
+    return `${API_URL}/api/v1/course/${id}`;
+  },
 
   addcategory: `${API_URL}/api/v1/category/create`,
   updatedeletecategory: (id) => {
     return `${API_URL}/api/v1/category/${id}`;
+  },
+
+  addchapter: `${API_URL}/api/v1/chapter/create`,
+  updatedeletechapter: (id) => {
+    return `${API_URL}/api/v1/chapter/${id}`;
+  },
+
+  addmaterial: `${API_URL}/api/v1/material/create`,
+  updatedeletematerial: (materialId) => {
+    return `${API_URL}/api/v1/material/${materialId}`;
   },
 };

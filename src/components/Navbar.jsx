@@ -1,15 +1,16 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import { FaRegBell, FaRegUser, FaListUl } from "react-icons/fa";
+import { RiAdminLine } from "react-icons/ri";
 import { logout } from "../redux/actions/authActions";
 import { CiLogout } from "react-icons/ci";
 import { useEffect } from "react";
 import { getProfileData } from "../redux/actions/profileActions";
 
 const Navbar = () => {
-  const { token } = useSelector((state) => state.auth);
+  const { token, role } = useSelector((state) => state.auth);
   const profileImage = useSelector(
-    (state) => state.profile?.profileData?.avatar
+    (state) => state.profile?.profileData?.avatar ?? "/profile.jpg"
   );
 
   const navigate = useNavigate();
@@ -111,10 +112,7 @@ const Navbar = () => {
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 {profileImage ? (
                   <div className="w-10 rounded-full">
-                    <img
-                      alt="User Profile Image"
-                      src={profileImage ? profileImage : "/profile.jpg"}
-                    />
+                    <img alt="User Profile Image" src={profileImage} />
                   </div>
                 ) : (
                   <div className="skeleton bg-zinc-500 animate-pulse w-10 rounded-full"></div>
@@ -145,6 +143,19 @@ const Navbar = () => {
                     </div>
                   </Link>
                 </li>
+                {role === "ADMIN" ? (
+                  <li className="my-2 hover:bg-slate-200 rounded-md">
+                    <Link to={"/admin/dashboard"}>
+                      <div className="flex items-center gap-2 text-[16px] font-bold">
+                        <RiAdminLine />
+                        <h1 className="text-sm">Dashboard Admin</h1>
+                      </div>
+                    </Link>
+                  </li>
+                ) : (
+                  <></>
+                )}
+
                 <li className="my-2 hover:bg-red-200 rounded-md">
                   <button onClick={onLogout}>
                     <div className="flex items-center gap-2 text-[16px] text-red-600 font-bold">

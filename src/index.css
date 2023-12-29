@@ -59,3 +59,43 @@
   background-color: white;
   color: #8a8a8a;
 }
+
+.custom-toaster {
+  z-index: 10000;
+}
+
+.bg-custom {
+  background-image: radial-gradient(
+    circle,
+    #161725,
+    #151724,
+    #141723,
+    #141722,
+    #131721,
+    #151a25,
+    #171c28,
+    #191f2c,
+    #1e2536,
+    #242a41,
+    #2b304b,
+    #333556
+  );
+}
+
+.bg-custom-footer {
+  background-image: radial-gradient(
+    circle,
+    #1f1a1d,
+    #241c23,
+    #271e2a,
+    #282132,
+    #26253a,
+    #1f263c,
+    #17283e,
+    #0b293e,
+    #022736,
+    #01242d,
+    #032125,
+    #071d1d
+  );
+}

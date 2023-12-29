@@ -38,7 +38,7 @@ const TableCategory = () => {
           </thead>
           <tbody>
             {categoryList.map((list) => (
-              <tr key={list.id}>
+              <tr key={list.id} className="hover">
                 <th>
                   <small>{list.id}</small>
                 </th>
@@ -52,6 +52,30 @@ const TableCategory = () => {
                   >
                     Ubah
                   </Link>
+
+                  <button
+                    className="btn"
+                    onClick={() =>
+                      document.getElementById("editCategory").showModal()
+                    }
+                  >
+                    Ubah
+                  </button>
+                  <dialog id="editCategory" className="modal">
+                    <div className="modal-box">
+                      <h3 className="font-bold text-lg">Hello!</h3>
+                      <p className="py-4">
+                        Press ESC key or click the button below to close
+                      </p>
+                      <div className="modal-action">
+                        <form method="dialog">
+                          {/* if there is a button in form, it will close the modal */}
+                          <button className="btn">Close</button>
+                        </form>
+                      </div>
+                    </div>
+                  </dialog>
+
                   <button
                     onClick={() => handledeletecategory(list.id)}
                     className="badge-red p-1 rounded-md"

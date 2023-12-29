@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 import { listCategory } from "../../../redux/actions/courseActions";
 import Proptype from "prop-types";
 
+// ralat update course bukan chapter, tetapi halamannya sama dengan update dan buat chapter
+
 const UpdateChapter = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -18,20 +20,20 @@ const UpdateChapter = () => {
   const [title, setTitle] = useState(details?.name || "");
   const [price, setPrice] = useState(details?.price || "");
   const [level, setLevel] = useState(details?.level || "");
-  const [courseType, setCourseType] = useState(details?.coursetype || "");
+  const [courseType, setCourseType] = useState(details?.courseType || "");
   const [categoryId, setCategoryId] = useState(details?.categoryId || "");
   const [instructor, setInstructor] = useState(details?.instructor || "");
   const [description, setDescription] = useState(details?.description || "");
 
   useEffect(() => {
     dispatch(listCategory());
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     setTitle(details?.title || "");
     setPrice(details?.price || "");
     setLevel(details?.level || "");
-    setCourseType(details?.coursetype || "");
+    setCourseType(details?.courseType || "");
     setCategoryId(details?.categoryId || "");
     setInstructor(details?.instructor || "");
     setDescription(details?.description || "");
@@ -62,10 +64,10 @@ const UpdateChapter = () => {
   return (
     <>
       <button
-        className="btn"
+        className="btn btn-primary"
         onClick={() => document.getElementById("update").showModal()}
       >
-        Update Chapter
+        Update Course Details
       </button>
       <dialog id="update" className="modal">
         <div className="modal-box">
@@ -75,7 +77,7 @@ const UpdateChapter = () => {
               ✕
             </button>
           </form>
-          <h3 className="font-bold text-lg">Update Chapter</h3>
+          <h3 className="font-bold text-lg">Update Course Details</h3>
           <div className="py-4">
             <form onSubmit={handleUpdateCourse}>
               <div className="form-control">

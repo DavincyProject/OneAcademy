@@ -25,10 +25,15 @@ const KelasDetail = () => {
 
   const { courseDetails, transaction } = useSelector((state) => state.course);
   const { idUser } = useSelector((state) => state.auth);
-  const idProfile = useSelector((state) => state.profile?.profileData?.id);
+  const idProfile = localStorage.getItem("idProfile");
 
   useEffect(() => {
     const delay = setTimeout(() => {
+      if (idUser === null) {
+        dispatch(logout(navigate));
+        toast.error("Kamu harus login terlebih dahulu");
+      }
+
       if (idUser !== idProfile) {
         dispatch(logout(navigate));
         toast.error("Kamu harus login terlebih dahulu");
@@ -93,10 +98,15 @@ const KelasDetail = () => {
             </div>
             <div className="flex gap-1 flex-wrap">
               <button className="mt-3 w-[269px] h-[34px] bg-[#73CA5C] text-white rounded-[25px]">
-                <span className="flex justify-center items-center">
+                <Link
+                  to={"https://t.me/+Ko8M-S08yvBlMTVl"}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex justify-center items-center"
+                >
                   Join Grup Telegram
                   <FaTelegram className="ml-2" />
-                </span>
+                </Link>
               </button>
               {/* need to add logic to send id course into transaction pages */}
               {transaction?.status === "Sudah Bayar" ? (

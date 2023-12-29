@@ -16,11 +16,9 @@ const Class = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { coursePage } = useSelector((state) => state.course);
   const { token } = useSelector((state) => state.auth);
-  const { filtersearch } = useSelector((state) => state.course);
+  const { coursePage, filtersearch } = useSelector((state) => state.course);
 
-  console.log(currentPage);
   useEffect(() => {
     dispatch(listCourse(currentPage));
   }, [dispatch, currentPage]);

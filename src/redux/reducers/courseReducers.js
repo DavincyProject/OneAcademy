@@ -6,7 +6,7 @@ const initialState = {
   filtersearch: [],
   courseDetails: [],
   courseMaterial: [],
-
+  progressCourse: [] || null,
   transaction: null,
   coursePage: null,
 };
@@ -30,6 +30,9 @@ const CourseSlice = createSlice({
     setTransaction: (state, action) => {
       state.transaction = action.payload;
     },
+    setProgressCourse: (state, action) => {
+      state.progressCourse = action.payload;
+    },
     setFilterSearch: (state, action) => {
       state.filtersearch = action.payload;
     },
@@ -43,8 +46,10 @@ export const {
   setListCategory,
   setListCourse,
   setCourseDetails,
+  setCourseStatus,
   setCoursePage,
   setCourseMaterial,
+  setProgressCourse,
   setTransaction,
   setFilterSearch,
 } = CourseSlice.actions;

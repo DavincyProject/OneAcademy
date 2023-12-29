@@ -44,7 +44,7 @@ const CardCategori = () => {
             {categoryList.map((category) => (
               <div
                 key={category.id}
-                className="justify-center items-center flex grow basis-[0%] flex-col pl-1.5 pr-2.5"
+                className="justify-center items-center flex grow flex-col pl-1.5 pr-2.5"
               >
                 <img
                   loading="lazy"
