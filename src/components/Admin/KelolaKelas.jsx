@@ -27,7 +27,7 @@ const KelolaKelas = () => {
     };
 
     fetchData();
-  }, [dispatch, course, currentPage]);
+  }, [dispatch, course, totalPages]);
 
   const handledeletecategory = (id) => {
     dispatch(deleteCategory(id));

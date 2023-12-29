@@ -59,6 +59,7 @@ export const deleteCourse = (id) => async (dispatch, getState) => {
   try {
     const { token } = getState().auth;
     const courseDeleteRequest = ENDPOINTS.deletecourse(id);
+
     await axios.delete(courseDeleteRequest, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -72,11 +73,14 @@ export const deleteCourse = (id) => async (dispatch, getState) => {
   }
 };
 
-export const addcategory = (formData) => async () => {
+export const addcategory = (formData) => async (dispatch, getState) => {
   try {
+    const { token } = getState().auth;
+
     await axios.post(ENDPOINTS.addcategory, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -86,12 +90,14 @@ export const addcategory = (formData) => async () => {
   }
 };
 
-export const updatedCategory = (id, formData) => async () => {
+export const updatedCategory = (id, formData) => async (dispatch, getState) => {
   try {
     const updateCategory = ENDPOINTS.updatedeletecategory(id);
+    const { token } = getState().auth;
     await axios.put(updateCategory, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -101,10 +107,16 @@ export const updatedCategory = (id, formData) => async () => {
   }
 };
 
-export const deleteCategory = (id) => async () => {
+export const deleteCategory = (id) => async (dispatch, getState) => {
   try {
     const deletedCategory = ENDPOINTS.updatedeletecategory(id);
-    await axios.delete(deletedCategory);
+    const { token } = getState().auth;
+
+    await axios.delete(deletedCategory, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     toast.success(`Kategori Berhasil Dihapus`);
   } catch (error) {
