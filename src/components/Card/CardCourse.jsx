@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { listCourse } from "../../redux/actions/courseActions";
 import HomeSkeleton from "../skeleton/HomeSkeleton";
+import { formatPrice } from "../../utils/utils";
 
 // This card for HomePages
 
@@ -21,15 +22,6 @@ const CardCourse = () => {
 
   const handleBadgeClick = (categoryId) => {
     setSelectCategoryId(categoryId);
-  };
-
-  const formatPrice = (price) => {
-    // Assuming price is a number
-    return price.toLocaleString("id-ID", {
-      style: "currency",
-      currency: "IDR",
-      maximumFractionDigits: 0,
-    });
   };
 
   if (categories <= 0) {
@@ -130,7 +122,7 @@ const CardCourse = () => {
               <Link
                 to={`/details/${data.id}`}
                 key={data.id}
-                className="shadow-md bg-white flex flex-col flex-grow sm:flex-none items-stretch pb-2.5 rounded-2xl max-w-[323px] max-h-[200px]"
+                className="shadow-md bg-white flex flex-col flex-grow sm:flex-none items-stretch pb-2.5 rounded-2xl max-w-[323px] max-h-[200px] hover:transform hover:-translate-y-1 transition-transform duration-300 ease-in-out"
               >
                 <img
                   loading="lazy"

@@ -18,8 +18,8 @@ const VideoCardList = ({ onVideoSelect }) => {
     dispatch(getProgress(id));
   }, []);
 
-  const handleAddProgress = (materialId) => {
-    dispatch(addProgress(materialId));
+  const handleAddProgress = (materialId, id) => {
+    dispatch(addProgress(materialId, id));
   };
 
   function extractVideoId(videoURL) {
@@ -62,7 +62,7 @@ const VideoCardList = ({ onVideoSelect }) => {
 
   return (
     <div className="container-fluid xs:w-full sm:max-w-[320px] xl:max-w-[400px] lg:absolute lg:top-[8rem] md:right-5 xl:right-20">
-      <div className="p-3 h-full w-full relative flex flex-col text-gray-700 bg-white drop-shadow-lg shadow-lg lg:max-w-[400px] rounded-md bg-clip-border">
+      <div className="p-3 mb-5 h-full w-full relative flex flex-col text-gray-700 bg-white drop-shadow-lg shadow-lg lg:max-w-[400px] rounded-md bg-clip-border">
         <div className="p-1 flex justify-between items-center">
           <h1 className="text-sm xl:text-[20px] font-bold">Materi Belajar</h1>
           <div className="flex gap-1">
@@ -100,7 +100,7 @@ const VideoCardList = ({ onVideoSelect }) => {
                     key={materials.id}
                     onClick={() => {
                       handleVideoSelect(extractVideoId(materials.videoURL));
-                      handleAddProgress(materials.id);
+                      handleAddProgress(materials.id, id);
                     }}
                     className={`h-[52px] p-2 cursor-pointer ${
                       completed ? "completed-material" : ""

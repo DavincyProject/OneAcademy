@@ -1,9 +1,15 @@
 import axios from "axios";
-import { setIdUser, setRole, setToken } from "../reducers/authReducers";
+import {
+  setGoogleLogin,
+  setIdUser,
+  setRole,
+  setToken,
+} from "../reducers/authReducers";
 import { ENDPOINTS } from "../../utils/endpointApi";
 import toast from "react-hot-toast";
 import { setProfileData } from "../reducers/profileReducers";
 import handleApiError from "../../utils/handleApiError";
+import { setPaymentStatus } from "../reducers/adminReducers";
 
 export const login = (email, password, navigate) => async (dispatch) => {
   try {
@@ -32,12 +38,39 @@ export const login = (email, password, navigate) => async (dispatch) => {
   }
 };
 
-export const loginWithGoogle = () => async (dispatch) => {
+export const loginWithGoogle = (accessToken, navigate) => async (dispatch) => {
   try {
-    const response = await axios.get(ENDPOINTS.loginWithGoogle);
-    const { token } = response.data.data;
+    let data = JSON.stringify({
+      access_token: accessToken,
+    });
+
+    let config = {
+      method: "post",
+      maxBodyLength: Infinity,
+      url: ENDPOINTS.loginwithgoogle,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: data,
+    };
+
+    const response = await axios.request(config);
+    const { token } = response.data;
+    const { id, roleId } = response.data.user;
 
     dispatch(setToken(token));
+    dispatch(setIdUser(id));
+
+    localStorage.setItem("idUser", id);
+    localStorage.removeItem("countdown");
+    localStorage.setItem("r", roleId);
+    dispatch(setGoogleLogin("true"));
+
+    if (roleId !== 2) {
+      navigate("/admin/dashboard");
+    } else {
+      navigate("/");
+    }
   } catch (error) {
     handleApiError(error);
   }
@@ -141,5 +174,7 @@ export const logout = (navigate) => (dispatch) => {
   dispatch(setIdUser(null));
   dispatch(setProfileData(null));
   dispatch(setRole(null));
+  dispatch(setGoogleLogin(null));
+  dispatch(setPaymentStatus([]));
   navigate("/login");
 };

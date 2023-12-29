@@ -200,23 +200,25 @@ export const searchFilter = (filters, currentPage) => async (dispatch) => {
   }
 };
 
-export const addProgress = (materialid) => async (dispatch, getState) => {
-  try {
-    const add = ENDPOINTS.addprogress(materialid);
-    const { token } = getState().auth;
-    await axios.put(
-      add,
-      {},
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-  } catch (error) {
-    handleApiError(error);
-  }
-};
+export const addProgress =
+  (materialid, courseId) => async (dispatch, getState) => {
+    try {
+      const add = ENDPOINTS.addprogress(materialid);
+      const { token } = getState().auth;
+      await axios.put(
+        add,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      dispatch(getProgress(courseId));
+    } catch (error) {
+      handleApiError(error);
+    }
+  };
 
 export const getProgress = (id) => async (dispatch, getState) => {
   try {

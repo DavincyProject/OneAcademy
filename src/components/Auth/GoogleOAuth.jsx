@@ -1,22 +1,25 @@
 import { FcGoogle } from "react-icons/fc";
 import { useDispatch } from "react-redux";
 import { loginWithGoogle } from "../../redux/actions/authActions";
+import { useNavigate } from "react-router-dom";
+import { useGoogleLogin } from "@react-oauth/google";
 
 const GoogleOAuth = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const handleLoginWithGoogle = (e) => {
-    e.preventDefault();
-
-    dispatch(loginWithGoogle());
-  };
+  const loginWithGoogles = useGoogleLogin({
+    onSuccess: async (responseGoogle) => {
+      await dispatch(loginWithGoogle(responseGoogle.access_token, navigate));
+    },
+    onError: (errorResponse) => {
+      alert(errorResponse.error_description);
+    },
+  });
 
   return (
     <>
-      <button
-        onSubmit={handleLoginWithGoogle}
-        className="btn bg-white shadow-md"
-      >
+      <button onClick={loginWithGoogles} className="btn bg-white shadow-md">
         <div className="flex gap-1 items-center">
           <FcGoogle size={22} /> Sign in with Google
         </div>

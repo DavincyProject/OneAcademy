@@ -10,10 +10,13 @@ const DashboardAdmin = () => {
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
   const { paymentStatus, totalPages } = useSelector((state) => state.admin);
+  const { role } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    dispatch(getTransactionData(currentPage));
-  }, [dispatch, currentPage]);
+    if (role === "ADMIN") {
+      dispatch(getTransactionData(currentPage));
+    }
+  }, [dispatch, role, currentPage]);
 
   const totalPage = totalPages || 1;
 

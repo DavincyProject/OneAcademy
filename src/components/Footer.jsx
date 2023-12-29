@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 
 const Footer = () => {
   const location = useLocation();
-  const hidePath = ["/login", "/register", "/reset", "/validate"];
+  const hidePath = ["/login", "/register", "/reset", "/validate", "/account"];
 
   const isHidden =
     hidePath.includes(location.pathname) ||
@@ -18,17 +18,22 @@ const Footer = () => {
   }
 
   return (
-    <div>
-      <footer className="text-white p-4 flex flex-col justify-between md:flex-row w-full h-auto px-4 py-8 border-t-4 border-indigo-500 bg-slate-950 ">
-        <div className="mb-4 flex items-center flex-col">
-          <img src="/testnew.svg" alt="logo" className="w-32" />
-          <p className="text-sm text-center md:text-start mt-2 space-x-4">
-            Website ini dibuat dengan tujuan memudahkan anda dalam hal belajar
-            dan sudah di lengkapi dengan video pembelajarannya.
+    <div className="bg-custom-footer">
+      <footer className="text-white flex flex-col justify-between md:flex-row w-full h-auto px-6 py-8 border-t-4 border-indigo-500">
+        <div className="mb-4 flex items-center flex-col md:w-2/4">
+          <img src="/footer_logo.svg" alt="logo" className="w-96 mb-3" />
+          <p className="text-sm text-justify md:text-start mt-2 space-x-4">
+            Website ini dibuat dengan tujuan untuk menyelesaikan Final Project
+            Kampus Merdeka dari Binar Academy dengan tema pendidikan. Dengan
+            fokus memberikan solusi kreatif dan pengalaman belajar yang inovatif
+            secara online. One Academy berkomitmen untuk menyediakan konten yang
+            dapat memberikan ilmu baru dan mendukung pengembangan pengetahuan
+            secara interaktif. Temukan pengalaman belajar yang kreatif dan
+            solusi pendidikan terbaik di One Academy. 🚀✨
           </p>
         </div>
 
-        <div className="mb-4">
+        <div className="mb-4 mx-2">
           <h3 className="text-sm font-bold mb-2">Our Front End Team</h3>
           <ul className="flex gap-2 flex-col">
             <li>
@@ -61,7 +66,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        <div className="mb-4">
+        <div className="mb-4 mx-2">
           <h3 className="text-sm  font-bold mb-2">Our Back End Team</h3>
           <ul className="flex gap-2 flex-col">
             <li>
@@ -85,7 +90,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        <div className="flex flex-col ">
+        <div className="flex flex-col mx-2">
           <div className="flex flex-col">
             <h3 className="text-sm font-bold mb-2">Social Media</h3>
             <ul className="flex gap-2 flex-col">
@@ -114,13 +119,13 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-      <p className="text-xs py-3 text-center h-full text-white bg-slate-950">
+      <p className="text-xs py-3 text-center h-full text-white ">
         <span className="font-bold">
-          Copyright &#169; 2023 One Academy, All Rights reserved.
+          &#169; 2023-2024 One Academy, All Rights reserved.
         </span>
         <br /> Made by Kelompok B15 <br />{" "}
         <span className="text-[#a5c9ca]">
-          All icons and logo are property of their respective owners.
+          All icons and logos are the property of their respective owners.
         </span>
       </p>
     </div>
