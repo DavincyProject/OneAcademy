@@ -50,7 +50,7 @@ const CardCategori = () => {
                   loading="lazy"
                   alt={category.name}
                   src={category.image.url}
-                  className="aspect-[1.6] object-cover object-center w-[140px] rounded-xl hover:cursor-pointer"
+                  className="aspect-[1.6] object-cover object-center w-[140px] rounded-xl shadow-md hover:cursor-pointer"
                   onClick={() => handleCategoryClick(category.id)}
                 />
                 <div className="text-black text-center text-xs font-semibold leading-9 whitespace-nowrap">
