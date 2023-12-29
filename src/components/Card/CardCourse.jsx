@@ -122,7 +122,7 @@ const CardCourse = () => {
               <Link
                 to={`/details/${data.id}`}
                 key={data.id}
-                className="shadow-md bg-white flex flex-col flex-grow sm:flex-none items-stretch pb-2.5 rounded-2xl max-w-[323px] max-h-[200px]"
+                className="shadow-md bg-white flex flex-col flex-grow sm:flex-none items-stretch pb-2.5 rounded-2xl max-w-[323px] max-h-[200px] hover:transform hover:-translate-y-1 transition-transform duration-300 ease-in-out"
               >
                 <img
                   loading="lazy"

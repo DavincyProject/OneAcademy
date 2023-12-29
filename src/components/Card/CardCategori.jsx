@@ -28,7 +28,7 @@ const CardCategori = () => {
   }
 
   return (
-    <div className="flex justify-center bg-[#EBF3FC]">
+    <div className="flex justify-center bg-[#EBF3FC] ">
       <div className="flex w-full justify-center items-center max-w-[1060px] flex-col pt-[26px] pb-[14px] gap-5 container">
         <div className="flex justify-between container px-6">
           <h2 className="text-xl font-bold">Kategori Belajar</h2>
@@ -44,7 +44,7 @@ const CardCategori = () => {
             {categoryList.map((category) => (
               <div
                 key={category.id}
-                className="justify-center items-center flex grow flex-col pl-1.5 pr-2.5"
+                className="justify-center items-center flex grow flex-col pl-1.5 pr-2.5 hover:transform hover:-translate-y-1 transition-transform duration-300 ease-in-out"
               >
                 <img
                   loading="lazy"

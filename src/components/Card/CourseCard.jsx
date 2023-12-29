@@ -12,7 +12,7 @@ const dataCard = ({ data }) => {
   return (
     <Link
       to={`/details/${data.id}`}
-      className="shadow-sm w-full lg:max-w-[343px] max-h-[185px] bg-white flex flex-col flex-grow sm:flex-none items-stretch pb-2.5 rounded-2xl"
+      className="shadow-sm w-full lg:max-w-[343px] max-h-[185px] bg-white flex flex-col flex-grow sm:flex-none items-stretch pb-2.5 rounded-2xl hover:transform hover:-translate-y-1 transition-transform duration-300 ease-in-out"
     >
       <img
         loading="lazy"
