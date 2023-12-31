@@ -112,7 +112,7 @@ const KelasDetail = () => {
                   <Enrollment />
                 </>
               ) : (
-                <> </>
+                <></>
               )}
             </div>
           </div>
