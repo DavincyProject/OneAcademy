@@ -9,7 +9,7 @@ const VideoPlayer = ({ videoSrc }) => {
   };
 
   return (
-    <div className="w-full lg:max-w-[700px] xl:max-w-none h-[30dvh] sm:h-[40dvh] lg:h-[60dvh] relative">
+    <div className="w-full md:max-w-[700px] xl:max-w-none h-[30dvh] sm:h-[40dvh] lg:h-[60dvh] relative">
       {!isPlaying && (
         <div
           className="absolute inset-0 flex items-center justify-center"

@@ -61,7 +61,7 @@ const VideoCardList = ({ onVideoSelect }) => {
       : 0;
 
   return (
-    <div className="container-fluid w-full lg:max-w-[320px] xl:max-w-[400px] lg:absolute lg:top-[8rem] md:right-5 xl:right-20">
+    <div className="container-fluid xs:w-full sm:max-w-[320px] xl:max-w-[400px] lg:absolute lg:top-[8rem] md:right-5 xl:right-20">
       <div className="p-3 mb-5 h-full w-full relative flex flex-col text-gray-700 bg-white drop-shadow-lg shadow-lg lg:max-w-[400px] rounded-md bg-clip-border">
         <div className="p-1 flex justify-between items-center">
           <h1 className="text-sm xl:text-[20px] font-bold">Materi Belajar</h1>
@@ -82,7 +82,7 @@ const VideoCardList = ({ onVideoSelect }) => {
           courseMaterial.map((chapter) => (
             <div
               key={chapter.id}
-              className="p-1 mt-2 w-full lg:max-w-[350px] mx-auto"
+              className="p-1 mt-2 w-full md:max-w-[350px] mx-auto"
             >
               <div className="flex justify-between items-center">
                 <h2 className="text-[12px] mx-1 text-darkblue font-extrabold">
