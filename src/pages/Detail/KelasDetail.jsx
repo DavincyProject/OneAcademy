@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { FaTelegram } from "react-icons/fa";
 import VideoCardList from "../../components/Details/VideoCardList";
 import VideoPlayer from "../../components/Details/VideoPlayer";
-import BuyCourseButton from "../../components/Details/BuyCourseButton";
 import { useParams } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,7 +13,7 @@ import Enrollment from "../../components/Details/Enrollment";
 import { logout } from "../../redux/actions/authActions";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { formatPrice } from "../../utils/utils";
+import PreviewBuyCard from "../../components/Details/PreviewBuyCard";
 
 const KelasDetail = () => {
   const [activeVideo, setActiveVideo] = useState("");
@@ -97,30 +96,31 @@ const KelasDetail = () => {
               </div>
             </div>
             <div className="flex gap-1 flex-wrap">
-              <button className="mt-3 w-[269px] h-[34px] bg-[#73CA5C] text-white rounded-[25px]">
-                <Link
-                  to={"https://t.me/+Ko8M-S08yvBlMTVl"}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex justify-center items-center"
-                >
-                  Join Grup Telegram
-                  <FaTelegram className="ml-2" />
-                </Link>
-              </button>
-              {/* need to add logic to send id course into transaction pages */}
               {transaction?.status === "Sudah Bayar" ? (
-                <Enrollment />
+                <>
+                  <button className="mt-3 w-[269px] h-[34px] bg-[#73CA5C] text-white rounded-[25px]">
+                    <Link
+                      to={"https://t.me/+Ko8M-S08yvBlMTVl"}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex justify-center items-center"
+                    >
+                      Join Grup Telegram
+                      <FaTelegram className="ml-2" />
+                    </Link>
+                  </button>
+                  <Enrollment />
+                </>
               ) : (
-                <BuyCourseButton id={id} />
+                <> </>
               )}
             </div>
           </div>
         </div>
       </div>
 
-      <div className="flex flex-col md:flex-row mx-3 md:ml-10 xl:ml-10">
-        <div className="md:flex-col">
+      <div className="flex flex-col lg:flex-row mx-3 md:ml-10 xl:ml-10">
+        <div className="lg:flex-col">
           {transaction?.status === "Sudah Bayar" ? (
             <div className="p-5 order-2 lg:order-1">
               {/* Video component di sini */}
@@ -129,10 +129,10 @@ const KelasDetail = () => {
           ) : (
             <></>
           )}
-          <div className="w-full md:w-[65vw] p-5">
+          <div className="w-fit lg:w-[65vw] p-5">
             <div className="collapse collapse-arrow bg-darkblue rounded-[4px] shadow-md mb-2">
-              <input type="checkbox" />
-              <div className="collapse-title text-white text-xl font-medium">
+              <input type="checkbox" defaultChecked />
+              <div className="collapse-title flex items-center text-white text-md md:text-xl font-medium">
                 <h1>Kelas Ini Ditujukan Untuk</h1>
               </div>
               <div className="collapse-content bg-white">
@@ -159,8 +159,8 @@ const KelasDetail = () => {
               </div>
             </div>
             <div className="collapse collapse-arrow bg-darkblue rounded-[4px] shadow-md">
-              <input type="checkbox" defaultChecked />
-              <div className="collapse-title text-white text-xl font-medium">
+              <input type="checkbox" />
+              <div className="collapse-title flex items-center text-white text-md md:text-xl font-medium">
                 <h1>Tentang kelas</h1>
               </div>
               <div className="collapse-content bg-white">
@@ -177,10 +177,7 @@ const KelasDetail = () => {
               onVideoSelect={(videoSrc) => setActiveVideo(videoSrc)}
             />
           ) : (
-            <h1>
-              Buy This Course to Access Material Chapter with only{" "}
-              {formatPrice(courseDetails?.price)}
-            </h1>
+            <PreviewBuyCard id={id} data={courseDetails} />
           )}
         </div>
       </div>
