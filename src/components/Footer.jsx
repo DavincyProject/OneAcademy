@@ -89,7 +89,7 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                to={""}
+                to={"https://github.com/rakkuy"}
                 target="_blank"
                 className="flex items-center gap-2 hover:text-blue-400 w-fit"
               >
