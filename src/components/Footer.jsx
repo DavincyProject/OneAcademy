@@ -93,7 +93,7 @@ const Footer = () => {
                 target="_blank"
                 className="flex items-center gap-2 hover:text-blue-400 w-fit"
               >
-                <SlSocialGithub size={20} /> GALUH RAKA M.
+                <SlSocialGithub size={20} /> Galuh Raka Mahendra
               </Link>
             </li>
             <li>
@@ -102,7 +102,7 @@ const Footer = () => {
                 target="_blank"
                 className="flex items-center gap-2 hover:text-blue-400 w-fit"
               >
-                <SlSocialGithub size={20} /> M. FATHUR NUR K.
+                <SlSocialGithub size={20} /> Mohammad Fathur Nur Khalis
               </Link>
             </li>
           </ul>
