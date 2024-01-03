@@ -87,6 +87,24 @@ const Footer = () => {
                 <SlSocialGithub size={20} /> TehBotolBayu
               </Link>
             </li>
+            <li>
+              <Link
+                to={""}
+                target="_blank"
+                className="flex items-center gap-2 hover:text-blue-400 w-fit"
+              >
+                <SlSocialGithub size={20} /> GALUH RAKA M.
+              </Link>
+            </li>
+            <li>
+              <Link
+                to={""}
+                target="_blank"
+                className="flex items-center gap-2 hover:text-blue-400 w-fit"
+              >
+                <SlSocialGithub size={20} /> M. FATHUR NUR K.
+              </Link>
+            </li>
           </ul>
         </div>
 
