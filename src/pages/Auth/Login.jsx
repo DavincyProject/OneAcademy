@@ -108,7 +108,7 @@ const Login = () => {
             </div>
           </div>
         </form>
-        <div className="divider">Or Login With</div>
+        <div className="divider">atau</div>
         <GoogleOAuth />
       </div>
 
